@@ -9,7 +9,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 
 // organisms
-
+import Btn from "../atoms/button/index.js";
 
 // Rendering of all active organisms
 class Homepage extends Component {
@@ -30,6 +30,9 @@ class Homepage extends Component {
           >
             Learn React
           </a>
+          
+          <Btn href="/testpage" btntype="R" btnstyle="oWHITE">Test</Btn>
+
         </header>
       </main>
     );
