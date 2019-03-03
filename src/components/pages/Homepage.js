@@ -8,6 +8,7 @@ import React, { Component } from "react";
 // organisms
 import Intro from "../organisms/intro";
 
+/* Later to be replaced with headless CMS content */
 let navitems = [
   {href:"/why-us", text:"Warum TheUniqueStory?", active:false, type:"text"},
   {href:"/how-it-works", text:"Wie funktioniert es?", active:false, type:"text"},
