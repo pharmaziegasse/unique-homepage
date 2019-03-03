@@ -26,7 +26,8 @@ const Nav = (props: Props): React.Element<*> => {
         "scrolling-navbar",
         navt(theme),
         className,
-        "text-white"
+        "text-white",
+        "z-depth-0"
     )
 
     return (

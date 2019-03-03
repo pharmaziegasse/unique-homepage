@@ -5,39 +5,23 @@ import React, { Component } from "react";
 
 // standard components
 
-// other components
-import logo from "./logo.svg";
-
 // organisms
-import Btn from "../atoms/button";
 import Intro from "../organisms/intro";
 
-let navitems = [{href:"/testpage", text:"Test", active:true},{href:"/furtherpage", text:"Next One", active:false}];
+let navitems = [
+  {href:"/why-us", text:"Warum TheUniqueStory?", active:false, type:"text"},
+  {href:"/how-it-works", text:"Wie funktioniert es?", active:false, type:"text"},
+  {href:"/pricing", text:"Preise", active:false, type:"text"},
+  {href:"/about-us", text:"Über uns", active:false, type:"text"},
+  {href:"/getting-started", text:"Loslegen", active:false, type:"button"}
+];
 
 // Rendering of all active organisms
 class Homepage extends Component {
   render() {
     return (
       <main className="Homepage">
-      <Intro items={navitems}/>
-        <header className="Homepage-header">
-          <img src={logo} className="Homepage-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> or <code>src/components/*</code> and
-            save to reload.
-          </p>
-          <a
-            className="Homepage-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          
-          <Btn href="/testpage" btntype="R" btnstyle="oWHITE">Test</Btn>
-
-        </header>
+        <Intro items={navitems}/>
       </main>
     );
   }
