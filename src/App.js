@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Developed for TheUniqueStory by Aichner Christian and Kleber Florian for terms of use have a look at the LICENSE file
 
+// Commands we used to get started with this project
+// npm install node-sass classnames react-scripts apollo-boost react-apollo graphql --save
+// npx create-react-app unique-homepage
+
+// To get all dependencies: npm install
+
+// standard libs
+
+// other libs
+import React, { Component } from "react";
+
+// standard components
+import "./mdb/scss/App.scss";
+
+// other components
+//import "./App.scss";
+
+
+// pages
+import Homepage from "./components/pages/Homepage";
+
+// Rendering of all active pages
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <Homepage />
     );
   }
 }
 
+// Exporting of App (all active pages)
 export default App;
