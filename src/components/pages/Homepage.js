@@ -9,13 +9,17 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 
 // organisms
-import Btn from "../atoms/button/index.js";
+import Btn from "../atoms/button";
+import Intro from "../organisms/intro";
+
+let navitems = [{href:"/testpage", text:"Test", active:true},{href:"/furtherpage", text:"Next One", active:false}];
 
 // Rendering of all active organisms
 class Homepage extends Component {
   render() {
     return (
       <main className="Homepage">
+      <Intro items={navitems}/>
         <header className="Homepage-header">
           <img src={logo} className="Homepage-logo" alt="logo" />
           <p>

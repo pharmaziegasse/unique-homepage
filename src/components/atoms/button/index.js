@@ -43,7 +43,8 @@ const Button = (props: Props): React.Element<*> => {
 
 Button.defaultProps = {
     size: ButtonSize.DEFAULT,
-    btnstyle: ButtonStyle.PRIMARY,
+    btnstyle: ButtonStyle.oWHITE,
+    btntype: ButtonType.R,
     href: '#',
     className: '',
     disabled: false

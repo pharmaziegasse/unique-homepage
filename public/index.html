@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="full-height" lang="de">
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -23,6 +23,52 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+    /* Required for full background image */
+
+html,
+body,
+header,
+.view {
+height: 100%;
+}
+
+@media (max-width: 740px) {
+html,
+body,
+header,
+.view {
+height: 100vh;
+}
+}
+
+.top-nav-collapse {
+background-color: #78909c !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+background: transparent !important;
+}
+
+@media (max-width: 991px) {
+.navbar:not(.top-nav-collapse) {
+background: #78909c !important;
+}
+}
+
+h1 {
+letter-spacing: 8px;
+}
+
+h5 {
+letter-spacing: 3px;
+}
+
+.hr-light {
+border-top: 3px solid #fff;
+width: 80px;
+}
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
