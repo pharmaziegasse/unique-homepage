@@ -31,20 +31,20 @@ const Hero = (props: Props): React.Element<*> => {
     }
 
     return (
-        <div id="hero-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-            <ol class="carousel-indicators">
+        <div id="hero-carousel" className="carousel slide carousel-fade" data-ride="carousel">
+            <ol className="carousel-indicators">
                 {heroitems.map((item, i) => {
                     return (<li key={i} data-target="#hero-carousel" data-slide-to={i} className={getActive(i)}></li>) 
                 })}
             </ol>
          
-            <div class="carousel-inner" role="listbox">
+            <div className="carousel-inner" role="listbox">
 
             {heroitems.map((item, i) => {
                 return (
                     <div key={i} className={getActiveItem(i)}>
-                        <div class="view hero-view" style={{backgroundImage: 'url('+ item.img +')'}}>
-                            <div class="mask hero-gradient d-flex justify-content-center align-items-center">
+                        <div className="view hero-view" style={{backgroundImage: 'url('+ item.img +')'}}>
+                            <div className="mask hero-gradient d-flex justify-content-center align-items-center">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-md-12 mb-4 white-text text-left">
@@ -58,12 +58,10 @@ const Hero = (props: Props): React.Element<*> => {
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-caption pl-5 pr-5">
+                        <div className="carousel-caption pl-5 pr-5">
                             <div className="row white-text">
-                                <div className="col-md-6 text-left">
-
-                                </div>
-                                <div className="col-md-6 text-right">
+                              
+                                <div className="col-md-12 text-right">
                                     <p>{i+1} - {heroitems.length}</p>
                                 </div>
                             </div>
@@ -71,27 +69,24 @@ const Hero = (props: Props): React.Element<*> => {
                     </div>
                 );
             })}
-                <div class="carousel-caption pl-5 pr-5">
+                <div className="carousel-caption pl-5 pr-5">
                     <div className="row white-text">
-                        <div className="col-md-6 text-left">
+                        <div className="col-md-12 text-left">
                         
-                            <a href={sociallinks[0].ig} className="m-2 white-text"><i class="fab fa-instagram"></i></a>
-                            <a href={sociallinks[0].fb} className="m-2 white-text"><i class="fab fa-facebook-f"></i></a>
-                        </div>
-                        <div className="col-md-6 text-right">
-
+                            <a href={sociallinks[0].ig} className="m-2 white-text"><i className="fab fa-instagram"></i></a>
+                            <a href={sociallinks[0].fb} className="m-2 white-text"><i className="fab fa-facebook-f"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <a class="carousel-control-prev" href="#hero-carousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
+            <a className="carousel-control-prev" href="#hero-carousel" role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#hero-carousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
+            <a className="carousel-control-next" href="#hero-carousel" role="button" data-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
             </a>
         </div>
     )

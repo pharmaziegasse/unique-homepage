@@ -7,10 +7,14 @@ import React, { Component } from "react";
 
 // organisms
 import Intro from "../organisms/intro";
+import Section from "../organisms/section";
+import Footer from "../organisms/footer";
 
 //Replace with CMS!
 import bg1 from "./bg1.jpg";
 import bg2 from "./bg2.jpg";
+import logo_dark from "./dark.png";
+import logo_light from "./light.png";
 /* Later to be replaced with headless CMS content */
 let navitems = [
   {href:"/why-us", text:"Warum TheUniqueStory?", active:false, type:"text"},
@@ -26,13 +30,28 @@ let heroitems = [
 let sociallinks = [
   {fb:"https://www.facebook.com", ig:"https://www.instagram.com"}
 ]
-
+let companyinfo = [
+  {city:"Klagenfurt",zip:"9020",address:"Pharmaziegasse 5",phone:"+43 463 45 904-0",email:"office@theuniquestory.com",copyrightholder:"TheUniqueStory"}
+]
+let logos = [
+  {light:logo_light,dark:logo_dark}
+]
 // Rendering of all active organisms
 class Homepage extends Component {
   render() {
     return (
       <main className="Homepage">
-        <Intro navitems={navitems} heroitems={heroitems} sociallinks={sociallinks}/>
+        <Intro logo={logos[0].light} navitems={navitems} heroitems={heroitems} sociallinks={sociallinks}/>
+        <Section background="BLUE">Test</Section>
+        <Section background="LIGHTBLUE">Test</Section>
+        <Section background="WHITE">Test</Section>
+        <Section background="LIGHTBLUE">Test</Section>
+        <Section background="GREY">Test</Section>
+        <Section background="LIGHTGREY">Test</Section>
+        <Section background="BLUE">Test</Section>
+        <Section background="LIGHTBLUE">Test</Section>
+        <Section background="WHITE">Test</Section>
+        <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
       </main>
     );
   }

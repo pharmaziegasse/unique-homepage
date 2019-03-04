@@ -5,7 +5,7 @@ import Nav from "../../molecules/nav";
 import Hero from "../../molecules/hero-carousel";
 
 const Intro = (props: Props): React.Element<*> => {
-    const { navitems, heroitems, sociallinks } = props;
+    const { navitems, heroitems, sociallinks, logo } = props;
 
     function GetState(active) {
         if (active) {
@@ -24,10 +24,10 @@ const Intro = (props: Props): React.Element<*> => {
     }
 
     const App = () => [
-        <Nav theme="D">
-        <ul class="navbar-nav ml-auto d-flex justify-content-center align-items-center">
+        <Nav theme="D" logo={logo}>
+        <ul className="navbar-nav ml-auto d-flex justify-content-center align-items-center">
             {navitems.map((item, i) => {
-            return (<li key={i} className={GetState(item.active)} data-id={i}><a className={GetType(item.type)} href={item.href}>{item.text}</a></li>) 
+                return (<li key={i} className={GetState(item.active)} data-id={i}><a className={GetType(item.type)} href={item.href}>{item.text}</a></li>) 
             })}
         </ul>
        </Nav>,

@@ -76,6 +76,41 @@ h5 {
     width: 80px;
 }
 
+/* Sections */ 
+section{
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+.section-blue{
+    background-color: #9dbdd6;
+    color: white;
+}
+.section-lightblue{
+    background-color: #eff4f8;
+    color: #212529;
+}
+.section-white{
+    background-color: white;
+    color: #212529;
+}
+.section-grey{
+    background-color: #545456;
+    color: white;
+}
+.section-lightgrey{
+    background-color: #f3f3f3;
+    color: #212529;
+}
+
+/* Footer */
+.page-footer .container{
+    border-top: 2px black solid;
+}
+footer.page-footer a {
+    color: #212529;
+    text-transform: uppercase;
+}
+
 /* Fonts */
 .font-weight-bold{
     font-family: 'Oxfam Headline', sans-serif;

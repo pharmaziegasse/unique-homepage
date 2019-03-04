@@ -1,16 +1,12 @@
 import * as React from 'react'
 import classnames from 'classnames/bind'
 
-//Temp
-import logofile from "./logo.png";
-
 //Themes
 import NavTheme from './nav_themes.js';
 
 var navt = classnames.bind(NavTheme);
 
 type Props = {
-    logo: string,
     children: React.Node,
     theme: string,
     className: string
@@ -47,8 +43,7 @@ const Nav = (props: Props): React.Element<*> => {
 }
 
 Nav.defaultProps = {
-   theme: NavTheme.L,
-   logo: logofile
+   theme: NavTheme.L
 }
 
 export default Nav
