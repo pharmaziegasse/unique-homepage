@@ -144,6 +144,135 @@ section{
     background: white;
 }
 
+.asbest{
+    display: flex;
+    flex-direction: column;
+    min-height: 30vh;
+    max-height: 600px;
+    min-width: 30vh;
+    max-width: 700px;
+
+    .sphere{
+        z-index: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        p{
+            content: "mehr dazu";
+        }
+        &::before{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -30px;
+            left: calc(50% - 30px);
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+        }
+        &::after{
+            z-index: -1;
+            position: absolute;
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 3px;
+        }
+
+    }
+
+    .r{
+        flex: 1;
+        display: flex;
+    }
+    .r1{
+        justify-content: center;
+    }
+    .r2{
+        justify-content: space-between;
+    }
+    .r3{
+        justify-content: center;
+        .ring{
+            top: unset;
+            bottom: -30px;
+        }
+    }
+
+    .c{
+
+    }
+
+    .s1{
+        background-color: #9dbdd6;
+        color: #212529;
+        &::before{
+            content: "1";
+            background-color: white;
+            color: #212529;
+        }
+        &::after{
+            bottom: 20px;
+            right: 0px;
+            transform: rotate(40deg);
+            background-color: #9dbdd6;
+        }
+    }
+
+    .s2{
+        background-color: white;
+        color: #212529;
+        &::before{
+            content: "2";
+            background-color: #9dbdd6;
+        }
+        &::after{
+            bottom: 20px;
+            left: 0px;
+            transform: rotate(140deg);
+            background-color: #9dbdd6;
+        }
+    }
+
+    .s3{
+        background-color: #9dbdd6;
+        color: #212529;
+        &::before{
+            content: "3";
+            background-color: white;
+            color: #212529;
+        }
+        &::after{
+            top: 20px;
+            left: 0px;
+            transform: rotate(40deg);
+            background-color: #9dbdd6;
+        }
+    }
+
+    .s4{
+        background-color: white;
+        color: #212529;
+        &::before{
+            content: "4";
+            background-color: #9dbdd6;
+        }
+        &::after{
+            top: 20px;
+            right: 0px;
+            transform: rotate(140deg);
+            background-color: #9dbdd6;
+        }
+    }
+}
+
 /* Footer */
 .page-footer .container{
     border-top: 2px black solid;

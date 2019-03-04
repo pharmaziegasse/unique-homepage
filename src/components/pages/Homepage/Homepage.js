@@ -15,6 +15,8 @@ import Section0 from "../../organisms/SectionContents/0.js"
 import Section1 from "../../organisms/SectionContents/1.js"
 import Section2 from "../../organisms/SectionContents/2.js"
 
+import Section4 from "../../organisms/SectionContents/4.js"
+
 import Section6 from "../../organisms/SectionContents/6.js"
 
 import Section8 from "../../organisms/SectionContents/8.js"
@@ -90,12 +92,14 @@ let section2_contents = [
 // Section 3
 
 // Section 4
-
+let section4_contents = [
+  {heading:"Was unsere Kunden sagen"}
+]
 // Section 5
 
 // Section 6
 let section6_contents = [
-  {heading:"Was unsere Kunden sagen"}
+  {heading:"Wie funktioniert es?"}
 ]
 let reviews = [
   {name:"Max Mustermann",img:"https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg",quote:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",info:"Position und Firma"},
@@ -122,7 +126,7 @@ class Homepage extends Component {
         <Section background="LIGHTBLUE" data-id="1"><Section1 content={section1_contents}/></Section>
         <Section background="WHITE" data-id="2"><Section2 content={section2_contents}/></Section>
         <Section background="LIGHTBLUE" data-id="3">3</Section>
-        <Section background="GREY" data-id="4">4</Section>
+        <Section background="GREY" data-id="4"><Section4 content={section4_contents}/></Section>
         <Section background="LIGHTGREY" data-id="5">5</Section>
         <Section background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
         <Section background="LIGHTBLUE" data-id="7">7</Section>
