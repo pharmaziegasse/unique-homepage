@@ -9,10 +9,11 @@ type Props = {
     background: string,
     children: React.Node,
     className: string,
+    sectionid: string
 }
 
 const Section = (props: Props): React.Element<*> => {
-    const { background, children, className } = props;
+    const { background, children, className, sectionid } = props;
 
     const classProps: string = classnames(
         sbg(background),
@@ -20,7 +21,7 @@ const Section = (props: Props): React.Element<*> => {
     )
 
     return (
-        <section className={classProps}>
+        <section id={sectionid} className={classProps}>
             {children}
         </section>
     )

@@ -45,6 +45,21 @@
     <script>
     // Animations initialization
     new WOW().init();
+
+    $(document).ready(function () {
+      var hash = window.location.hash;
+      $('html,body').animate({
+        scrollTop: $(hash).offset().top - 120
+      });
+    });
+
+    $(document).on('click','.sscroll',function (e) {
+      var target = $(this).attr('href');
+      e.preventDefault();
+      $('html,body').animate({
+        scrollTop: $(target).offset().top - 120
+      }, 800, 'easeInOutQuart');
+    });
     </script>
     <!--<script src="%SRC_URL%/mdb/js/jquery-3.3.1.min.js"></script>
     <script src="%SRC_URL%/mdb/js/bootstrap.min.js"></script>

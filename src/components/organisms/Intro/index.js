@@ -17,14 +17,14 @@ const Intro = (props: Props): React.Element<*> => {
 
     function GetType(type){
         if (type === "text"){
-            return "nav-link m-1";
+            return "nav-link m-1 sscroll";
         }else{
-            return "ml-5 btn btn-outline-white btn-rounded";
+            return "ml-5 btn btn-outline-white btn-rounded sscroll";
         }
     }
 
     return(
-        <header>
+        <header id="home">
             <Nav theme="D" logo={logo}>
             <ul className="navbar-nav ml-auto d-flex justify-content-center align-items-center">
                 {navitems.map((item, i) => {
