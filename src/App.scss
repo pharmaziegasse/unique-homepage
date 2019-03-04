@@ -1,0 +1,159 @@
+// Importing scss of all active pages
+@import "./components/pages/Homepage/Homepage.scss";
+
+html,
+body,
+header,
+.view, #root, main, #hero-carousel .carousel-inner, #hero-carousel, #hero-carousel .carousel-item {
+    height: 100%;
+    font-family: "Oxfam Regular", "Roboto", sans-serif;
+    font-weight: 300;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view, #root, main, #hero-carousel .carousel-inner, #hero-carousel, #hero-carousel .carousel-item {
+        height: 100vh;
+    }
+}
+
+/* Navbar */
+.top-nav-collapse {
+    background-color: rgba(0,0,0,0.4) !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+@media (max-width: 991px) {
+    .navbar:not(.top-nav-collapse) {
+        background: rgba(0,0,0,0.4) !important;
+    }
+}
+
+h1 {
+    letter-spacing: 8px;
+}
+
+/* Font fixing */
+.btn{
+    letter-spacing: 2px;
+}
+/* Hero */
+.hero-view{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+}
+.carousel-caption{
+    right: auto !important;
+    left: auto !important;
+    width: 100%; 
+    z-index: 2;
+}
+.hero-gradient{
+  content:'';
+  position:absolute;
+  left:0; top:0;
+  width:100%; height:100%;
+  display:inline-block;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(255, 255, 255, 0.1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 0.1)), color-stop(100%,rgba(0,0,0,0.6) 0%)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(255, 255, 255, 0.1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(255, 255, 255, 0.1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(255, 255, 255, 0.1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(255, 255, 255, 0.1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002f4b', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+h5 {
+    letter-spacing: 3px;
+}
+    
+.hr-light {
+    border-top: 3px solid #fff;
+    width: 80px;
+}
+
+/* Sections */ 
+section{
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+.section-blue{
+    background-color: #9dbdd6;
+    color: white;
+}
+.section-lightblue{
+    background-color: #eff4f8;
+    color: #212529;
+}
+.section-white{
+    background-color: white;
+    color: #212529;
+}
+.section-grey{
+    background-color: #545456;
+    color: white;
+}
+.section-lightgrey{
+    background-color: #f3f3f3;
+    color: #212529;
+}
+
+.section0-row .col-md-4{
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.section0-row .col-md-4:first-child{
+    border-right: 1px white solid;
+}
+.section0-row .col-md-4:last-child{
+    border-left: 1px white solid;
+}
+@media (max-width: 740px) {
+    .section0-row .col-md-4:first-child{
+        border-right: none;
+        border-bottom: 1px white solid;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+    .section0-row .col-md-4:last-child{
+        border-left: none;
+        border-top: 1px white solid;
+        padding-top: 1rem;
+        margin-top: 1rem;
+    }
+}
+.section0-row img{
+    max-height: 125px;
+    width: auto;
+    margin-bottom: 1rem;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+#customer-carousel{
+    background: white;
+}
+
+/* Footer */
+.page-footer .container{
+    border-top: 2px black solid;
+}
+footer.page-footer a {
+    color: #212529;
+    text-transform: uppercase;
+}
+
+/* Fonts */
+.font-weight-bold{
+    font-family: 'Oxfam Headline', sans-serif;
+}

@@ -12,7 +12,8 @@
 import React, { Component } from "react";
 
 // standard components
-import "./mdb/scss/App.scss";
+import "./mdb/scss/mdb.scss";
+import "./App.scss";
 
 // other components
 //import "./App.scss";

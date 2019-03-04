@@ -27,12 +27,16 @@
 
 @charset "UTF-8";
 
+// Your custom font
+@import "custom-font";
+
 // Bootstrap
 @import "core/bootstrap/functions";
 @import "core/bootstrap/variables";
 
 // CORE
 @import "core/mixins";
+
 // Your custom variables
 @import "custom-variables";
 @import "core/colors";
