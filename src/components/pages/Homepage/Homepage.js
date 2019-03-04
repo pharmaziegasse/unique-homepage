@@ -6,18 +6,18 @@ import React, { Component } from "react";
 // standard components
 
 // organisms
-import Intro from "../organisms/Intro";
-import Section from "../organisms/Section";
-import Footer from "../organisms/Footer";
+import Intro from "../../organisms/Intro";
+import Section from "../../organisms/Section";
+import Footer from "../../organisms/Footer";
 
 // section content organisms
-import Section0 from "../organisms/SectionContents/0.js"
-import Section1 from "../organisms/SectionContents/1.js"
-import Section2 from "../organisms/SectionContents/2.js"
+import Section0 from "../../organisms/SectionContents/0.js"
+import Section1 from "../../organisms/SectionContents/1.js"
+import Section2 from "../../organisms/SectionContents/2.js"
 
-import Section6 from "../organisms/SectionContents/6.js"
+import Section6 from "../../organisms/SectionContents/6.js"
 
-import Section8 from "../organisms/SectionContents/8.js"
+import Section8 from "../../organisms/SectionContents/8.js"
 
 // Replace with CMS!
 import bg1 from "./bg1.jpg";

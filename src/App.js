@@ -20,7 +20,7 @@ import "./App.scss";
 
 
 // pages
-import Homepage from "./components/pages/Homepage";
+import Homepage from "./components/pages/Homepage/Homepage";
 
 // Rendering of all active pages
 class App extends Component {
