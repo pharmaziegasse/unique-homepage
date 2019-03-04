@@ -102,7 +102,12 @@ let section3_contents = [
 
 // Section 4
 let section4_contents = [
-  {heading:"Was unsere Kunden sagen"}
+  {heading:"Wie funktioniert es?"},
+  {btntext:"Beautyprogramm starten",btnhref:"/start"},
+  {text:"Verstehen deiner Hautbedürfnisse",href:"#"},
+  {text:"Analysieren deines Hautzustandes",href:"#"},
+  {text:"Entwickeln deines individuellen Beautyprogrammes",href:"#"},
+  {text:"Laufendes Überprüfen und Anpassen",href:"#"},
 ]
 // Section 5
 let section5_button = [

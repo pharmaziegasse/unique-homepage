@@ -24,18 +24,20 @@ const Intro = (props: Props): React.Element<*> => {
     }
 
     return(
-        <Nav theme="D" logo={logo}>
-        <ul className="navbar-nav ml-auto d-flex justify-content-center align-items-center">
-            {navitems.map((item, i) => {
-                return (
-                    <li key={i} className={GetState(item.active)}>
-                        <a className={GetType(item.type)} href={item.href}>{item.text}</a>
-                    </li>
-                ) 
-            })}
-        </ul>
-       </Nav>,
-       <Hero heroitems={heroitems} sociallinks={sociallinks}/>
+        <header>
+            <Nav theme="D" logo={logo}>
+            <ul className="navbar-nav ml-auto d-flex justify-content-center align-items-center">
+                {navitems.map((item, i) => {
+                    return (
+                        <li key={i} className={GetState(item.active)}>
+                            <a className={GetType(item.type)} href={item.href}>{item.text}</a>
+                        </li>
+                    ) 
+                })}
+            </ul>
+        </Nav>
+        <Hero heroitems={heroitems} sociallinks={sociallinks}/>
+       </header>
     )
 
 }

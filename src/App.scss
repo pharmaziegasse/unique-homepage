@@ -253,6 +253,12 @@ section{
             background-color: $unique-blue;
         }
     }
+    .s1 a{
+        color: white;
+    }
+    .s1 a:hover{
+        color: #f9f9f9;
+    }
 
     .s2{
         background-color: white;
@@ -268,6 +274,12 @@ section{
             transform: rotate(135deg);
             background-color: white;
         }
+    }
+    .s2 a{
+        color: $unique-blue;
+    }
+    .s2 a:hover{
+        color: #95b2c9;
     }
 
     .s3{
@@ -287,6 +299,12 @@ section{
             background-color: $unique-blue;
         }
     }
+    .s3 a{
+        color: white;
+    }
+    .s3 a:hover{
+        color: #f9f9f9;
+    }
 
     .s4{
         background-color: white;
@@ -302,6 +320,12 @@ section{
             transform: rotate(135deg);
             background-color: white;
         }
+    }
+    .s4 a{
+        color: $unique-blue;
+    }
+    .s4 a:hover{
+        color: #95b2c9;
     }
 }
 
