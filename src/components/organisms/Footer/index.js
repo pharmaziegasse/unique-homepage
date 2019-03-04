@@ -33,7 +33,7 @@ const Footer = (props: Props): React.Element<*> => {
         <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
           <h6 className="text-uppercase mb-4 font-weight-bold">Kontakt</h6>
           <p><i className="fas fa-phone mr-3"></i>{companyinfo[0].phone}</p>
-          <p><i className="fas fa-envelope mr-3"></i>{companyinfo[0].email}</p>
+          <a className="email-link" href={"mailto:"+companyinfo[0].email}><i className="fas fa-envelope mr-3"></i>{companyinfo[0].email}</a>
         </div>
 
 

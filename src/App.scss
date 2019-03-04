@@ -337,6 +337,9 @@ footer.page-footer a {
     color: $dark-grey-text;
     text-transform: uppercase;
 }
+footer .email-link {
+    text-transform: none !important;
+}
 
 /* Fix cards */
 .pricing-card, .premium{
