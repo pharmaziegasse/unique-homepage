@@ -182,8 +182,8 @@ section{
 .asbest{
     display: flex;
     flex-direction: column;
-    height: 550px;
-    width: 700px;
+    height: 500px;
+    width: 660px;
 
     .sphere{
         z-index: 1;
@@ -240,7 +240,7 @@ section{
 
     .s1{
         background-color: $unique-blue;
-        color: $dark-grey-text;
+        color: white;
         &::before{
             content: "1";
             background-color: white;
@@ -297,7 +297,7 @@ section{
             color: white;
         }
         &::after{
-            top: 20px;
+            top: 37px;
             right: 0px;
             transform: rotate(135deg);
             background-color: white;
