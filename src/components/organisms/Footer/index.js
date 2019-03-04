@@ -41,8 +41,8 @@ const Footer = (props: Props): React.Element<*> => {
 
 
         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-          <p><a href="/about">Impressum</a></p>
-          <p><a href="/privacy">Datenschutz</a></p>
+          <p><a href="http://www.gasser-partner.at/impressum/" rel="noopener noreferrer" target="_blank">Impressum</a></p>
+          <p><a href="http://www.gasser-partner.at/datenschutz/" rel="noopener noreferrer" target="_blank">Datenschutz</a></p>
           <ul className="list-unstyled list-inline">
               <li className="list-inline-item">
                 <a href={sociallinks[0].fb} className="mx-2">

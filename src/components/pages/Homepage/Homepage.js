@@ -120,7 +120,7 @@ let section5_contents = [
 
 // Section 6
 let section6_contents = [
-  {heading:"Wie funktioniert es?"}
+  {heading:"Was unsere Kunden sagen"}
 ]
 let reviews = [
   {name:"Max Mustermann",img:"https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg",quote:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",info:"Position und Firma"},
