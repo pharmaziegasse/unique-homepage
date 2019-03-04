@@ -14,7 +14,7 @@ import Footer from "../../organisms/Footer";
 import Section0 from "../../organisms/SectionContents/0.js"
 import Section1 from "../../organisms/SectionContents/1.js"
 import Section2 from "../../organisms/SectionContents/2.js"
-
+import Section3 from "../../organisms/SectionContents/3.js"
 import Section4 from "../../organisms/SectionContents/4.js"
 
 import Section6 from "../../organisms/SectionContents/6.js"
@@ -31,6 +31,7 @@ import icon2 from "./icon2.gif";
 import icon3 from "./icon3.gif";
 import section1_img from "./section1.jpg";
 import section2_img from "./section2.jpg";
+import section3_img from "./section3.jpg";
 
 import section8_img from "./section8.jpg";
 /* Later to be replaced with headless CMS content */
@@ -90,6 +91,14 @@ let section2_contents = [
 ]
 
 // Section 3
+let section3_contents = [
+  {heading:"Frische und natürliche Kosmetik<br>handgemacht aus dem Labor"},
+  {img:section3_img},
+  {btntext:"Beautyprogramm starten",btnhref:"/start"},
+  {lead:"Unsere Produkte werden frisch für dich zubereitet."},
+  {paragraph:"Sie beinhalten keine chemischen Konservierungs, Farb- und Duftstoffe, sondern ausschließlich natürliche und zertifizierte Rohstoffe. Sie werden von Hand in unserem Labor unter strengsten Auflagen nur für dich hergestellt. Alle Produkte sind mit nachhaltigen Inhaltsstoffen nach den persönlichen Anforderungen des jeweiligen Hautzustandes hergestellt und genügen höchsten Qualitätsanforderungen."},
+  {paragraph:"Next paragraph"}
+]
 
 // Section 4
 let section4_contents = [
@@ -130,7 +139,7 @@ class Homepage extends Component {
         <Section background="BLUE" data-id="0"><Section0 content={section0_contents}/></Section>
         <Section background="LIGHTBLUE" data-id="1"><Section1 content={section1_contents}/></Section>
         <Section background="WHITE" data-id="2"><Section2 content={section2_contents}/></Section>
-        <Section background="LIGHTBLUE" data-id="3">3</Section>
+        <Section background="LIGHTBLUE" data-id="3"><Section3 content={section3_contents}/></Section>
         <Section background="GREY" data-id="4"><Section4 content={section4_contents}/></Section>
         <Section background="LIGHTGREY" data-id="5">5</Section>
         <Section background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
