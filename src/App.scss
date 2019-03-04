@@ -282,7 +282,33 @@ footer.page-footer a {
     text-transform: uppercase;
 }
 
+/* Fix cards */
+.pricing-card {
+    box-shadow: none;
+    border-radius: 0;
+}
+.pricing-card h3{
+    color: #9dbdd6;
+}
+.pricing-card .pricing-description{
+    background-color: #9dbdd6;
+    color: white;
+}
+.premium .pricing-description {
+    background-color: #2a3c4a;
+    color: white;
+}
+.premium h3{
+    color: #2a3c4a;
+}
+
 /* Fonts */
 .font-weight-bold{
     font-family: 'Oxfam Headline', sans-serif;
+}
+.pricetag{
+    font-family: 'Oxfam Bold', sans-serif;
+    font-size: .9rem;
+    letter-spacing: 1px;
+    color: #9dbdd6;
 }
