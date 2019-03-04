@@ -1,5 +1,6 @@
 // Importing scss of all active pages
 @import "./components/pages/Homepage/Homepage.scss";
+@import "./mdb/scss/custom-variables";
 
 html,
 body,
@@ -84,24 +85,24 @@ section{
     padding-bottom: 3rem !important;
 }
 .section-blue{
-    background-color: #9dbdd6;
+    background-color: $unique-blue;
     color: white;
 }
 .section-lightblue{
-    background-color: #eff4f8;
-    color: #212529;
+    background-color: $unique-lightblue;
+    color: $dark-grey-text;
 }
 .section-white{
     background-color: white;
-    color: #212529;
+    color: $dark-grey-text;
 }
 .section-grey{
-    background-color: #545456;
+    background-color: $unique-grey;
     color: white;
 }
 .section-lightgrey{
-    background-color: #f3f3f3;
-    color: #212529;
+    background-color: $unique-lightgrey;
+    color: $dark-grey-text;
 }
 
 .section0-row .col-md-4{
@@ -211,64 +212,64 @@ section{
     }
 
     .s1{
-        background-color: #9dbdd6;
-        color: #212529;
+        background-color: $unique-blue;
+        color: $dark-grey-text;
         &::before{
             content: "1";
             background-color: white;
-            color: #212529;
+            color: $dark-grey-text;
         }
         &::after{
             bottom: 20px;
             right: 0px;
             transform: rotate(40deg);
-            background-color: #9dbdd6;
+            background-color: $unique-blue;
         }
     }
 
     .s2{
         background-color: white;
-        color: #212529;
+        color: $dark-grey-text;
         &::before{
             content: "2";
-            background-color: #9dbdd6;
+            background-color: $unique-blue;
         }
         &::after{
             bottom: 20px;
             left: 0px;
             transform: rotate(140deg);
-            background-color: #9dbdd6;
+            background-color: $unique-blue;
         }
     }
 
     .s3{
-        background-color: #9dbdd6;
-        color: #212529;
+        background-color: $unique-blue;
+        color: $dark-grey-text;
         &::before{
             content: "3";
             background-color: white;
-            color: #212529;
+            color: $dark-grey-text;
         }
         &::after{
             top: 20px;
             left: 0px;
             transform: rotate(40deg);
-            background-color: #9dbdd6;
+            background-color: $unique-blue;
         }
     }
 
     .s4{
         background-color: white;
-        color: #212529;
+        color: $dark-grey-text;
         &::before{
             content: "4";
-            background-color: #9dbdd6;
+            background-color: $unique-blue;
         }
         &::after{
             top: 20px;
             right: 0px;
             transform: rotate(140deg);
-            background-color: #9dbdd6;
+            background-color: $unique-blue;
         }
     }
 }
@@ -278,7 +279,7 @@ section{
     border-top: 2px black solid;
 }
 footer.page-footer a {
-    color: #212529;
+    color: $dark-grey-text;
     text-transform: uppercase;
 }
 
@@ -288,18 +289,18 @@ footer.page-footer a {
     border-radius: 0;
 }
 .pricing-card h3{
-    color: #9dbdd6;
+    color: $unique-blue;
 }
 .pricing-card .pricing-description{
-    background-color: #9dbdd6;
+    background-color: $unique-blue;
     color: white;
 }
 .premium .pricing-description {
-    background-color: #2a3c4a;
+    background-color: $unique-darkblue;
     color: white;
 }
 .premium h3{
-    color: #2a3c4a;
+    color: $unique-darkblue;
 }
 
 /* Fonts */
@@ -310,5 +311,5 @@ footer.page-footer a {
     font-family: 'Oxfam Bold', sans-serif;
     font-size: .9rem;
     letter-spacing: 1px;
-    color: #9dbdd6;
+    color: $unique-blue;
 }
