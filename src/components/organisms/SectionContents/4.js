@@ -18,6 +18,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div className="c c2">
                         <div className="sphere s1">
                             <p>Verstehe deine Hautbedürfnisse</p>
+                            <p>MEHR DAZU</p>
                         </div>
                     </div>
                 </div>
@@ -25,11 +26,13 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div className="c c1">
                         <div className="sphere s4">
                             <p>Laufende Überprüfung und Anpassung</p>
+                            <p>MEHR DAZU</p>
                         </div>
                     </div>
                     <div className="c c3">
                         <div className="sphere s2">
                             <p>Analysieren deines Hautzustandes</p>
+                            <p>MEHR DAZU</p>
                         </div>
                     </div>
                 </div>
@@ -37,6 +40,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div className="c c2">
                         <div className="sphere s3">
                             <p>Entwickeln deines individuellen Beautyprogramms</p>
+                            <p>MEHR DAZU</p>
                         </div>
                     </div>
                 </div>
