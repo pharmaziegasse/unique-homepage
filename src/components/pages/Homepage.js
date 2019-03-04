@@ -10,6 +10,10 @@ import Intro from "../organisms/Intro";
 import Section from "../organisms/Section";
 import Footer from "../organisms/Footer";
 
+// section content organisms
+import Section0 from "../organisms/SectionContents/0.js"
+import Section1 from "../organisms/SectionContents/1.js"
+
 // Replace with CMS!
 import bg1 from "./bg1.jpg";
 import bg2 from "./bg2.jpg";
@@ -67,15 +71,15 @@ class Homepage extends Component {
     return (
       <main className="Homepage">
         <Intro logo={logos[0].light} navitems={navitems} heroitems={heroitems} sociallinks={sociallinks}/>
-        <Section background="BLUE">Test</Section>
-        <Section background="LIGHTBLUE">Test</Section>
-        <Section background="WHITE">Test</Section>
-        <Section background="LIGHTBLUE">Test</Section>
-        <Section background="GREY">Test</Section>
-        <Section background="LIGHTGREY">Test</Section>
-        <Section background="BLUE">Test</Section>
-        <Section background="LIGHTBLUE">Test</Section>
-        <Section background="WHITE">Test</Section>
+        <Section background="BLUE" data-id="0"><Section0 content={section0_contents}/></Section>
+        <Section background="LIGHTBLUE" data-id="1"><Section1 content={section1_contents}/></Section>
+        <Section background="WHITE" data-id="2">Test</Section>
+        <Section background="LIGHTBLUE" data-id="3">Test</Section>
+        <Section background="GREY" data-id="4">Test</Section>
+        <Section background="LIGHTGREY" data-id="5">Test</Section>
+        <Section background="BLUE" data-id="6">Test</Section>
+        <Section background="LIGHTBLUE" data-id="7">Test</Section>
+        <Section background="WHITE" data-id="8">Test</Section>
         <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
       </main>
     );
