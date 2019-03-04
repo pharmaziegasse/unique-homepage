@@ -87,6 +87,12 @@ let section2_contents = [
   {paragraph:"Number of paragraphs is flexible"},
 ]
 
+// Section 3
+
+// Section 4
+
+// Section 5
+
 // Section 6
 let section6_contents = [
   {heading:"Was unsere Kunden sagen"}
@@ -95,6 +101,8 @@ let reviews = [
   {name:"Max Mustermann",img:"https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg",quote:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",info:"Position und Firma"},
   {name:"Maxine Musterfrau",img:"https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",quote:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr. At vero eos et accusam et justo duo dolores et ea rebum.",info:"Position und Firma"},
 ]
+
+// Section 7
 
 // Section 8
 // Number of paragraphs is flexible. Just add more or less and the view will render accordingly
