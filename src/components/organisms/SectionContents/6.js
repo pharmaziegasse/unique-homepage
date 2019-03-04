@@ -20,7 +20,7 @@ const SectionContent = (props: Props): React.Element<*> => {
            <h2 className="h1-responsive font-weight-bold mb-5">{content[0].heading}</h2>
 
             <div className="wrapper-carousel-fix">
-                <div id="customer-carousel" className="carousel no-flex testimonial-carousel slide carousel-fade py-5 dark-grey-text" data-ride="carousel"
+                <div id="customer-carousel" className="carousel no-flex testimonial-carousel slide py-5 dark-grey-text" data-ride="carousel"
                 data-interval="10000">
                 <div className="carousel-inner" role="listbox">
                 {reviews.map((item, i) => {

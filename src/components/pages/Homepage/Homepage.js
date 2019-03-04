@@ -16,7 +16,7 @@ import Section1 from "../../organisms/SectionContents/1.js"
 import Section2 from "../../organisms/SectionContents/2.js"
 
 import Section6 from "../../organisms/SectionContents/6.js"
-
+import Section7 from "../../organisms/SectionContents/7.js"
 import Section8 from "../../organisms/SectionContents/8.js"
 
 // Replace with CMS!
@@ -103,7 +103,12 @@ let reviews = [
 ]
 
 // Section 7
-
+let section7_contents = [
+  {heading:"Preis"},
+  {title:"Baisc",description:"Hier kommt die Beschreibung inkl. Details vom Basic Programm.",price:"199",btntext:"Beautyprogramm starten",btnhref:"/start"},
+  {title:"Standard",description:"Hier kommt die Beschreibung inkl. Details vom Standard Programm.",price:"299",btntext:"Beautyprogramm starten",btnhref:"/start"},
+  {title:"Premium",description:"Hier kommt die Beschreibung inkl. Details vom Premium Programm.",price:"399",btntext:"Beautyprogramm starten",btnhref:"/start"}
+]
 // Section 8
 // Number of paragraphs is flexible. Just add more or less and the view will render accordingly
 let section8_contents = [
@@ -125,7 +130,7 @@ class Homepage extends Component {
         <Section background="GREY" data-id="4">4</Section>
         <Section background="LIGHTGREY" data-id="5">5</Section>
         <Section background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
-        <Section background="LIGHTBLUE" data-id="7">7</Section>
+        <Section background="LIGHTBLUE" data-id="7"><Section7 content={section7_contents}/></Section>
         <Section background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
         <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
       </main>
