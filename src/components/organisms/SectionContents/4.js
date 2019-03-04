@@ -10,14 +10,6 @@ type Props = {
 const SectionContent = (props: Props): React.Element<*> => {
     const { content } = props;
 
-    function getActiveItem(id){
-        if(id === 0){
-            return "carousel-item active";
-        }else{
-            return "carousel-item";
-        }
-    }
-
     return (
         <div className="container py-5">
            <h2 className="h1-responsive font-weight-bold mb-5">{content[0].heading}</h2>
@@ -49,11 +41,9 @@ const SectionContent = (props: Props): React.Element<*> => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-6 text-center">
-                <div className="row">
-                    <div className="col-12"><Btn btnstyle="oWHITE" href="" className="font-weight-bold">Beautyprogramm starten</Btn></div>
-                </div>
-            </div>
+
+            <Btn btnstyle="oWHITE" href="" className="font-weight-bold mt-5">Beautyprogramm starten</Btn>
+
         </div>
     )
 }
