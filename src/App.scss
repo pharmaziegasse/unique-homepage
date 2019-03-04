@@ -182,10 +182,8 @@ section{
 .asbest{
     display: flex;
     flex-direction: column;
-    min-height: 30vh;
-    max-height: 600px;
-    min-width: 30vh;
-    max-width: 700px;
+    height: 550px;
+    width: 700px;
 
     .sphere{
         z-index: 1;
@@ -193,13 +191,13 @@ section{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-content: center;
-
-        width: 200px;
-        height: 200px;
+        align-items: center;
+        padding-top: 30px;
+        width: 220px;
+        height: 220px;
         border-radius: 100%;
         p{
-            content: "mehr dazu";
+            width: 170px;
         }
         &::before{
             display: flex;
@@ -216,9 +214,8 @@ section{
             z-index: -1;
             position: absolute;
             content: "";
-            position: absolute;
-            width: 30px;
-            height: 3px;
+            width: 35px;
+            height: 2.5px;
         }
 
     }
@@ -235,10 +232,6 @@ section{
     }
     .r3{
         justify-content: center;
-        .ring{
-            top: unset;
-            bottom: -30px;
-        }
     }
 
     .c{
@@ -254,56 +247,60 @@ section{
             color: $dark-grey-text;
         }
         &::after{
-            bottom: 20px;
-            right: 0px;
-            transform: rotate(40deg);
+            bottom: 66px;
+            right: -20px;
+            transform: rotate(33deg);
             background-color: $unique-blue;
         }
     }
 
     .s2{
         background-color: white;
-        color: $dark-grey-text;
+        color: $unique-blue;
         &::before{
             content: "2";
             background-color: $unique-blue;
+            color: white;
         }
         &::after{
-            bottom: 20px;
+            bottom: 36px;
             left: 0px;
-            transform: rotate(140deg);
-            background-color: $unique-blue;
+            transform: rotate(135deg);
+            background-color: white;
         }
     }
 
     .s3{
         background-color: $unique-blue;
-        color: $dark-grey-text;
+        color: white;
         &::before{
+            top: unset;
+            bottom: -30px;
             content: "3";
             background-color: white;
             color: $dark-grey-text;
         }
         &::after{
-            top: 20px;
-            left: 0px;
-            transform: rotate(40deg);
+            top: 66px;
+            left: -20px;
+            transform: rotate(33deg);
             background-color: $unique-blue;
         }
     }
 
     .s4{
         background-color: white;
-        color: $dark-grey-text;
+        color: $unique-blue;
         &::before{
             content: "4";
             background-color: $unique-blue;
+            color: white;
         }
         &::after{
             top: 20px;
             right: 0px;
-            transform: rotate(140deg);
-            background-color: $unique-blue;
+            transform: rotate(135deg);
+            background-color: white;
         }
     }
 }
