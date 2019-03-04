@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 //Import atoms
-import Btn from "../../atoms/button"
+import Btn from "../../atoms/Button"
 
 type Props = {
     className: string,

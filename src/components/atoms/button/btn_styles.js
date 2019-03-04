@@ -6,13 +6,15 @@ const ButtonStyle = {
     PRIMARY: 'btn-primary',
     SECONDARY: 'btn-secondary',
     WHITE: 'btn-white',
+    ELEGANT: 'btn-elegant',
     oDANGER: 'btn-outline-danger',
     oSUCCESS: 'btn-outline-success',
     oWARNING: 'btn-outline-warning',
     oINFO: 'btn-outline-info',
     oPRIMARY: 'btn-outline-primary',
     oSECONDARY: 'btn-outline-secondary',
-    oWHITE: 'btn-outline-white'
+    oWHITE: 'btn-outline-white',
+    oELEGANT: 'btn-outline-elegant'
 }
 
 export default ButtonStyle

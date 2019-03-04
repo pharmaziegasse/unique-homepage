@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 //Import molecules
-import Nav from "../../molecules/nav";
-import Hero from "../../molecules/hero-carousel";
+import Nav from "../../molecules/Nav";
+import Hero from "../../molecules/Hero";
 
 const Intro = (props: Props): React.Element<*> => {
     const { navitems, heroitems, sociallinks, logo } = props;
