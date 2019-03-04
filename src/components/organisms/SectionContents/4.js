@@ -21,7 +21,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     return (
         <div className="container py-5">
            <h2 className="h1-responsive font-weight-bold mb-5">{content[0].heading}</h2>
-            <div className="container py-5 asbest">
+            <div className="py-5 asbest m-auto">
                 <div className="r r1">
                     <div className="c c2">
                         <div className="sphere s1">
