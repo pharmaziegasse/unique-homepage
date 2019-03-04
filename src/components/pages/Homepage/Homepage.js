@@ -16,7 +16,7 @@ import Section1 from "../../organisms/SectionContents/1.js"
 import Section2 from "../../organisms/SectionContents/2.js"
 import Section3 from "../../organisms/SectionContents/3.js"
 import Section4 from "../../organisms/SectionContents/4.js"
-
+import Section5 from "../../organisms/SectionContents/5.js"
 import Section6 from "../../organisms/SectionContents/6.js"
 import Section7 from "../../organisms/SectionContents/7.js"
 import Section8 from "../../organisms/SectionContents/8.js"
@@ -105,6 +105,13 @@ let section4_contents = [
   {heading:"Was unsere Kunden sagen"}
 ]
 // Section 5
+let section5_button = [
+  {btntext:"Beautyprogramm starten",btnhref:"/start"}
+]
+let section5_contents = [
+  {title:"Interview mit deinem Beautycoach",text:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."},
+  {title:"Cyka Blyat",text:"Lorem ipsum cyka blyat amet, consetetur vodka elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}
+]
 
 // Section 6
 let section6_contents = [
@@ -141,7 +148,7 @@ class Homepage extends Component {
         <Section background="WHITE" data-id="2"><Section2 content={section2_contents}/></Section>
         <Section background="LIGHTBLUE" data-id="3"><Section3 content={section3_contents}/></Section>
         <Section background="GREY" data-id="4"><Section4 content={section4_contents}/></Section>
-        <Section background="LIGHTGREY" data-id="5">5</Section>
+        <Section background="LIGHTGREY" data-id="5"><Section5 content={section5_contents} btn={section5_button}/></Section>
         <Section background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
         <Section background="LIGHTBLUE" data-id="7"><Section7 content={section7_contents}/></Section>
         <Section background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
