@@ -145,6 +145,40 @@ section{
     background: white;
 }
 
+#interview-carousel .carousel-indicators{
+    position: relative;
+}
+#interview-carousel .btn-floating span {
+    display: inline-block;
+    width: inherit;
+    text-align: center;
+    color: $unique-grey;
+    font-size: 1.625rem;
+    line-height: 61.1px;
+}
+#interview-carousel .carousel-indicators button{
+    border: none;
+    outline: none;
+    background: #f9f9f9;
+    box-shadow: none;
+}
+#interview-carousel .carousel-indicators .active{
+    background: white;
+}
+#interview-carousel {
+    position: relative;
+    z-index: 0;
+}
+.num-display{
+    position: absolute;
+    color: white;
+    font-size: 15rem;
+    line-height: 15rem;
+    left: 20%;
+    z-index: -1;
+    top: 0;
+}
+
 .asbest{
     display: flex;
     flex-direction: column;
