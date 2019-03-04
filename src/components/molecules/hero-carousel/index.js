@@ -4,11 +4,12 @@ import * as React from 'react'
 import Btn from "../../atoms/button"
 
 type Props = {
-    className: string
+    className: string,
+    sociallinks: string;
 }
 
 const Hero = (props: Props): React.Element<*> => {
-    const { heroitems } = props;
+    const { heroitems, sociallinks } = props;
 
 
     function getActive(id){
@@ -33,7 +34,7 @@ const Hero = (props: Props): React.Element<*> => {
         <div id="hero-carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <ol class="carousel-indicators">
                 {heroitems.map((item, i) => {
-                    return (<li data-target="#hero-carousel" data-slide-to={i} className={getActive(i)}></li>) 
+                    return (<li key={i} data-target="#hero-carousel" data-slide-to={i} className={getActive(i)}></li>) 
                 })}
             </ol>
          
@@ -41,7 +42,7 @@ const Hero = (props: Props): React.Element<*> => {
 
             {heroitems.map((item, i) => {
                 return (
-                    <div className={getActiveItem(i)}>
+                    <div key={i} className={getActiveItem(i)}>
                         <div class="view hero-view" style={{backgroundImage: 'url('+ item.img +')'}}>
                             <div class="mask hero-gradient d-flex justify-content-center align-items-center">
                                 <div className="container">
@@ -57,15 +58,31 @@ const Hero = (props: Props): React.Element<*> => {
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-caption">
-                            <div class="animated fadeInDown">
-                                <h3 class="h3-responsive">Light mask</h3>
-                                <p>First text</p>
+                        <div class="carousel-caption pl-5 pr-5">
+                            <div className="row white-text">
+                                <div className="col-md-6 text-left">
+
+                                </div>
+                                <div className="col-md-6 text-right">
+                                    <p>{i+1} - {heroitems.length}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 );
             })}
+                <div class="carousel-caption pl-5 pr-5">
+                    <div className="row white-text">
+                        <div className="col-md-6 text-left">
+                        
+                            <a href={sociallinks[0].ig} className="m-2 white-text"><i class="fab fa-instagram"></i></a>
+                            <a href={sociallinks[0].fb} className="m-2 white-text"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                        <div className="col-md-6 text-right">
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <a class="carousel-control-prev" href="#hero-carousel" role="button" data-slide="prev">

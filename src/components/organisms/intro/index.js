@@ -5,12 +5,9 @@ import Btn from "../../atoms/button"
 
 import Nav from "../../molecules/nav";
 import Hero from "../../molecules/hero-carousel";
-import HeroContent from "../../molecules/hero_content";
-
-
 
 const Intro = (props: Props): React.Element<*> => {
-    const { navitems, heroitems } = props;
+    const { navitems, heroitems, sociallinks } = props;
 
     function GetState(active) {
         if (active) {
@@ -36,7 +33,7 @@ const Intro = (props: Props): React.Element<*> => {
             })}
         </ul>
        </Nav>,
-       <Hero heroitems={heroitems}/>
+       <Hero heroitems={heroitems} sociallinks={sociallinks}/>
     ];
 
     return (

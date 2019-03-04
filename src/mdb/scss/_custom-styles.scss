@@ -46,6 +46,12 @@ h1 {
     background-size: cover !important;
     background-position: center center !important;
 }
+.carousel-caption{
+    right: auto !important;
+    left: auto !important;
+    width: 100%; 
+    z-index: 2;
+}
 .hero-gradient{
   content:'';
   position:absolute;
