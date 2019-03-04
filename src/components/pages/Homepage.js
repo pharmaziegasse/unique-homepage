@@ -13,6 +13,11 @@ import Footer from "../organisms/Footer";
 // section content organisms
 import Section0 from "../organisms/SectionContents/0.js"
 import Section1 from "../organisms/SectionContents/1.js"
+import Section2 from "../organisms/SectionContents/2.js"
+
+import Section6 from "../organisms/SectionContents/6.js"
+
+import Section8 from "../organisms/SectionContents/8.js"
 
 // Replace with CMS!
 import bg1 from "./bg1.jpg";
@@ -23,6 +28,9 @@ import icon1 from "./icon1.gif";
 import icon2 from "./icon2.gif";
 import icon3 from "./icon3.gif";
 import section1_img from "./section1.jpg";
+import section2_img from "./section2.jpg";
+
+import section8_img from "./section8.jpg";
 /* Later to be replaced with headless CMS content */
 let navitems = [
   {href:"/why-us", text:"Warum TheUniqueStory?", active:false, type:"text"},
@@ -65,6 +73,37 @@ let section1_contents = [
   {paragraph:"Test"},
   {paragraph:"Number of paragraphs is flexible"},
 ]
+// Section 2
+// Number of paragraphs is flexible. Just add more or less and the view will render accordingly
+let section2_contents = [
+  {heading:"Analyse von Experten"},
+  {img:section2_img},
+  {btntext:"Beautyprogramm starten",btnhref:"/start"},
+  {lead:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
+  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
+  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
+  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
+  {paragraph:"Test"},
+  {paragraph:"Number of paragraphs is flexible"},
+]
+
+// Section 6
+let section6_contents = [
+  {heading:"Was unsere Kunden sagen"}
+]
+let reviews = [
+  {name:"Max Mustermann",img:"https://mdbootstrap.com/img/Photos/Avatars/img%20(3).jpg",quote:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",info:"Position und Firma"},
+  {name:"Maxine Musterfrau",img:"https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",quote:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr. At vero eos et accusam et justo duo dolores et ea rebum.",info:"Position und Firma"},
+]
+
+// Section 8
+// Number of paragraphs is flexible. Just add more or less and the view will render accordingly
+let section8_contents = [
+  {heading:"Über uns"},
+  {img:section8_img},
+  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
+  {paragraph:"Number of paragraphs is flexible"},
+]
 // Rendering of all active organisms
 class Homepage extends Component {
   render() {
@@ -73,13 +112,13 @@ class Homepage extends Component {
         <Intro logo={logos[0].light} navitems={navitems} heroitems={heroitems} sociallinks={sociallinks}/>
         <Section background="BLUE" data-id="0"><Section0 content={section0_contents}/></Section>
         <Section background="LIGHTBLUE" data-id="1"><Section1 content={section1_contents}/></Section>
-        <Section background="WHITE" data-id="2">Test</Section>
-        <Section background="LIGHTBLUE" data-id="3">Test</Section>
-        <Section background="GREY" data-id="4">Test</Section>
-        <Section background="LIGHTGREY" data-id="5">Test</Section>
-        <Section background="BLUE" data-id="6">Test</Section>
-        <Section background="LIGHTBLUE" data-id="7">Test</Section>
-        <Section background="WHITE" data-id="8">Test</Section>
+        <Section background="WHITE" data-id="2"><Section2 content={section2_contents}/></Section>
+        <Section background="LIGHTBLUE" data-id="3">3</Section>
+        <Section background="GREY" data-id="4">4</Section>
+        <Section background="LIGHTGREY" data-id="5">5</Section>
+        <Section background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
+        <Section background="LIGHTBLUE" data-id="7">7</Section>
+        <Section background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
         <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
       </main>
     );
