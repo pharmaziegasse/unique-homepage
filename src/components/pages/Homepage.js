@@ -19,13 +19,10 @@ let navitems = [
   {href:"/about-us", text:"Über uns", active:false, type:"text"},
   {href:"/getting-started", text:"Loslegen", active:false, type:"button"}
 ];
-
-
 let heroitems = [
   {img:bg1,head:"Don't call it a cream,<br>call it your unique<br>program.", subhead:"Deine persönliche Erfolgsstory zu schöner Haut durch individuelle Beautyprogramme von erfahrenen Experten.",btntext:"Beautyprogramm starten",btnhref:"/start"},
   {img:bg2,head:"Don't call it a cream,<br>call it Lorem Ipsum.", subhead:"Lorem Ipsum Dolor sit amet.",btntext:"",btnhref:""}
 ]
-
 let sociallinks = [
   {fb:"https://www.facebook.com", ig:"https://www.instagram.com"}
 ]

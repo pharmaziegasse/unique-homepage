@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-//Import atoms
-import Btn from "../../atoms/button"
-
+//Import molecules
 import Nav from "../../molecules/nav";
 import Hero from "../../molecules/hero-carousel";
 
