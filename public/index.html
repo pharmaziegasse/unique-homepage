@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="full-height" lang="de">
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -23,6 +23,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -41,6 +42,25 @@
     <script src="https://www.aichner-christian.com/mdb/js/popper.min.js"></script>
     <script src="https://www.aichner-christian.com/mdb/js/bootstrap.min.js"></script>
     <script src="https://www.aichner-christian.com/mdb/js/mdb.min.js"></script>
+    <script>
+    // Animations initialization
+    new WOW().init();
+
+    $(document).ready(function () {
+      var hash = window.location.hash;
+      $('html,body').animate({
+        scrollTop: $(hash).offset().top - 120
+      });
+    });
+
+    $(document).on('click','.sscroll',function (e) {
+      var target = $(this).attr('href');
+      e.preventDefault();
+      $('html,body').animate({
+        scrollTop: $(target).offset().top - 120
+      }, 800, 'easeInOutQuart');
+    });
+    </script>
     <!--<script src="%SRC_URL%/mdb/js/jquery-3.3.1.min.js"></script>
     <script src="%SRC_URL%/mdb/js/bootstrap.min.js"></script>
     <script src="%SRC_URL%/mdb/js/mdb.min.js"></script>-->

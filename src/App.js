@@ -12,14 +12,15 @@
 import React, { Component } from "react";
 
 // standard components
-import "./mdb/scss/App.scss";
+import "./mdb/scss/mdb.scss";
+import "./App.scss";
 
 // other components
 //import "./App.scss";
 
 
 // pages
-import Homepage from "./components/pages/Homepage";
+import Homepage from "./components/pages/Homepage/Homepage";
 
 // Rendering of all active pages
 class App extends Component {
