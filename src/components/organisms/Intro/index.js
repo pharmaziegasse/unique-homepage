@@ -15,24 +15,32 @@ const Intro = (props: Props): React.Element<*> => {
         }
     }
 
-    function GetType(type){
-        if (type === "text"){
-            return "nav-link m-1 sscroll";
+    function PrintType(item, i){
+        if (item.type === "text"){
+            return (    
+                <li key={i} className={GetState(item.active)}>
+                    <a className="nav-link m-1 sscroll" href={item.href}>{item.text}</a>
+                </li>
+            );
         }else{
-            return "ml-5 btn btn-outline-white btn-rounded sscroll";
+            return [
+                <li key={i} className={GetState(item.active)}>
+                    <a className="ml-5 btn btn-outline-white btn-rounded d-none d-sm-block" href={item.href}>{item.text}</a>
+                </li>,
+                <li key={i+1} className={GetState(item.active)}>
+                   <a className="nav-link m-1 d-block d-sm-none" href={item.href}>{item.text}</a>
+                </li>
+            ];
         }
     }
+    
 
     return(
         <header id="home">
             <Nav theme="D" logo={logo}>
             <ul className="navbar-nav ml-auto d-flex justify-content-center align-items-center">
                 {navitems.map((item, i) => {
-                    return (
-                        <li key={i} className={GetState(item.active)}>
-                            <a className={GetType(item.type)} href={item.href}>{item.text}</a>
-                        </li>
-                    ) 
+                    return(PrintType(item,i))
                 })}
             </ul>
         </Nav>
