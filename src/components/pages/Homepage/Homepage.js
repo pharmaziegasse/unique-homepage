@@ -36,10 +36,10 @@ import section3_img from "./section3.jpg";
 import section8_img from "./section8.jpg";
 /* Later to be replaced with headless CMS content */
 let navitems = [
-  {href:"#why-us", text:"Warum TheUniqueStory?", active:false, type:"text"},
+  {href:"#why", text:"Warum TheUniqueStory?", active:false, type:"text"},
   {href:"#method", text:"Wie funktioniert es?", active:false, type:"text"},
   {href:"#pricing", text:"Preise", active:false, type:"text"},
-  {href:"#about-us", text:"Über uns", active:false, type:"text"},
+  {href:"#about", text:"Über uns", active:false, type:"text"},
   {href:"/getting-started", text:"Loslegen", active:false, type:"button"}
 ];
 let heroitems = [
@@ -148,7 +148,7 @@ class Homepage extends Component {
     return (
       <main className="Homepage">
         <Intro logo={logos[0].light} navitems={navitems} heroitems={heroitems} sociallinks={sociallinks}/>
-        <Section sectionid="why-us" background="BLUE" data-id="0"><Section0 content={section0_contents}/></Section>
+        <Section sectionid="why" background="BLUE" data-id="0"><Section0 content={section0_contents}/></Section>
         <Section sectionid="individual" background="LIGHTBLUE" data-id="1"><Section1 content={section1_contents}/></Section>
         <Section sectionid="experts" background="WHITE" data-id="2"><Section2 content={section2_contents}/></Section>
         <Section sectionid="lab" background="LIGHTBLUE" data-id="3"><Section3 content={section3_contents}/></Section>
@@ -156,7 +156,7 @@ class Homepage extends Component {
         <Section sectionid="quotes" background="LIGHTGREY" data-id="5"><Section5 content={section5_contents} btn={section5_button}/></Section>
         <Section sectionid="reviews" background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
         <Section sectionid="pricing" background="LIGHTBLUE" data-id="7"><Section7 content={section7_contents}/></Section>
-        <Section sectionid="about-us" background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
+        <Section sectionid="about" background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
         <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
       </main>
     );
