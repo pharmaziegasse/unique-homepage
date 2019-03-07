@@ -179,10 +179,10 @@ section{
     top: 0;
 }
 
+/* Asbest */
 .asbest{
     display: flex;
     flex-direction: column;
-    height: 500px;
     width: 660px;
 
     .sphere{
@@ -226,12 +226,14 @@ section{
     }
     .r1{
         justify-content: center;
+        margin-bottom: -4em;
     }
     .r2{
         justify-content: space-between;
     }
     .r3{
         justify-content: center;
+        margin-top: -4em;
     }
 
     .c{
@@ -329,6 +331,147 @@ section{
     }
 }
 
+/* Graviola (fix for asbest) */
+@mixin distribute-on-circle( 
+  $nb-items,
+  $circle-size,
+  $item-size,
+  $class-for-IE: false
+) {
+  $half-item: ($item-size / 2);
+  $half-parent: ($circle-size / 2);
+  
+  position: relative; /* 1 */
+  width:  $circle-size;
+  height: $circle-size;
+  margin-bottom: $item-size / 1.5!important;
+  margin-top: $item-size / 1.5 !important;
+  padding: 0;
+  border-radius: 50%; 
+  list-style: none; /* 2 */ 
+  box-sizing: content-box; /* 3 */ 
+  
+  > * { /* 4 */
+    display: block;
+    position: absolute;
+    top:  50%; 
+    left: 50%;
+    width:  $item-size;
+    height: $item-size;
+    margin: -$half-item;
+  }
+  
+  $angle: (360 / $nb-items);
+  $rot: 0;
+
+  @for $i from 1 through $nb-items {
+    @if not $class-for-IE {
+      > :nth-of-type(#{$i}) {
+        transform: rotate($rot * 1deg) translate($half-parent) rotate($rot * -1deg);
+      }
+    } @else {
+      > .#{$class-for-IE}#{$i} {
+        // If CSS transforms are not supported
+        $mt: sin($rot * pi() / 180) * $half-parent - $half-item;
+        $ml: cos($rot * pi() / 180) * $half-parent - $half-item;
+        margin: $mt 0 0 $ml;
+      }
+    }
+
+    $rot: ($rot + $angle);
+  }
+}
+.graviola-container{
+    //@include distribute-on-circle(4, 23em, 13em, false); //Desktop
+    @include distribute-on-circle(4, 11em,7em, false); //Mobile
+    margin: 5em auto 0;
+    border: solid 5px $unique-blue;
+
+    .circle { 
+        display: block; 
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1em;
+        p{
+            margin-bottom: .5em;
+            font-size: .7em;
+        }
+        p:last-child{
+            margin-bottom: 0;
+        }
+        &::before{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -20px;
+            left: calc(50% - 20px);
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+        }
+    }
+    .circle-blue{
+        p{
+            color: white;
+        }
+        a{
+            color: white;
+        }
+        a:hover{
+            color: #f9f9f9;
+        }
+        background-color: $unique-blue;
+    }
+    .circle-white{
+        p{
+            color: $unique-blue;
+        }
+        a{
+            color: $unique-blue;
+        }
+        a:hover{
+            color: #95b2c9;
+        }
+        background-color: white;
+    }
+    .c1{
+        &::before{
+            content: "1";
+            background-color: white;
+            color: $unique-blue;
+        }
+    }
+    .c2{
+        &::before{
+            content: "2";
+            background-color: $unique-blue;
+            color: white;
+        }
+    }
+    .c3{
+        &::before{
+            content: "3";
+            top: unset !important;
+            bottom: -30px;
+            background-color: white;
+            color: $unique-blue;
+        }
+    }
+    .c4{
+        &::before{
+            content: "4";
+            background-color: $unique-blue;
+            color: white;
+        }
+    }
+}
+
 /* Footer */
 .page-footer .container{
     border-top: 2px black solid;
@@ -370,4 +513,18 @@ footer .email-link {
     font-size: .9rem;
     letter-spacing: 1px;
     color: $unique-blue;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+    background-color:#F5F5F5
+}
+::-webkit-scrollbar {
+    width:12px;
+    background-color:#F5F5F5
+}
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+    background-color:#555
 }
