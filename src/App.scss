@@ -179,6 +179,158 @@ section{
     top: 0;
 }
 
+/* Asbest */
+.asbest{
+    display: flex;
+    flex-direction: column;
+    width: 660px;
+
+    .sphere{
+        z-index: 1;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 30px;
+        width: 220px;
+        height: 220px;
+        border-radius: 100%;
+        p{
+            width: 170px;
+        }
+        &::before{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -30px;
+            left: calc(50% - 30px);
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+        }
+        &::after{
+            z-index: -1;
+            position: absolute;
+            content: "";
+            width: 35px;
+            height: 2.5px;
+        }
+
+    }
+
+    .r{
+        flex: 1;
+        display: flex;
+    }
+    .r1{
+        justify-content: center;
+        margin-bottom: -4em;
+    }
+    .r2{
+        justify-content: space-between;
+    }
+    .r3{
+        justify-content: center;
+        margin-top: -4em;
+    }
+
+    .c{
+
+    }
+
+    .s1{
+        background-color: $unique-blue;
+        color: white;
+        &::before{
+            content: "1";
+            background-color: white;
+            color: $dark-grey-text;
+        }
+        &::after{
+            bottom: 66px;
+            right: -20px;
+            transform: rotate(33deg);
+            background-color: $unique-blue;
+        }
+    }
+    .s1 a{
+        color: white;
+    }
+    .s1 a:hover{
+        color: #f9f9f9;
+    }
+
+    .s2{
+        background-color: white;
+        color: $unique-blue;
+        &::before{
+            content: "2";
+            background-color: $unique-blue;
+            color: white;
+        }
+        &::after{
+            bottom: 36px;
+            left: 0px;
+            transform: rotate(135deg);
+            background-color: white;
+        }
+    }
+    .s2 a{
+        color: $unique-blue;
+    }
+    .s2 a:hover{
+        color: #95b2c9;
+    }
+
+    .s3{
+        background-color: $unique-blue;
+        color: white;
+        &::before{
+            top: unset;
+            bottom: -30px;
+            content: "3";
+            background-color: white;
+            color: $dark-grey-text;
+        }
+        &::after{
+            top: 66px;
+            left: -20px;
+            transform: rotate(33deg);
+            background-color: $unique-blue;
+        }
+    }
+    .s3 a{
+        color: white;
+    }
+    .s3 a:hover{
+        color: #f9f9f9;
+    }
+
+    .s4{
+        background-color: white;
+        color: $unique-blue;
+        &::before{
+            content: "4";
+            background-color: $unique-blue;
+            color: white;
+        }
+        &::after{
+            top: 37px;
+            right: 0px;
+            transform: rotate(135deg);
+            background-color: white;
+        }
+    }
+    .s4 a{
+        color: $unique-blue;
+    }
+    .s4 a:hover{
+        color: #95b2c9;
+    }
+}
+
 /* Graviola (fix for asbest) */
 @mixin distribute-on-circle( 
   $nb-items,
@@ -229,96 +381,97 @@ section{
     $rot: ($rot + $angle);
   }
 }
+.graviola-container{
+    //@include distribute-on-circle(4, 23em, 13em, false); //Desktop
+    @include distribute-on-circle(4, 11em,7em, false); //Mobile
+    margin: 5em auto 0;
+    border: solid 5px $unique-blue;
 
-.graviola-container {
-  @include distribute-on-circle(4, 23em, 13em, false); //Desktop
-  //@include distribute-on-circle(4, 10em, 6em, false); //Mobile
-  margin: 5em auto 0;
-  border: solid 5px $unique-blue;
-}
-
-.graviola-container .circle { 
-    display: block; 
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
-    p{
-        margin-bottom: .5em;
-    }
-    p:last-child{
-        margin-bottom: 0;
-    }
-    &::before{
+    .circle { 
+        display: block; 
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        position: absolute;
-        top: -30px;
-        left: calc(50% - 30px);
-        width: 60px;
-        height: 60px;
-        border-radius: 100%;
+        padding: 1em;
+        p{
+            margin-bottom: .5em;
+            font-size: .7em;
+        }
+        p:last-child{
+            margin-bottom: 0;
+        }
+        &::before{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: -20px;
+            left: calc(50% - 20px);
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+        }
     }
-}
-.circle-blue{
-    p{
-        color: white;
-    }
-    a{
-        color: white;
-    }
-    a:hover{
-        color: #f9f9f9;
-    }
-    background-color: $unique-blue;
-}
-.circle-white{
-    p{
-        color: $unique-blue;
-    }
-    a{
-        color: $unique-blue;
-    }
-    a:hover{
-        color: #95b2c9;
-    }
-    background-color: white;
-}
-.c1{
-    &::before{
-        content: "1";
-        background-color: white;
-        color: $unique-blue;
-    }
-}
-.c2{
-    &::before{
-        content: "2";
+    .circle-blue{
+        p{
+            color: white;
+        }
+        a{
+            color: white;
+        }
+        a:hover{
+            color: #f9f9f9;
+        }
         background-color: $unique-blue;
-        color: white;
     }
-}
-.c3{
-    &::before{
-        content: "3";
-        top: unset !important;
-        bottom: -30px;
+    .circle-white{
+        p{
+            color: $unique-blue;
+        }
+        a{
+            color: $unique-blue;
+        }
+        a:hover{
+            color: #95b2c9;
+        }
         background-color: white;
-        color: $unique-blue;
+    }
+    .c1{
+        &::before{
+            content: "1";
+            background-color: white;
+            color: $unique-blue;
+        }
+    }
+    .c2{
+        &::before{
+            content: "2";
+            background-color: $unique-blue;
+            color: white;
+        }
+    }
+    .c3{
+        &::before{
+            content: "3";
+            top: unset !important;
+            bottom: -30px;
+            background-color: white;
+            color: $unique-blue;
+        }
+    }
+    .c4{
+        &::before{
+            content: "4";
+            background-color: $unique-blue;
+            color: white;
+        }
     }
 }
-.c4{
-    &::before{
-        content: "4";
-        background-color: $unique-blue;
-        color: white;
-    }
-}
+
 /* Footer */
 .page-footer .container{
     border-top: 2px black solid;
@@ -360,4 +513,18 @@ footer .email-link {
     font-size: .9rem;
     letter-spacing: 1px;
     color: $unique-blue;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+    background-color:#F5F5F5
+}
+::-webkit-scrollbar {
+    width:12px;
+    background-color:#F5F5F5
+}
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);
+    background-color:#555
 }

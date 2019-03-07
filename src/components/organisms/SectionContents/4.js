@@ -13,32 +13,65 @@ const SectionContent = (props: Props): React.Element<*> => {
     return (
         <div className="container py-5">
            <h2 className="h1-responsive font-weight-bold mb-5 pb-5">{content[0].heading}</h2>
-                <ul className='graviola-container'>
+                <ul className='graviola-container d-block d-sm-none'>
                     <li>
                         <div className="circle circle-white c2">
                             <p>{content[3].text}</p>
-                            <p><a href={content[3].href}><small>MEHR DAZU</small></a></p>
+                            <p><a href={content[3].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                     <li>
                         <div className="circle circle-blue c3">
                             <p>{content[4].text}</p>
-                            <p><a href={content[4].href}><small>MEHR DAZU</small></a></p>
+                            <p><a href={content[4].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                     <li>
                         <div className="circle circle-white c4">
                             <p>{content[5].text}</p>
-                            <p><a href={content[5].href}><small>MEHR DAZU</small></a></p>
+                            <p><a href={content[5].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                     <li>
                         <div className="circle circle-blue c1">
                             <p>{content[2].text}</p>
-                            <p><a href={content[2].href}><small>MEHR DAZU</small></a></p>
+                            <p><a href={content[2].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                 </ul>
+
+                <div className="asbest ml-auto mr-auto mb-5 d-none d-sm-block">
+                <div className="r r1">
+                    <div className="c c2">
+                        <div className="sphere s1">
+                            <p>{content[2].text}</p>
+                            <p><a href={content[2].href}>MEHR DAZU</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div className="r r2">
+                    <div className="c c1">
+                        <div className="sphere s4">
+                            <p>{content[5].text}</p>
+                            <p><a href={content[5].href}>MEHR DAZU</a></p>
+                        </div>
+                    </div>
+                    <div className="c c3">
+                        <div className="sphere s2">
+                            <p>{content[3].text}</p>
+                            <p><a href={content[3].href}>MEHR DAZU</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div className="r r3">
+                    <div className="c c2">
+                        <div className="sphere s3">
+                            <p>{content[4].text}</p>
+                            <p><a href={content[4].href}>MEHR DAZU</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
           
             <Btn btnstyle="oWHITE" href={content[1].btnhref} className="font-weight-bold mt-5">{content[1].btntext}</Btn>
 
