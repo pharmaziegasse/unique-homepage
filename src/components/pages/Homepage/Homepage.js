@@ -69,12 +69,10 @@ let section1_contents = [
   {heading:"Individuelles Programm"},
   {img:section1_img},
   {btntext:"Beautyprogramm starten",btnhref:"/start"},
-  {lead:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Test"},
-  {paragraph:"Number of paragraphs is flexible"},
+  {lead:"THE UNIQUE STORY hilft bei der Lösung von individuelen, ganz speziellen Hauptproblemen. Keine Haut gleicht der anderen, ein Standardprodukt vom Regal kann diesen Anforderungen in keiner Weise gerecht werden. Das Risiko, dass Produkte gekauft werden, die für den individuellen Hauttyp unpassend und damit unwirksam, unter Umständen sogar schädigend sind, ist in der Regel sehr hoch."},
+  {paragraph:"THE UNIQUE STORY hilft dir deine Haut besser kennenzulernen und damit die optimale Lösung für deine ganz speziellen Bedürfnisse zu finden. Abgestimmt auf deinen persönlichen Hautzustand stellen wir ein persönliches/personalisiertes Pflegeprogramm mit ausgewählten Produkten zusammen, die den höchsten Qualitäts- und Frischeanspürchen genügen. "},
+  {paragraph:"Begleitet wird die Entwicklung dieses Pflegeprogramms von deinem persönlichen Beautycoach, der sich eingehend mit den Bedürfnissen deiner Haut auseinandersetzt und dir hilft deine Haut besser zu verstehen. Dein Beautycoach stellt sicher, dass deine Wünsche alle in deinem Programm umgesetzt werden und überwacht mit dir die Wirkung der Produkte."},
+  {paragraph:"Unsere Beautyexperten lassen dich nach der Behandlung nicht im Stich, sondern begleiten dich dann in der gesamten Zeit der Anwendung, besprechen mit dir die Wirksamkeit und den Erfolg der Anwendung und arbeiten gegebenfalls an einer Verbesserung oder Adaptierung der Rezeptur."},
 ]
 // Section 2
 // Number of paragraphs is flexible. Just add more or less and the view will render accordingly
@@ -82,12 +80,9 @@ let section2_contents = [
   {heading:"Analyse von Experten"},
   {img:section2_img},
   {btntext:"Beautyprogramm starten",btnhref:"/start"},
-  {lead:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
-  {paragraph:"Test"},
-  {paragraph:"Number of paragraphs is flexible"},
+  {lead:"Bei der Wahl deines Beautyprogramms unterstützt dich neben deinem Beautycoach auch unser Expertenteam. Dieses Team besteht aus langjährig erfahrenen Kosmetikerinnen und Dermatologen, die sich im Rahmen von regelmäßigen Board Meetings deinen Hautzustand ansehen und analysieren. "},
+  {paragraph:"Die Experten stellen sicher, dass nur diejenigen Inhaltsstoffe an deine Haut gelassen werden, die auch für dich geeignet sind und entwickeln dein persönliches hochwirksames Programm abgestimmt auf deine Lebensumstände, auf die Jahreszeit, Klimaänderungen u.v.m."},
+  {paragraph:"Darüber hinaus versorgt dich das Expertenteam regelmäßig mit seinem Know-how und die neuesten Erkenntnisse aus dem Gebiet der Hautpflege, damit du immer am laufenden bist. Somit ist es für dich leichter, dich im Dschungel der Pflegeprodukte besser zu orientieren und damit bessere Entscheidungen für deine Haut zu treffen. Die Zeit, die du dir bei der aufwändigen Suche nach dem richtigen Produkt sparst. kannst du nun deiner Haut und deinem persönlichen Pflegeprogramm widmen."}
 ]
 
 // Section 3
@@ -96,8 +91,7 @@ let section3_contents = [
   {img:section3_img},
   {btntext:"Beautyprogramm starten",btnhref:"/start"},
   {lead:"Unsere Produkte werden frisch für dich zubereitet."},
-  {paragraph:"Sie beinhalten keine chemischen Konservierungs, Farb- und Duftstoffe, sondern ausschließlich natürliche und zertifizierte Rohstoffe. Sie werden von Hand in unserem Labor unter strengsten Auflagen nur für dich hergestellt. Alle Produkte sind mit nachhaltigen Inhaltsstoffen nach den persönlichen Anforderungen des jeweiligen Hautzustandes hergestellt und genügen höchsten Qualitätsanforderungen."},
-  {paragraph:"Next paragraph"}
+  {paragraph:"Sie beinhalten keine chemischen Konservierungs. Farb- und Duftstoffe, sondern ausschließlich natürliche und zertifizierte Rohstoffe. Sie werden von Hand in unserem Labor unter strengsten Auflagen nur für dich hergestellt. Alle Produkte sind mit nachhaltigen Inhaltsstoffen nach den persönlichen Anforderungen des jeweiligen Hautzustandes hergestellt und genügen höchsten Qualitätsanforderungen. Wir legen sehr viel Wert, dass unsere Inhaltsstofffe auch sehr gut verträglich sind. Um die optimale Auswahl dieser Inhaltsstoffe zu gewährleisten, teile u deine Wünsche und Anforderungen mit und sprich mit unserem Beautycoach."}
 ]
 
 // Section 4
@@ -114,8 +108,8 @@ let section5_button = [
   {btntext:"Beautyprogramm starten",btnhref:"/start"}
 ]
 let section5_contents = [
-  {title:"Interview mit deinem Beautycoach",text:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."},
-  {title:"Cyka Blyat",text:"Lorem ipsum cyka blyat amet, consetetur vodka elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."}
+  {title:"Interview mit deinem Beautycoach",text:"Im Rahmen eines ausführlichen Gesprächs mit unserem Beautycoach lernen Wir deine Haut kennen. Wir sprechen über deine individuelle Haut- und Lebenssituation, tauschen Informationen aus, die für dich und deine Hautpflege wichtig sind. Es weiden alle Faktoren besprochen, die deine individuelle Hautsituation beeinflussen. Alles Wird genau erfasst, um deinen individuellen Beautyreport zu erstellen. Was genau Wir mit dir besprechen findest du im Interviewleitfaden."},
+  {title:"10 Schritte zu gesunder und schöner Haut",text:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."}
 ]
 
 // Section 6
