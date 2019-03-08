@@ -12,7 +12,7 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     function printParagraph(i){
         if(typeof content[i].paragraph != "undefined"){
-            return (<p key={i}>{content[i].paragraph}</p>)
+            return (<div key={i} dangerouslySetInnerHTML={{__html: content[i].paragraph}}></div>)
         }
         
     }
@@ -26,7 +26,7 @@ const SectionContent = (props: Props): React.Element<*> => {
             <div className="row my-5">
             <div className="col-md-6">
                     <div className="row h-100">
-                        <div className="col-12"><p className="lead">{content[3].lead}</p></div>
+                        <div className="col-12"><div className="lead" dangerouslySetInnerHTML={{__html: content[3].lead}}></div></div>
                         <div className="col-12"><Btn btnstyle="oELEGANT" href={content[2].btnhref} className="font-weight-bold">{content[2].btntext}</Btn></div>
                     </div>
                 </div>
