@@ -32,8 +32,7 @@ const SectionContent = (props: Props): React.Element<*> => {
             
             <div className="wrapper-carousel-fix">
             
-                <div id="interview-carousel" className="carousel no-flex testimonial-carousel slide dark-grey-text" data-ride="carousel"
-                data-interval="10000">
+                <div id="interview-carousel" className="carousel no-flex testimonial-carousel slide dark-grey-text" data-ride="carousel" data-interval="10000">
                 <ol className="carousel-indicators">
                     {content.map((item, i) => {
                     return(
@@ -51,10 +50,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                         <div className="testimonial pb-5">
                              <div className="num-display font-weight-bold"><span>{"0"+(i+1)}</span></div>
                             <h2 className="h1-responsive font-weight-bold mb-5">{item.title}</h2>
-                            <p>
-                            
-                                {item.text}
-                            </p>
+                            <div dangerouslySetInnerHTML={{__html: item.text}}></div>
                             <h4 className="font-weight-bold">{item.name}</h4>
                             <h6 className="font-weight-bold my-3 text-muted">{item.info}</h6>
                         </div>
