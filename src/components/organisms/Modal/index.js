@@ -2,9 +2,6 @@ import * as React from 'react'
 
 import Btn from "../../atoms/Button"
 
-// Organisms
-import { FacebookComponent, GoogleComponent } from "../OAuth"
-
 type Props = {
     data: string
 }
@@ -30,15 +27,12 @@ const Modal = (props: Props): React.Element<*> => {
             <div className="modal-body">
                 <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: data.lead}}></div>
                 <hr/>
-
+                
                 <div className="register-form">
+                    <p className="text-center">OAuth to be added</p>
                     <div className="w-100">
-                        <FacebookComponent/>
-                        <GoogleComponent/>
-
                         <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                     </div>
-
                     <input className="form-control my-3" type="text" name="phone" placeholder="Telefonnummer"/>
                     <input className="form-control my-3" type="text" name="prename" placeholder="Vorname"/>
                     <input className="form-control my-3" type="text" name="surname" placeholder="Nachname"/>
