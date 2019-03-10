@@ -14,14 +14,13 @@ var cbt = classnames.bind(ButtonType);
 type Props = {
     btnstyle: string,
     size: string,
-    href: string,
     children: React.Node,
     className: string,
     disabled: boolean
 }
 
 const Button = (props: Props): React.Element<*> => {
-    const { btnstyle, btntype, size, href, children, className, disabled } = props;
+    const { btnstyle, btntype, size, children, className, disabled, modal } = props;
 
     const classProps: string = classnames(
         "btn",
@@ -35,9 +34,9 @@ const Button = (props: Props): React.Element<*> => {
     )
 
     return (
-        <a href={href} className={classProps}>
+        <button data-toggle="modal" data-target={modal} className={classProps}>
             {children}
-        </a>
+        </button>
     )
 }
 

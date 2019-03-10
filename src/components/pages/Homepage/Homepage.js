@@ -10,6 +10,8 @@ import Intro from "../../organisms/Intro";
 import Section from "../../organisms/Section";
 import Footer from "../../organisms/Footer";
 
+import Modal from "../../organisms/Modal";
+
 // section content organisms
 import Section0 from "../../organisms/SectionContents/0.js"
 import Section1 from "../../organisms/SectionContents/1.js"
@@ -128,6 +130,7 @@ let section7_contents = [
   {title:"Standard",description:"Hier kommt die Beschreibung inkl. Details vom Standard Programm.",price:"299",btntext:"Beautyprogramm starten",btnhref:"/start"},
   {title:"Premium",description:"Hier kommt die Beschreibung inkl. Details vom Premium Programm.",price:"399",btntext:"Beautyprogramm starten",btnhref:"/start"}
 ]
+
 // Section 8
 // Number of paragraphs is flexible. Just add more or less and the view will render accordingly
 let section8_contents = [
@@ -136,6 +139,12 @@ let section8_contents = [
   {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
   {paragraph:"Number of paragraphs is flexible"},
 ]
+
+// Modal Register
+let modalRegister_content = {
+  title: "Registrieren", lead: "<p>Starten Sie mit Ihrem individuellen und natürlichen Beautyprogramm</p>", step1: "<p>Mit Schritt 1 Ihres Beautyprogrammes</p>", newsletter: "<p><b>HALTEN SIE MICH AM LAUFENDEN - </b><br>ich möchte persönliche News von Pharmaziegasse erhalten</p>"
+}
+
 // Rendering of all active organisms
 class Homepage extends Component {
   render() {
@@ -152,6 +161,7 @@ class Homepage extends Component {
         <Section sectionid="pricing" background="LIGHTBLUE" data-id="7"><Section7 content={section7_contents}/></Section>
         <Section sectionid="about" background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
         <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
+        <Modal data={modalRegister_content}/>
       </main>
     );
   }
