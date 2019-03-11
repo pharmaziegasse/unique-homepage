@@ -26,8 +26,8 @@ import Section8 from "../../organisms/SectionContents/8.js"
 // Replace with CMS!
 import bg1 from "./bg1.jpg";
 import bg2 from "./bg2.jpg";
-import logo_dark from "./dark.png";
-import logo_light from "./light.png";
+import logo_dark from "./black.png";
+import logo_light from "./white.png";
 import icon1 from "./icon1.gif";
 import icon2 from "./icon2.gif";
 import icon3 from "./icon3.gif";
