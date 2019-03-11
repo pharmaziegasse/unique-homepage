@@ -6,10 +6,15 @@ type Props = {
     data: string
 }
 
+
 const Modal = (props: Props): React.Element<*> => {
     const { data } = props;
 
-    return (
+    let handleSubmit = function (event) {
+        return {phone:event.target[0].value,prename:event.target[1].value,surname:event.target[2].value}
+    }
+
+    return(
         <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
         <div className="modal-dialog modal-notify modal-info" role="document">
             <div className="modal-content">
@@ -23,7 +28,7 @@ const Modal = (props: Props): React.Element<*> => {
                 </button>
             </div>
 
-           
+        
             <div className="modal-body">
                 <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: data.lead}}></div>
                 <hr/>
@@ -33,18 +38,20 @@ const Modal = (props: Props): React.Element<*> => {
                     <div className="w-100">
                         <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                     </div>
-                    <input className="form-control my-3" type="text" name="phone" placeholder="Telefonnummer"/>
-                    <input className="form-control my-3" type="text" name="prename" placeholder="Vorname"/>
-                    <input className="form-control my-3" type="text" name="surname" placeholder="Nachname"/>
+                    <form id="form-reg" onSubmit={(e) => {handleSubmit(e); e.preventDefault();}}>
+                        <input className="form-control my-3" type="text" name="phone" placeholder="Telefonnummer"/>
+                        <input className="form-control my-3" type="text" name="prename" placeholder="Vorname"/>
+                        <input className="form-control my-3" type="text" name="surname" placeholder="Nachname"/>
+                        <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: data.step1}}></div>
+                        <input className="btn btn-outline-elegant" type="submit" value="Starten" />
+                    </form>
                 </div>
+                
+                
 
+                <hr/>
 
-                <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: data.step1}}></div>
-                <Btn btnstyle="oELEGANT" className="mt-0 font-weight-bold">Starten</Btn>
-
-                 <hr/>
-
-                 <div dangerouslySetInnerHTML={{__html: data.newsletter}}></div>
+                <div dangerouslySetInnerHTML={{__html: data.newsletter}}></div>
                 <div className="newsletter-form">
                     <input className="form-control my-3" type="text" name="email" placeholder="E-Mail Adresse"/>
                 </div>
@@ -52,15 +59,16 @@ const Modal = (props: Props): React.Element<*> => {
 
             
             <div className="modal-footer justify-content-center">
-                <button className="btn btn-primary waves-effect waves-light">Send
+                <a type="button" className="btn btn-primary waves-effect waves-light">Send
                 <i className="fa fa-paper-plane ml-1"></i>
-                </button>
-                <button className="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</button>
+                </a>
+                <a type="button" className="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</a>
             </div>
             </div>
         </div>
         </div>
     )
+
 }
 
 export default Modal
