@@ -161,8 +161,6 @@ let modalRegister_content = {
   title: "Registrieren", lead: "<p>Starten Sie mit Ihrem individuellen und natürlichen Beautyprogramm</p>", step1: "<p>Mit Schritt 1 Ihres Beautyprogrammes</p>", newsletter: "<p><b>HALTEN SIE MICH AM LAUFENDEN - </b><br>ich möchte persönliche News von Pharmaziegasse erhalten</p>"
 }
 
-let test;
-
 function renderContent(){
   if(getQueryVariable("token") === "990432f8e85afc99c4cc5665ad6087b8"){
     // Rendering of all active organisms
