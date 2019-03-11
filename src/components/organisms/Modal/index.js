@@ -11,7 +11,9 @@ const Modal = (props: Props): React.Element<*> => {
     const { data } = props;
 
     let handleSubmit = function (event) {
-        return {phone:event.target[0].value,prename:event.target[1].value,surname:event.target[2].value}
+        let formData = {phone:event.target[0].value,prename:event.target[1].value,surname:event.target[2].value};
+        console.log(formData);
+        return formData;
     }
 
     return(
