@@ -10,6 +10,8 @@ import Intro from "../../organisms/Intro";
 import Section from "../../organisms/Section";
 import Footer from "../../organisms/Footer";
 
+import Modal from "../../organisms/Modal";
+
 // section content organisms
 import Section0 from "../../organisms/SectionContents/0.js"
 import Section1 from "../../organisms/SectionContents/1.js"
@@ -24,8 +26,8 @@ import Section8 from "../../organisms/SectionContents/8.js"
 // Replace with CMS!
 import bg1 from "./bg1.jpg";
 import bg2 from "./bg2.jpg";
-import logo_dark from "./dark.png";
-import logo_light from "./light.png";
+import logo_dark from "./black.png";
+import logo_light from "./white.png";
 import icon1 from "./icon1.gif";
 import icon2 from "./icon2.gif";
 import icon3 from "./icon3.gif";
@@ -34,6 +36,22 @@ import section2_img from "./section2.jpg";
 import section3_img from "./section3.jpg";
 
 import section8_img from "./section8.jpg";
+
+/* LOCK */
+function getQueryVariable(variable)
+{
+        var query = window.location.search.substring(1);
+        //console.log(query)//"app=article&act=news_content&aid=160990"
+        var vars = query.split("&");
+        //console.log(vars) //[ 'app=article', 'act=news_content', 'aid=160990' ]
+        for (var i=0;i<vars.length;i++) {
+                    var pair = vars[i].split("=");
+                    //console.log(pair)//[ 'app', 'article' ][ 'act', 'news_content' ][ 'aid', '160990' ] 
+        if(pair[0] === variable){return pair[1];}
+         }
+         return(false);
+}
+
 /* Later to be replaced with headless CMS content */
 let navitems = [
   {href:"#why", text:"Warum TheUniqueStory?", active:false, type:"text"},
@@ -128,6 +146,7 @@ let section7_contents = [
   {title:"Standard",description:"Hier kommt die Beschreibung inkl. Details vom Standard Programm.",price:"299",btntext:"Beautyprogramm starten",btnhref:"/start"},
   {title:"Premium",description:"Hier kommt die Beschreibung inkl. Details vom Premium Programm.",price:"399",btntext:"Beautyprogramm starten",btnhref:"/start"}
 ]
+
 // Section 8
 // Number of paragraphs is flexible. Just add more or less and the view will render accordingly
 let section8_contents = [
@@ -136,23 +155,45 @@ let section8_contents = [
   {paragraph:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."},
   {paragraph:"Number of paragraphs is flexible"},
 ]
-// Rendering of all active organisms
+
+// Modal Register
+let modalRegister_content = {
+  title: "Registrieren", lead: "<p>Starten Sie mit Ihrem individuellen und natürlichen Beautyprogramm</p>", step1: "<p>Mit Schritt 1 Ihres Beautyprogrammes</p>", newsletter: "<p><b>HALTEN SIE MICH AM LAUFENDEN - </b><br>ich möchte persönliche News von Pharmaziegasse erhalten</p>"
+}
+
+function renderContent(){
+  if(getQueryVariable("token") === "990432f8e85afc99c4cc5665ad6087b8"){
+    // Rendering of all active organisms
+    return (
+      <main className="Homepage">
+          <Intro logo={logos[0].light} navitems={navitems} heroitems={heroitems} sociallinks={sociallinks}/>
+          <Section sectionid="why" background="BLUE" data-id="0"><Section0 content={section0_contents}/></Section>
+          <Section sectionid="individual" background="LIGHTBLUE" data-id="1"><Section1 content={section1_contents}/></Section>
+          <Section sectionid="experts" background="WHITE" data-id="2"><Section2 content={section2_contents}/></Section>
+          <Section sectionid="lab" background="LIGHTBLUE" data-id="3"><Section3 content={section3_contents}/></Section>
+          <Section sectionid="method" background="GREY" data-id="4"><Section4 content={section4_contents}/></Section>
+          <Section sectionid="quotes" background="LIGHTGREY" data-id="5"><Section5 content={section5_contents} btn={section5_button}/></Section>
+          <Section sectionid="reviews" background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
+          <Section sectionid="pricing" background="LIGHTBLUE" data-id="7"><Section7 content={section7_contents}/></Section>
+          <Section sectionid="about" background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
+          <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
+          <Modal data={modalRegister_content}/>
+        </main>
+    );
+  }else{
+    return (
+      <main className="Homepage">
+        <p>Not authorized.</p>
+      </main>
+    );
+  }
+}
+
+
 class Homepage extends Component {
   render() {
     return (
-      <main className="Homepage">
-        <Intro logo={logos[0].light} navitems={navitems} heroitems={heroitems} sociallinks={sociallinks}/>
-        <Section sectionid="why" background="BLUE" data-id="0"><Section0 content={section0_contents}/></Section>
-        <Section sectionid="individual" background="LIGHTBLUE" data-id="1"><Section1 content={section1_contents}/></Section>
-        <Section sectionid="experts" background="WHITE" data-id="2"><Section2 content={section2_contents}/></Section>
-        <Section sectionid="lab" background="LIGHTBLUE" data-id="3"><Section3 content={section3_contents}/></Section>
-        <Section sectionid="method" background="GREY" data-id="4"><Section4 content={section4_contents}/></Section>
-        <Section sectionid="quotes" background="LIGHTGREY" data-id="5"><Section5 content={section5_contents} btn={section5_button}/></Section>
-        <Section sectionid="reviews" background="BLUE" data-id="6"><Section6 content={section6_contents} reviews={reviews}/></Section>
-        <Section sectionid="pricing" background="LIGHTBLUE" data-id="7"><Section7 content={section7_contents}/></Section>
-        <Section sectionid="about" background="WHITE" data-id="8"><Section8 content={section8_contents}/></Section>
-        <Footer sociallinks={sociallinks} companyinfo={companyinfo} logo={logos[0].dark}/>
-      </main>
+      renderContent()
     );
   }
 }
