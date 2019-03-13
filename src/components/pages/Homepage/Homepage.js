@@ -139,7 +139,7 @@ class Homepage extends Component {
     if (getQueryVariable("token") === homepage.token) {
       // Rendering of all active organisms
       return (
-        <section className="Homepage">
+        <main className="Homepage">
           {q_headers.map(headers => {
             if (headers.value.hero) {
               return (
@@ -338,7 +338,7 @@ class Homepage extends Component {
               );
             }
           })}
-        </section>
+        </main>
       );
     } else {
       return (
