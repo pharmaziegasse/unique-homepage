@@ -27,8 +27,6 @@ import Section7 from "../../organisms/SectionContents/7.js";
 import Section8 from "../../organisms/SectionContents/8.js";
 
 // Replace with CMS!
-import bg1 from "./bg1.jpg";
-import bg2 from "./bg2.jpg";
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
 import icon1 from "./icon1.gif";
@@ -69,6 +67,7 @@ const CMSFetchQuery = gql`
     homepage {
       id
       title
+      token
       city
       zipCode
       address
@@ -133,9 +132,9 @@ class Homepage extends Component {
     const q_footers = homepage.footers;
 
     //return data.homepage.map(cms => {
-    //console.log(q_headers.value.hero);
+    //console.log(homepage);
     //console.log(data.homepage[1].headers[0].value.hero[0].value.head);
-    if (getQueryVariable("token") === "990432f8e85afc99c4cc5665ad6087b8") {
+    if (getQueryVariable("token") === homepage.token) {
       // Rendering of all active organisms
       return (
         <main className="Homepage">
@@ -145,9 +144,9 @@ class Homepage extends Component {
                 <Intro
                   logo={logos[0].light}
                   navitems={navitems}
-                  heroitems={headers.value.hero.map(hero => {
+                  heroitems={headers.value.hero.map((hero, index) => {
                     return {
-                      img: bg2,
+                      img: "https://erebos.xyz/user/Toko/bg" + index + ".jpg",
                       head: hero.value.head,
                       subhead: hero.value.subhead,
                       btntext: "Beautyprogramm starten",
@@ -187,7 +186,7 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.value.individual) {
-              console.log(sections.value.individual);
+              //console.log(sections.value.individual);
               return (
                 <Section
                   sectionid="individual"
@@ -246,7 +245,7 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.value.method) {
-              console.log(sections.value.method.sphere_1.step);
+              //console.log(sections.value.method.sphere_1.step);
               return (
                 <Section sectionid="method" background="GREY" data-id="4">
                   <Section4
@@ -292,11 +291,13 @@ class Homepage extends Component {
                 <Section sectionid="reviews" background="BLUE" data-id="6">
                   <Section6
                     content={section6_contents}
-                    reviews={sections.value.reviews.map(reviews => {
+                    reviews={sections.value.reviews.map((reviews, index) => {
                       return {
                         name: reviews.value.name,
                         img:
-                          "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
+                          "https://mdbootstrap.com/img/Photos/Avatars/img%20(" +
+                          (32 - index) +
+                          ").jpg",
                         quote: reviews.value.quote,
                         info: reviews.value.info
                       };
@@ -326,7 +327,7 @@ class Homepage extends Component {
             }
           })}
           {q_footers.map(footers => {
-            console.log(footers.value.info);
+            //console.log(footers.value.info);
             if (footers.value.info) {
               return (
                 <Footer
