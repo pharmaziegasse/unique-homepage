@@ -62,7 +62,7 @@ const Hero = (props: Props): React.Element<*> => {
                             <div className="row white-text">
                               
                                 <div className="col-md-12 text-right">
-                                    <p>{i+1} - {heroitems.length}</p>
+                                    <p className="d-none">{i+1} - {heroitems.length}</p>
                                 </div>
                             </div>
                         </div>
