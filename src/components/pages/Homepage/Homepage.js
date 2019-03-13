@@ -69,6 +69,7 @@ const CMSFetchQuery = gql`
     homepage {
       id
       title
+      token
       city
       zipCode
       address
@@ -133,9 +134,9 @@ class Homepage extends Component {
     const q_footers = homepage.footers;
 
     //return data.homepage.map(cms => {
-    //console.log(q_headers.value.hero);
+    //console.log(homepage);
     //console.log(data.homepage[1].headers[0].value.hero[0].value.head);
-    if (getQueryVariable("token") === "990432f8e85afc99c4cc5665ad6087b8") {
+    if (getQueryVariable("token") === homepage.token) {
       // Rendering of all active organisms
       return (
         <section className="Homepage">
@@ -187,7 +188,7 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.value.individual) {
-              console.log(sections.value.individual);
+              //console.log(sections.value.individual);
               return (
                 <Section
                   sectionid="individual"
@@ -246,7 +247,7 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.value.method) {
-              console.log(sections.value.method.sphere_1.step);
+              //console.log(sections.value.method.sphere_1.step);
               return (
                 <Section sectionid="method" background="GREY" data-id="4">
                   <Section4
@@ -326,7 +327,7 @@ class Homepage extends Component {
             }
           })}
           {q_footers.map(footers => {
-            console.log(footers.value.info);
+            //console.log(footers.value.info);
             if (footers.value.info) {
               return (
                 <Footer
