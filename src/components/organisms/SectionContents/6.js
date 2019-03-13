@@ -31,7 +31,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                             <img src={item.img} className="rounded-circle img-fluid" alt={item.name}/>
                             </div>
                             <p>
-                            <i className="fas fa-quote-left mr-2"></i>{item.quote}
+                            <i className="fas fa-quote-left mr-2"></i><div dangerouslySetInnerHTML={{__html: item.quote}}></div>
                             </p>
                             <h4 className="font-weight-bold">{item.name}</h4>
                             <h6 className="font-weight-bold my-3 text-muted">{item.info}</h6>
