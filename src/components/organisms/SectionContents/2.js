@@ -24,7 +24,7 @@ const SectionContent = (props: Props): React.Element<*> => {
             <div className="col-md-6">
                     <div className="row">
                         <div className="col-12 mb-5"><img draggable="false" className="img-fluid" src={content[1].img} alt="Beautyprogramm starten"/></div>
-                        <div className="col-12"><Btn btnstyle="oELEGANT" href={content[2].btnhref} className="font-weight-bold">{content[2].btntext}</Btn></div>
+                        <div className="col-12"><Btn btnstyle="oELEGANT" href={content[2].btnhref} className="font-weight-bold mb-4">{content[2].btntext}</Btn></div>
                     </div>
                 </div>
                 <div className="col-md-6">
