@@ -5,8 +5,8 @@
 //import { graphql } from "react-apollo";
 
 // Replace with CMS!
-import bg1 from "./bg1.jpg";
-import bg2 from "./bg2.jpg";
+import bg1 from "./bg0.jpg";
+import bg2 from "./bg1.jpg";
 import logo_dark from "./dark.png";
 import logo_light from "./light.png";
 import icon1 from "./icon1.gif";

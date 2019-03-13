@@ -27,8 +27,6 @@ import Section7 from "../../organisms/SectionContents/7.js";
 import Section8 from "../../organisms/SectionContents/8.js";
 
 // Replace with CMS!
-import bg1 from "./bg1.jpg";
-import bg2 from "./bg2.jpg";
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
 import icon1 from "./icon1.gif";
@@ -146,9 +144,9 @@ class Homepage extends Component {
                 <Intro
                   logo={logos[0].light}
                   navitems={navitems}
-                  heroitems={headers.value.hero.map(hero => {
+                  heroitems={headers.value.hero.map((hero, index) => {
                     return {
-                      img: bg2,
+                      img: "https://erebos.xyz/user/Toko/bg" + index + ".jpg",
                       head: hero.value.head,
                       subhead: hero.value.subhead,
                       btntext: "Beautyprogramm starten",
@@ -293,11 +291,13 @@ class Homepage extends Component {
                 <Section sectionid="reviews" background="BLUE" data-id="6">
                   <Section6
                     content={section6_contents}
-                    reviews={sections.value.reviews.map(reviews => {
+                    reviews={sections.value.reviews.map((reviews, index) => {
                       return {
                         name: reviews.value.name,
                         img:
-                          "https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg",
+                          "https://mdbootstrap.com/img/Photos/Avatars/img%20(" +
+                          (32 - index) +
+                          ").jpg",
                         quote: reviews.value.quote,
                         info: reviews.value.info
                       };
