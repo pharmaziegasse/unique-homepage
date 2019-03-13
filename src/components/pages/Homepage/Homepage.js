@@ -138,7 +138,7 @@ class Homepage extends Component {
     if (getQueryVariable("token") === "990432f8e85afc99c4cc5665ad6087b8") {
       // Rendering of all active organisms
       return (
-        <section className="Homepage">
+        <main className="Homepage">
           {q_headers.map(headers => {
             if (headers.value.hero) {
               return (
@@ -337,7 +337,7 @@ class Homepage extends Component {
               );
             }
           })}
-        </section>
+        </main>
       );
     } else {
       return (
