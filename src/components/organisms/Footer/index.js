@@ -57,12 +57,12 @@ const Footer = (props: Props): React.Element<*> => {
           <p><a href="http://www.gasser-partner.at/datenschutz/" rel="noopener noreferrer" target="_blank">Datenschutz</a></p>
           <ul className="list-unstyled list-inline">
               <li className="list-inline-item">
-                <a href={sociallinks[0].fb} className="mx-2">
+                <a href={sociallinks[0].fb} rel="noopener noreferrer" target="_blank" className="mx-2">
                   <i className="fab fa-facebook-f"></i>
                 </a>
               </li>
               <li className="list-inline-item">
-                <a href={sociallinks[0].ig} className="mx-2">
+                <a href={sociallinks[0].ig} rel="noopener noreferrer" target="_blank" className="mx-2">
                   <i className="fab fa-instagram"></i>
                 </a>
               </li>

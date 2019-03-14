@@ -361,7 +361,15 @@ class Homepage extends Component {
     } else {
       return (
         <main className="Homepage">
-          <p>Not authorized.</p>
+          <div className="h-100">
+            <div className="flex-center flex-column">
+
+              <h1 className="animated fadeIn mb-4 red-text"><i class="fas fa-exclamation-triangle"></i></h1>
+              <h5 className="animated fadeIn mb-3">Not authorized.</h5>
+
+              <p className="animated fadeIn text-muted">Please proceed with token.</p>
+            </div>
+          </div>
         </main>
       );
     }
