@@ -74,6 +74,30 @@ h1 {
     width: 100%; 
     z-index: 2;
 }
+header{
+    .carousel-control-prev{
+        color: rgba(255, 255, 255, .9);
+        &::before{
+            content: "\2039";
+            font-size: 5rem;
+            transition: 0.4s;
+        }
+    }
+    .carousel-control-next{
+        color: rgba(255, 255, 255, .9);
+        &::before{
+            content: "\203A";
+            font-size: 5rem;
+            transition: 0.4s;
+        }
+    }
+    .carousel-control-next:focus, .carousel-control-prev:focus{
+        color: rgba(255, 255, 255, .9);
+    }
+    .carousel-control-next:hover, .carousel-control-prev:hover{
+        color: #fff;
+    }
+}
 .hero-gradient{
   content:'';
   position:absolute;

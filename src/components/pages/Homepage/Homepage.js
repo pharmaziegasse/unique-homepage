@@ -47,7 +47,7 @@ import {
 
 
 export const sociallinks = [
-  { fb: "https://www.facebook.com", ig: "https://www.instagram.com" }
+  { fb: "https://www.facebook.com/Friends-of-Pharmaziegasse-309175709736059/", ig: "https://www.instagram.com/friendsofpharmaziegasse/" }
 ];
 
 export const companyinfo = [
