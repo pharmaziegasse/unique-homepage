@@ -152,7 +152,7 @@ class Homepage extends Component {
                   key={i}
                   logos={logos}
                   navitems={navitems}
-                  theme="D"
+                  theme="L"
                   heroitems={headers.value.hero.map((hero, i) => {
                     return {
                       img: "https://erebos.xyz/user/Toko/bg" + i + ".jpg",
