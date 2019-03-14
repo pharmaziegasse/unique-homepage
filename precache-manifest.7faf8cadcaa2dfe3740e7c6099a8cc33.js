@@ -96,12 +96,12 @@ self.__precacheManifest = [
     "url": "./static/media/Roboto-Light.69f8a061.woff2"
   },
   {
-    "revision": "574fd0b50367f886d359e8264938fc37",
-    "url": "./static/media/Roboto-Medium.574fd0b5.woff2"
-  },
-  {
     "revision": "2751ee43015f9884c3642f103b7f70c9",
     "url": "./static/media/Roboto-Regular.2751ee43.woff2"
+  },
+  {
+    "revision": "574fd0b50367f886d359e8264938fc37",
+    "url": "./static/media/Roboto-Medium.574fd0b5.woff2"
   },
   {
     "revision": "39b2c3031be6b4ea96e2e3e95d307814",
@@ -112,36 +112,36 @@ self.__precacheManifest = [
     "url": "./static/media/Roboto-Thin.7500519d.woff"
   },
   {
-    "revision": "ba3dcd8903e3d0af5de7792777f8ae0d",
-    "url": "./static/media/Roboto-Regular.ba3dcd89.woff"
+    "revision": "3b813c2ae0d04909a33a18d792912ee7",
+    "url": "./static/media/Roboto-Light.3b813c2a.woff"
   },
   {
-    "revision": "fc78759e93a6cac50458610e3d9d63a0",
-    "url": "./static/media/Roboto-Medium.fc78759e.woff"
+    "revision": "ba3dcd8903e3d0af5de7792777f8ae0d",
+    "url": "./static/media/Roboto-Regular.ba3dcd89.woff"
   },
   {
     "revision": "dc81817def276b4f21395f7ea5e88dcd",
     "url": "./static/media/Roboto-Bold.dc81817d.woff"
   },
   {
-    "revision": "3b813c2ae0d04909a33a18d792912ee7",
-    "url": "./static/media/Roboto-Light.3b813c2a.woff"
+    "revision": "fc78759e93a6cac50458610e3d9d63a0",
+    "url": "./static/media/Roboto-Medium.fc78759e.woff"
   },
   {
     "revision": "94998475f6aea65f558494802416c1cf",
     "url": "./static/media/Roboto-Thin.94998475.ttf"
   },
   {
-    "revision": "df7b648ce5356ea1ebce435b3459fd60",
-    "url": "./static/media/Roboto-Regular.df7b648c.ttf"
+    "revision": "46e48ce0628835f68a7369d0254e4283",
+    "url": "./static/media/Roboto-Light.46e48ce0.ttf"
   },
   {
     "revision": "894a2ede85a483bf9bedefd4db45cdb9",
     "url": "./static/media/Roboto-Medium.894a2ede.ttf"
   },
   {
-    "revision": "46e48ce0628835f68a7369d0254e4283",
-    "url": "./static/media/Roboto-Light.46e48ce0.ttf"
+    "revision": "df7b648ce5356ea1ebce435b3459fd60",
+    "url": "./static/media/Roboto-Regular.df7b648c.ttf"
   },
   {
     "revision": "e31fcf1885e371e19f5786c2bdfeae1b",
