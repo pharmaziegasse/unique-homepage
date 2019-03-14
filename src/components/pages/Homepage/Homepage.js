@@ -4,7 +4,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import { Query } from "react-apollo";
+//import { Query } from "react-apollo"; /* Not used yet */
 
 // standard components
 
@@ -44,6 +44,7 @@ import {
   section6_contents,
   section7_contents
 } from "./legacy";
+
 
 export const sociallinks = [
   { fb: "https://www.facebook.com", ig: "https://www.instagram.com" }
@@ -123,6 +124,11 @@ class Homepage extends Component {
 
     console.log(data);
 
+    // Modal Register
+    let modalRegister_content = {
+      title: "Registrieren", lead: "<p>Starten Sie mit Ihrem individuellen und natürlichen Beautyprogramm</p>", step1: "<p>Mit Schritt 1 Ihres Beautyprogrammes</p>", newsletter: "<p><b>HALTEN SIE MICH AM LAUFENDEN - </b><br>ich möchte persönliche News von Pharmaziegasse erhalten</p>"
+    }
+
     if (data.loading) return <p>Loading...</p>;
     if (data.error) return <p>Error :(</p>;
 
@@ -138,15 +144,17 @@ class Homepage extends Component {
       // Rendering of all active organisms
       return (
         <main className="Homepage">
-          {q_headers.map(headers => {
+          {q_headers.map((headers, i) => {
+            let returnparam;
             if (headers.value.hero) {
-              return (
+              returnparam = (
                 <Intro
+                  key={i}
                   logo={logos[0].light}
                   navitems={navitems}
-                  heroitems={headers.value.hero.map((hero, index) => {
+                  heroitems={headers.value.hero.map((hero, i) => {
                     return {
-                      img: "https://erebos.xyz/user/Toko/bg" + index + ".jpg",
+                      img: "https://erebos.xyz/user/Toko/bg" + i + ".jpg",
                       head: hero.value.head,
                       subhead: hero.value.subhead,
                       btntext: "Beautyprogramm starten",
@@ -157,11 +165,12 @@ class Homepage extends Component {
                 />
               );
             }
+            return (returnparam);
           })}
-          {q_sections.map(sections => {
+          {q_sections.map((sections, i) => {
             if (sections.value.why) {
               return (
-                <Section sectionid="why" background="BLUE" data-id="0">
+                <Section key={i} sectionid="why" background="BLUE" data-id="0">
                   <Section0
                     content={[
                       { heading: sections.value.why.head },
@@ -189,6 +198,7 @@ class Homepage extends Component {
               //console.log(sections.value.individual);
               return (
                 <Section
+                  key={i} 
                   sectionid="individual"
                   background="LIGHTBLUE"
                   data-id="1"
@@ -209,7 +219,7 @@ class Homepage extends Component {
               );
             } else if (sections.value.experts) {
               return (
-                <Section sectionid="experts" background="WHITE" data-id="2">
+                <Section key={i} sectionid="experts" background="WHITE" data-id="2">
                   <Section2
                     content={[
                       { heading: "Analyse von Experten" },
@@ -226,7 +236,7 @@ class Homepage extends Component {
               );
             } else if (sections.value.lab) {
               return (
-                <Section sectionid="lab" background="LIGHTBLUE" data-id="3">
+                <Section key={i} sectionid="lab" background="LIGHTBLUE" data-id="3">
                   <Section3
                     content={[
                       {
@@ -247,7 +257,7 @@ class Homepage extends Component {
             } else if (sections.value.method) {
               //console.log(sections.value.method.sphere_1.step);
               return (
-                <Section sectionid="method" background="GREY" data-id="4">
+                <Section key={i} sectionid="method" background="GREY" data-id="4">
                   <Section4
                     content={[
                       { heading: "Wie funktioniert es?" },
@@ -274,9 +284,9 @@ class Homepage extends Component {
               );
             } else if (sections.value.quotes) {
               return (
-                <Section sectionid="quotes" background="LIGHTGREY" data-id="5">
+                <Section key={i} sectionid="quotes" background="LIGHTGREY" data-id="5">
                   <Section5
-                    content={sections.value.quotes.map(quotes => {
+                    content={sections.value.quotes.map((quotes,i) => {
                       return {
                         title: quotes.value.head,
                         text: quotes.value.quote
@@ -288,7 +298,7 @@ class Homepage extends Component {
               );
             } else if (sections.value.reviews) {
               return (
-                <Section sectionid="reviews" background="BLUE" data-id="6">
+                <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
                   <Section6
                     content={section6_contents}
                     reviews={sections.value.reviews.map((reviews, index) => {
@@ -307,13 +317,13 @@ class Homepage extends Component {
               );
             } else if (sections.value.pricing) {
               return (
-                <Section sectionid="pricing" background="LIGHTBLUE" data-id="7">
+                <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
                   <Section7 content={section7_contents} />
                 </Section>
               );
             } else if (sections.value.about) {
               return (
-                <Section sectionid="about" background="WHITE" data-id="8">
+                <Section key={i} sectionid="about" background="WHITE" data-id="8">
                   <Section8
                     content={[
                       { heading: sections.value.about.head },
@@ -325,18 +335,25 @@ class Homepage extends Component {
                 </Section>
               );
             }
+            return (
+              <Modal
+                data={modalRegister_content}
+              />
+            );
           })}
-          {q_footers.map(footers => {
+          {q_footers.map((footers, i) => {
             //console.log(footers.value.info);
+            let returnparam;
             if (footers.value.info) {
-              return (
-                <Footer
+              returnparam = (
+                <Footer key={i}
                   sociallinks={sociallinks}
                   companyinfo={companyinfo}
                   logo={logos[0].dark}
                 />
               );
             }
+            return (returnparam);
           })}
         </main>
       );

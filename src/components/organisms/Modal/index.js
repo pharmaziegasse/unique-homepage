@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import Btn from "../../atoms/Button"
-
 type Props = {
     data: string
 }
@@ -61,10 +59,10 @@ const Modal = (props: Props): React.Element<*> => {
 
             
             <div className="modal-footer justify-content-center">
-                <a type="button" className="btn btn-primary waves-effect waves-light">Send
+                <button className="btn btn-primary waves-effect waves-light">Send
                 <i className="fa fa-paper-plane ml-1"></i>
-                </a>
-                <a type="button" className="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</a>
+                </button>
+                <button className="btn btn-outline-primary waves-effect" data-dismiss="modal">Cancel</button>
             </div>
             </div>
         </div>

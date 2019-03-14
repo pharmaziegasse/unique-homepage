@@ -27,7 +27,7 @@ import Homepage from "./components/pages/Homepage/Homepage";
 
 // apollo client setup
 const client = new ApolloClient({
-  link: new HttpLink({ uri: "https://thedifferent.at/api/graphql" }),
+  link: new HttpLink({ uri: "https://pharmaziegasse.at/api/graphql" }),
   cache: new InMemoryCache()
 });
 
