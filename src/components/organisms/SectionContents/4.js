@@ -17,25 +17,21 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <li>
                         <div className="circle circle-white c2">
                             <div dangerouslySetInnerHTML={{__html: content[3].text}}></div>
-                            <p><a href={content[3].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                     <li>
                         <div className="circle circle-blue c3">
                             <div dangerouslySetInnerHTML={{__html: content[4].text}}></div>
-                            <p><a href={content[4].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                     <li>
                         <div className="circle circle-white c4">
                            <div dangerouslySetInnerHTML={{__html: content[5].text}}></div>
-                            <p><a href={content[5].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                     <li>
                         <div className="circle circle-blue c1">
                             <div dangerouslySetInnerHTML={{__html: content[2].text}}></div>
-                            <p><a href={content[2].href}>MEHR DAZU</a></p>
                         </div>
                     </li>
                 </ul>
@@ -45,7 +41,6 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div className="c c2">
                         <div className="sphere s1">
                             <div dangerouslySetInnerHTML={{__html: content[2].text}}></div>
-                            <p><a href={content[2].href}>MEHR DAZU</a></p>
                         </div>
                     </div>
                 </div>
@@ -53,13 +48,11 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div className="c c1">
                         <div className="sphere s4">
                             <div dangerouslySetInnerHTML={{__html: content[5].text}}></div>
-                            <p><a href={content[5].href}>MEHR DAZU</a></p>
                         </div>
                     </div>
                     <div className="c c3">
                         <div className="sphere s2">
                             <div dangerouslySetInnerHTML={{__html: content[3].text}}></div>
-                            <p><a href={content[3].href}>MEHR DAZU</a></p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +60,6 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div className="c c2">
                         <div className="sphere s3">
                             <div dangerouslySetInnerHTML={{__html: content[4].text}}></div>
-                            <p><a href={content[4].href}>MEHR DAZU</a></p>
                         </div>
                     </div>
                 </div>

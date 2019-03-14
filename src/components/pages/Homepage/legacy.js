@@ -99,7 +99,7 @@ export default (lol = graphql(query)(CMSfetch));
 
 /* Later to be replaced with headless CMS content */
 export const navitems = [
-  { href: "#why", text: "Warum Pharmaziegasse?", active: false, type: "text" },
+  { href: "#why", text: "Warum PHARMAZIEGASSE®?", active: false, type: "text" },
   {
     href: "#method",
     text: "Wie funktioniert es?",

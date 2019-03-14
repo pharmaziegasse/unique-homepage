@@ -47,7 +47,7 @@ import {
 
 
 export const sociallinks = [
-  { fb: "https://www.facebook.com", ig: "https://www.instagram.com" }
+  { fb: "https://www.facebook.com/Friends-of-Pharmaziegasse-309175709736059/", ig: "https://www.instagram.com/friendsofpharmaziegasse/" }
 ];
 
 export const companyinfo = [
@@ -150,8 +150,9 @@ class Homepage extends Component {
               returnparam = (
                 <Intro
                   key={i}
-                  logo={logos[0].light}
+                  logos={logos}
                   navitems={navitems}
+                  theme="D"
                   heroitems={headers.value.hero.map((hero, i) => {
                     return {
                       img: "https://erebos.xyz/user/Toko/bg" + i + ".jpg",

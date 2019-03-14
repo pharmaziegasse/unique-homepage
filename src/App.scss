@@ -21,30 +21,42 @@ header,
 }
 
 /* Navbar */
-.top-nav-collapse {
-    background-color: rgba(0,0,0,0.4) !important;
-}
-
-.navbar:not(.top-nav-collapse) {
-    background: transparent !important;
-}
-
-@media (max-width: 991px) {
-    .navbar:not(.top-nav-collapse) {
-        background: rgba(0,0,0,0.4) !important;
-    }
-}
-
-h1 {
-    letter-spacing: 8px;
-}
-
 .navbar-brand img{
     width: 250px;
     max-width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+h1 {
+    letter-spacing: 8px;
+}
+/* DARK */
+.navbar-dark{
+    color: white !important;
+    background-color: rgba(0,0,0,0.4) !important;
+}
+.navbar-dark:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+@media (max-width: 991px) {
+    .navbar-dark:not(.top-nav-collapse) {
+        background: rgba(0,0,0,0.4) !important;
+    }
+}
+/* LIGHT */
+.navbar-light{
+    background-color: rgba(255,255,255,.9) !important;
+    color: #000 !important;
+}
+.navbar-light:not(.top-nav-collapse) {
+    background: white !important;
+}
+@media (max-width: 991px) {
+    .navbar-light:not(.top-nav-collapse) {
+        background: rgba(255,255,255,.9) !important;
+    }
+}
+
 
 /* Font fixing */
 .btn{
@@ -61,6 +73,30 @@ h1 {
     left: auto !important;
     width: 100%; 
     z-index: 2;
+}
+header{
+    .carousel-control-prev{
+        color: rgba(255, 255, 255, .9);
+        &::before{
+            content: "\2039";
+            font-size: 5rem;
+            transition: 0.4s;
+        }
+    }
+    .carousel-control-next{
+        color: rgba(255, 255, 255, .9);
+        &::before{
+            content: "\203A";
+            font-size: 5rem;
+            transition: 0.4s;
+        }
+    }
+    .carousel-control-next:focus, .carousel-control-prev:focus{
+        color: rgba(255, 255, 255, .9);
+    }
+    .carousel-control-next:hover, .carousel-control-prev:hover{
+        color: #fff;
+    }
 }
 .hero-gradient{
   content:'';
