@@ -574,6 +574,14 @@ footer .email-link {
 
 /* Modals */
 .register-form{
+    .input-grp{
+        i{
+            position: absolute;
+            right: 50px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    }
     input{
         outline: none;
         border-radius: 20px;
