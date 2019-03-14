@@ -49,7 +49,7 @@ h1 {
     color: #000 !important;
 }
 .navbar-light:not(.top-nav-collapse) {
-    background: white !important;
+    background: rgba(255,255,255,.75) !important;
 }
 @media (max-width: 991px) {
     .navbar-light:not(.top-nav-collapse) {
