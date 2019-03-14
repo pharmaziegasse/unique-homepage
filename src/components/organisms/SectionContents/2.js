@@ -18,9 +18,9 @@ const SectionContent = (props: Props): React.Element<*> => {
     }
 
     return (
-        <div className="container py-5 text-left">
+        <div className="container pt-5 text-left">
             <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
-            <div className="row my-5">
+            <div className="row mt-5">
             <div className="col-md-6">
                     <div className="row">
                         <div className="col-12 mb-5"><img draggable="false" className="img-fluid" src={content[1].img} alt="Beautyprogramm starten"/></div>

@@ -150,8 +150,9 @@ class Homepage extends Component {
               returnparam = (
                 <Intro
                   key={i}
-                  logo={logos[0].light}
+                  logos={logos}
                   navitems={navitems}
+                  theme="D"
                   heroitems={headers.value.hero.map((hero, i) => {
                     return {
                       img: "https://erebos.xyz/user/Toko/bg" + i + ".jpg",
