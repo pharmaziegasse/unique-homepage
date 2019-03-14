@@ -39,9 +39,9 @@ const Modal = (props: Props): React.Element<*> => {
                         <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                     </div>
                     <form id="form-reg" onSubmit={(e) => {handleSubmit(e); e.preventDefault();}}>
-                        <div className="input-grp"><i class="fas fa-phone" data-toggle="tooltip" title="Um Sie zu kontaktieren, benötigen wir Ihre Telefonnummer"></i><input className="form-control my-3" type="text" name="phone" placeholder="Telefonnummer"/></div>
-                        <div className="input-grp"><i class="far fa-user-circle" data-toggle="tooltip" title="Eine persönliche Kommunikation ist uns sehr wichtig."></i><input className="form-control my-3" type="text" name="prename" placeholder="Vorname"/></div>
-                        <div className="input-grp"><i class="far fa-user-circle" data-toggle="tooltip" title="Eine persönliche Kommunikation ist uns sehr wichtig."></i><input className="form-control my-3" type="text" name="surname" placeholder="Nachname"/></div>
+                        <div className="input-grp"><i className="fas fa-phone" data-toggle="tooltip" title="Um Sie zu kontaktieren, benötigen wir Ihre Telefonnummer"></i><input className="form-control my-3" type="text" name="phone" placeholder="Telefonnummer"/></div>
+                        <div className="input-grp"><i className="far fa-user-circle" data-toggle="tooltip" title="Eine persönliche Kommunikation ist uns sehr wichtig."></i><input className="form-control my-3" type="text" name="prename" placeholder="Vorname"/></div>
+                        <div className="input-grp"><i className="far fa-user-circle" data-toggle="tooltip" title="Eine persönliche Kommunikation ist uns sehr wichtig."></i><input className="form-control my-3" type="text" name="surname" placeholder="Nachname"/></div>
                         <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: data.step1}}></div>
                         <input className="btn btn-outline-elegant" type="submit" value="Starten" />
                     </form>

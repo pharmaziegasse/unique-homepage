@@ -1,9 +1,21 @@
 import * as React from 'react'
+import Cookies from 'js-cookie'
 
 type Props = {
     sociallinks: string,
     companyinfo: string,
     logo: string
+}
+
+let getMode = () => {
+  let val = Cookies.get('s_mode');
+  if(val === '0'){
+    return false;
+  }else if(val === '1'){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 const Footer = (props: Props): React.Element<*> => {
@@ -65,10 +77,14 @@ const Footer = (props: Props): React.Element<*> => {
       <hr/>
 
       <div className="row d-flex align-items-center dark-grey-text">
-        <div className="col-md-7 col-lg-8">
+        <div className="col-md-6">
           <p className="text-center text-md-left">© 2018 - {(new Date().getFullYear())} Copyright: {companyinfo[0].copyrightholder}
           </p>
-
+        </div>
+        <div className="col-md-6 text-right">
+          <div className="switch">
+            <label>Light<input className="switch-mode" type="checkbox" defaultChecked={getMode()}/><span className="lever"></span>Dark</label>
+          </div>
         </div>
       </div>
     </div>
