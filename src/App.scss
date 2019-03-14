@@ -190,6 +190,8 @@ section{
 
 #interview-carousel .carousel-indicators{
     position: relative;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 #interview-carousel .btn-floating span {
     display: inline-block;
@@ -426,7 +428,7 @@ section{
 }
 .graviola-container{
     //@include distribute-on-circle(4, 23em, 13em, false); //Desktop
-    @include distribute-on-circle(4, 11em,7em, false); //Mobile
+    @include distribute-on-circle(4, 22em,13em, false); //Mobile
     margin: 5em auto 0;
     border: solid 5px $unique-blue;
 
@@ -442,7 +444,7 @@ section{
         padding: 1em;
         p{
             margin-bottom: .5em;
-            font-size: .7em;
+            font-size: 1em;
         }
         p:last-child{
             margin-bottom: 0;
@@ -452,10 +454,10 @@ section{
             justify-content: center;
             align-items: center;
             position: absolute;
-            top: -20px;
-            left: calc(50% - 20px);
-            width: 40px;
-            height: 40px;
+            top: -30px;
+            left: calc(50% - 30px);
+            width: 60px;
+            height: 60px;
             border-radius: 100%;
         }
     }
@@ -514,6 +516,148 @@ section{
         }
     }
 }
+@media (max-width: 740px) {
+    /* Graviola (fix for asbest) */
+@mixin distribute-on-circle( 
+    $nb-items,
+    $circle-size,
+    $item-size,
+    $class-for-IE: false
+  ) {
+    $half-item: ($item-size / 2);
+    $half-parent: ($circle-size / 2);
+    
+    position: relative; /* 1 */
+    width:  $circle-size;
+    height: $circle-size;
+    margin-bottom: $item-size / 1.5!important;
+    margin-top: $item-size / 1.5 !important;
+    padding: 0;
+    border-radius: 50%; 
+    list-style: none; /* 2 */ 
+    box-sizing: content-box; /* 3 */ 
+    
+    > * { /* 4 */
+      display: block;
+      position: absolute;
+      top:  50%; 
+      left: 50%;
+      width:  $item-size;
+      height: $item-size;
+      margin: -$half-item;
+    }
+    
+    $angle: (360 / $nb-items);
+    $rot: 0;
+  
+    @for $i from 1 through $nb-items {
+      @if not $class-for-IE {
+        > :nth-of-type(#{$i}) {
+          transform: rotate($rot * 1deg) translate($half-parent) rotate($rot * -1deg);
+        }
+      } @else {
+        > .#{$class-for-IE}#{$i} {
+          // If CSS transforms are not supported
+          $mt: sin($rot * pi() / 180) * $half-parent - $half-item;
+          $ml: cos($rot * pi() / 180) * $half-parent - $half-item;
+          margin: $mt 0 0 $ml;
+        }
+      }
+  
+      $rot: ($rot + $angle);
+    }
+  }
+  .graviola-container{
+      //@include distribute-on-circle(4, 23em, 13em, false); //Desktop
+      @include distribute-on-circle(4, 11em,7em, false); //Mobile
+      margin: 5em auto 0;
+      border: solid 5px $unique-blue;
+  
+      .circle { 
+          display: block; 
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 1em;
+          p{
+              margin-bottom: .5em;
+              font-size: .7em;
+          }
+          p:last-child{
+              margin-bottom: 0;
+          }
+          &::before{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              top: -20px;
+              left: calc(50% - 20px);
+              width: 40px;
+              height: 40px;
+              border-radius: 100%;
+          }
+      }
+      .circle-blue{
+          p{
+              color: white;
+          }
+          a{
+              color: white;
+          }
+          a:hover{
+              color: #f9f9f9;
+          }
+          background-color: $unique-blue;
+      }
+      .circle-white{
+          p{
+              color: $unique-blue;
+          }
+          a{
+              color: $unique-blue;
+          }
+          a:hover{
+              color: #95b2c9;
+          }
+          background-color: white;
+      }
+      .c1{
+          &::before{
+              content: "1";
+              background-color: white;
+              color: $unique-blue;
+          }
+      }
+      .c2{
+          &::before{
+              content: "2";
+              background-color: $unique-blue;
+              color: white;
+          }
+      }
+      .c3{
+          &::before{
+              content: "3";
+              top: unset !important;
+              bottom: -20px;
+              background-color: white;
+              color: $unique-blue;
+          }
+      }
+      .c4{
+          &::before{
+              content: "4";
+              background-color: $unique-blue;
+              color: white;
+          }
+      }
+  }
+}
 
 /* Footer */
 .page-footer .container{
@@ -525,6 +669,15 @@ footer.page-footer a {
 }
 footer .email-link {
     text-transform: none !important;
+}
+footer .switch label input[type=checkbox]:checked+.lever{
+    background-color: $unique-blue !important;
+}
+footer .switch label .lever{
+    background-color: lightgrey;
+}
+footer .lever::after{
+    background-color: #F1F1F1 !important;
 }
 
 /* Fix cards */
