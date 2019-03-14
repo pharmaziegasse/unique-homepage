@@ -1,1 +1,75 @@
-<!doctype html><html class="full-height" lang="de"><head><meta charset="utf-8"/><link rel="shortcut icon" href="./favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"/><meta name="theme-color" content="#000000"/><link rel="manifest" href="./manifest.json"/><title>Pharmaziegasse®</title><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/><link href="./static/css/main.5e6df5b6.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script src="https://www.aichner-christian.com/mdb/js/jquery-3.3.1.min.js"></script><script src="https://www.aichner-christian.com/mdb/js/popper.min.js"></script><script src="https://www.aichner-christian.com/mdb/js/bootstrap.min.js"></script><script src="https://www.aichner-christian.com/mdb/js/mdb.min.js"></script><script>(new WOW).init(),$(document).ready(function(){var t=window.location.hash;""!==t&&$("html,body").animate({scrollTop:$(t).offset().top-120})}),$(document).on("click",".sscroll",function(t){var o=$(this).attr("href");t.preventDefault(),$("html,body").animate({scrollTop:$(o).offset().top-120},800,"easeInOutQuart")})</script><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,"a",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p="./";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src="./static/js/2.c4b2cfc1.chunk.js"></script><script src="./static/js/main.110d8232.chunk.js"></script></body></html>
+<!doctype html><html class="full-height" lang="de"><head><meta charset="utf-8"/><link rel="shortcut icon" href="./favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"/><meta name="theme-color" content="#000000"/><link rel="manifest" href="./manifest.json"/><title>Pharmaziegasse®</title><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/><link href="./static/css/main.9d17f7e7.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script src="https://www.aichner-christian.com/mdb/js/jquery-3.3.1.min.js"></script><script src="https://www.aichner-christian.com/mdb/js/popper.min.js"></script><script src="https://www.aichner-christian.com/mdb/js/bootstrap.min.js"></script><script src="https://www.aichner-christian.com/mdb/js/mdb.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script>// Animations initialization
+      new WOW().init();
+
+      $(document).ready(function() {
+        let hash = window.location.hash;
+        if (hash !== "") {
+          $("html,body").animate({
+            scrollTop: $(hash).offset().top - 73.797
+          });
+        }
+       
+
+        $(document).on("click", ".sscroll", function(e) {
+          let target = $(this).attr("href");
+          e.preventDefault();
+          $("html,body").animate(
+            {
+              scrollTop: $(target).offset().top - 73.797
+            },
+            800,
+            "easeInOutQuart"
+          );
+        });
+
+        let loadDark = () => {
+          $('.asbest').attr('style', 'display: none !important;');
+          $('.graviola-container').attr('style', 'display: block !important;');
+          $('.hero-counter').attr('style', 'display: block !important;');
+          $('.navbar').removeClass("navbar-light");
+          $('.navbar').addClass("navbar-dark");
+          $('.navbar img').attr('style', 'filter: brightness(0) invert(1);');
+          $('.navbar .btn').removeClass('btn-outline-elegant');
+          $('.navbar .btn').addClass('btn-outline-white');
+        }
+
+        let loadLight = () => {
+          $('.asbest').attr('style', 'display: block !important;');
+          $('.graviola-container').attr('style', 'display: none !important;');
+          $('.hero-counter').attr('style', 'display: none !important;');
+          $('.navbar').removeClass("navbar-dark");
+          $('.navbar').addClass("navbar-light");
+          $('.navbar img').attr('style', 'filter: brightness(0) invert(0);');
+          $('.navbar .btn').removeClass('btn-outline-white');
+          $('.navbar .btn').addClass('btn-outline-elegant');
+        }
+
+        $(document).on("click", ".switch-mode", function(e) {
+          let state = $(this).is(':checked');
+          if(state === true){
+            //Dark mode - how we want it
+            loadDark();
+            toastr["success"]("Vorzeige Modus aktiviert.")
+            Cookies.set('s_mode', '1');
+          }else{
+            //Light mode
+            loadLight();
+            toastr["error"]("Vorzeige Modus deaktiviert.")
+            Cookies.set('s_mode', '0');
+          }
+        });
+
+        //Modes
+        $('.asbest').ready(function(){
+          let mode = Cookies.get('s_mode');
+          if(mode === '0'){
+            loadLight();
+          }else if(mode === '1'){
+            loadDark();
+          }
+        })
+      });
+    // Tooltips Initialization
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })</script><script>!function(l){function e(e){for(var r,t,n=e[0],o=e[1],u=e[2],f=0,i=[];f<n.length;f++)t=n[f],p[t]&&i.push(p[t][0]),p[t]=0;for(r in o)Object.prototype.hasOwnProperty.call(o,r)&&(l[r]=o[r]);for(s&&s(e);i.length;)i.shift()();return c.push.apply(c,u||[]),a()}function a(){for(var e,r=0;r<c.length;r++){for(var t=c[r],n=!0,o=1;o<t.length;o++){var u=t[o];0!==p[u]&&(n=!1)}n&&(c.splice(r--,1),e=f(f.s=t[0]))}return e}var t={},p={1:0},c=[];function f(e){if(t[e])return t[e].exports;var r=t[e]={i:e,l:!1,exports:{}};return l[e].call(r.exports,r,r.exports,f),r.l=!0,r.exports}f.m=l,f.c=t,f.d=function(e,r,t){f.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},f.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},f.t=function(r,e){if(1&e&&(r=f(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var t=Object.create(null);if(f.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var n in r)f.d(t,n,function(e){return r[e]}.bind(null,n));return t},f.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return f.d(r,"a",r),r},f.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},f.p="./";var r=window.webpackJsonp=window.webpackJsonp||[],n=r.push.bind(r);r.push=e,r=r.slice();for(var o=0;o<r.length;o++)e(r[o]);var s=n;a()}([])</script><script src="./static/js/2.50093483.chunk.js"></script><script src="./static/js/main.79056760.chunk.js"></script></body></html>
