@@ -73,8 +73,8 @@ const Hero = (props: Props): React.Element<*> => {
                     <div className="row white-text">
                         <div className="col-md-12 text-left">
                         
-                            <a href={sociallinks[0].ig} className="m-2 white-text"><i className="fab fa-instagram"></i></a>
-                            <a href={sociallinks[0].fb} className="m-2 white-text"><i className="fab fa-facebook-f"></i></a>
+                            <a href={sociallinks[0].ig} className="m-2 white-text" rel="noopener noreferrer" target="_blank"><i className="fab fa-instagram"></i></a>
+                            <a href={sociallinks[0].fb} className="m-2 white-text" rel="noopener noreferrer" target="_blank"><i className="fab fa-facebook-f"></i></a>
                         </div>
                     </div>
                 </div>
