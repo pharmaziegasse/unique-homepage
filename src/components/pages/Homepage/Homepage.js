@@ -41,7 +41,6 @@ import section8_img from "./section8.jpg";
 import {
   navitems,
   section5_button,
-  section6_contents,
   section7_contents
 } from "./legacy";
 
@@ -300,7 +299,7 @@ class Homepage extends Component {
               return (
                 <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
                   <Section6
-                    content={section6_contents}
+                    content={[{ heading: sections.value.reviews.head }]}
                     reviews={sections.value.reviews.map((reviews, index) => {
                       return {
                         name: reviews.value.name,
