@@ -206,13 +206,13 @@ class Homepage extends Component {
                 >
                   <Section1
                     content={[
-                      { heading: "Individuelles Programm" },
+                      { heading: sections.value.individual.head },
                       { img: section1_img },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.individual.head },
+                      { lead: sections.value.individual.lead },
                       { paragraph: sections.value.individual.paragraph }
                     ]}
                   />
@@ -223,13 +223,13 @@ class Homepage extends Component {
                 <Section key={i} sectionid="experts" background="WHITE" data-id="2">
                   <Section2
                     content={[
-                      { heading: "Analyse von Experten" },
+                      { heading: sections.value.experts.head },
                       { img: section2_img },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.experts.head },
+                      { lead: sections.value.experts.lead },
                       { paragraph: sections.value.experts.paragraph }
                     ]}
                   />
@@ -241,15 +241,14 @@ class Homepage extends Component {
                   <Section3
                     content={[
                       {
-                        heading:
-                          "Frische und natürliche Kosmetik<br>handgemacht aus dem Labor"
+                        heading: sections.value.lab.head
                       },
                       { img: section3_img },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.lab.head },
+                      { lead: sections.value.lab.lead },
                       { paragraph: sections.value.lab.paragraph }
                     ]}
                   />
@@ -329,8 +328,7 @@ class Homepage extends Component {
                     content={[
                       { heading: sections.value.about.head },
                       { img: section8_img },
-                      { paragraph: sections.value.about.paragraph },
-                      { paragraph: "Number of paragraphs is flexible" }
+                      { paragraph: sections.value.about.paragraph }
                     ]}
                   />
                 </Section>

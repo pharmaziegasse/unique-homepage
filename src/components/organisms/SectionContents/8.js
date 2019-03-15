@@ -22,7 +22,6 @@ const SectionContent = (props: Props): React.Element<*> => {
                 <img draggable="false" className="img-fluid" src={content[1].img} alt="Über uns"/>
             </div>
             <div className="col-md-6">
-                <div className="lead" dangerouslySetInnerHTML={{__html: content[3].lead}}></div>
                 {content.map((item, i) => {
                     return (
                         printParagraph(i)
