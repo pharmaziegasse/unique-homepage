@@ -5,7 +5,7 @@ type Props = {
 }
 
 const SectionContent = (props: Props): React.Element<*> => {
-    const { content, reviews } = props;
+    const { heading, users } = props;
 
     function getActiveItem(id){
         if(id === 0){
@@ -17,12 +17,12 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     return (
         <div className="container py-5">
-           <h2 className="h1-responsive font-weight-bold mb-5">{content[0].heading}</h2>
+           <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: heading}}></h2>
 
             <div className="wrapper-carousel-fix">
                 <div id="customer-carousel" className="carousel no-flex testimonial-carousel slide py-5 dark-grey-text" data-ride="carousel" data-interval="20000">
                 <div className="carousel-inner" role="listbox">
-                {reviews.map((item, i) => {
+                {users.map((item, i) => {
                     return(
                     <div key={i} className={getActiveItem(i)}>
                         <div className="testimonial">

@@ -41,8 +41,6 @@ import section8_img from "./section8.jpg";
 import {
   navitems,
   section5_button,
-  section6_contents,
-  section7_contents
 } from "./legacy";
 
 
@@ -206,13 +204,13 @@ class Homepage extends Component {
                 >
                   <Section1
                     content={[
-                      { heading: "Individuelles Programm" },
+                      { heading: sections.value.individual.head },
                       { img: section1_img },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.individual.head },
+                      { lead: sections.value.individual.lead },
                       { paragraph: sections.value.individual.paragraph }
                     ]}
                   />
@@ -223,13 +221,13 @@ class Homepage extends Component {
                 <Section key={i} sectionid="experts" background="WHITE" data-id="2">
                   <Section2
                     content={[
-                      { heading: "Analyse von Experten" },
+                      { heading: sections.value.experts.head },
                       { img: section2_img },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.experts.head },
+                      { lead: sections.value.experts.lead },
                       { paragraph: sections.value.experts.paragraph }
                     ]}
                   />
@@ -241,15 +239,14 @@ class Homepage extends Component {
                   <Section3
                     content={[
                       {
-                        heading:
-                          "Frische und natürliche Kosmetik<br>handgemacht aus dem Labor"
+                        heading: sections.value.lab.head
                       },
                       { img: section3_img },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.lab.head },
+                      { lead: sections.value.lab.lead },
                       { paragraph: sections.value.lab.paragraph }
                     ]}
                   />
@@ -301,16 +298,16 @@ class Homepage extends Component {
               return (
                 <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
                   <Section6
-                    content={section6_contents}
-                    reviews={sections.value.reviews.map((reviews, index) => {
+                    heading={sections.value.reviews.head}
+                    users={sections.value.reviews.users.map((user, index) => {
                       return {
-                        name: reviews.value.name,
+                        name: user.value.name,
                         img:
                           "https://mdbootstrap.com/img/Photos/Avatars/img%20(" +
                           (32 - index) +
                           ").jpg",
-                        quote: reviews.value.quote,
-                        info: reviews.value.info
+                        quote: user.value.quote,
+                        info: user.value.info
                       };
                     })}
                   />
@@ -319,7 +316,17 @@ class Homepage extends Component {
             } else if (sections.value.pricing) {
               return (
                 <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
-                  <Section7 content={section7_contents} />
+                  <Section7 
+                    heading={sections.value.pricing.head}
+                    cards={sections.value.pricing.cards.map((card, index) => {
+                      return {
+                        title: card.value.title,
+                        description: card.value.description,
+                        price: card.value.price
+                      };
+                    })} 
+                  
+                  />
                 </Section>
               );
             } else if (sections.value.about) {
@@ -329,8 +336,7 @@ class Homepage extends Component {
                     content={[
                       { heading: sections.value.about.head },
                       { img: section8_img },
-                      { paragraph: sections.value.about.paragraph },
-                      { paragraph: "Number of paragraphs is flexible" }
+                      { paragraph: sections.value.about.paragraph }
                     ]}
                   />
                 </Section>

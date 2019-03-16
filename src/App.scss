@@ -692,6 +692,13 @@ footer .lever::after{
     background-color: $unique-blue;
     color: white;
 }
+.pricing-card ul{
+    list-style-type: disc;
+    padding-inline-start: 40px;
+}
+.pricing-description{
+    text-align: initial;
+}
 .premium .pricing-description {
     background-color: $unique-darkblue;
     color: white;
