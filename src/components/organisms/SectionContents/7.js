@@ -8,9 +8,7 @@ type Props = {
 }
 
 const SectionContent = (props: Props): React.Element<*> => {
-    const { content } = props;
-
-    const elements = [content[1], content[2], content[3]];
+    const { heading, cards } = props;
 
     function getType(i){
         if(i === 2){
@@ -20,17 +18,32 @@ const SectionContent = (props: Props): React.Element<*> => {
         }
     }
 
+    function getWidth(){
+        let count = cards.length;
+        
+        switch (count) {
+            case 1:
+                return "col-md-12 mb-4";
+            case 2:
+                return "col-md-6 mb-4";
+            case 3:
+                return "col-md-4 mb-4";
+            default:
+                return "col-md-4 mb-4";
+        }
+    }
+
     return (
         <div className="container py-5">
-           <h2 className="h1-responsive font-weight-bold mb-5">{content[0].heading}</h2>
+           <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: heading}}></h2>
             <div className="row">
-                {elements.map((value, i) => {
+                {cards.map((value, i) => {
                     return (
-                        <div key={i} className="col-lg-4 col-md-12 mb-lg-0 mb-4">
+                        <div key={i} className={getWidth()}>
                             <div className={getType(i)}>
                                 <h3 className="text-uppercase font-weight-bold my-4">{value.title}</h3>
                                 <div className="pricing-description p-4">
-                                    <p className="m-0">{value.description}</p>
+                                    <p className="m-0" dangerouslySetInnerHTML={{__html: value.description}}></p>
                                 </div>
                                 <div className="card-body striped p-0">
                                     <div className="py-4">
@@ -38,7 +51,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                                         <p className="text-muted mb-0">€ {value.price}</p>
                                     </div>
                                     <hr className="mt-0"/>
-                                    <Btn className="font-weight-bold" btnstyle="oELEGANT" href={value.btnhref}>{value.btntext}</Btn>
+                                    <Btn className="font-weight-bold" btnstyle="oELEGANT" href="#">Beautyprogramm starten</Btn>
                                 </div>
                             </div>
                         </div>

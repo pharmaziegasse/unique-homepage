@@ -41,7 +41,6 @@ import section8_img from "./section8.jpg";
 import {
   navitems,
   section5_button,
-  section7_contents
 } from "./legacy";
 
 
@@ -299,16 +298,16 @@ class Homepage extends Component {
               return (
                 <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
                   <Section6
-                    content={[{ heading: sections.value.reviews.head }]}
-                    reviews={sections.value.reviews.map((reviews, index) => {
+                    heading={sections.value.reviews.head}
+                    users={sections.value.reviews.users.map((user, index) => {
                       return {
-                        name: reviews.value.name,
+                        name: user.value.name,
                         img:
                           "https://mdbootstrap.com/img/Photos/Avatars/img%20(" +
                           (32 - index) +
                           ").jpg",
-                        quote: reviews.value.quote,
-                        info: reviews.value.info
+                        quote: user.value.quote,
+                        info: user.value.info
                       };
                     })}
                   />
@@ -317,7 +316,17 @@ class Homepage extends Component {
             } else if (sections.value.pricing) {
               return (
                 <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
-                  <Section7 content={section7_contents} />
+                  <Section7 
+                    heading={sections.value.pricing.head}
+                    cards={sections.value.pricing.cards.map((card, index) => {
+                      return {
+                        title: card.value.title,
+                        description: card.value.description,
+                        price: card.value.price
+                      };
+                    })} 
+                  
+                  />
                 </Section>
               );
             } else if (sections.value.about) {
