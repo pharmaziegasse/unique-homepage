@@ -14,6 +14,7 @@ import Section from "../../organisms/Section";
 import Footer from "../../organisms/Footer";
 
 import Modal from "../../organisms/Modal";
+import CookieModal from "../../organisms/CookieModal";
 
 // section content organisms
 import Section0 from "../../organisms/SectionContents/0.js";
@@ -341,12 +342,9 @@ class Homepage extends Component {
                   />
                 </Section>
               );
+            } else {
+              return false;
             }
-            return (
-              <Modal
-                data={modalRegister_content}
-              />
-            );
           })}
           {q_footers.map((footers, i) => {
             //console.log(footers.value.info);
@@ -360,8 +358,14 @@ class Homepage extends Component {
                 />
               );
             }
-            return (returnparam);
+            return (
+              returnparam
+              );
           })}
+          <Modal
+            data={modalRegister_content}
+          />,
+          <CookieModal />
         </main>
       );
     } else {
@@ -380,6 +384,7 @@ class Homepage extends Component {
       );
     }
   }
+  
   render() {
     return this.renderContent();
   }
