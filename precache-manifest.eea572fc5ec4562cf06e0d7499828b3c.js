@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "./static/media/Roboto-Regular.30799efa.eot"
   },
   {
-    "revision": "6e1cea14b65a37fcc29d",
+    "revision": "893ecd12b34bd0ff2e5d",
     "url": "./static/css/main.5cfdd8d7.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "./static/js/runtime~main.2c977d9b.js"
   },
   {
-    "revision": "289cde620c3befe3a33c",
-    "url": "./static/js/2.50093483.chunk.js"
+    "revision": "e3ef5f62f723fa1a5689",
+    "url": "./static/js/2.c7c4f4ed.chunk.js"
   },
   {
     "revision": "7ac6db73dab151c224703f01392df4e3",
@@ -60,12 +60,12 @@ self.__precacheManifest = [
     "url": "./static/media/arrow_left.11911410.svg"
   },
   {
-    "revision": "8ef6a08cdc1154920165680a4edde771",
-    "url": "./static/media/arrow_right.8ef6a08c.svg"
-  },
-  {
     "revision": "b257fa9c5ac8c515ac4d77a667ce2943",
     "url": "./static/media/default-skin.b257fa9c.svg"
+  },
+  {
+    "revision": "8ef6a08cdc1154920165680a4edde771",
+    "url": "./static/media/arrow_right.8ef6a08c.svg"
   },
   {
     "revision": "dfe56a876d0282555d1e2458e278060f",
@@ -76,8 +76,8 @@ self.__precacheManifest = [
     "url": "./static/media/Roboto-Light.a990f611.eot"
   },
   {
-    "revision": "6e1cea14b65a37fcc29d",
-    "url": "./static/js/main.b4b50ee3.chunk.js"
+    "revision": "893ecd12b34bd0ff2e5d",
+    "url": "./static/js/main.b01a5abc.chunk.js"
   },
   {
     "revision": "4d9f3f9e5195e7b074bb63ba4ce42208",
@@ -92,48 +92,40 @@ self.__precacheManifest = [
     "url": "./static/media/Roboto-Thin.954bbdeb.woff2"
   },
   {
-    "revision": "2751ee43015f9884c3642f103b7f70c9",
-    "url": "./static/media/Roboto-Regular.2751ee43.woff2"
-  },
-  {
     "revision": "69f8a0617ac472f78e45841323a3df9e",
     "url": "./static/media/Roboto-Light.69f8a061.woff2"
   },
   {
-    "revision": "574fd0b50367f886d359e8264938fc37",
-    "url": "./static/media/Roboto-Medium.574fd0b5.woff2"
+    "revision": "2751ee43015f9884c3642f103b7f70c9",
+    "url": "./static/media/Roboto-Regular.2751ee43.woff2"
   },
   {
     "revision": "39b2c3031be6b4ea96e2e3e95d307814",
     "url": "./static/media/Roboto-Bold.39b2c303.woff2"
   },
   {
-    "revision": "7500519de3d82e33d1587f8042e2afcb",
-    "url": "./static/media/Roboto-Thin.7500519d.woff"
+    "revision": "574fd0b50367f886d359e8264938fc37",
+    "url": "./static/media/Roboto-Medium.574fd0b5.woff2"
   },
   {
     "revision": "3b813c2ae0d04909a33a18d792912ee7",
     "url": "./static/media/Roboto-Light.3b813c2a.woff"
   },
   {
-    "revision": "ba3dcd8903e3d0af5de7792777f8ae0d",
-    "url": "./static/media/Roboto-Regular.ba3dcd89.woff"
-  },
-  {
-    "revision": "dc81817def276b4f21395f7ea5e88dcd",
-    "url": "./static/media/Roboto-Bold.dc81817d.woff"
+    "revision": "7500519de3d82e33d1587f8042e2afcb",
+    "url": "./static/media/Roboto-Thin.7500519d.woff"
   },
   {
     "revision": "fc78759e93a6cac50458610e3d9d63a0",
     "url": "./static/media/Roboto-Medium.fc78759e.woff"
   },
   {
-    "revision": "46e48ce0628835f68a7369d0254e4283",
-    "url": "./static/media/Roboto-Light.46e48ce0.ttf"
+    "revision": "dc81817def276b4f21395f7ea5e88dcd",
+    "url": "./static/media/Roboto-Bold.dc81817d.woff"
   },
   {
-    "revision": "df7b648ce5356ea1ebce435b3459fd60",
-    "url": "./static/media/Roboto-Regular.df7b648c.ttf"
+    "revision": "ba3dcd8903e3d0af5de7792777f8ae0d",
+    "url": "./static/media/Roboto-Regular.ba3dcd89.woff"
   },
   {
     "revision": "94998475f6aea65f558494802416c1cf",
@@ -144,11 +136,19 @@ self.__precacheManifest = [
     "url": "./static/media/Roboto-Medium.894a2ede.ttf"
   },
   {
+    "revision": "46e48ce0628835f68a7369d0254e4283",
+    "url": "./static/media/Roboto-Light.46e48ce0.ttf"
+  },
+  {
+    "revision": "df7b648ce5356ea1ebce435b3459fd60",
+    "url": "./static/media/Roboto-Regular.df7b648c.ttf"
+  },
+  {
     "revision": "e31fcf1885e371e19f5786c2bdfeae1b",
     "url": "./static/media/Roboto-Bold.e31fcf18.ttf"
   },
   {
-    "revision": "e54d25d681493ce5855729dd9fbf934d",
+    "revision": "72b0f1194d44d4c4514152751323dd5a",
     "url": "./index.html"
   }
 ];
