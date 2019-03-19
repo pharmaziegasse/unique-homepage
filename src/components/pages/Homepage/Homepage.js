@@ -8,11 +8,12 @@ import { graphql } from "react-apollo";
 
 // standard components
 
-// organisms
+// basic organisms
 import Intro from "../../organisms/Intro";
 import Section from "../../organisms/Section";
 import Footer from "../../organisms/Footer";
 
+// modals
 import Modal from "../../organisms/Modal";
 import CookieModal from "../../organisms/CookieModal";
 
