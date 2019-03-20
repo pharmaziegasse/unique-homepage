@@ -11,6 +11,10 @@
 
 // Other libs 
 import React, { Component } from "react";
+import { ApolloClient } from "apollo-client";
+import { HttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloProvider } from "react-apollo";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -25,10 +29,17 @@ import Homepage from "./components/pages/Homepage";
 import About from "./components/pages/About";
 import Privacy from "./components/pages/Privacy";
 
+// Apollo client setup
+const client = new ApolloClient({
+  link: new HttpLink({ uri: "https://pharmaziegasse.at/api/graphql" }),
+  cache: new InMemoryCache()
+});
+
 // Rendering of all active pages
 class App extends Component {
   render() {
     return (
+      <ApolloProvider client={client}>
       <Router>
         <Switch>
           <Route path="/" exact component={Homepage} />
@@ -36,6 +47,7 @@ class App extends Component {
           <Route path="/privacy" component={Privacy} />
         </Switch>
       </Router>
+      </ApolloProvider>
     );
   }
 }
