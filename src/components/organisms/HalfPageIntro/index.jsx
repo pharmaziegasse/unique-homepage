@@ -21,7 +21,7 @@ class HalfPageIntro extends React.Component{
 
     PrintType(item, i){
         if (item.type === "text"){
-            if ( item.href.charAt( 0 ) == '#' ) {
+            if ( item.href.charAt( 0 ) == '#' || item.href.charAt(26) == '#') {
                 return (    
                     <li key={i} className={this.GetState(item.active)}>
                         <a className="nav-link m-1 sscroll" href={item.href}>{item.text}</a>

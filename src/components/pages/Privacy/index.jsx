@@ -20,15 +20,15 @@ import logo_light from "../Homepage/light.png";
 // Replace with CMS data
 import myTextFile from './text.txt'
 export const navitems = [
-  { href: "/#why", text: "Warum PHARMAZIEGASSE®?", active: false, type: "text"},
+  { href: "/?token=Pharmaziegasse-9020#why", text: "Warum PHARMAZIEGASSE®?", active: false, type: "text"},
   {
-    href: "/#method",
+    href: "/?token=Pharmaziegasse-9020#method",
     text: "Wie funktioniert es?",
     active: false,
     type: "text"
   },
-  { href: "/#pricing", text: "Preise", active: false, type: "text" },
-  { href: "/#about", text: "Über uns", active: false, type: "text" },
+  { href: "/?token=Pharmaziegasse-9020#pricing", text: "Preise", active: false, type: "text" },
+  { href: "/?token=Pharmaziegasse-9020#about", text: "Über uns", active: false, type: "text" },
   { href: "/getting-started", text: "Loslegen", active: false, type: "button" }
 ];
 

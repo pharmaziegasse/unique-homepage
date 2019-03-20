@@ -39,6 +39,19 @@
 
 .Homepage{
     /* Hero */
+    @media (max-width: 740px) {
+        h3{
+            margin-top: 1em !important;
+            margin-bottom: 0 !important;
+            p{
+                font-size: .7em;
+            }
+        }
+        h1{
+            font-size: 2em;
+            letter-spacing: 0;
+        }
+    }
     .hero-view{
         background-repeat: no-repeat !important;
         background-size: cover !important;

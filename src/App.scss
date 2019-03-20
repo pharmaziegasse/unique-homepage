@@ -19,11 +19,14 @@
     }
 
     /* Navbar */
-    .navbar-brand img{
-        width: 250px;
-        max-width: 100%;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+    .navbar-brand{
+        max-width: 70%;
+        img{
+            width: 250px;
+            max-width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
     }
     h1 {
         letter-spacing: 8px;
