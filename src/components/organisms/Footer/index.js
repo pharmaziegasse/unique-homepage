@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 type Props = {
@@ -48,13 +49,11 @@ const Footer = (props: Props): React.Element<*> => {
           <a className="email-link" href={"mailto:"+companyinfo[0].email}><i className="fas fa-envelope mr-3"></i>{companyinfo[0].email}</a>
         </div>
 
-
         <hr className="w-100 clearfix d-md-none"/>
 
-
         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-          <p><a href="http://www.gasser-partner.at/impressum/" rel="noopener noreferrer" target="_blank">Impressum</a></p>
-          <p><a href="http://www.gasser-partner.at/datenschutz/" rel="noopener noreferrer" target="_blank">Datenschutz</a></p>
+          <p><Link to='/about'>Impressum</Link></p>
+          <p><Link to='/privacy'>Datenschutz</Link></p>
           <ul className="list-unstyled list-inline">
               <li className="list-inline-item">
                 <a href={sociallinks[0].fb} rel="noopener noreferrer" target="_blank" className="mx-2">

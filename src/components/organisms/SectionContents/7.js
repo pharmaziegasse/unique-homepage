@@ -11,7 +11,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     const { heading, cards } = props;
 
     function getType(i){
-        if(i === 2){
+        if(i === 1){
             return 'card premium pb-4';                 
         }else{
             return 'card pricing-card pb-4';

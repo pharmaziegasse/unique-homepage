@@ -25,11 +25,19 @@ const Intro = (props: Props): React.Element<*> => {
 
     function PrintType(item, i){
         if (item.type === "text"){
-            return (    
-                <li key={i} className={GetState(item.active)}>
-                    <a className="nav-link m-1 sscroll" href={item.href}>{item.text}</a>
-                </li>
-            );
+            if ( item.href.charAt( 0 ) == '#' ) {
+                return (    
+                    <li key={i} className={GetState(item.active)}>
+                        <a className="nav-link m-1 sscroll" href={item.href}>{item.text}</a>
+                    </li>
+                );
+            }else{
+                return (    
+                    <li key={i} className={GetState(item.active)}>
+                        <a className="nav-link m-1" href={item.href}>{item.text}</a>
+                    </li>
+                );
+            }
         }else{
             if(theme === "D"){
                 return [
@@ -56,7 +64,7 @@ const Intro = (props: Props): React.Element<*> => {
 
     return(
         <header id="home">
-            <Nav theme={theme} logo={GetLogo(theme)}>
+        <Nav theme={theme} logo={GetLogo(theme)}>
             <ul className="navbar-nav ml-auto d-flex justify-content-center align-items-center">
                 {navitems.map((item, i) => {
                     return(PrintType(item,i))

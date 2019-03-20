@@ -27,10 +27,10 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div key={i} className={getActiveItem(i)}>
                         <div className="testimonial">
                             <div className="avatar mx-auto mb-4">
-                                <img src={item.img} className="rounded-circle img-fluid" alt={item.name}/>
+                                <img width="80px" height="80px" src={item.img} className="rounded-circle img-fluid" alt={item.name}/>
                             </div>
                             <p>
-                                <i className="fas fa-quote-left mr-2"></i><span dangerouslySetInnerHTML={{__html: item.quote}}></span>
+                                <span dangerouslySetInnerHTML={{__html: item.quote}}></span>
                             </p>
                             <h4 className="font-weight-bold">{item.name}</h4>
                             <h6 className="font-weight-bold my-3 text-muted">{item.info}</h6>

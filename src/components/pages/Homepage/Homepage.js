@@ -8,11 +8,12 @@ import { graphql } from "react-apollo";
 
 // standard components
 
-// organisms
+// basic organisms
 import Intro from "../../organisms/Intro";
 import Section from "../../organisms/Section";
 import Footer from "../../organisms/Footer";
 
+// modals
 import Modal from "../../organisms/Modal";
 import CookieModal from "../../organisms/CookieModal";
 
@@ -27,7 +28,8 @@ import Section6 from "../../organisms/SectionContents/6.js";
 import Section7 from "../../organisms/SectionContents/7.js";
 import Section8 from "../../organisms/SectionContents/8.js";
 
-// Replace with CMS!
+import bg1 from "./bg0.jpg";
+import bg2 from "./bg1.jpg";
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
 import icon1 from "./icon1.gif";
@@ -36,14 +38,18 @@ import icon3 from "./icon3.gif";
 import section1_img from "./section1.jpg";
 import section2_img from "./section2.jpg";
 import section3_img from "./section3.jpg";
+
 import section8_img from "./section8.jpg";
 
 // Import vars
 import {
   navitems,
-  section5_button,
-} from "./legacy";
+  section5_button
+} from "../../../legacy";
 
+
+// Custom CSS
+import "./Homepage.scss";
 
 export const sociallinks = [
   { fb: "https://www.facebook.com/Friends-of-Pharmaziegasse-309175709736059/", ig: "https://www.instagram.com/friendsofpharmaziegasse/" }
@@ -55,8 +61,8 @@ export const companyinfo = [
     zip: "9020",
     address: "Pharmaziegasse 5",
     phone: "+43 463 45 904-0",
-    email: "office@theuniquestory.com",
-    copyrightholder: "TheUniqueStory"
+    email: "office@pharmaziegasse.at",
+    copyrightholder: "Pharmaziegasse"
   }
 ];
 

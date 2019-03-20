@@ -5,18 +5,18 @@
 //import { graphql } from "react-apollo";
 
 // Replace with CMS!
-import bg1 from "./bg0.jpg";
-import bg2 from "./bg1.jpg";
-import logo_dark from "./dark.png";
-import logo_light from "./light.png";
-import icon1 from "./icon1.gif";
-import icon2 from "./icon2.gif";
-import icon3 from "./icon3.gif";
-import section1_img from "./section1.jpg";
-import section2_img from "./section2.jpg";
-import section3_img from "./section3.jpg";
+import bg1 from "../components/pages/Homepage/bg0.jpg";
+import bg2 from "../components/pages/Homepage/bg1.jpg";
+import logo_dark from "../components/pages/Homepage/dark.png";
+import logo_light from "../components/pages/Homepage/light.png";
+import icon1 from "../components/pages/Homepage/icon1.gif";
+import icon2 from "../components/pages/Homepage/icon2.gif";
+import icon3 from "../components/pages/Homepage/icon3.gif";
+import section1_img from "../components/pages/Homepage/section1.jpg";
+import section2_img from "../components/pages/Homepage/section2.jpg";
+import section3_img from "../components/pages/Homepage/section3.jpg";
 
-import section8_img from "./section8.jpg";
+import section8_img from "../components/pages/Homepage/section8.jpg";
 
 /*
 const client = new ApolloClient({

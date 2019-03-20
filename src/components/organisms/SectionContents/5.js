@@ -27,7 +27,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     }
 
     return (
-        <div className="container py-5">
+        <div className="py-5">
            
             
             <div className="wrapper-carousel-fix">
