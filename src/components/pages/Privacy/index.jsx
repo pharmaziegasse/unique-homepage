@@ -43,7 +43,7 @@ export const companyinfo = [
     address: "Pharmaziegasse 5",
     phone: "+43 463 45 904-0",
     email: "office@pharmaziegasse.at",
-    copyrightholder: "Pharmaziegasse"
+    copyrightholder: "Pharmaziegasse®"
   }
 ];
 

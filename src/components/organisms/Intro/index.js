@@ -25,7 +25,7 @@ const Intro = (props: Props): React.Element<*> => {
 
     function PrintType(item, i){
         if (item.type === "text"){
-            if ( item.href.charAt( 0 ) == '#' ) {
+            if ( item.href.charAt( 0 ) === '#' ) {
                 return (    
                     <li key={i} className={GetState(item.active)}>
                         <a className="nav-link m-1 sscroll" href={item.href}>{item.text}</a>

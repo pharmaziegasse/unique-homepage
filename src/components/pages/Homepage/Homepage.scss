@@ -1,5 +1,21 @@
 // Importing scss of used organisms
+html,
+body,
+header,
+.view, #root, main, #hero-carousel .carousel-inner, #hero-carousel, #hero-carousel .carousel-item {
+    height: 100%;
+    font-family: "Oxfam Regular", "Roboto", sans-serif;
+    font-weight: 300;
+}
 
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view, #root, main, #hero-carousel .carousel-inner, #hero-carousel, #hero-carousel .carousel-item {
+        height: 100vh;
+    }
+}
 // Scss of page
 .Homepage {
   text-align: center;
