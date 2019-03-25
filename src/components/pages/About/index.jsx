@@ -43,7 +43,7 @@ export const companyinfo = [
     address: "Pharmaziegasse 5",
     phone: "+43 463 45 904-0",
     email: "office@pharmaziegasse.at",
-    copyrightholder: "Pharmaziegasse"
+    copyrightholder: "Pharmaziegasse®"
   }
 ];
 
@@ -83,7 +83,7 @@ class About extends Component{
             />
           </Section>
            <div className="container"><div id="map-container-google-11" class="z-depth-1-half map-container-6">
-              <iframe className="w-100 h-100" src="https://maps.google.com/maps?q=Pharmaziegasse 5&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              <iframe title="Pharmaziegasse Map" className="w-100 h-100" src="https://maps.google.com/maps?q=Pharmaziegasse 5&t=&z=13&ie=UTF8&iwloc=&output=embed"
                 frameborder="0" allowfullscreen></iframe>
             </div>
             </div>

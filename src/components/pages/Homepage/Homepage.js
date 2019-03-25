@@ -28,8 +28,6 @@ import Section6 from "../../organisms/SectionContents/6.js";
 import Section7 from "../../organisms/SectionContents/7.js";
 import Section8 from "../../organisms/SectionContents/8.js";
 
-import bg1 from "./bg0.jpg";
-import bg2 from "./bg1.jpg";
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
 import icon1 from "./icon1.gif";
@@ -62,7 +60,7 @@ export const companyinfo = [
     address: "Pharmaziegasse 5",
     phone: "+43 463 45 904-0",
     email: "office@pharmaziegasse.at",
-    copyrightholder: "Pharmaziegasse"
+    copyrightholder: "Pharmaziegasse®"
   }
 ];
 
