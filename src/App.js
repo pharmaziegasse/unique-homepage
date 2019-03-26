@@ -1,5 +1,5 @@
 // Subscribe to PewDiePie - https://www.youtube.com/user/PewDiePie?sub_confirmation=1
-// Developed for TheUniqueStory by Aichner Christian and Kleber Florian for terms of use have a look at the LICENSE file
+// Developed for Pharmaziegasse by Aichner Christian and Kleber Florian for terms of use have a look at the LICENSE file
 
 // Commands we used to get started with this project
 // npm install node-sass classnames react-scripts apollo-boost react-apollo graphql --save
