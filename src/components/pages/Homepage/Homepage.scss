@@ -706,10 +706,17 @@ header,
     .register-form{
         .input-grp{
             i{
+                color: $unique-blue !important;
                 position: absolute;
                 right: 50px;
                 margin-top: 10px;
-                cursor: pointer;
+                cursor: default;
+            }
+            span{
+                position: absolute;
+                right: 80px;
+                margin-top: 10px;
+                cursor: default;
             }
         }
         input{
