@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as EmailValidator from 'email-validator';
+// Apollo
+import { gql } from "apollo-boost";
+import { Mutation, ApolloConsumer } from 'react-apollo';
 
 import Checkbox from '../../atoms/Checkbox'
 import Input from '../../atoms/Input'
@@ -23,6 +26,42 @@ class Modal extends React.Component{
         }
     }
     
+    sendData = () => {
+        // {"values": {"firstname": "carlos", "lastname": "carlos", "newsletter": true, "phone": "06508248811","email": "cisco@cis.co"}}
+        let values = {
+            "values": {"firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email}
+        };
+        console.log(values);
+
+        const ADD_USER = gql`
+            mutation user($values: GenericScalar!) {
+                homeFormPage(url: "/user", values: $values) {
+                    result
+                    errors {
+                    name
+                    errors
+                    }
+                }
+            }
+        `;
+
+        return (
+            <ApolloConsumer>
+            {client => (
+                <Mutation
+                    mutation={ADD_USER}
+                    onCompleted={({ login }) => {
+                        this.setState({showError: false});
+                        this.setState({showSuccess: true});
+                    }}
+                >
+                    {(homeFormPage, { values }) => values}
+                </Mutation>
+            )}
+            </ApolloConsumer>
+        );
+    }
+
     handleSubmitForm = (event) => {
         event.preventDefault();
         let error = [];
@@ -58,9 +97,7 @@ class Modal extends React.Component{
             this.setState({showError: true});
             this.setState({showSuccess: false});
         }else{
-            this.setState({showError: false});
-            this.setState({showSuccess: true});
-            console.log(this.state);
+            this.sendData();
         };
     }
 
