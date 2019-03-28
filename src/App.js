@@ -31,7 +31,7 @@ import Privacy from "./components/pages/Privacy";
 
 // Apollo client setup
 const client = new ApolloClient({
-  link: new HttpLink({ uri: "https://pharmaziegasse.at/api/graphql" }),
+  link: new HttpLink({ uri: "https://test.pharmaziegasse.at/api/graphql" }),
   cache: new InMemoryCache()
 });
 

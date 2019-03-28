@@ -66,43 +66,97 @@ export const companyinfo = [
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
 
-const CMSFetchQuery = gql`
-  query homepage {
-    homepage {
-      id
-      title
-      token
-      city
-      zipCode
-      address
-      telephone
-      telefax
-      vatNumber
-      taxId
-      courtOfRegistry
-      placeOfRegistry
-      tradeRegisterNumber
-      ownership
-      email
-      sociallinks
-      headers {
-        ... on HeaderBlock {
-          value
+const CMSFetchQuery_PAGES = gql`
+query pages {
+  pages {
+    id
+    title
+    ... on HomeUniquePage {
+      headers{
+        ... on Home_H_HeroBlock{
+          heroImg{
+            urlLink
+          }
+          heroHead
+          heroSubhead
+          heroButton {
+            id
+          }
         }
       }
       sections {
-        ... on SectionBlock {
-          value
+        ... on Home_S_WhyBlock {
+          __typename
+          whyHead
+          whyCollum1 {
+            collumImg {
+              urlLink
+            }
+            collumParagraph
+          }
+          whyCollum2 {
+            collumImg {
+              urlLink
+            }
+            collumParagraph
+          }
+          whyCollum3 {
+            collumImg {
+              urlLink
+            }
+            collumParagraph
+          }
         }
-      }
-      footers {
-        ... on FooterBlock {
-          value
+        ... on Home_S_IndividualBlock {
+          __typename
+          individualImg {
+            urlLink
+          }
+          individualHead
+          individualLead
+          individualButton {
+            id
+          }
+          individualParagraph
+          field
+        }
+        ... on Home_S_ExpertsBlock {
+          __typename
+          expertsImg {
+            urlLink
+          }
+          expertsHead
+          expertsLead
+          expertsButton {
+            id
+          }
+          expertsParagraph
+        }
+        ... on Home_S_LabBlock {
+          __typename
+          labImg {
+            urlLink
+          }
+          labHead
+          labLead
+          labParagraph
+          labButton {
+            id
+          }
+        }
+        ... on Home_S_AboutBlock {
+          aboutImg{
+            urlLink
+          }
+          aboutHead
+          aboutParagraph
         }
       }
     }
   }
+}
 `;
+
 
 /* LOCK */
 function getQueryVariable(variable) {
@@ -135,7 +189,7 @@ class Homepage extends Component {
     if (data.loading) return <p>Loading...</p>;
     if (data.error) return <p>Error :(</p>;
 
-    const homepage = data.homepage[0];
+    const homepage = data.pages[2];
     const q_headers = homepage.headers;
     const q_sections = homepage.sections;
     const q_footers = homepage.footers;
@@ -147,30 +201,22 @@ class Homepage extends Component {
       // Rendering of all active organisms
       return (
         <main className="Homepage">
-          {q_headers.map((headers, i) => {
-            let returnparam;
-            if (headers.value.hero) {
-              returnparam = (
+
                 <Intro
-                  key={i}
                   logos={logos}
                   navitems={navitems}
                   theme="L"
-                  heroitems={headers.value.hero.map((hero, i) => {
+                  heroitems={q_headers.map((hero, i) => {
                     return {
                       img: "https://erebos.xyz/user/Toko/bg" + i + ".jpg",
-                      head: hero.value.head,
-                      subhead: hero.value.subhead,
+                      head: hero.heroHead,
+                      subhead: hero.heroSubhead,
                       btntext: "Beautyprogramm starten",
                       btnhref: "/start"
                     };
                   })}
                   sociallinks={sociallinks}
                 />
-              );
-            }
-            return (returnparam);
-          })}
           {q_sections.map((sections, i) => {
             if (sections.value.why) {
               return (
@@ -394,4 +440,4 @@ class Homepage extends Component {
   }
 }
 
-export default graphql(CMSFetchQuery)(Homepage);
+export default graphql(CMSFetchQuery_PAGES)(Homepage);
