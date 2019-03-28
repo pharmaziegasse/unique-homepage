@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 //Import atoms
-import Btn from "../../atoms/Button"
+import ModalBtn from "../../atoms/ModalButton"
 
 type Props = {
     content: string
@@ -27,7 +27,7 @@ const SectionContent = (props: Props): React.Element<*> => {
             <div className="col-md-6">
                     <div className="row h-100">
                         <div className="col-12"><div className="lead" dangerouslySetInnerHTML={{__html: content[3].lead}}></div></div>
-                        <div className="col-12"><Btn btnstyle="oELEGANT" href={content[2].btnhref} className="font-weight-bold my-4">{content[2].btntext}</Btn></div>
+                        <div className="col-12"><ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[2].btntext}</ModalBtn></div>
                     </div>
                 </div>
                 <div className="col-md-6">
