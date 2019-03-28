@@ -5,6 +5,16 @@
 // npm install node-sass classnames react-scripts apollo-boost react-apollo graphql --save
 // npx create-react-app unique-homepage
 
+// Changes in branch add-register-modal-backend-1
+/*
+
+# new
+
+- Added improved caching mechanism for fragment matching
+- Removed countless legacy content and removed it with content from our API
+- Removed static sociallinks and footer content and replaced it with content from our API
+*/
+
 // To get all dependencies: npm install
 
 // Standard libs
