@@ -355,19 +355,19 @@ class Homepage extends Component {
                       { heading: sections.methodHead },
                       { btntext: "Beautyprogramm starten", btnhref: "/start" },
                       {
-                        text: sections.methodSphere1,
+                        text: sections.methodSphere1.sphereStep,
                         href: "#"
                       },
                       {
-                        text: sections.methodSphere2,
+                        text: sections.methodSphere2.sphereStep,
                         href: "#"
                       },
                       {
-                        text: sections.methodSphere3,
+                        text: sections.methodSphere3.sphereStep,
                         href: "#"
                       },
                       {
-                        text: sections.methodSphere4,
+                        text: sections.methodSphere4.sphereStep,
                         href: "#"
                       }
                     ]}
