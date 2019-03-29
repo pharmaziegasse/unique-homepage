@@ -18,60 +18,44 @@ import Modal from "../../organisms/Modal";
 import CookieModal from "../../organisms/CookieModal";
 
 // section content organisms
-import Section0 from "../../organisms/SectionContents/0.js";
-import Section1 from "../../organisms/SectionContents/1.js";
-import Section2 from "../../organisms/SectionContents/2.js";
-import Section3 from "../../organisms/SectionContents/3.js";
-import Section4 from "../../organisms/SectionContents/4.js";
-import Section5 from "../../organisms/SectionContents/5.js";
-import Section6 from "../../organisms/SectionContents/6.js";
-import Section7 from "../../organisms/SectionContents/7.js";
-import Section8 from "../../organisms/SectionContents/8.js";
+import HomeSWhyBlock from "../../organisms/SectionContents/why.js";
+import HomeSIndividualBlock from "../../organisms/SectionContents/individual.js";
+import HomeSExpertsBlock from "../../organisms/SectionContents/experts.js";
+import HomeSLabBlock from "../../organisms/SectionContents/lab.js";
+import HomeSMethodBlock from "../../organisms/SectionContents/method.js";
+import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
+import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.js";
+import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
+import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
 
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
-import icon1 from "./icon1.gif";
-import icon2 from "./icon2.gif";
-import icon3 from "./icon3.gif";
-import section1_img from "./section1.jpg";
-import section2_img from "./section2.jpg";
-import section3_img from "./section3.jpg";
-
-import section8_img from "./section8.jpg";
 
 // Import vars
 import {
   navitems,
-  section5_button
+  reviewImages
 } from "../../../legacy";
 
+import {
+  APIHost
+} from "../../../App"
 
 // Custom CSS
 import "./Homepage.scss";
 
-export const sociallinks = [
-  { fb: "https://www.facebook.com/Friends-of-Pharmaziegasse-309175709736059/", ig: "https://www.instagram.com/friendsofpharmaziegasse/" }
-];
-
-export const companyinfo = [
-  {
-    city: "Klagenfurt",
-    zip: "9020",
-    address: "Pharmaziegasse 5",
-    phone: "+43 463 45 904-0",
-    email: "office@pharmaziegasse.at",
-    copyrightholder: "Pharmaziegasse®"
-  }
-];
-
 export const logos = [{ light: logo_light, dark: logo_dark }];
 
-const CMSFetchQuery = gql`
-  query homepage {
-    homepage {
+const CMSFetchQuery_PAGES = gql`
+query pages {
+  pages {
+    id
+    title
+    ... on HomeUniquePage {
+      __typename
+      token
       id
       title
-      token
       city
       zipCode
       address
@@ -82,27 +66,154 @@ const CMSFetchQuery = gql`
       courtOfRegistry
       placeOfRegistry
       tradeRegisterNumber
-      ownership
-      email
-      sociallinks
-      headers {
-        ... on HeaderBlock {
-          value
+      sociallinks{
+        ... on HomeStructBlock{
+          link
         }
       }
-      sections {
-        ... on SectionBlock {
-          value
+      ownership
+      email
+      headers {
+        ... on Home_H_HeroBlock{
+          __typename
+          heroImage{
+            title
+            url
+            urlLink
+          }
+          heroHead
+          heroSubhead
+          heroButton {
+            id
+          }
         }
       }
       footers {
-        ... on FooterBlock {
-          value
+        ... on Home_F_InfoBlock{
+          __typename
+          infoPlaceholder
+        }
+      }
+      sections {
+      	... on Home_S_WhyBlock {
+          __typename
+          whyHead
+          whyButton{
+            id
+          }
+          whyCollum1{
+            collumImage{
+              urlLink
+            }
+            collumParagraph
+          }
+          whyCollum2{
+            collumImage{
+              urlLink
+            }
+            collumParagraph
+          }
+          whyCollum3{
+            collumImage{
+              urlLink
+            }
+            collumParagraph
+          }
+        }
+        ... on Home_S_IndividualBlock {
+          __typename
+          individualHead
+          individualLead
+          individualImage{
+            urlLink
+          }
+          individualButton{
+            id
+          }
+          individualParagraph
+        }
+        ... on Home_S_ExpertsBlock {
+          __typename
+          expertsHead
+          expertsLead
+          expertsImage{
+            urlLink
+          }
+          expertsButton{
+            id
+          }
+          expertsParagraph
+        }
+        ... on Home_S_LabBlock {
+          __typename
+          labHead
+          labLead
+          labImage{
+            urlLink
+          }
+          labButton{
+            id
+          }
+          labParagraph
+        }
+        ... on Home_S_MethodBlock {
+          __typename
+          methodHead
+          methodButton{
+            id
+          }
+          methodSphere1{
+            sphereStep
+          }
+          methodSphere2{
+            sphereStep
+          }
+          methodSphere3{
+            sphereStep
+          }
+          methodSphere4{
+            sphereStep
+          }
+        }
+        ... on Home_S_ServicesBlock {
+          __typename
+          servicesServices
+          servicesButton{
+            id
+          }
+        }
+        ... on Home_S_ReviewsBlock {
+          __typename
+          reviewsHead
+          reviewsReviews
+        }
+        ... on Home_S_PricingBlock {
+          __typename
+          pricingHead
+          pricingPricingcards
+        }
+        ... on Home_S_AboutBlock {
+          __typename
+          aboutHead
+          aboutImage{
+            urlLink
+          }
+          aboutParagraph
         }
       }
     }
   }
+}
 `;
+
+// Image query
+/*const CMSFetchQuery_IMAGES = gql`
+  query img($id: Int!){
+    image(id: $id){
+      urlLink
+    }
+  }
+`;*/
 
 /* LOCK */
 function getQueryVariable(variable) {
@@ -122,6 +233,7 @@ function getQueryVariable(variable) {
 
 // Rendering of all active organisms
 class Homepage extends Component {
+  
   renderContent() {
     var data = this.props.data;
 
@@ -135,7 +247,7 @@ class Homepage extends Component {
     if (data.loading) return <p>Loading...</p>;
     if (data.error) return <p>Error :(</p>;
 
-    const homepage = data.homepage[0];
+    const homepage = data.pages[0];
     const q_headers = homepage.headers;
     const q_sections = homepage.sections;
     const q_footers = homepage.footers;
@@ -147,48 +259,39 @@ class Homepage extends Component {
       // Rendering of all active organisms
       return (
         <main className="Homepage">
-          {q_headers.map((headers, i) => {
-            let returnparam;
-            if (headers.value.hero) {
-              returnparam = (
                 <Intro
-                  key={i}
                   logos={logos}
                   navitems={navitems}
                   theme="L"
-                  heroitems={headers.value.hero.map((hero, i) => {
+                  heroitems={q_headers.map((hero, i) => {
                     return {
-                      img: "https://erebos.xyz/user/Toko/bg" + i + ".jpg",
-                      head: hero.value.head,
-                      subhead: hero.value.subhead,
+                      img: APIHost+hero.heroImage.urlLink,
+                      head: hero.heroHead,
+                      subhead: hero.heroSubhead,
                       btntext: "Beautyprogramm starten",
                       btnhref: "/start"
                     };
                   })}
-                  sociallinks={sociallinks}
+                  sociallinks={[{fb:homepage.sociallinks[0].link,ig:homepage.sociallinks[1].link}]}
                 />
-              );
-            }
-            return (returnparam);
-          })}
           {q_sections.map((sections, i) => {
-            if (sections.value.why) {
+            if (sections.__typename === 'Home_S_WhyBlock') {
               return (
                 <Section key={i} sectionid="why" background="BLUE" data-id="0">
-                  <Section0
+                  <HomeSWhyBlock
                     content={[
-                      { heading: sections.value.why.head },
+                      { heading: sections.whyHead },
                       {
-                        icon: icon1,
-                        text: sections.value.why.collum_1.paragraph
+                        icon: APIHost+sections.whyCollum1.collumImage.urlLink,
+                        text: sections.whyCollum1.collumParagraph
                       },
                       {
-                        icon: icon2,
-                        text: sections.value.why.collum_2.paragraph
+                        icon: APIHost+sections.whyCollum2.collumImage.urlLink,
+                        text: sections.whyCollum2.collumParagraph
                       },
                       {
-                        icon: icon3,
-                        text: sections.value.why.collum_3.paragraph
+                        icon: APIHost+sections.whyCollum3.collumImage.urlLink,
+                        text: sections.whyCollum3.collumParagraph
                       },
                       {
                         btntext: "Beautyprogramm starten",
@@ -198,7 +301,7 @@ class Homepage extends Component {
                   />
                 </Section>
               );
-            } else if (sections.value.individual) {
+            } else if (sections.__typename === 'Home_S_IndividualBlock') {
               //console.log(sections.value.individual);
               return (
                 <Section
@@ -207,141 +310,140 @@ class Homepage extends Component {
                   background="LIGHTBLUE"
                   data-id="1"
                 >
-                  <Section1
+                  <HomeSIndividualBlock
                     content={[
-                      { heading: sections.value.individual.head },
-                      { img: section1_img },
+                      { heading: sections.individualHead },
+                      { img: APIHost+sections.individualImage.urlLink },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.individual.lead },
-                      { paragraph: sections.value.individual.paragraph }
+                      { lead: sections.individualLead },
+                      { paragraph: sections.individualParagraph }
                     ]}
                   />
                 </Section>
               );
-            } else if (sections.value.experts) {
+            } else if (sections.__typename === 'Home_S_ExpertsBlock') {
               return (
                 <Section key={i} sectionid="experts" background="WHITE" data-id="2">
-                  <Section2
+                  <HomeSExpertsBlock
                     content={[
-                      { heading: sections.value.experts.head },
-                      { img: section2_img },
+                      { heading: sections.expertsHead },
+                      { img: APIHost+sections.expertsImage.urlLink },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.experts.lead },
-                      { paragraph: sections.value.experts.paragraph }
+                      { lead: sections.expertsLead },
+                      { paragraph: sections.expertsParagraph }
                     ]}
                   />
                 </Section>
               );
-            } else if (sections.value.lab) {
+            } else if (sections.__typename === 'Home_S_LabBlock') {
               return (
                 <Section key={i} sectionid="lab" background="LIGHTBLUE" data-id="3">
-                  <Section3
+                  <HomeSLabBlock
                     content={[
                       {
-                        heading: sections.value.lab.head
+                        heading: sections.labHead
                       },
-                      { img: section3_img },
+                      { img: APIHost+sections.labImage.urlLink },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
                       },
-                      { lead: sections.value.lab.lead },
-                      { paragraph: sections.value.lab.paragraph }
+                      { lead: sections.labLead },
+                      { paragraph: sections.labParagraph }
                     ]}
                   />
                 </Section>
               );
-            } else if (sections.value.method) {
+            } else if (sections.__typename === 'Home_S_MethodBlock') {
               //console.log(sections.value.method.sphere_1.step);
               return (
                 <Section key={i} sectionid="method" background="GREY" data-id="4">
-                  <Section4
+                  <HomeSMethodBlock
                     content={[
-                      { heading: "Wie funktioniert es?" },
+                      { heading: sections.methodHead },
                       { btntext: "Beautyprogramm starten", btnhref: "/start" },
                       {
-                        text: sections.value.method.sphere_1.step,
+                        text: sections.methodSphere1.sphereStep,
                         href: "#"
                       },
                       {
-                        text: sections.value.method.sphere_2.step,
+                        text: sections.methodSphere2.sphereStep,
                         href: "#"
                       },
                       {
-                        text: sections.value.method.sphere_3.step,
+                        text: sections.methodSphere3.sphereStep,
                         href: "#"
                       },
                       {
-                        text: sections.value.method.sphere_4.step,
+                        text: sections.methodSphere4.sphereStep,
                         href: "#"
                       }
                     ]}
                   />
                 </Section>
               );
-            } else if (sections.value.quotes) {
+            } else if (sections.__typename === 'Home_S_ServicesBlock') {
               return (
                 <Section key={i} sectionid="quotes" background="LIGHTGREY" data-id="5">
-                  <Section5
-                    content={sections.value.quotes.map((quotes,i) => {
+                  <HomeSServicesBlock
+                    content={sections.servicesServices.map((service,i) => {
                       return {
-                        title: quotes.value.head,
-                        text: quotes.value.quote
+                        title: service.value.service_head,
+                        text: service.value.service_content
                       };
                     })}
-                    btn={section5_button}
+                    btn={[{ btntext: "Beautyprogramm starten", btnhref: "/start" }]}
                   />
                 </Section>
               );
-            } else if (sections.value.reviews) {
+            } else if (sections.__typename === 'Home_S_ReviewsBlock') {
               return (
                 <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
-                  <Section6
-                    heading={sections.value.reviews.head}
-                    users={sections.value.reviews.users.map((user, index) => {
+                
+                  <HomeSReviewsBlock
+                  
+                    heading={sections.reviewsHead}
+                    users={sections.reviewsReviews.map((review, index) => {
                       return {
-                        name: user.value.name,
-                        img:
-                          "https://mdbootstrap.com/img/Photos/Avatars/img%20(" +
-                          (32 - index) +
-                          ").jpg",
-                        quote: user.value.quote,
-                        info: user.value.info
+                        name: review.value.review_name,
+                        img: reviewImages[index],
+                        quote: review.value.review_quote,
+                        info: review.value.review_info,
                       };
                     })}
                   />
                 </Section>
               );
-            } else if (sections.value.pricing) {
+            } else if (sections.__typename === 'Home_S_PricingBlock') {
               return (
                 <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
-                  <Section7 
-                    heading={sections.value.pricing.head}
-                    cards={sections.value.pricing.cards.map((card, index) => {
+                  <HomeSPricingBlock 
+                    heading={sections.pricingHead}
+                    cards={sections.pricingPricingcards.map((card, index) => {
                       return {
-                        title: card.value.title,
-                        description: card.value.description,
-                        price: card.value.price
+                        title: card.value.pricingcard_title,
+                        description: card.value.pricingcard_description,
+                        price: card.value.pricingcard_price,
                       };
                     })} 
                   
                   />
                 </Section>
               );
-            } else if (sections.value.about) {
+            } else if (sections.__typename === 'Home_S_AboutBlock') {
               return (
                 <Section key={i} sectionid="about" background="WHITE" data-id="8">
-                  <Section8
+                  <HomeSAboutBlock
                     content={[
-                      { heading: sections.value.about.head },
-                      { img: section8_img },
-                      { paragraph: sections.value.about.paragraph }
+                      { heading: sections.aboutHead },
+                      { img: APIHost+sections.aboutImage.urlLink },
+                      { paragraph: sections.aboutParagraph }
                     ]}
                   />
                 </Section>
@@ -353,11 +455,11 @@ class Homepage extends Component {
           {q_footers.map((footers, i) => {
             //console.log(footers.value.info);
             let returnparam;
-            if (footers.value.info) {
+            if (footers.__typename === "Home_F_InfoBlock") {
               returnparam = (
                 <Footer key={i}
-                  sociallinks={sociallinks}
-                  companyinfo={companyinfo}
+                  sociallinks={[{fb:homepage.sociallinks[0].link,ig:homepage.sociallinks[1].link}]}
+                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email }]}
                   logo={logos[0].dark}
                 />
               );
@@ -378,7 +480,7 @@ class Homepage extends Component {
           <div className="h-100">
             <div className="flex-center flex-column">
 
-              <h1 className="animated fadeIn mb-4 red-text"><i class="fas fa-exclamation-triangle"></i></h1>
+              <h1 className="animated fadeIn mb-4 red-text"><i className="fas fa-exclamation-triangle"></i></h1>
               <h5 className="animated fadeIn mb-3">Not authorized.</h5>
 
               <p className="animated fadeIn text-muted">Please proceed with token.</p>
@@ -394,4 +496,4 @@ class Homepage extends Component {
   }
 }
 
-export default graphql(CMSFetchQuery)(Homepage);
+export default graphql(CMSFetchQuery_PAGES)(Homepage);
