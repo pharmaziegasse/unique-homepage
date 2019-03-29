@@ -23,8 +23,6 @@ const CREATE_USER_MUTATION = gql`
     }
 `;
 
-const userdata = {"values": {"firstname": "Christian", "lastname": "Aichner", "newsletter": false, "phone": "+43168120502754", "email": "contact@aichner-christian.com"}};
-
 class Modal extends React.Component{
     constructor(props){
        super(props);

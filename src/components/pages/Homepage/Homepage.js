@@ -417,9 +417,9 @@ class Homepage extends Component {
                     heading={sections.pricingHead}
                     cards={sections.pricingPricingcards.map((card, index) => {
                       return {
-                        title: card.value.pricing_title,
-                        description: card.value.pricing_description,
-                        price: card.value.pricing_price,
+                        title: card.value.pricingcard_title,
+                        description: card.value.pricingcard_description,
+                        price: card.value.pricingcard_price,
                       };
                     })} 
                   
