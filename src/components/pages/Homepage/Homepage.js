@@ -33,7 +33,8 @@ import logo_light from "./white.png";
 
 // Import vars
 import {
-  navitems
+  navitems,
+  reviewImages
 } from "../../../legacy";
 
 import {
@@ -204,6 +205,15 @@ query pages {
   }
 }
 `;
+
+// Image query
+/*const CMSFetchQuery_IMAGES = gql`
+  query img($id: Int!){
+    image(id: $id){
+      urlLink
+    }
+  }
+`;*/
 
 /* LOCK */
 function getQueryVariable(variable) {
@@ -402,7 +412,7 @@ class Homepage extends Component {
                     users={sections.reviewsReviews.map((review, index) => {
                       return {
                         name: review.value.review_name,
-                        img: review.value.review_image.urlLink,
+                        img: reviewImages[index],
                         quote: review.value.review_quote,
                         info: review.value.review_info,
                       };
