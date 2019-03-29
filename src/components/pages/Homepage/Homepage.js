@@ -36,6 +36,9 @@ import {
   navitems
 } from "../../../legacy";
 
+import {
+  APIHost
+} from "../../../App"
 
 // Custom CSS
 import "./Homepage.scss";
@@ -220,6 +223,7 @@ function getQueryVariable(variable) {
 
 // Rendering of all active organisms
 class Homepage extends Component {
+  
   renderContent() {
     var data = this.props.data;
 
@@ -251,7 +255,7 @@ class Homepage extends Component {
                   theme="L"
                   heroitems={q_headers.map((hero, i) => {
                     return {
-                      img: hero.heroImage.urlLink,
+                      img: APIHost+hero.heroImage.urlLink,
                       head: hero.heroHead,
                       subhead: hero.heroSubhead,
                       btntext: "Beautyprogramm starten",
@@ -268,15 +272,15 @@ class Homepage extends Component {
                     content={[
                       { heading: sections.whyHead },
                       {
-                        icon: sections.whyCollum1.collumImage.urlLink,
+                        icon: APIHost+sections.whyCollum1.collumImage.urlLink,
                         text: sections.whyCollum1.collumParagraph
                       },
                       {
-                        icon: sections.whyCollum2.collumImage.urlLink,
+                        icon: APIHost+sections.whyCollum2.collumImage.urlLink,
                         text: sections.whyCollum2.collumParagraph
                       },
                       {
-                        icon: sections.whyCollum3.collumImage.urlLink,
+                        icon: APIHost+sections.whyCollum3.collumImage.urlLink,
                         text: sections.whyCollum3.collumParagraph
                       },
                       {
@@ -299,7 +303,7 @@ class Homepage extends Component {
                   <HomeSIndividualBlock
                     content={[
                       { heading: sections.individualHead },
-                      { img: sections.individualImage.urlLink },
+                      { img: APIHost+sections.individualImage.urlLink },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
@@ -316,7 +320,7 @@ class Homepage extends Component {
                   <HomeSExpertsBlock
                     content={[
                       { heading: sections.expertsHead },
-                      { img: sections.expertsImage.urlLink },
+                      { img: APIHost+sections.expertsImage.urlLink },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
@@ -335,7 +339,7 @@ class Homepage extends Component {
                       {
                         heading: sections.labHead
                       },
-                      { img: sections.labImage.urlLink },
+                      { img: APIHost+sections.labImage.urlLink },
                       {
                         btntext: "Beautyprogramm starten",
                         btnhref: "/start"
@@ -428,7 +432,7 @@ class Homepage extends Component {
                   <HomeSAboutBlock
                     content={[
                       { heading: sections.aboutHead },
-                      { img: sections.aboutImage.urlLink },
+                      { img: APIHost+sections.aboutImage.urlLink },
                       { paragraph: sections.aboutParagraph }
                     ]}
                   />

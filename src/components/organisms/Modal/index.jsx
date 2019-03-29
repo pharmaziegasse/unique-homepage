@@ -2,13 +2,28 @@ import * as React from 'react'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as EmailValidator from 'email-validator';
 // Apollo
+import { graphql } from 'react-apollo';
 import { gql } from "apollo-boost";
-import { Mutation, ApolloConsumer } from 'react-apollo';
+
 
 import Checkbox from '../../atoms/Checkbox'
 import Input from '../../atoms/Input'
 import FlagIcon from '../../atoms/FlagIcon'
 import Alert from '../../atoms/Alert'
+
+const CREATE_USER_MUTATION = gql`
+    mutation user($values: GenericScalar!) {
+        homeFormPage(url: "/user", values: $values) {
+            result
+            errors {
+            name
+            errors
+            }
+        }
+    }
+`;
+
+const userdata = {"values": {"firstname": "Christian", "lastname": "Aichner", "newsletter": false, "phone": "+43168120502754", "email": "contact@aichner-christian.com"}};
 
 class Modal extends React.Component{
     constructor(props){
@@ -26,41 +41,42 @@ class Modal extends React.Component{
         }
     }
     
-    sendData = () => {
+    sendData = async () => {
         // {"values": {"firstname": "carlos", "lastname": "carlos", "newsletter": true, "phone": "06508248811","email": "cisco@cis.co"}}
-        let values = {
-            "values": {"firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email}
+        let formvalues = {
+            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email
         };
-        console.log(values);
-
-        const ADD_USER = gql`
-            mutation user($values: GenericScalar!) {
-                homeFormPage(url: "/user", values: $values) {
-                    result
-                    errors {
-                    name
-                    errors
-                    }
+        
+        if(formvalues !== null || formvalues !== undefined){
+            await this.props.user({
+                variables: {
+                    values: formvalues
                 }
-            }
-        `;
-
-        return (
-            <ApolloConsumer>
-            {client => (
-                <Mutation
-                    mutation={ADD_USER}
-                    onCompleted={({ login }) => {
-                        this.setState({showError: false});
-                        this.setState({showSuccess: true});
-                    }}
-                >
-                    {(homeFormPage, { values }) => values}
-                </Mutation>
-            )}
-            </ApolloConsumer>
-        );
-    }
+            })
+            .then(({data}) => {
+                if(data.homeFormPage.result === "OK"){
+                    this.setState({showError: false});
+                    this.setState({showSuccess: true});
+                } else {
+                    this.setState({buffer: "Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben."})
+                    this.setState({showError: true});
+                    this.setState({showSuccess: false});
+                }
+            })
+            .catch(error => {
+                this.setState({buffer: "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es etwas später erneut."})
+                this.setState({showError: true});
+                this.setState({showSuccess: false});
+                console.error("Mutation error:");
+                console.log(error);
+            })
+        } else {
+            this.setState({buffer: "Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben."})
+            this.setState({showError: true});
+            this.setState({showSuccess: false});
+        }
+        
+    };
 
     handleSubmitForm = (event) => {
         event.preventDefault();
@@ -92,7 +108,6 @@ class Modal extends React.Component{
             error.push(6);
         }
         if(error !== 'undefined' && error.length > 0){
-            console.warn(buffer);
             this.setState({buffer:buffer});
             this.setState({showError: true});
             this.setState({showSuccess: false});
@@ -208,8 +223,10 @@ class Modal extends React.Component{
     }
 
     render(){
+        
         return(
             <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
+            
             <div className="modal-dialog modal-notify modal-info" role="document">
                 <div className="modal-content">
                 
@@ -222,13 +239,13 @@ class Modal extends React.Component{
                     
                     <div className="register-form">
                         <p className="text-center">OAuth to be added</p>
+                        
                         <div className="w-100">
                             <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                         </div>
 
                         {this.printError()}
                         {this.printSuccess()}
-                        
                         <form id="form-reg" onSubmit={(e) => {this.handleSubmitForm(e); e.preventDefault();}}>
                             <div className="input-grp">
                                 {this.printFlag()}
@@ -263,4 +280,6 @@ class Modal extends React.Component{
     }
 }
 
-export default Modal
+export default graphql(CREATE_USER_MUTATION, {
+  name: 'user'
+})(Modal);

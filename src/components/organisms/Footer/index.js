@@ -68,13 +68,8 @@ const Footer = (props: Props): React.Element<*> => {
             </ul>
            
         </div>
-
-
       </div>
-
-
       <hr/>
-
       <div className="row d-flex align-items-center dark-grey-text">
         <div className="col-md-6">
           <p className="text-center text-md-left">© 2018 - {(new Date().getFullYear())} Copyright: {companyinfo[0].copyrightholder}

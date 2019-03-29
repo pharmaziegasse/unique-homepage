@@ -39,6 +39,8 @@ import Homepage from "./components/pages/Homepage";
 import About from "./components/pages/About";
 import Privacy from "./components/pages/Privacy";
 
+export const APIHost = 'https://test.pharmaziegasse.at';
+
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
     __schema: {
@@ -49,10 +51,12 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 
 const cache = new InMemoryCache({ fragmentMatcher });
 
+const APILink = APIHost+"/api/graphql";
+
 // Apollo client setup
 const client = new ApolloClient({
   cache,
-  link: new HttpLink({ uri: "https://test.pharmaziegasse.at/api/graphql" })
+  link: new HttpLink({ uri: APILink })
 });
 
 // Rendering of all active pages
