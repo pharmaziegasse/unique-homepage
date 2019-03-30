@@ -39,7 +39,7 @@ import Homepage from "./components/pages/Homepage";
 import About from "./components/pages/About";
 import Privacy from "./components/pages/Privacy";
 
-export const APIHost = 'https://test.pharmaziegasse.at';
+export const APIHost = 'https://pharmaziegasse.at';
 
 const fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: {
