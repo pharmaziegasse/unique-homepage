@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 //Import atoms
-import Btn from "../../atoms/Button"
+import ModalBtn from "../../atoms/ModalButton"
 
 type Props = {
     className: string,
@@ -26,7 +26,7 @@ const Hero = (props: Props): React.Element<*> => {
     }
     function checkButton(text, href){
         if(text !== "" && href !== ""){
-            return <Btn href={href} className="wow fadeInDown font-weight-bold" btnstyle="WHITE" size="LG" data-wow-delay="0.4s">{text}</Btn>
+            return <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold" size="LG">{text}</ModalBtn>
         }
     }
 
