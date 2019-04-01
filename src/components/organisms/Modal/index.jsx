@@ -271,12 +271,16 @@ class Modal extends React.Component{
                                 </form>
                             </div>
                             <div className="col-md-5 text-left">
+                            <Alert className="alert-info register-info" show="true">
+                            <i class="far fa-lightbulb fa-2x"></i>
+                            <div className="mt-2 dark-grey-text">
                                 <p>Wir nehmen uns Zeit für Sie! Bitte planen Sie etwas Zeit für unser Gespräch ein.
-<br/><br/>
-Wir wollen in einem gemeinsamen Gespräch die Bedürfnisse Ihrer Haut kennen lernen. Wir sprechen über Ihre individuelle Haut- und Lebenssituation, tauschen Informationen aus, die für Sie und Ihre Hautpflege wichtig sind. Es werden alle Faktoren besprochen, die Ihre individuelle Hautsituation beeinflussen.
-<br/><br/>
-Alles wird genau erfasst, um Ihre individuellen Beautyreport zu erstellen. Was genau wir mit Ihnen besprochen, finden Sie im Interviewleitfaden.
-</p>
+                                <br/><br/>
+                                Wir wollen in einem gemeinsamen Gespräch die Bedürfnisse Ihrer Haut kennen lernen. Wir sprechen über Ihre individuelle Haut- und Lebenssituation, tauschen Informationen aus, die für Sie und Ihre Hautpflege wichtig sind. Es werden alle Faktoren besprochen, die Ihre individuelle Hautsituation beeinflussen.
+                                </p>
+                            </div>
+                                
+                            </Alert>
                             </div>
                         </div>
                         </div>

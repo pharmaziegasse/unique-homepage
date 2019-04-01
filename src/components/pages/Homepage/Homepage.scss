@@ -773,4 +773,13 @@ header,
 
         }
     }
+
+    /* Register Modal Info */
+    .register-info{
+        background-color: $unique-lightblue !important;
+        border-color: $unique-blue!important ;
+        i{
+            color: $unique-blue !important
+        }
+    }
 }
