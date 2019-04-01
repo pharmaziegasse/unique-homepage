@@ -14,27 +14,6 @@ import Input from '../../atoms/Input'
 import FlagIcon from '../../atoms/FlagIcon'
 import Alert from '../../atoms/Alert'
 
-const GET_MODAL_DATA = gql`
-    query modal($id: Int!){
-        page(id: $id){
-            ... on HomeFormPage{
-                registrationHead
-                registrationInfoText
-                registrationNewsletterText
-                registrationPrivacyText
-                registrationStepText
-                registrationButton{
-                    buttonTitle
-                    buttonPage{
-                        id
-                        urlPath
-                    }
-                }
-            }
-        }
-    }
-`;
-
 const CREATE_USER_MUTATION = gql`
     mutation user($values: GenericScalar!) {
         homeFormPage(url: "/registrieren", values: $values) {
@@ -273,21 +252,7 @@ class Modal extends React.Component{
                         <div className="row">
                             <div className="col-md-7">
                                 <p className="text-center">OAuth to be added</p>
-
-                                <FacebookLogin
-                                    appId="438514240304319"
-                                    autoLoad={true}
-                                    fields="first_name,last_name,email,picture"
-                                    callback={responseFacebook}
-                                />
-                                <GoogleLogin
-                                    clientId="762647868786-a6do4s713inonqo663lbgqqgo40u5sen.apps.googleusercontent.com"
-                                    buttonText="Login"
-                                    onSuccess={responseGoogle}
-                                    onFailure={responseGoogle}
-                                    cookiePolicy={'single_host_origin'}
-                                />
-                            
+    
                                 <div className="w-100">
                                     <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                                 </div>
@@ -343,13 +308,6 @@ class Modal extends React.Component{
     }
 }
 
-export default compose(
-    graphql(CREATE_USER_MUTATION, {
-        name: 'user'
-    }),
-    graphql(GET_MODAL_DATA, {
-        variables: {
-            id: 4
-        }
-    }),
-)(Modal);
+export default graphql(CREATE_USER_MUTATION, {
+    name: 'user'
+})(Modal);

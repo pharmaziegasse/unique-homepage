@@ -246,8 +246,6 @@ Array.prototype.unique = function() {
 
 // Rendering of all active organisms
 class Homepage extends Component {
-  
-  
 
   renderContent() {
     var data = this.props.data;
