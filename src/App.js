@@ -8,11 +8,6 @@
 // Changes in branch add-register-modal-backend-1
 /*
 
-# new
-
-- Added improved caching mechanism for fragment matching
-- Removed countless legacy content and removed it with content from our API
-- Removed static sociallinks and footer content and replaced it with content from our API
 */
 
 // To get all dependencies: npm install
@@ -52,6 +47,8 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 const cache = new InMemoryCache({ fragmentMatcher });
 
 const APILink = APIHost+"/api/graphql";
+
+console.log(APILink);
 
 // Apollo client setup
 const client = new ApolloClient({

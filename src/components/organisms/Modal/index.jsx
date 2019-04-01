@@ -2,8 +2,11 @@ import * as React from 'react'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as EmailValidator from 'email-validator';
 // Apollo
-import { graphql } from 'react-apollo';
+import { graphql, compose  } from 'react-apollo';
 import { gql } from "apollo-boost";
+// oAuth 
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 
 import Checkbox from '../../atoms/Checkbox'
@@ -13,7 +16,7 @@ import Alert from '../../atoms/Alert'
 
 const CREATE_USER_MUTATION = gql`
     mutation user($values: GenericScalar!) {
-        homeFormPage(url: "/user", values: $values) {
+        homeFormPage(url: "/registrieren", values: $values) {
             result
             errors {
             name
@@ -23,10 +26,18 @@ const CREATE_USER_MUTATION = gql`
     }
 `;
 
+const responseFacebook = (response) => {
+  console.log(response);
+}
+const responseGoogle = (response) => {
+  console.log(response);
+}
+
 class Modal extends React.Component{
     constructor(props){
-       super(props);
-       this.state = {
+        super(props);
+        
+        this.state = {
            phone: undefined,
            email: undefined,
            prename: undefined,
@@ -37,8 +48,9 @@ class Modal extends React.Component{
            showError: false,
            showSuccess: false
         }
+
     }
-    
+
     sendData = async () => {
         // {"values": {"firstname": "carlos", "lastname": "carlos", "newsletter": true, "phone": "06508248811","email": "cisco@cis.co"}}
         let formvalues = {
@@ -209,6 +221,9 @@ class Modal extends React.Component{
     }
 
     render(){
+        console.log("High quality data:");
+        console.log(this.props.data);
+        
         const success = this.state.showSuccess;
         return(
             <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
@@ -237,7 +252,7 @@ class Modal extends React.Component{
                         <div className="row">
                             <div className="col-md-7">
                                 <p className="text-center">OAuth to be added</p>
-                            
+    
                                 <div className="w-100">
                                     <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                                 </div>
@@ -272,7 +287,7 @@ class Modal extends React.Component{
                             </div>
                             <div className="col-md-5 text-left">
                             <Alert className="alert-info register-info" show="true">
-                            <i class="far fa-lightbulb fa-2x"></i>
+                            <i className="far fa-lightbulb fa-2x"></i>
                             <div className="mt-2 dark-grey-text">
                                 <p>Wir nehmen uns Zeit für Sie! Bitte planen Sie etwas Zeit für unser Gespräch ein.
                                 <br/><br/>
@@ -285,9 +300,6 @@ class Modal extends React.Component{
                         </div>
                         </div>
                     )}
-                   
-                    
-                    
                 </div>
                 </div>
             </div>
@@ -297,5 +309,5 @@ class Modal extends React.Component{
 }
 
 export default graphql(CREATE_USER_MUTATION, {
-  name: 'user'
+    name: 'user'
 })(Modal);
