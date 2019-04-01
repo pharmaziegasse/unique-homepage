@@ -208,24 +208,12 @@ class Modal extends React.Component{
         }
     }
 
-    printSuccess = () => {
-        if(this.state.showSuccess){
-            return(
-                <Alert className="alert-success" show="true">
-                    Registrierung erfolgreich!
-                </Alert>
-            );
-        } else {
-            return false;
-        }
-    }
-
     render(){
-        
+        const success = this.state.showSuccess;
         return(
             <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
             
-            <div className="modal-dialog modal-notify modal-info" role="document">
+            <div className="modal-dialog modal-lg modal-notify modal-info" role="document">
                 <div className="modal-content">
                 
                 <div className="modal-body">
@@ -234,42 +222,68 @@ class Modal extends React.Component{
                     </button>
                     <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: this.props.data.lead}}></div>
                     <hr/>
-                    
-                    <div className="register-form">
-                        <p className="text-center">OAuth to be added</p>
-                        
-                        <div className="w-100">
-                            <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
+                    {success ? (
+                        <div className="success">
+                            <Alert className="alert-success" show="true">
+                                VIELEN DANK!
+                                <br/><br/>
+                                Sie haben sich erfolgreich für Ihr individuelles und natürliches Beautypgoramm registriert.
+                                <br/><br/>
+                                Wir melden uns bei Ihnen, um Ihr Gespräch zu organisieren.
+                            </Alert>
                         </div>
+                    ) : (
+                        <div className="register-form">
+                        <div className="row">
+                            <div className="col-md-7">
+                                <p className="text-center">OAuth to be added</p>
+                            
+                                <div className="w-100">
+                                    <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
+                                </div>
 
-                        {this.printError()}
-                        {this.printSuccess()}
-                        <form id="form-reg" onSubmit={(e) => {this.handleSubmitForm(e); e.preventDefault();}}>
-                            <div className="input-grp">
-                                {this.printFlag()}
-                                <i className="fas fa-phone"></i>
-                                <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer" validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
+                                {this.printError()}
+                            
+                                <form id="form-reg" onSubmit={(e) => {this.handleSubmitForm(e); e.preventDefault();}}>
+                                    <div className="input-grp">
+                                        {this.printFlag()}
+                                        <i className="fas fa-phone"></i>
+                                        <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer" validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
+                                    </div>
+                                    <div className="input-grp">
+                                        <i className="far fa-envelope"></i>
+                                        <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse (optional)" validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
+                                    </div>
+                                    <div className="input-grp">
+                                        <i className="far fa-user-circle"></i>
+                                        <Input className="my-3" type="text" name="prename" placeholder="Vorname" validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
+                                    </div>
+                                    <div className="input-grp">
+                                        <i className="far fa-user-circle"></i>
+                                        <Input className="my-3" type="text" name="surname" placeholder="Nachname" validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
+                                    </div>
+                                    <div className="text-left">
+                                    <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}>Halten Sie mich auf dem Laufenden (Newsletter)</Checkbox>
+                                    <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}>Ich habe die <a href="/privacy">Datenschutzerklärung</a> gelesen und bin daher damit einverstanden, dass die eingegebenen Daten für den Zweck der Kontaktaufnahme elektronisch gespeichert werden.</Checkbox>
+                                    </div>
+                                    <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: this.props.data.step1}}></div>
+                                    <input className="btn btn-outline-elegant" type="submit" value="Starten" />
+                                </form>
                             </div>
-                            <div className="input-grp">
-                                <i className="far fa-envelope"></i>
-                                <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse (optional)" validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
+                            <div className="col-md-5 text-left">
+                                <p>Wir nehmen uns Zeit für Sie! Bitte planen Sie etwas Zeit für unser Gespräch ein.
+<br/><br/>
+Wir wollen in einem gemeinsamen Gespräch die Bedürfnisse Ihrer Haut kennen lernen. Wir sprechen über Ihre individuelle Haut- und Lebenssituation, tauschen Informationen aus, die für Sie und Ihre Hautpflege wichtig sind. Es werden alle Faktoren besprochen, die Ihre individuelle Hautsituation beeinflussen.
+<br/><br/>
+Alles wird genau erfasst, um Ihre individuellen Beautyreport zu erstellen. Was genau wir mit Ihnen besprochen, finden Sie im Interviewleitfaden.
+</p>
                             </div>
-                            <div className="input-grp">
-                                <i className="far fa-user-circle"></i>
-                                <Input className="my-3" type="text" name="prename" placeholder="Vorname" validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
-                            </div>
-                            <div className="input-grp">
-                                <i className="far fa-user-circle"></i>
-                                <Input className="my-3" type="text" name="surname" placeholder="Nachname" validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
-                            </div>
-                            <div className="text-left">
-                            <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}>Halten Sie mich auf dem Laufenden (Newsletter)</Checkbox>
-                            <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}>Ich habe die <a href="/privacy">Datenschutzerklärung</a> gelesen und bin daher damit einverstanden, dass die eingegebenen Daten für den Zweck der Kontaktaufnahme elektronisch gespeichert werden.</Checkbox>
-                            </div>
-                            <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: this.props.data.step1}}></div>
-                            <input className="btn btn-outline-elegant" type="submit" value="Starten" />
-                        </form>
-                    </div>
+                        </div>
+                        </div>
+                    )}
+                   
+                    
+                    
                 </div>
                 </div>
             </div>
