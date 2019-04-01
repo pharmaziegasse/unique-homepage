@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-//Import molecules
+// Import atoms
+import ModalBtn from "../../atoms/ModalButton"
+// Import molecules
 import Nav from "../../molecules/Nav";
 import Hero from "../../molecules/Hero";
 
@@ -42,7 +44,7 @@ const Intro = (props: Props): React.Element<*> => {
             if(theme === "D"){
                 return [
                     <li key={i} className={GetState(item.active)}>
-                        <a className="ml-5 btn btn-outline-white btn-rounded d-none d-sm-block" href={item.href}>{item.text}</a>
+                        <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{item.text}</ModalBtn>
                     </li>,
                     <li key={i+1} className={GetState(item.active)}>
                     <a className="nav-link m-1 d-block d-sm-none" href={item.href}>{item.text}</a>
@@ -51,7 +53,7 @@ const Intro = (props: Props): React.Element<*> => {
             }else if(theme === "L"){
                 return [
                     <li key={i} className={GetState(item.active)}>
-                        <a className="ml-5 btn btn-outline-elegant btn-rounded d-none d-sm-block" href={item.href}>{item.text}</a>
+                         <ModalBtn btnstyle="oELEGANT" modal="#modalRegister" className="font-weight-bold">{item.text}</ModalBtn>
                     </li>,
                     <li key={i+1} className={GetState(item.active)}>
                     <a className="nav-link m-1 d-block d-sm-none" href={item.href}>{item.text}</a>
