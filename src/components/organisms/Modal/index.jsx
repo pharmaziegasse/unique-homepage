@@ -4,6 +4,9 @@ import * as EmailValidator from 'email-validator';
 // Apollo
 import { graphql } from 'react-apollo';
 import { gql } from "apollo-boost";
+// oAuth 
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 
 import Checkbox from '../../atoms/Checkbox'
@@ -22,6 +25,13 @@ const CREATE_USER_MUTATION = gql`
         }
     }
 `;
+
+const responseFacebook = (response) => {
+  console.log(response);
+}
+const responseGoogle = (response) => {
+  console.log(response);
+}
 
 class Modal extends React.Component{
     constructor(props){
@@ -237,6 +247,20 @@ class Modal extends React.Component{
                         <div className="row">
                             <div className="col-md-7">
                                 <p className="text-center">OAuth to be added</p>
+
+                                <FacebookLogin
+                                    appId="438514240304319"
+                                    autoLoad={true}
+                                    fields="name,email,picture"
+                                    callback={responseFacebook}
+                                />
+                                <GoogleLogin
+                                    clientId="762647868786-a6do4s713inonqo663lbgqqgo40u5sen.apps.googleusercontent.com"
+                                    buttonText="Login"
+                                    onSuccess={responseGoogle}
+                                    onFailure={responseGoogle}
+                                    cookiePolicy={'single_host_origin'}
+                                />
                             
                                 <div className="w-100">
                                     <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
@@ -285,9 +309,6 @@ class Modal extends React.Component{
                         </div>
                         </div>
                     )}
-                   
-                    
-                    
                 </div>
                 </div>
             </div>

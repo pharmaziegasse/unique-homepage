@@ -8,11 +8,17 @@
 // Changes in branch add-register-modal-backend-1
 /*
 
-# new
+# old
+- There is currently no oAuth implemented (Facebook, Google)
 
-- Added improved caching mechanism for fragment matching
-- Removed countless legacy content and removed it with content from our API
-- Removed static sociallinks and footer content and replaced it with content from our API
+ # new
+- Added Facebook oAuth button
+- Added Google oAuth button
+
+# optional
+- Added react-facebook-login
+- Added react-google-login
+
 */
 
 // To get all dependencies: npm install
