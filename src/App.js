@@ -8,17 +8,6 @@
 // Changes in branch add-register-modal-backend-1
 /*
 
-# old
-- There is currently no oAuth implemented (Facebook, Google)
-
- # new
-- Added Facebook oAuth button
-- Added Google oAuth button
-
-# optional
-- Added react-facebook-login
-- Added react-google-login
-
 */
 
 // To get all dependencies: npm install
@@ -58,6 +47,8 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 const cache = new InMemoryCache({ fragmentMatcher });
 
 const APILink = APIHost+"/api/graphql";
+
+console.log(APILink);
 
 // Apollo client setup
 const client = new ApolloClient({
