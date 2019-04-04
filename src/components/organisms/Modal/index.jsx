@@ -2,7 +2,7 @@ import * as React from 'react'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as EmailValidator from 'email-validator';
 // Apollo
-import { graphql, compose  } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { gql } from "apollo-boost";
 // oAuth 
 import FacebookLogin from 'react-facebook-login';
@@ -26,16 +26,39 @@ const CREATE_USER_MUTATION = gql`
     }
 `;
 
-const responseFacebook = (response) => {
+const GET_MODAL_DATA = gql`
+    query modal($id: Int!){
+        page(id: $id){
+            ... on HomeFormPage{
+                registrationHead
+                registrationInfoText
+                registrationNewsletterText
+                registrationPrivacyText
+                registrationStepText
+                registrationButton{
+                    buttonTitle
+                    buttonPage{
+                        id
+                        urlPath
+                    }
+                }
+            }
+        }
+    }
+`;
+
+/*const responseFacebook = (response) => {
   console.log(response);
 }
 const responseGoogle = (response) => {
   console.log(response);
-}
+}*/
 
 class Modal extends React.Component{
     constructor(props){
         super(props);
+        console.log("Props");
+        console.log(this.props);
         
         this.state = {
            phone: undefined,
@@ -48,15 +71,14 @@ class Modal extends React.Component{
            showError: false,
            showSuccess: false
         }
-
     }
 
     sendData = async () => {
         // {"values": {"firstname": "carlos", "lastname": "carlos", "newsletter": true, "phone": "06508248811","email": "cisco@cis.co"}}
         let formvalues = {
-            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email
+            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": false
         };
-        
+        console.log(formvalues);
         if(formvalues !== null || formvalues !== undefined){
             await this.props.user({
                 variables: {
@@ -87,6 +109,16 @@ class Modal extends React.Component{
         }
         
     };
+
+    getmodalData = async () => {
+        await this.props.modal({
+            options: (props) => ({ variables: { id: 4 } })
+        })
+        .then(({data}) => {
+            console.log("Success");
+            console.log(data);
+        })
+    }
 
     handleSubmitForm = (event) => {
         event.preventDefault();
@@ -208,22 +240,31 @@ class Modal extends React.Component{
 
     printError = () => {
         if(this.state.showError){
-            return(
-                <Alert className="alert-danger" show="true">
-                    {this.state.buffer.map((msg, i) => {      
-                        return <p key={i}>{msg}</p>
-                    })}
-                </Alert>
-            );
+            if(this.state.buffer !== null || this.state.buffer !== undefined){
+                return(
+                    <Alert className="alert-danger" show="true">
+                        {this.state.buffer.map((msg, i) => {      
+                            return <p key={i}>{msg}</p>
+                        })}
+                    </Alert>
+                );
+            } else {
+                return(
+                    <Alert className="alert-danger" show="true">
+                        Unknown error.
+                    </Alert>
+                );
+            }
+            
         } else {
             return false;
         }
     }
 
-    render(){
-        console.log("High quality data:");
-        console.log(this.props.data);
-        
+    renderContent (){
+        let modaldata = (this.props.data.page);
+        console.log(modaldata);
+
         const success = this.state.showSuccess;
         return(
             <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
@@ -252,7 +293,6 @@ class Modal extends React.Component{
                         <div className="row">
                             <div className="col-md-7">
                                 <p className="text-center">OAuth to be added</p>
-    
                                 <div className="w-100">
                                     <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                                 </div>
@@ -306,8 +346,20 @@ class Modal extends React.Component{
             </div>
         )
     }
+
+    render(){
+        return this.renderContent();
+    }
 }
 
-export default graphql(CREATE_USER_MUTATION, {
-    name: 'user'
-})(Modal);
+export default compose(
+    graphql(CREATE_USER_MUTATION, {
+        name: 'user'
+    }),
+    graphql(GET_MODAL_DATA, {
+        options: (props) => ({ variables: { id: 4 } })
+    }),
+    /*graphql(GET_MODAL_DATA, {
+        name: 'modal'
+    }),*/
+)(Modal);
