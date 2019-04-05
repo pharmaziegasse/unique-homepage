@@ -252,11 +252,6 @@ class Homepage extends Component {
 
     console.log(data);
 
-    // Modal Register
-    let modalRegister_content = {
-      title: "Registrieren", lead: "<p>Starten Sie mit Ihrem individuellen und natürlichen Beautyprogramm</p>", step1: "<p>Mit Schritt 1 Ihres Beautyprogrammes</p>", newsletter: "<p><b>HALTEN SIE MICH AM LAUFENDEN - </b><br>ich möchte persönliche News von Pharmaziegasse erhalten</p>"
-    }
-
     if (data.loading) return <p>Loading...</p>;
     if (data.error) return <p>Error :(</p>;
 
@@ -494,10 +489,9 @@ class Homepage extends Component {
           })}
           {btn_pages.unique().map((id, i) => {
             return(
-               <RegisterModal
+              <RegisterModal
                 key={i}
                 pageid={id}
-                
               />
             )
           })},

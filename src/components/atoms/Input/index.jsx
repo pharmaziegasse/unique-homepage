@@ -16,14 +16,14 @@ class Checkbox extends React.Component{
         }
     }
 
-    getValue() {
+    /*getValue() {
         let val = this.props.value;
         if(val !== undefined && val !== true && val !== false && val !== null){
             return val;
         } else {
             return "";
         }
-    }
+    }*/
 
     render() {
         const classProps: string = classnames(
@@ -33,7 +33,7 @@ class Checkbox extends React.Component{
         )
 
         return (
-           <input className={classProps} type={this.props.type} value={this.getValue()} name={this.props.name} placeholder={this.props.placeholder} onChange={this.onFieldChange.bind(this)} />
+           <input className={classProps} type={this.props.type} /*value={this.getValue()}*/ name={this.props.name} placeholder={this.props.placeholder} onChange={this.onFieldChange.bind(this)} />
         );
     }
     
