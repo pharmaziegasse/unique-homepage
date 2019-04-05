@@ -268,12 +268,9 @@ class Homepage extends Component {
     if (data.error) return (
       <div className="h-100">
         <div className="flex-center flex-column">
-          <RingLoader
-            sizeUnit={"px"}
-            size={50}
-            color={'#ff0000'}
-          />
-          <span className="mt-3">Error</span>
+          <h1 className="animated fadeIn mb-4 orange-text"><i className="fas fa-exclamation-triangle"></i></h1>
+          <h5 className="animated fadeIn mb-3">Error!</h5>
+          <p className="animated fadeIn text-muted">An error occurred!</p>
         </div>
       </div>
     );
