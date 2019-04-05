@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import { ClipLoader, RingLoader } from 'react-spinners';
 //import { Query } from "react-apollo"; /* Not used yet */
 
 // standard components
@@ -24,7 +25,7 @@ import HomeSExpertsBlock from "../../organisms/SectionContents/experts.js";
 import HomeSLabBlock from "../../organisms/SectionContents/lab.js";
 import HomeSMethodBlock from "../../organisms/SectionContents/method.js";
 import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
-import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.js";
+import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
 import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
 import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
 
@@ -252,8 +253,30 @@ class Homepage extends Component {
 
     console.log(data);
 
-    if (data.loading) return <p>Loading...</p>;
-    if (data.error) return <p>Error :(</p>;
+    if (data.loading) return(
+      <div className="h-100">
+        <div className="flex-center flex-column">
+          <RingLoader
+            sizeUnit={"px"}
+            size={50}
+            color={'#9dbdd6'}
+          />
+          <span className="mt-3">Loading your experience...</span>
+        </div>
+      </div>
+    );
+    if (data.error) return (
+      <div className="h-100">
+        <div className="flex-center flex-column">
+          <RingLoader
+            sizeUnit={"px"}
+            size={50}
+            color={'#ff0000'}
+          />
+          <span className="mt-3">Error</span>
+        </div>
+      </div>
+    );
 
     const homepage = data.pages[0];
     const q_headers = homepage.headers;
