@@ -7,6 +7,8 @@ import { gql } from "apollo-boost";
 // oAuth 
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
+// Icons
+import { FaFacebook } from 'react-icons/fa';
 
 
 import Checkbox from '../../atoms/Checkbox'
@@ -19,8 +21,8 @@ const CREATE_USER_MUTATION = gql`
         homeFormPage(url: "/registrieren", values: $values) {
             result
             errors {
-            name
-            errors
+                name
+                errors
             }
         }
     }
@@ -35,6 +37,7 @@ const GET_MODAL_DATA = gql`
                 registrationNewsletterText
                 registrationPrivacyText
                 registrationStepText
+                thankYouText
                 registrationButton{
                     buttonTitle
                     buttonPage{
@@ -47,36 +50,59 @@ const GET_MODAL_DATA = gql`
     }
 `;
 
-/*const responseFacebook = (response) => {
-  console.log(response);
-}
-const responseGoogle = (response) => {
-  console.log(response);
-}*/
-
 class Modal extends React.Component{
     constructor(props){
         super(props);
         console.log("Props");
         console.log(this.props);
-        
+
         this.state = {
            phone: undefined,
            email: undefined,
            prename: undefined,
            surname: undefined,
            country: false,
+           picture: undefined,
            gdpr: false,
            newsletter: false,
            showError: false,
+           verified: false,
            showSuccess: false
         }
     }
 
+    // oAuth response
+    responseFacebook = (response) => {
+        console.log(response);
+        if(response.first_name !== undefined && response.first_name !== null){
+            this.setState({prename: response.first_name});
+        }
+        if(response.last_name !== undefined && response.last_name !== null){
+            this.setState({surname: response.last_name});
+        }
+        if(response.email !== undefined && response.email !== null){
+            this.setState({email: response.email});
+        }
+        if(response.picture !== undefined && response.picture !== null){
+            this.setState({picture: response.picture.data.url});
+        }
+        if(response.accessToken !== undefined && response.accessToken !== null){
+            this.setState({verified: true});
+        }
+        console.log(this.state);
+    }
+    responseGoogle = (response) => {
+        console.log(response);
+    }
+    // oAuth function
+    setForm = () => {
+        // Hide oAuth buttons
+    }
+
+    // Send form data - create user with user mutation
     sendData = async () => {
-        // {"values": {"firstname": "carlos", "lastname": "carlos", "newsletter": true, "phone": "06508248811","email": "cisco@cis.co"}}
         let formvalues = {
-            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": false
+            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": this.state.verified, "picture": this.state.picture
         };
         console.log(formvalues);
         if(formvalues !== null || formvalues !== undefined){
@@ -107,18 +133,7 @@ class Modal extends React.Component{
             this.setState({showError: true});
             this.setState({showSuccess: false});
         }
-        
     };
-
-    getmodalData = async () => {
-        await this.props.modal({
-            options: (props) => ({ variables: { id: 4 } })
-        })
-        .then(({data}) => {
-            console.log("Success");
-            console.log(data);
-        })
-    }
 
     handleSubmitForm = (event) => {
         event.preventDefault();
@@ -261,10 +276,17 @@ class Modal extends React.Component{
         }
     }
 
+
+    strip_html_tags = (str) => {
+        if ((str===null) || (str===''))
+            return false;
+        else
+            str = str.toString();
+        return str.replace(/<[^>]*>/g, '');
+    }
+
     renderContent (){
         let modaldata = (this.props.data.page);
-        console.log(modaldata);
-
         const success = this.state.showSuccess;
         return(
             <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
@@ -276,23 +298,38 @@ class Modal extends React.Component{
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" className="dark-text">×</span>
                     </button>
-                    <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: this.props.data.lead}}></div>
+                    <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: modaldata.registrationHead}}></div>
                     <hr/>
                     {success ? (
                         <div className="success">
                             <Alert className="alert-success" show="true">
-                                VIELEN DANK!
-                                <br/><br/>
-                                Sie haben sich erfolgreich für Ihr individuelles und natürliches Beautypgoramm registriert.
-                                <br/><br/>
-                                Wir melden uns bei Ihnen, um Ihr Gespräch zu organisieren.
+                                <div dangerouslySetInnerHTML={{__html: modaldata.thankYouText}}></div>
                             </Alert>
                         </div>
                     ) : (
                         <div className="register-form">
                         <div className="row">
                             <div className="col-md-7">
-                                <p className="text-center">OAuth to be added</p>
+                                <p className="text-center d-none">OAuth to be added</p>
+                                <div className="oAuth">
+                                    <FacebookLogin
+                                        appId="438514240304319"
+                                        autoLoad={true}
+                                        icon={<FaFacebook/>}
+                                        cssClass="btn-facebook kep-login-facebook kep-login-facebook-medium"
+                                        fields="first_name,last_name,email,picture"
+                                        textButton="Weiter mit Facebook"
+                                        callback={this.responseFacebook}
+                                    />
+                                    <GoogleLogin
+                                        clientId="762647868786-a6do4s713inonqo663lbgqqgo40u5sen.apps.googleusercontent.com"
+                                        buttonText="Weiter mit Google"
+                                        className="btn-google"
+                                        onSuccess={this.responseGoogle}
+                                        onFailure={this.responseGoogle}
+                                        cookiePolicy={'single_host_origin'}
+                                    />
+                                </div>
                                 <div className="w-100">
                                     <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                                 </div>
@@ -303,23 +340,23 @@ class Modal extends React.Component{
                                     <div className="input-grp">
                                         {this.printFlag()}
                                         <i className="fas fa-phone"></i>
-                                        <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer" validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
+                                        <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer" /*value={this.state.phone}*/ validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
                                     </div>
                                     <div className="input-grp">
                                         <i className="far fa-envelope"></i>
-                                        <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse (optional)" validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
+                                        <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse (optional)" /*value={this.state.email}*/ validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
                                     </div>
                                     <div className="input-grp">
                                         <i className="far fa-user-circle"></i>
-                                        <Input className="my-3" type="text" name="prename" placeholder="Vorname" validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
+                                        <Input className="my-3" type="text" name="prename" placeholder="Vorname" /*value={this.state.prename}*/ validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
                                     </div>
                                     <div className="input-grp">
                                         <i className="far fa-user-circle"></i>
-                                        <Input className="my-3" type="text" name="surname" placeholder="Nachname" validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
+                                        <Input className="my-3" type="text" name="surname" placeholder="Nachname" /*value={this.state.surname}*/ validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
                                     </div>
                                     <div className="text-left">
-                                    <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}>Halten Sie mich auf dem Laufenden (Newsletter)</Checkbox>
-                                    <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}>Ich habe die <a href="/privacy">Datenschutzerklärung</a> gelesen und bin daher damit einverstanden, dass die eingegebenen Daten für den Zweck der Kontaktaufnahme elektronisch gespeichert werden.</Checkbox>
+                                    <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationNewsletterText}}></div></Checkbox>
+                                    <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationPrivacyText}}></div></Checkbox>
                                     </div>
                                     <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: this.props.data.step1}}></div>
                                     <input className="btn btn-outline-elegant" type="submit" value="Starten" />
@@ -327,14 +364,8 @@ class Modal extends React.Component{
                             </div>
                             <div className="col-md-5 text-left">
                             <Alert className="alert-info register-info" show="true">
-                            <i className="far fa-lightbulb fa-2x"></i>
-                            <div className="mt-2 dark-grey-text">
-                                <p>Wir nehmen uns Zeit für Sie! Bitte planen Sie etwas Zeit für unser Gespräch ein.
-                                <br/><br/>
-                                Wir wollen in einem gemeinsamen Gespräch die Bedürfnisse Ihrer Haut kennen lernen. Wir sprechen über Ihre individuelle Haut- und Lebenssituation, tauschen Informationen aus, die für Sie und Ihre Hautpflege wichtig sind. Es werden alle Faktoren besprochen, die Ihre individuelle Hautsituation beeinflussen.
-                                </p>
-                            </div>
-                                
+                                <i className="far fa-lightbulb fa-2x"></i>
+                                <div className="mt-2 dark-grey-text" dangerouslySetInnerHTML={{__html: modaldata.registrationInfoText}}></div>
                             </Alert>
                             </div>
                         </div>
@@ -348,7 +379,11 @@ class Modal extends React.Component{
     }
 
     render(){
-        return this.renderContent();
+        if(this.props.data.page !== undefined){
+            return this.renderContent();
+        } else {
+            return false;
+        }
     }
 }
 

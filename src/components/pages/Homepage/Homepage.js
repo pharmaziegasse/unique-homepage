@@ -293,7 +293,7 @@ class Homepage extends Component {
                       btnhref: "/start"
                     };
                   })}
-                  sociallinks={[{fb:homepage.sociallinks[0].link,ig:homepage.sociallinks[1].link}]}
+                  sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
                 />
             )
           
@@ -482,7 +482,7 @@ class Homepage extends Component {
             if (footers.__typename === "Home_F_InfoBlock") {
               returnparam = (
                 <Footer key={i}
-                  sociallinks={[{fb:homepage.sociallinks[0].link,ig:homepage.sociallinks[1].link}]}
+                  sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
                   companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email }]}
                   logo={logos[0].dark}
                 />
@@ -497,7 +497,7 @@ class Homepage extends Component {
                <RegisterModal
                 key={i}
                 pageid={id}
-                data={modalRegister_content}
+                
               />
             )
           })},
