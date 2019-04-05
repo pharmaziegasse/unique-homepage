@@ -53,8 +53,6 @@ const GET_MODAL_DATA = gql`
 class Modal extends React.Component{
     constructor(props){
         super(props);
-        console.log("Props");
-        console.log(this.props);
 
         this.state = {
            phone: undefined,
@@ -89,7 +87,7 @@ class Modal extends React.Component{
         if(response.accessToken !== undefined && response.accessToken !== null){
             this.setState({verified: true});
         }
-        console.log(this.state);
+        //console.log(this.state);
     }
     responseGoogle = (response) => {
         console.log(response);

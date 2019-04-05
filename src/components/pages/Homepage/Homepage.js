@@ -4,7 +4,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import { ClipLoader, RingLoader } from 'react-spinners';
+import { RingLoader } from 'react-spinners';
 //import { Query } from "react-apollo"; /* Not used yet */
 
 // standard components
@@ -253,27 +253,32 @@ class Homepage extends Component {
 
     console.log(data);
 
-    if (data.loading) return(
-      <div className="h-100">
-        <div className="flex-center flex-column">
-          <RingLoader
-            sizeUnit={"px"}
-            size={50}
-            color={'#9dbdd6'}
-          />
-          <span className="mt-3">Loading your experience...</span>
+    if (data.loading) {
+      return(
+        <div className="h-100">
+          <div className="flex-center flex-column">
+            <RingLoader
+              sizeUnit={"px"}
+              size={50}
+              color={'#9dbdd6'}
+            />
+            <span className="mt-3">Loading your experience...</span>
+          </div>
         </div>
-      </div>
-    );
-    if (data.error) return (
-      <div className="h-100">
-        <div className="flex-center flex-column">
-          <h1 className="animated fadeIn mb-4 orange-text"><i className="fas fa-exclamation-triangle"></i></h1>
-          <h5 className="animated fadeIn mb-3">Error!</h5>
-          <p className="animated fadeIn text-muted">An error occurred!</p>
+      );
+    }
+    if (data.error) {
+      console.error(data.error);
+      return (
+        <div className="h-100">
+          <div className="flex-center flex-column">
+            <h1 className="animated fadeIn mb-4 orange-text"><i className="fas fa-exclamation-triangle"></i></h1>
+            <h5 className="animated fadeIn mb-3">Error!</h5>
+            <p className="animated fadeIn text-muted">An error occurred!</p>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
 
     const homepage = data.pages[0];
     const q_headers = homepage.headers;
@@ -281,9 +286,6 @@ class Homepage extends Component {
     const q_footers = homepage.footers;
 
     const btn_pages = [];
-    //return data.homepage.map(cms => {
-    //console.log(homepage);
-    //console.log(data.homepage[1].headers[0].value.hero[0].value.head);
     if (getQueryVariable("token") === homepage.token) {
       // Rendering of all active organisms
       
@@ -341,7 +343,6 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.__typename === 'Home_S_IndividualBlock') {
-              //console.log(sections.value.individual);
               return (
                 <Section
                   key={i} 
@@ -400,7 +401,6 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.__typename === 'Home_S_MethodBlock') {
-              //console.log(sections.value.method.sphere_1.step);
               return (
                 <Section key={i} sectionid="method" background="GREY" data-id="4">
                   <HomeSMethodBlock
@@ -492,7 +492,6 @@ class Homepage extends Component {
             }
           })}
           {q_footers.map((footers, i) => {
-            //console.log(footers.value.info);
             let returnparam;
             if (footers.__typename === "Home_F_InfoBlock") {
               returnparam = (
