@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+import { RingLoader } from 'react-spinners';
 //import { Query } from "react-apollo"; /* Not used yet */
 
 // standard components
@@ -14,7 +15,7 @@ import Section from "../../organisms/Section";
 import Footer from "../../organisms/Footer";
 
 // modals
-import Modal from "../../organisms/Modal";
+import RegisterModal from "../../organisms/Modal";
 import CookieModal from "../../organisms/CookieModal";
 
 // section content organisms
@@ -24,7 +25,7 @@ import HomeSExpertsBlock from "../../organisms/SectionContents/experts.js";
 import HomeSLabBlock from "../../organisms/SectionContents/lab.js";
 import HomeSMethodBlock from "../../organisms/SectionContents/method.js";
 import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
-import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.js";
+import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
 import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
 import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
 
@@ -67,24 +68,27 @@ query pages {
       placeOfRegistry
       tradeRegisterNumber
       sociallinks{
-        ... on HomeStructBlock{
-          link
+        ... on StringBlock{
+          value
         }
       }
       ownership
       email
-      headers {
-        ... on Home_H_HeroBlock{
-          __typename
-          heroImage{
-            title
-            url
-            urlLink
-          }
-          heroHead
-          heroSubhead
-          heroButton {
-            id
+      headers{
+        ... on HomeHero_SlideBlockListBlock{
+          value{
+            slideHead
+            slideSubhead
+            slideImage{
+              urlLink
+            }
+            slideButton{
+              buttonTitle
+              buttonPage{
+                id
+                urlPath
+              }
+            }
           }
         }
       }
@@ -231,49 +235,86 @@ function getQueryVariable(variable) {
   return false;
 }
 
+Array.prototype.unique = function() {
+    var arr = [];
+    for(var i = 0; i < this.length; i++) {
+        if(!arr.includes(this[i])) {
+            arr.push(this[i]);
+        }
+    }
+    return arr; 
+}
+
 // Rendering of all active organisms
 class Homepage extends Component {
-  
+
   renderContent() {
     var data = this.props.data;
 
     console.log(data);
 
-    // Modal Register
-    let modalRegister_content = {
-      title: "Registrieren", lead: "<p>Starten Sie mit Ihrem individuellen und natürlichen Beautyprogramm</p>", step1: "<p>Mit Schritt 1 Ihres Beautyprogrammes</p>", newsletter: "<p><b>HALTEN SIE MICH AM LAUFENDEN - </b><br>ich möchte persönliche News von Pharmaziegasse erhalten</p>"
+    if (data.loading) {
+      return(
+        <div className="h-100">
+          <div className="flex-center flex-column">
+            <RingLoader
+              sizeUnit={"px"}
+              size={50}
+              color={'#9dbdd6'}
+            />
+            <span className="mt-3">Loading your experience...</span>
+          </div>
+        </div>
+      );
     }
-
-    if (data.loading) return <p>Loading...</p>;
-    if (data.error) return <p>Error :(</p>;
+    if (data.error) {
+      console.error(data.error);
+      return (
+        <div className="h-100">
+          <div className="flex-center flex-column">
+            <h1 className="animated fadeIn mb-4 orange-text"><i className="fas fa-exclamation-triangle"></i></h1>
+            <h5 className="animated fadeIn mb-3">Error!</h5>
+            <p className="animated fadeIn text-muted">An error occurred!</p>
+          </div>
+        </div>
+      );
+    }
 
     const homepage = data.pages[0];
     const q_headers = homepage.headers;
     const q_sections = homepage.sections;
     const q_footers = homepage.footers;
 
-    //return data.homepage.map(cms => {
-    //console.log(homepage);
-    //console.log(data.homepage[1].headers[0].value.hero[0].value.head);
+    const btn_pages = [];
     if (getQueryVariable("token") === homepage.token) {
       // Rendering of all active organisms
+      
       return (
         <main className="Homepage">
-                <Intro
+
+          {q_headers.map((slides, i) => {
+            
+            return(
+              <Intro
+                  key={i}
                   logos={logos}
                   navitems={navitems}
                   theme="L"
-                  heroitems={q_headers.map((hero, i) => {
+                  heroitems={slides.value.map((slide, i) => {
+                    btn_pages.push(slide.slideButton.buttonPage.id);
                     return {
-                      img: APIHost+hero.heroImage.urlLink,
-                      head: hero.heroHead,
-                      subhead: hero.heroSubhead,
+                      img: APIHost+slide.slideImage.urlLink,
+                      head: slide.slideHead,
+                      subhead: slide.slideSubhead,
                       btntext: "Beautyprogramm starten",
                       btnhref: "/start"
                     };
                   })}
-                  sociallinks={[{fb:homepage.sociallinks[0].link,ig:homepage.sociallinks[1].link}]}
+                  sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
                 />
+            )
+          
+          })}
           {q_sections.map((sections, i) => {
             if (sections.__typename === 'Home_S_WhyBlock') {
               return (
@@ -302,7 +343,6 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.__typename === 'Home_S_IndividualBlock') {
-              //console.log(sections.value.individual);
               return (
                 <Section
                   key={i} 
@@ -361,7 +401,6 @@ class Homepage extends Component {
                 </Section>
               );
             } else if (sections.__typename === 'Home_S_MethodBlock') {
-              //console.log(sections.value.method.sphere_1.step);
               return (
                 <Section key={i} sectionid="method" background="GREY" data-id="4">
                   <HomeSMethodBlock
@@ -453,12 +492,11 @@ class Homepage extends Component {
             }
           })}
           {q_footers.map((footers, i) => {
-            //console.log(footers.value.info);
             let returnparam;
             if (footers.__typename === "Home_F_InfoBlock") {
               returnparam = (
                 <Footer key={i}
-                  sociallinks={[{fb:homepage.sociallinks[0].link,ig:homepage.sociallinks[1].link}]}
+                  sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
                   companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email }]}
                   logo={logos[0].dark}
                 />
@@ -468,9 +506,14 @@ class Homepage extends Component {
               returnparam
               );
           })}
-          <Modal
-            data={modalRegister_content}
-          />,
+          {btn_pages.unique().map((id, i) => {
+            return(
+              <RegisterModal
+                key={i}
+                pageid={id}
+              />
+            )
+          })},
           <CookieModal />
         </main>
       );

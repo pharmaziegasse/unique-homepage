@@ -782,4 +782,63 @@ header,
             color: $unique-blue !important
         }
     }
+    .oAuth{
+        .btn-facebook{
+            margin-bottom: 1rem;
+            cursor: pointer !important;
+            transition-property: background, border-color, color !important;
+            transition-duration: 0.2s !important;
+            transition-timing-function: ease-out !important;
+            position: relative !important;
+            display: inline-block !important;
+            text-align: center !important;
+            width: 100% !important;
+            font-size: 16px !important;
+            line-height: 24px !important;
+            letter-spacing: normal !important;
+            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            font-weight: 800 !important;
+            padding-left: 22px !important;
+            padding-right: 22px !important;
+            color: rgb(255, 255, 255) !important;
+            text-decoration: none !important;
+            border-radius: 4px !important;
+            border-width: 2px !important;
+            border-style: solid !important;
+            background: rgb(69, 104, 178) !important;
+            border-color: transparent !important;
+
+            svg{
+                margin-right: 20px;
+            }
+        }
+        .btn-google{
+            cursor: pointer !important;
+            transition-property: background, border-color, color !important;
+            transition-duration: 0.2s !important;
+            transition-timing-function: ease-out !important;
+            position: relative !important;
+            text-align: center !important;
+            width: 100% !important;
+            font-size: 16px !important;
+            line-height: 24px !important;
+            letter-spacing: normal !important;
+            font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            font-weight: 800 !important;
+            padding-left: 22px !important;
+            padding-right: 22px !important;
+            color: rgb(72, 72, 72) !important;
+            text-decoration: none !important;
+            border-radius: 4px !important;
+            border-width: 2px !important;
+            border-style: solid !important;
+            background: rgb(255, 255, 255) !important;
+            border-color: rgb(118, 118, 118) !important;
+        
+        }
+    }
 }

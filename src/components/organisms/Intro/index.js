@@ -44,7 +44,7 @@ const Intro = (props: Props): React.Element<*> => {
             if(theme === "D"){
                 return [
                     <li key={i} className={GetState(item.active)}>
-                        <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{item.text}</ModalBtn>
+                        <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>
                     </li>,
                     <li key={i+1} className={GetState(item.active)}>
                     <a className="nav-link m-1 d-block d-sm-none" href={item.href}>{item.text}</a>
@@ -53,7 +53,7 @@ const Intro = (props: Props): React.Element<*> => {
             }else if(theme === "L"){
                 return [
                     <li key={i} className={GetState(item.active)}>
-                         <ModalBtn btnstyle="oELEGANT" modal="#modalRegister" className="font-weight-bold">{item.text}</ModalBtn>
+                         <ModalBtn btnstyle="oELEGANT" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>
                     </li>,
                     <li key={i+1} className={GetState(item.active)}>
                     <a className="nav-link m-1 d-block d-sm-none" href={item.href}>{item.text}</a>

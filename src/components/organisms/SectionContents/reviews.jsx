@@ -27,7 +27,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div key={i} className={getActiveItem(i)}>
                         <div className="testimonial">
                             <div className="avatar mx-auto mb-4">
-                                <img width="80px" height="80px" src={item.img} className="rounded-circle img-fluid" alt={item.name}/>
+                                <img width="160px" height="160px" src={item.img} className="rounded-circle img-fluid" alt={item.name}/>
                             </div>
                             <p>
                                 <span dangerouslySetInnerHTML={{__html: item.quote}}></span>
