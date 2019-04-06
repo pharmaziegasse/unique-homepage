@@ -5,8 +5,10 @@
 // npm install node-sass classnames react-scripts apollo-boost react-apollo graphql --save
 // npx create-react-app unique-homepage
 
-// Changes in branch add-register-modal-backend-1
+// Changes in branch add-api-instagram-1
 /*
+
+  - Added full Instagram API support in Gallery Section
 
 */
 

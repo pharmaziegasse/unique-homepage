@@ -28,6 +28,9 @@ import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
 import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
 import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
 import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
+// Beta state blocks
+import HomeSGalleryBlock from "../../organisms/SectionContents/gallery";
+import HomeSFacebookBlock from "../../organisms/SectionContents/facebook";
 
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
@@ -459,7 +462,13 @@ class Homepage extends Component {
                   />
                 </Section>
               );
-            } else if (sections.__typename === 'Home_S_PricingBlock') {
+            } /*else if (true) {
+              return(
+                <Section sectionid="gallery" background="LIGHTGREY">
+                  <HomeSGalleryBlock />
+                </Section>
+              );
+            }*/ else if (sections.__typename === 'Home_S_PricingBlock') {
               return (
                 <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
                   <HomeSPricingBlock 
@@ -491,6 +500,14 @@ class Homepage extends Component {
               return false;
             }
           })}
+        
+          <Section sectionid="gallery" background="LIGHTGREY">
+            <HomeSGalleryBlock />
+          </Section>
+          <Section sectionid="facebook" background="LIGHTBLUE">
+            <HomeSFacebookBlock />
+          </Section>
+    
           {q_footers.map((footers, i) => {
             let returnparam;
             if (footers.__typename === "Home_F_InfoBlock") {
@@ -506,6 +523,7 @@ class Homepage extends Component {
               returnparam
               );
           })}
+          
           {btn_pages.unique().map((id, i) => {
             return(
               <RegisterModal
