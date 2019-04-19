@@ -274,7 +274,7 @@ class Homepage extends Component {
           <div className="flex-center flex-column">
             <h1 className="animated fadeIn mb-4 orange-text"><i className="fas fa-exclamation-triangle"></i></h1>
             <h5 className="animated fadeIn mb-3">Error!</h5>
-            <p className="animated fadeIn text-muted">An error occurred!</p>
+            <p className="animated fadeIn text-muted">An error occurred! We will be back shortly.</p>
           </div>
         </div>
       );
@@ -299,7 +299,7 @@ class Homepage extends Component {
                   key={i}
                   logos={logos}
                   navitems={navitems}
-                  theme="L"
+                  theme="D"
                   heroitems={slides.value.map((slide, i) => {
                     btn_pages.push(slide.slideButton.buttonPage.id);
                     return {
@@ -497,7 +497,7 @@ class Homepage extends Component {
               returnparam = (
                 <Footer key={i}
                   sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
-                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email }]}
+                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.ownership }]}
                   logo={logos[0].dark}
                 />
               );
