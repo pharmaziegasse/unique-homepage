@@ -89,53 +89,6 @@
             "easeInOutQuart"
           );
         });
-
-        let loadDark = () => {
-          $('.asbest').attr('style', 'display: none !important;');
-          $('.graviola-container').attr('style', 'display: block !important;');
-          $('.hero-counter').attr('style', 'display: block !important;');
-          $('.navbar').removeClass("navbar-light");
-          $('.navbar').addClass("navbar-dark");
-          $('.navbar img').attr('style', 'filter: brightness(0) invert(1);');
-          $('.navbar .btn').removeClass('btn-outline-elegant');
-          $('.navbar .btn').addClass('btn-outline-white');
-        }
-
-        let loadLight = () => {
-          $('.asbest').attr('style', 'display: block !important;');
-          $('.graviola-container').attr('style', 'display: none !important;');
-          $('.hero-counter').attr('style', 'display: none !important;');
-          $('.navbar').removeClass("navbar-dark");
-          $('.navbar').addClass("navbar-light");
-          $('.navbar img').attr('style', 'filter: brightness(0) invert(0);');
-          $('.navbar .btn').removeClass('btn-outline-white');
-          $('.navbar .btn').addClass('btn-outline-elegant');
-        }
-
-        $(document).on("click", ".switch-mode", function(e) {
-          let state = $(this).is(':checked');
-          if(state === true){
-            //Dark mode - how we want it
-            loadDark();
-            toastr["success"]("Vorzeige Modus aktiviert.")
-            Cookies.set('s_mode', '1');
-          }else{
-            //Light mode
-            loadLight();
-            toastr["error"]("Vorzeige Modus deaktiviert.")
-            Cookies.set('s_mode', '0');
-          }
-        });
-
-        //Modes
-        $('.asbest').ready(function(){
-          let mode = Cookies.get('s_mode');
-          if(mode === '0'){
-            loadLight();
-          }else if(mode === '1'){
-            loadDark();
-          }
-        })
       });
     // Tooltips Initialization
     $(function () {

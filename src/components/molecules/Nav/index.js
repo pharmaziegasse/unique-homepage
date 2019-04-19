@@ -4,46 +4,39 @@ import classnames from 'classnames/bind'
 //Themes
 import NavTheme from './nav_themes.js';
 
-var navt = classnames.bind(NavTheme);
 
-type Props = {
-    children: React.Node,
-    theme: string,
-    className: string
-}
+class Nav extends React.Component {
 
-const Nav = (props: Props): React.Element<*> => {
-    const { logo, children, theme, className } = props;
+    navt = classnames.bind(NavTheme);
 
-    const classProps: string = classnames(
+    classProps = classnames(
         "navbar",
         "navbar-expand-lg",
         "fixed-top",
         "scrolling-navbar",
-        navt(theme),
-        className,
+        this.navt(this.props.theme),
+        this.props.className,
         "text-white",
         "z-depth-0"
     )
 
-    return (
-        <nav className={classProps}>
+    render(){
+        return (
+        <nav className={this.classProps}>
             <div className="container">
-                <a className="navbar-brand" href="/#home"><strong><img src={logo} alt="Pharmaziegasse Logo"/></strong></a>
+                <a className="navbar-brand" href="/#home"><strong><img src={this.props.logo} alt="Pharmaziegasse Logo"/></strong></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                     {children}
+                     {this.props.children}
                 </div>
             </div>
         </nav>
     )
+    }
+    
 }
 
-Nav.defaultProps = {
-   theme: NavTheme.L
-}
-
-export default Nav
+export default Nav;
