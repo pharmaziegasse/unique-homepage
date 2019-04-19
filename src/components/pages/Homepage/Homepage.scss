@@ -54,6 +54,13 @@ header,
 @import "../../../mdb/scss/custom-variables";
 
 .Homepage{
+    /* Instagram section */
+    .instagram{
+        .instagram-media{
+            margin: auto !important;
+        }
+    }
+    
     /* Hero */
     @media (max-width: 740px) {
         h3{

@@ -50,6 +50,36 @@ import "./Homepage.scss";
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
 
+const facebook_posts = [
+  { 
+    __typename: "Home_S_FacebookBlock",
+    title: "Facebook Posts",
+    urls: [
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346735155980114" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346735155980114" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" }
+    ]
+  }
+];
+
+const instagram_posts = [
+  { 
+    __typename: "Home_S_InstagramBlock",
+    title: "Instagram Posts",
+    captions: false,
+    urls: [
+      { value: "https://www.instagram.com/p/BvkEkPmH0Hh/" },
+      { value: "https://www.instagram.com/p/Bve5PDonpAD/" },
+      { value: "https://www.instagram.com/p/BvcT8Pbn9An/" },
+      { value: "https://www.instagram.com/p/BvkEkPmH0Hh/" },
+      { value: "https://www.instagram.com/p/Bve5PDonpAD/" }
+    ]
+  }
+];
+
 const CMSFetchQuery_PAGES = gql`
 query pages {
   pages {
@@ -447,7 +477,6 @@ class Homepage extends Component {
             } else if (sections.__typename === 'Home_S_ReviewsBlock') {
               return (
                 <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
-                
                   <HomeSReviewsBlock
                   
                     heading={sections.reviewsHead}
@@ -500,14 +529,36 @@ class Homepage extends Component {
               return false;
             }
           })}
-        
-          <Section sectionid="gallery" background="LIGHTGREY">
-            <HomeSGalleryBlock />
-          </Section>
+         
           <Section sectionid="facebook" background="LIGHTBLUE">
-            <HomeSFacebookBlock />
+            <HomeSFacebookBlock 
+              content={facebook_posts.map((facebook_post,i) => {
+                return {
+                  title: facebook_post.title,
+                  urls: facebook_post.urls.map((url,i) => {
+                    return {
+                      value: url.value
+                    }
+                  })
+                };
+              })} 
+            />
           </Section>
-    
+           <Section sectionid="gallery" background="LIGHTGREY">
+            <HomeSGalleryBlock 
+              content={instagram_posts.map((instagram_post,i) => {
+                return {
+                  title: instagram_post.title,
+                  captions: instagram_post.captions,
+                  urls: instagram_post.urls.map((url,i) => {
+                    return {
+                      value: url.value
+                    }
+                  })
+                };
+              })} 
+            />
+          </Section>
           {q_footers.map((footers, i) => {
             let returnparam;
             if (footers.__typename === "Home_F_InfoBlock") {
