@@ -63,7 +63,7 @@ class Modal extends React.Component{
         // verified = If user has proceeded using Facebook oAuth (not that likely to be a bot)
         // formHidden = When user proceeds with Facebook oAuth, most data is already known. The name + email form is hidden
         // showError / showSuccess = Displays the corresponding messages
-        
+
         this.state = {
            phone: undefined,
            email: undefined,
@@ -87,7 +87,6 @@ class Modal extends React.Component{
 
     // oAuth response
     responseFacebook = (response) => {
-        console.log(response);
         if(response.first_name !== undefined && response.first_name !== null){
             this.setState({prenamelive: response.first_name});
         }
@@ -126,7 +125,7 @@ class Modal extends React.Component{
         let formvalues = {
             "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": this.state.verified, "picture": this.state.picture
         };
-        console.log(formvalues);
+        // console.log(formvalues);
         // Check if the form values have been set (just to be sure)
         if(formvalues !== null || formvalues !== undefined){
             // Call graphQL mutation
@@ -172,7 +171,6 @@ class Modal extends React.Component{
 
     // Handle the submit of the modal form
     handleSubmitForm = (event) => {
-        console.log(this.state);
         event.preventDefault();
         let error = [];
         let buffer = [];
@@ -218,7 +216,6 @@ class Modal extends React.Component{
     // Update states with latest input field data + verify inputs
     handleChange = (field, value) => {
         // Update live states and check validity in callback
-        console.log(field);
         switch (field) {
             case 'phone':
                 this.setState({phonelive:value}, this.checkTel(value))
