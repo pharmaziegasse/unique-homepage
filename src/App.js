@@ -50,7 +50,7 @@ const cache = new InMemoryCache({ fragmentMatcher });
 
 const APILink = APIHost+"/api/graphql";
 
-console.log(APILink);
+// console.log(APILink);
 
 // Apollo client setup
 const client = new ApolloClient({
