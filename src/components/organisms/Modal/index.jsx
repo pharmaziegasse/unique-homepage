@@ -6,7 +6,7 @@ import { graphql, compose } from 'react-apollo';
 import { gql } from "apollo-boost";
 // oAuth 
 import FacebookLogin from 'react-facebook-login';
-import GoogleLogin from 'react-google-login';
+// import GoogleLogin from 'react-google-login';
 // Icons
 import { FaFacebook } from 'react-icons/fa';
 

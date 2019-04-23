@@ -235,18 +235,19 @@ function getQueryVariable(variable) {
   return false;
 }
 
-Array.prototype.unique = function() {
+// Rendering of all active organisms
+class Homepage extends Component {
+
+  // Get all the unique values of array
+  getUnique = (a) => {
     var arr = [];
-    for(var i = 0; i < this.length; i++) {
-        if(!arr.includes(this[i])) {
-            arr.push(this[i]);
+    for(var i = 0; i < a.length; i++) {
+        if(!arr.includes(a[i])) {
+            arr.push(a[i]);
         }
     }
     return arr; 
-}
-
-// Rendering of all active organisms
-class Homepage extends Component {
+  }
 
   renderContent() {
     var data = this.props.data;
@@ -506,7 +507,7 @@ class Homepage extends Component {
               returnparam
               );
           })}
-          {btn_pages.unique().map((id, i) => {
+          {this.getUnique(btn_pages).map((id, i) => {
             return(
               <RegisterModal
                 key={i}
