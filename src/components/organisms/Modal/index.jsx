@@ -56,6 +56,14 @@ class Modal extends React.Component{
         super(props);
 
         // oAuthed = If user is already logged in with Facebook or Google
+        //  Difference between phone and phonelive (maps to everything else too):
+        //  Phone is the final state, which is set by the validation-function. Phonelive is the current value of the input field.
+        // picture is set when provided by Facebook oAuth
+        // country is gathered from phone number and is required for the flag to show
+        // verified = If user has proceeded using Facebook oAuth (not that likely to be a bot)
+        // formHidden = When user proceeds with Facebook oAuth, most data is already known. The name + email form is hidden
+        // showError / showSuccess = Displays the corresponding messages
+        
         this.state = {
            phone: undefined,
            email: undefined,
@@ -170,7 +178,6 @@ class Modal extends React.Component{
         let buffer = [];
         
         // Check inputs and generate errors
-        this.validateInput();
         // Errors are written to a buffer which is then written to this.state.buffer
         if(this.state.phone === undefined){
             buffer.push("Bitte geben Sie eine Telefonnummer ein.");
@@ -210,20 +217,20 @@ class Modal extends React.Component{
 
     // Update states with latest input field data + verify inputs
     handleChange = (field, value) => {
-        // Blindly update live states to display as value
+        // Update live states and check validity in callback
         console.log(field);
         switch (field) {
             case 'phone':
-                this.setState({phonelive:value})
+                this.setState({phonelive:value}, this.checkTel(value))
                 break;
             case 'email':
-                this.setState({emaillive:value})
+                this.setState({emaillive:value}, this.checkEmail(value))
                 break;
             case 'prename':
-                this.setState({prenamelive:value})
+                this.setState({prenamelive:value},this.checkName("prename",value))
                 break;
             case 'surname':
-                this.setState({surnamelive:value})
+                this.setState({surnamelive:value},this.checkName("surname",value))
                 break;
             case 'newsletter':
                 this.setState({newsletter:value})
@@ -234,8 +241,7 @@ class Modal extends React.Component{
             default:
                 this.setState({[field]:value})
         }
-        console.log(this.state);
-        this.validateInput();
+        
     }
 
     // Check if phone number is valid
