@@ -23,7 +23,7 @@ const SectionContent = (props: Props): React.Element<*> => {
         
         switch (count) {
             case 1:
-                return "col-md-12 mb-4";
+                return "col-md-6 m-auto mb-4";
             case 2:
                 return "col-md-6 mb-4";
             case 3:

@@ -67,6 +67,7 @@ query pages {
       courtOfRegistry
       placeOfRegistry
       tradeRegisterNumber
+      copyrightholder
       sociallinks{
         ... on StringBlock{
           value
@@ -235,18 +236,19 @@ function getQueryVariable(variable) {
   return false;
 }
 
-Array.prototype.unique = function() {
+// Rendering of all active organisms
+class Homepage extends Component {
+
+  // Get all the unique values of array
+  getUnique = (a) => {
     var arr = [];
-    for(var i = 0; i < this.length; i++) {
-        if(!arr.includes(this[i])) {
-            arr.push(this[i]);
+    for(var i = 0; i < a.length; i++) {
+        if(!arr.includes(a[i])) {
+            arr.push(a[i]);
         }
     }
     return arr; 
-}
-
-// Rendering of all active organisms
-class Homepage extends Component {
+  }
 
   renderContent() {
     var data = this.props.data;
@@ -497,7 +499,7 @@ class Homepage extends Component {
               returnparam = (
                 <Footer key={i}
                   sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
-                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.ownership }]}
+                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                   logo={logos[0].dark}
                 />
               );
@@ -506,7 +508,7 @@ class Homepage extends Component {
               returnparam
               );
           })}
-          {btn_pages.unique().map((id, i) => {
+          {this.getUnique(btn_pages).map((id, i) => {
             return(
               <RegisterModal
                 key={i}

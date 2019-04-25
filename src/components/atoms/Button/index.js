@@ -21,7 +21,7 @@ type Props = {
 }
 
 const Button = (props: Props): React.Element<*> => {
-    const { btnstyle, btntype, size, href, children, className, disabled } = props;
+    const { btnstyle, btntype, size, href, children, className, disabled, onClick } = props;
 
     const classProps: string = classnames(
         "btn",
@@ -35,7 +35,7 @@ const Button = (props: Props): React.Element<*> => {
     )
 
     return (
-        <a href={href} className={classProps}>
+        <a href={href} className={classProps} onClick={onClick} >
             {children}
         </a>
     )
