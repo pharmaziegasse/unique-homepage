@@ -67,6 +67,7 @@ query pages {
       courtOfRegistry
       placeOfRegistry
       tradeRegisterNumber
+      copyrightholder
       sociallinks{
         ... on StringBlock{
           value
@@ -498,7 +499,7 @@ class Homepage extends Component {
               returnparam = (
                 <Footer key={i}
                   sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
-                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.ownership }]}
+                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                   logo={logos[0].dark}
                 />
               );
