@@ -2,7 +2,7 @@ import * as React from 'react'
 import { FacebookProvider, EmbeddedPost, MessageUs  } from 'react-facebook';
 
 // Icons
-import { FaInstagram } from 'react-icons/fa';
+// import { FaInstagram } from 'react-icons/fa';
 
 
 class Facebook extends React.Component{
@@ -24,7 +24,7 @@ class Facebook extends React.Component{
 
     // Makes sure the alignment of the posts is visualiy pleasing, no matter the number of posts
     getDivider = (i) => {
-        switch(this.props.content[0].urls.length){
+        switch(this.props.urls.length){
             case 1: {
                 return "col-md-12";
             }
@@ -61,8 +61,8 @@ class Facebook extends React.Component{
 
     // Support for non-container look
     getContainer = () => {
-        console.log(this.props.content[0].urls.length);
-        if(this.props.content[0].urls.length > 2 && this.props.content[0].urls.length < 5){
+        console.log(this.props.urls.length);
+        if(this.props.urls.length > 2 && this.props.urls.length < 5){
             // Change to || return "py-5" || to have no container, if there are more than 2 Facebook posts
             // Please make sure to change the getDivider function return values accordingly
             return "container py-5"
@@ -72,15 +72,14 @@ class Facebook extends React.Component{
     }
 
     renderContent (){
-        console.log(this.props.content);
         return(
             <div className="container py-5">
-                <h2 className="font-weight-bold">{this.props.content[0].title}</h2>
+                <h2 className="font-weight-bold">{this.props.title}</h2>
                 <div className="row mt-4 w-100">
                     <FacebookProvider appId="438514240304319">
-                    {this.props.content[0].urls.map((c, i) => {
+                    {this.props.urls.map((c, i) => {
                         return(
-                            this.renderProvider(c.value, i)
+                            this.renderProvider(c.url, i)
                         )
                     })}
                      

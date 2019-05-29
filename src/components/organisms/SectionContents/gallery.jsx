@@ -2,7 +2,7 @@ import * as React from 'react'
 import InstagramEmbed from 'react-instagram-embed';
 
 // Icons
-import { FaInstagram } from 'react-icons/fa';
+// import { FaInstagram } from 'react-icons/fa';
 
 
 class Gallery extends React.Component{
@@ -15,7 +15,7 @@ class Gallery extends React.Component{
     }
 
     captionStatus = () => {
-        if(this.props.content[0].captions){
+        if(this.props.captions){
             return false;
         }else{
             return true;
@@ -24,7 +24,7 @@ class Gallery extends React.Component{
 
     // Makes sure the alignment of the posts is visualiy pleasing, no matter the number of posts
     getDivider = (i) => {
-        switch(this.props.content[0].urls.length){
+        switch(this.props.urls.length){
             case 1: {
                 return "col-md-12";
             }
@@ -82,11 +82,11 @@ class Gallery extends React.Component{
         
         return(
             <div className="container instagram py-5">
-                <h2 className="font-weight-bold">{this.props.content[0].title}</h2>
+                <h2 className="font-weight-bold">{this.props.title}</h2>
                 <div className="row mt-4">
-                    {this.props.content[0].urls.map((c, i) => {
+                    {this.props.urls.map((c, i) => {
                         return(
-                            this.renderEmbed(c.value, i)
+                            this.renderEmbed(c.url, i)
                         )
                     })}
                 </div>
