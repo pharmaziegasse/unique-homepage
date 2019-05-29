@@ -1,7 +1,7 @@
 // standard libs
 
 // other libs
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { RingLoader } from 'react-spinners';
@@ -10,15 +10,17 @@ import { RingLoader } from 'react-spinners';
 // standard components
 
 // basic organisms
+import Loader from "../../organisms/Loader";
 import Intro from "../../organisms/Intro";
-import Section from "../../organisms/Section";
-import Footer from "../../organisms/Footer";
+// import Section from "../../organisms/Section";
+// import Footer from "../../organisms/Footer";
 
 // modals
-import RegisterModal from "../../organisms/Modal";
-import CookieModal from "../../organisms/CookieModal";
+// import RegisterModal from "../../organisms/Modal";
+// import CookieModal from "../../organisms/CookieModal";
 
 // section content organisms
+/*
 import HomeSWhyBlock from "../../organisms/SectionContents/why.js";
 import HomeSIndividualBlock from "../../organisms/SectionContents/individual.js";
 import HomeSExpertsBlock from "../../organisms/SectionContents/experts.js";
@@ -28,6 +30,7 @@ import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
 import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
 import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
 import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
+*/
 
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
@@ -220,6 +223,25 @@ query pages {
   }
 `;*/
 
+// const Intro = lazy(() => import("../../organisms/Intro"));
+const Section = lazy(() => import("../../organisms/Section"));
+const Footer = lazy(() => import("../../organisms/Footer"));
+
+const RegisterModal = lazy(() => import("../../organisms/Modal"));
+const CookieModal = lazy(() => import("../../organisms/CookieModal"));
+
+const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"));
+const HomeSIndividualBlock = lazy(() => import("../../organisms/SectionContents/individual.js"));
+const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/experts.js"));
+const HomeSLabBlock = lazy(() => import("../../organisms/SectionContents/lab.js"));
+const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
+const HomeSServicesBlock = lazy(() => import("../../organisms/SectionContents/services.js"));
+const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/reviews.jsx"));
+const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pricing.js"));
+const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about.js"));
+
+
+
 /* LOCK */
 function getQueryVariable(variable) {
   var query = window.location.search.substring(1);
@@ -269,6 +291,7 @@ class Homepage extends Component {
         </div>
       );
     }
+
     if (data.error) {
       console.error(data.error);
       return (
@@ -297,7 +320,7 @@ class Homepage extends Component {
           {q_headers.map((slides, i) => {
             
             return(
-              <Intro
+                <Intro
                   key={i}
                   logos={logos}
                   navitems={navitems}
@@ -320,174 +343,209 @@ class Homepage extends Component {
           {q_sections.map((sections, i) => {
             if (sections.__typename === 'Home_S_WhyBlock') {
               return (
-                <Section key={i} sectionid="why" background="BLUE" data-id="0">
-                  <HomeSWhyBlock
-                    content={[
-                      { heading: sections.whyHead },
-                      {
-                        icon: APIHost+sections.whyCollum1.collumImage.urlLink,
-                        text: sections.whyCollum1.collumParagraph
-                      },
-                      {
-                        icon: APIHost+sections.whyCollum2.collumImage.urlLink,
-                        text: sections.whyCollum2.collumParagraph
-                      },
-                      {
-                        icon: APIHost+sections.whyCollum3.collumImage.urlLink,
-                        text: sections.whyCollum3.collumParagraph
-                      },
-                      {
-                        btntext: "Beautyprogramm starten",
-                        btnhref: "/start"
-                      }
-                    ]}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="why" background="BLUE" data-id="0">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSWhyBlock
+                          content={[
+                            { heading: sections.whyHead },
+                            {
+                              icon: APIHost+sections.whyCollum1.collumImage.urlLink,
+                              text: sections.whyCollum1.collumParagraph
+                            },
+                            {
+                              icon: APIHost+sections.whyCollum2.collumImage.urlLink,
+                              text: sections.whyCollum2.collumParagraph
+                            },
+                            {
+                              icon: APIHost+sections.whyCollum3.collumImage.urlLink,
+                              text: sections.whyCollum3.collumParagraph
+                            },
+                            {
+                              btntext: "Beautyprogramm starten",
+                              btnhref: "/start"
+                            }
+                          ]}
+                        />
+                      </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_IndividualBlock') {
               return (
-                <Section
-                  key={i} 
-                  sectionid="individual"
-                  background="LIGHTBLUE"
-                  data-id="1"
-                >
-                  <HomeSIndividualBlock
-                    content={[
-                      { heading: sections.individualHead },
-                      { img: APIHost+sections.individualImage.urlLink },
-                      {
-                        btntext: "Beautyprogramm starten",
-                        btnhref: "/start"
-                      },
-                      { lead: sections.individualLead },
-                      { paragraph: sections.individualParagraph }
-                    ]}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section
+                    key={i} 
+                    sectionid="individual"
+                    background="LIGHTBLUE"
+                    data-id="1"
+                  >
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSIndividualBlock
+                        content={[
+                          { heading: sections.individualHead },
+                          { img: APIHost+sections.individualImage.urlLink },
+                          {
+                            btntext: "Beautyprogramm starten",
+                            btnhref: "/start"
+                          },
+                          { lead: sections.individualLead },
+                          { paragraph: sections.individualParagraph }
+                        ]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_ExpertsBlock') {
               return (
-                <Section key={i} sectionid="experts" background="WHITE" data-id="2">
-                  <HomeSExpertsBlock
-                    content={[
-                      { heading: sections.expertsHead },
-                      { img: APIHost+sections.expertsImage.urlLink },
-                      {
-                        btntext: "Beautyprogramm starten",
-                        btnhref: "/start"
-                      },
-                      { lead: sections.expertsLead },
-                      { paragraph: sections.expertsParagraph }
-                    ]}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="experts" background="WHITE" data-id="2">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSExpertsBlock
+                        content={[
+                          { heading: sections.expertsHead },
+                          { img: APIHost+sections.expertsImage.urlLink },
+                          {
+                            btntext: "Beautyprogramm starten",
+                            btnhref: "/start"
+                          },
+                          { lead: sections.expertsLead },
+                          { paragraph: sections.expertsParagraph }
+                        ]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_LabBlock') {
               return (
-                <Section key={i} sectionid="lab" background="LIGHTBLUE" data-id="3">
-                  <HomeSLabBlock
-                    content={[
-                      {
-                        heading: sections.labHead
-                      },
-                      { img: APIHost+sections.labImage.urlLink },
-                      {
-                        btntext: "Beautyprogramm starten",
-                        btnhref: "/start"
-                      },
-                      { lead: sections.labLead },
-                      { paragraph: sections.labParagraph }
-                    ]}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="lab" background="LIGHTBLUE" data-id="3">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSLabBlock
+                        content={[
+                          {
+                            heading: sections.labHead
+                          },
+                          { img: APIHost+sections.labImage.urlLink },
+                          {
+                            btntext: "Beautyprogramm starten",
+                            btnhref: "/start"
+                          },
+                          { lead: sections.labLead },
+                          { paragraph: sections.labParagraph }
+                        ]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_MethodBlock') {
               return (
-                <Section key={i} sectionid="method" background="GREY" data-id="4">
-                  <HomeSMethodBlock
-                    content={[
-                      { heading: sections.methodHead },
-                      { btntext: "Beautyprogramm starten", btnhref: "/start" },
-                      {
-                        text: sections.methodSphere1.sphereStep,
-                        href: "#"
-                      },
-                      {
-                        text: sections.methodSphere2.sphereStep,
-                        href: "#"
-                      },
-                      {
-                        text: sections.methodSphere3.sphereStep,
-                        href: "#"
-                      },
-                      {
-                        text: sections.methodSphere4.sphereStep,
-                        href: "#"
-                      }
-                    ]}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="method" background="GREY" data-id="4">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSMethodBlock
+                        content={[
+                          { heading: sections.methodHead },
+                          { btntext: "Beautyprogramm starten", btnhref: "/start" },
+                          {
+                            text: sections.methodSphere1.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere2.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere3.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere4.sphereStep,
+                            href: "#"
+                          }
+                        ]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_ServicesBlock') {
               return (
-                <Section key={i} sectionid="quotes" background="LIGHTGREY" data-id="5">
-                  <HomeSServicesBlock
-                    content={sections.servicesServices.map((service,i) => {
-                      return {
-                        title: service.value.service_head,
-                        text: service.value.service_content
-                      };
-                    })}
-                    btn={[{ btntext: "Beautyprogramm starten", btnhref: "/start" }]}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="quotes" background="LIGHTGREY" data-id="5">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSServicesBlock
+                        content={sections.servicesServices.map((service,i) => {
+                          return {
+                            title: service.value.service_head,
+                            text: service.value.service_content
+                          };
+                        })}
+                        btn={[{ btntext: "Beautyprogramm starten", btnhref: "/start" }]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_ReviewsBlock') {
               return (
-                <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
-                
-                  <HomeSReviewsBlock
-                  
-                    heading={sections.reviewsHead}
-                    users={sections.reviewsReviews.map((review, index) => {
-                      return {
-                        name: review.value.review_name,
-                        img: reviewImages[index],
-                        quote: review.value.review_quote,
-                        info: review.value.review_info,
-                      };
-                    })}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSReviewsBlock
+                      
+                        heading={sections.reviewsHead}
+                        users={sections.reviewsReviews.map((review, index) => {
+                          return {
+                            name: review.value.review_name,
+                            img: reviewImages[index],
+                            quote: review.value.review_quote,
+                            info: review.value.review_info,
+                          };
+                        })}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_PricingBlock') {
               return (
-                <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
-                  <HomeSPricingBlock 
-                    heading={sections.pricingHead}
-                    cards={sections.pricingPricingcards.map((card, index) => {
-                      return {
-                        title: card.value.pricingcard_title,
-                        description: card.value.pricingcard_description,
-                        price: card.value.pricingcard_price,
-                      };
-                    })} 
-                  
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSPricingBlock 
+                        heading={sections.pricingHead}
+                        cards={sections.pricingPricingcards.map((card, index) => {
+                          return {
+                            title: card.value.pricingcard_title,
+                            description: card.value.pricingcard_description,
+                            price: card.value.pricingcard_price,
+                          };
+                        })} 
+                      
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else if (sections.__typename === 'Home_S_AboutBlock') {
               return (
-                <Section key={i} sectionid="about" background="WHITE" data-id="8">
-                  <HomeSAboutBlock
-                    content={[
-                      { heading: sections.aboutHead },
-                      { img: APIHost+sections.aboutImage.urlLink },
-                      { paragraph: sections.aboutParagraph }
-                    ]}
-                  />
-                </Section>
+                <Suspense fallback={<Loader/>}>
+                  <Section key={i} sectionid="about" background="WHITE" data-id="8">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSAboutBlock
+                        content={[
+                          { heading: sections.aboutHead },
+                          { img: APIHost+sections.aboutImage.urlLink },
+                          { paragraph: sections.aboutParagraph }
+                        ]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
               );
             } else {
               return false;
@@ -497,11 +555,13 @@ class Homepage extends Component {
             let returnparam;
             if (footers.__typename === "Home_F_InfoBlock") {
               returnparam = (
-                <Footer key={i}
-                  sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
-                  companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
-                  logo={logos[0].dark}
-                />
+                <Suspense fallback={<Loader/>}>
+                  <Footer key={i}
+                    sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
+                    companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
+                    logo={logos[0].dark}
+                  />
+                </Suspense>
               );
             }
             return (
@@ -510,13 +570,17 @@ class Homepage extends Component {
           })}
           {this.getUnique(btn_pages).map((id, i) => {
             return(
-              <RegisterModal
-                key={i}
-                pageid={id}
-              />
+              <Suspense fallback={<div></div>}>
+                <RegisterModal
+                  key={i}
+                  pageid={id}
+                />
+              </Suspense>
             )
-          })},
-          <CookieModal />
+          })}
+          <Suspense fallback={<div></div>}>
+            <CookieModal/>
+          </Suspense>
         </main>
       );
     } else {
