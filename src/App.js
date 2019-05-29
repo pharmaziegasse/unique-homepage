@@ -5,13 +5,6 @@
 // npm install node-sass classnames react-scripts apollo-boost react-apollo graphql --save
 // npx create-react-app unique-homepage
 
-// Changes in branch add-api-instagram-1
-/*
-
-  - Added full Instagram API support in Gallery Section
-
-*/
-
 // To get all dependencies: npm install
 
 // Standard libs
@@ -50,7 +43,7 @@ const cache = new InMemoryCache({ fragmentMatcher });
 
 const APILink = APIHost+"/api/graphql";
 
-console.log(APILink);
+// console.log(APILink);
 
 // Apollo client setup
 const client = new ApolloClient({

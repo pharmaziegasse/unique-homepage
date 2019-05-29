@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import Cookies from 'js-cookie'
 
 type Props = {
     sociallinks: string,
@@ -8,20 +7,9 @@ type Props = {
     logo: string
 }
 
-let getMode = () => {
-  let val = Cookies.get('s_mode');
-  if(val === '0'){
-    return false;
-  }else if(val === '1'){
-    return true;
-  }else{
-    return false;
-  }
-}
-
 const Footer = (props: Props): React.Element<*> => {
+  
     const { sociallinks, companyinfo, logo } = props;
-
     return (
         <footer className="page-footer font-small lighten-5 py-4 ">
 
@@ -71,14 +59,9 @@ const Footer = (props: Props): React.Element<*> => {
       </div>
       <hr/>
       <div className="row d-flex align-items-center dark-grey-text">
-        <div className="col-md-6">
+        <div className="col-md-12">
           <p className="text-center text-md-left">© 2018 - {(new Date().getFullYear())} Copyright: {companyinfo[0].copyrightholder}
           </p>
-        </div>
-        <div className="col-md-6 text-right">
-          <div className="switch">
-            <label>Light<input className="switch-mode" type="checkbox" defaultChecked={getMode()}/><span className="lever"></span>Dark</label>
-          </div>
         </div>
       </div>
     </div>

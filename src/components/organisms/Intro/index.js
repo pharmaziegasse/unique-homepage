@@ -1,10 +1,15 @@
 import * as React from 'react'
+import { lazy, Suspense } from 'react'
+import Loader from "../../organisms/Loader"
 
 // Import atoms
 import ModalBtn from "../../atoms/ModalButton"
 // Import molecules
-import Nav from "../../molecules/Nav";
-import Hero from "../../molecules/Hero";
+// import Nav from "../../molecules/Nav";
+// import Hero from "../../molecules/Hero";
+
+const Nav = lazy(() => import("../../molecules/Nav"));
+const Hero = lazy(() => import("../../molecules/Hero"));
 
 const Intro = (props: Props): React.Element<*> => {
     const { navitems, heroitems, sociallinks, logos, theme } = props;
@@ -66,6 +71,7 @@ const Intro = (props: Props): React.Element<*> => {
 
     return(
         <header id="home">
+        <Suspense fallback={<Loader/>}>
         <Nav theme={theme} logo={GetLogo(theme)}>
             <ul className="navbar-nav ml-auto d-flex justify-content-center align-items-center">
                 {navitems.map((item, i) => {
@@ -73,7 +79,11 @@ const Intro = (props: Props): React.Element<*> => {
                 })}
             </ul>
         </Nav>
-        <Hero heroitems={heroitems} sociallinks={sociallinks}/>
+        </Suspense>
+        
+        <Suspense fallback={<div></div>}>
+            <Hero heroitems={heroitems} sociallinks={sociallinks}/>
+        </Suspense>
        </header>
     )
 
