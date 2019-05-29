@@ -30,6 +30,7 @@ import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
 import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
 import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
 import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
+*/
 // Beta state blocks
 import HomeSGalleryBlock from "../../organisms/SectionContents/gallery";
 import HomeSFacebookBlock from "../../organisms/SectionContents/facebook";
@@ -245,7 +246,7 @@ query pages {
   }
 }
 `;
-
+/*
 // Image query
 /*const CMSFetchQuery_IMAGES = gql`
   query img($id: Int!){
