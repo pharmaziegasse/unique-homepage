@@ -5,13 +5,6 @@
 // npm install node-sass classnames react-scripts apollo-boost react-apollo graphql --save
 // npx create-react-app unique-homepage
 
-// Changes in branch cleanup-1
-/*
-  new:
-  - Disabled Google oAuth for now
-  - Fixed Facebook oAuth (Form fill-in)
-*/
-
 // To get all dependencies: npm install
 
 // Standard libs

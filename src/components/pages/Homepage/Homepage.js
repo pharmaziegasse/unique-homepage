@@ -30,7 +30,9 @@ import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
 import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
 import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
 import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
-*/
+// Beta state blocks
+import HomeSGalleryBlock from "../../organisms/SectionContents/gallery";
+import HomeSFacebookBlock from "../../organisms/SectionContents/facebook";
 
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
@@ -49,6 +51,36 @@ import {
 import "./Homepage.scss";
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
+
+const facebook_posts = [
+  { 
+    __typename: "Home_S_FacebookBlock",
+    title: "Facebook Posts",
+    urls: [
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346735155980114" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346735155980114" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" },
+      { value: "https://www.facebook.com/pharmaziegasse/photos/a.312926582694305/346412489345714" }
+    ]
+  }
+];
+
+const instagram_posts = [
+  { 
+    __typename: "Home_S_InstagramBlock",
+    title: "Instagram Posts",
+    captions: false,
+    urls: [
+      { value: "https://www.instagram.com/p/BvkEkPmH0Hh/" },
+      { value: "https://www.instagram.com/p/Bve5PDonpAD/" },
+      { value: "https://www.instagram.com/p/BvcT8Pbn9An/" },
+      { value: "https://www.instagram.com/p/BvkEkPmH0Hh/" },
+      { value: "https://www.instagram.com/p/Bve5PDonpAD/" }
+    ]
+  }
+];
 
 const CMSFetchQuery_PAGES = gql`
 query pages {
@@ -511,7 +543,13 @@ class Homepage extends Component {
                   </Section>
                 </Suspense>
               );
-            } else if (sections.__typename === 'Home_S_PricingBlock') {
+            } /*else if (true) {
+              return(
+                <Section sectionid="gallery" background="LIGHTGREY">
+                  <HomeSGalleryBlock />
+                </Section>
+              );
+            }*/ else if (sections.__typename === 'Home_S_PricingBlock') {
               return (
                 <Suspense fallback={<Loader/>}>
                   <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
@@ -551,6 +589,36 @@ class Homepage extends Component {
               return false;
             }
           })}
+         
+          <Section sectionid="facebook" background="LIGHTBLUE">
+            <HomeSFacebookBlock 
+              content={facebook_posts.map((facebook_post,i) => {
+                return {
+                  title: facebook_post.title,
+                  urls: facebook_post.urls.map((url,i) => {
+                    return {
+                      value: url.value
+                    }
+                  })
+                };
+              })} 
+            />
+          </Section>
+           <Section sectionid="gallery" background="LIGHTGREY">
+            <HomeSGalleryBlock 
+              content={instagram_posts.map((instagram_post,i) => {
+                return {
+                  title: instagram_post.title,
+                  captions: instagram_post.captions,
+                  urls: instagram_post.urls.map((url,i) => {
+                    return {
+                      value: url.value
+                    }
+                  })
+                };
+              })} 
+            />
+          </Section>
           {q_footers.map((footers, i) => {
             let returnparam;
             if (footers.__typename === "Home_F_InfoBlock") {
