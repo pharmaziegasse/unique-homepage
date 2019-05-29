@@ -30,8 +30,10 @@ import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
 import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
 import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
 import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
+// Beta state blocks
+import HomeSGalleryBlock from "../../organisms/SectionContents/gallery";
+import HomeSFacebookBlock from "../../organisms/SectionContents/facebook";
 */
-
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
 
@@ -208,12 +210,21 @@ query pages {
           }
           aboutParagraph
         }
+        ... on Home_S_FacebookBlock{
+          facebookHead
+          facebookUrls
+        }
+        ... on Home_S_InstagramBlock{
+          instagramHead
+          instagramCaptions
+          instagramUrls
+        }
       }
     }
   }
 }
 `;
-
+/*
 // Image query
 /*const CMSFetchQuery_IMAGES = gql`
   query img($id: Int!){
@@ -239,7 +250,8 @@ const HomeSServicesBlock = lazy(() => import("../../organisms/SectionContents/se
 const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/reviews.jsx"));
 const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pricing.js"));
 const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about.js"));
-
+const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
+const HomeSFacebookBlock = lazy(() => import("../../organisms/SectionContents/facebook"));
 
 
 /* LOCK */
@@ -343,8 +355,8 @@ class Homepage extends Component {
           {q_sections.map((sections, i) => {
             if (sections.__typename === 'Home_S_WhyBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="why" background="BLUE" data-id="0">
+                <Suspense key={i}  fallback={<Loader/>}>
+                  <Section sectionid="why" background="BLUE" data-id="0">
                     <Suspense fallback={<Loader/>}>
                       <HomeSWhyBlock
                           content={[
@@ -373,9 +385,8 @@ class Homepage extends Component {
               );
             } else if (sections.__typename === 'Home_S_IndividualBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
+                <Suspense key={i} fallback={<Loader/>}>
                   <Section
-                    key={i} 
                     sectionid="individual"
                     background="LIGHTBLUE"
                     data-id="1"
@@ -399,8 +410,8 @@ class Homepage extends Component {
               );
             } else if (sections.__typename === 'Home_S_ExpertsBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="experts" background="WHITE" data-id="2">
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="experts" background="WHITE" data-id="2">
                     <Suspense fallback={<Loader/>}>
                       <HomeSExpertsBlock
                         content={[
@@ -420,8 +431,8 @@ class Homepage extends Component {
               );
             } else if (sections.__typename === 'Home_S_LabBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="lab" background="LIGHTBLUE" data-id="3">
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="lab" background="LIGHTBLUE" data-id="3">
                     <Suspense fallback={<Loader/>}>
                       <HomeSLabBlock
                         content={[
@@ -443,8 +454,8 @@ class Homepage extends Component {
               );
             } else if (sections.__typename === 'Home_S_MethodBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="method" background="GREY" data-id="4">
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="method" background="GREY" data-id="4">
                     <Suspense fallback={<Loader/>}>
                       <HomeSMethodBlock
                         content={[
@@ -474,8 +485,8 @@ class Homepage extends Component {
               );
             } else if (sections.__typename === 'Home_S_ServicesBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="quotes" background="LIGHTGREY" data-id="5">
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="quotes" background="LIGHTGREY" data-id="5">
                     <Suspense fallback={<Loader/>}>
                       <HomeSServicesBlock
                         content={sections.servicesServices.map((service,i) => {
@@ -492,8 +503,8 @@ class Homepage extends Component {
               );
             } else if (sections.__typename === 'Home_S_ReviewsBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="reviews" background="BLUE" data-id="6">
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="reviews" background="BLUE" data-id="6">
                     <Suspense fallback={<Loader/>}>
                       <HomeSReviewsBlock
                       
@@ -511,10 +522,16 @@ class Homepage extends Component {
                   </Section>
                 </Suspense>
               );
-            } else if (sections.__typename === 'Home_S_PricingBlock') {
+            } /*else if (true) {
+              return(
+                <Section sectionid="gallery" background="LIGHTGREY">
+                  <HomeSGalleryBlock />
+                </Section>
+              );
+            }*/ else if (sections.__typename === 'Home_S_PricingBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="pricing" background="LIGHTBLUE" data-id="7">
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="pricing" background="LIGHTBLUE" data-id="7">
                     <Suspense fallback={<Loader/>}>
                       <HomeSPricingBlock 
                         heading={sections.pricingHead}
@@ -533,8 +550,8 @@ class Homepage extends Component {
               );
             } else if (sections.__typename === 'Home_S_AboutBlock') {
               return (
-                <Suspense fallback={<Loader/>}>
-                  <Section key={i} sectionid="about" background="WHITE" data-id="8">
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="about" background="WHITE" data-id="8">
                     <Suspense fallback={<Loader/>}>
                       <HomeSAboutBlock
                         content={[
@@ -542,6 +559,41 @@ class Homepage extends Component {
                           { img: APIHost+sections.aboutImage.urlLink },
                           { paragraph: sections.aboutParagraph }
                         ]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
+              );
+            } else if (sections.__typename === 'Home_S_InstagramBlock') {
+              return (
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="gallery" background="LIGHTGREY">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSGalleryBlock 
+                        title={sections.instagramHead}
+                        captions={sections.instagramCaptions}
+                        urls={sections.instagramUrls.map((instagram_post,i) => {
+                          return {
+                            url: instagram_post.value.instagram_url
+                          };
+                        })} 
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
+              );
+            } else if (sections.__typename === 'Home_S_FacebookBlock') {
+              return (
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="facebook" background="LIGHTBLUE">
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSFacebookBlock 
+                        title={sections.facebookHead}
+                        urls={sections.facebookUrls.map((facebook_post,i) => {
+                          return {
+                            url: facebook_post.value.facebook_url
+                          };
+                        })} 
                       />
                     </Suspense>
                   </Section>
@@ -555,8 +607,8 @@ class Homepage extends Component {
             let returnparam;
             if (footers.__typename === "Home_F_InfoBlock") {
               returnparam = (
-                <Suspense fallback={<Loader/>}>
-                  <Footer key={i}
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Footer 
                     sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
                     companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                     logo={logos[0].dark}
@@ -570,9 +622,8 @@ class Homepage extends Component {
           })}
           {this.getUnique(btn_pages).map((id, i) => {
             return(
-              <Suspense fallback={<div></div>}>
+              <Suspense key={i} fallback={<div></div>}>
                 <RegisterModal
-                  key={i}
                   pageid={id}
                 />
               </Suspense>
