@@ -61,7 +61,6 @@ class Facebook extends React.Component{
 
     // Support for non-container look
     getContainer = () => {
-        console.log(this.props.urls.length);
         if(this.props.urls.length > 2 && this.props.urls.length < 5){
             // Change to || return "py-5" || to have no container, if there are more than 2 Facebook posts
             // Please make sure to change the getDivider function return values accordingly

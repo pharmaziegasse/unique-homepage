@@ -66,9 +66,9 @@ const SectionContent = (props: Props): React.Element<*> => {
                     </div>
                 </div>
             </div>
-          
-            <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[1].btntext}</ModalBtn>
-
+            {props.btnShow !== null && 
+                <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[1].btntext}</ModalBtn>
+            }
         </div>
     )
 }

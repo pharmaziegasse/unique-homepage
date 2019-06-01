@@ -351,7 +351,6 @@ class Homepage extends Component {
         <main className="Homepage">
 
           {q_headers.map((slides, i) => {
-            
             return(
                 <Intro
                   key={i}
@@ -380,6 +379,7 @@ class Homepage extends Component {
                   <Section sectionid="why" background={sections.whyBackground} data-id="0">
                     <Suspense fallback={<Loader/>}>
                       <HomeSWhyBlock
+                          btnShow={ sections.whyButton }
                           showHead={sections.whyDisplayhead}
                           content={[
                             { heading: sections.whyHead },
@@ -415,6 +415,7 @@ class Homepage extends Component {
                   >
                     <Suspense fallback={<Loader/>}>
                       <HomeSIndividualBlock
+                        btnShow={ sections.individualButton }
                         showHead={sections.individualDisplayhead}
                         content={[
                           { heading: sections.individualHead },
@@ -437,6 +438,7 @@ class Homepage extends Component {
                   <Section sectionid="experts" background={sections.expertsBackground} data-id="2">
                     <Suspense fallback={<Loader/>}>
                       <HomeSExpertsBlock
+                        btnShow={ sections.expertsButton }
                         showHead={sections.expertsDisplayhead}
                         content={[
                           { heading: sections.expertsHead },
@@ -459,6 +461,7 @@ class Homepage extends Component {
                   <Section sectionid="lab" background={sections.labBackground} data-id="3">
                     <Suspense fallback={<Loader/>}>
                       <HomeSLabBlock
+                        btnShow={ sections.labButton }
                         showHead={sections.labDisplayhead}
                         content={[
                           {
@@ -483,6 +486,7 @@ class Homepage extends Component {
                   <Section sectionid="method" background={sections.methodBackground} data-id="4">
                     <Suspense fallback={<Loader/>}>
                       <HomeSMethodBlock
+                        btnShow={ sections.methodButton }
                         showHead={sections.methodDisplayhead}
                         content={[
                           { heading: sections.methodHead },
@@ -515,6 +519,7 @@ class Homepage extends Component {
                   <Section sectionid="quotes" background={sections.servicesBackground} data-id="5">
                     <Suspense fallback={<Loader/>}>
                       <HomeSServicesBlock
+                        btnShow={ sections.servicesButton }
                         content={sections.servicesServices.map((service,i) => {
                           return {
                             title: service.value.service_head,
@@ -569,7 +574,6 @@ class Homepage extends Component {
                             price: card.value.pricingcard_price,
                           };
                         })} 
-                      
                       />
                     </Suspense>
                   </Section>
