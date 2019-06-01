@@ -35,7 +35,9 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     return (
         <div className="container py-5">
-           <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: heading}}></h2>
+            {props.showHead === true &&
+                <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: heading}}></h2>
+            }
             <div className="row">
                 {cards.map((value, i) => {
                     return (

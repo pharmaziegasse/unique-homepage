@@ -35,13 +35,13 @@ const Intro = (props: Props): React.Element<*> => {
             if ( item.href.charAt( 0 ) === '#' ) {
                 return (    
                     <li key={i} className={GetState(item.active)}>
-                        <a className="nav-link m-1 sscroll" href={item.href}>{item.text}</a>
+                        <a className="nav-link m-1 sscroll" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
                     </li>
                 );
             }else{
                 return (    
                     <li key={i} className={GetState(item.active)}>
-                        <a className="nav-link m-1" href={item.href}>{item.text}</a>
+                        <a className="nav-link m-1" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
                     </li>
                 );
             }
@@ -52,7 +52,7 @@ const Intro = (props: Props): React.Element<*> => {
                         <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>
                     </li>,
                     <li key={i+1} className={GetState(item.active)}>
-                    <a className="nav-link m-1 d-block d-sm-none" href={item.href}>{item.text}</a>
+                    <a className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
                     </li>
                 ];
             }else if(theme === "L"){
@@ -61,7 +61,7 @@ const Intro = (props: Props): React.Element<*> => {
                          <ModalBtn btnstyle="oELEGANT" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>
                     </li>,
                     <li key={i+1} className={GetState(item.active)}>
-                    <a className="nav-link m-1 d-block d-sm-none" href={item.href}>{item.text}</a>
+                    <a className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
                     </li>
                 ];
             }

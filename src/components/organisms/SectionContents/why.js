@@ -12,7 +12,9 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     return (
         <div className="container text-center py-5">
-            <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            {props.showHead === true && 
+                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            }
             <div className="row section0-row my-5">
                 <div className="col-md-4">
                     <div className="row">
@@ -33,7 +35,9 @@ const SectionContent = (props: Props): React.Element<*> => {
                     </div>
                 </div>
             </div>
-            <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">Beautyprogramm starten</ModalBtn>
+            {props.btnShow !== null && 
+                <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">Beautyprogramm starten</ModalBtn>
+            }
         </div>
     )
 }

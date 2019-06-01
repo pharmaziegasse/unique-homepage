@@ -12,7 +12,9 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     return (
         <div className="container py-5">
-           <h2 className="h1-responsive font-weight-bold mb-5 pb-5">{content[0].heading}</h2>
+            {props.showHead === true &&
+                <h2 className="h1-responsive font-weight-bold mb-5 pb-5">{content[0].heading}</h2>
+            }
                 <ul className='graviola-container d-block d-sm-none'>
                     <li>
                         <div className="circle circle-white c2">
@@ -64,9 +66,9 @@ const SectionContent = (props: Props): React.Element<*> => {
                     </div>
                 </div>
             </div>
-          
-            <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[1].btntext}</ModalBtn>
-
+            {props.btnShow !== null && 
+                <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[1].btntext}</ModalBtn>
+            }
         </div>
     )
 }

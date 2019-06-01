@@ -19,12 +19,14 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     return (
         <div className="container pt-5 text-left">
-            <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            {props.showHead === true &&
+                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            }
             <div className="row mt-5">
             <div className="col-md-6">
                     <div className="row">
                         <div className="col-12 mb-5"><img draggable="false" className="img-fluid" src={content[1].img} alt="Beautyprogramm starten"/></div>
-                        <div className="col-12"><ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[2].btntext}</ModalBtn></div>
+                        <div className="col-12">{props.btnShow !== null && <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[2].btntext}</ModalBtn>}</div>
                     </div>
                 </div>
                 <div className="col-md-6">
