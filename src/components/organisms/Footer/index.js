@@ -8,10 +8,15 @@ type Props = {
 }
 
 const Footer = (props: Props): React.Element<*> => {
-  
-    const { sociallinks, companyinfo, logo } = props;
+
+    const { background, sociallinks, companyinfo, logo } = props;
+
+    let backgroundstyle = {
+      backgroundColor: background
+    }
+
     return (
-        <footer className="page-footer font-small lighten-5 py-4 ">
+        <footer className="page-footer font-small lighten-5 py-4 " style={backgroundstyle}>
 
     <div className="container text-center text-md-left">
 
