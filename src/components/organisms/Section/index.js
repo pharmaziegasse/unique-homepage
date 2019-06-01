@@ -1,9 +1,4 @@
 import * as React from 'react'
-import classnames from 'classnames/bind'
-
-import SectionBG from './section_bgs.js';
-
-var sbg = classnames.bind(SectionBG);
 
 type Props = {
     background: string,
@@ -15,21 +10,15 @@ type Props = {
 const Section = (props: Props): React.Element<*> => {
     const { background, children, className, sectionid } = props;
 
-    const classProps: string = classnames(
-        sbg(background),
-        className
-    )
+    let sectionStyle = {
+        backgroundColor: background
+    }
 
     return (
-        <section id={sectionid} className={classProps}>
+        <section id={sectionid} className={className} style={sectionStyle}>
             {children}
         </section>
     )
-}
-
-Section.defaultProps = {
-    background: SectionBG.WHITE,
-    className: ''
 }
 
 export default Section

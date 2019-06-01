@@ -19,7 +19,9 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     return (
         <div className="container py-5 text-left">
-            <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            {props.showHead === true &&
+                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            }
             <div className="text-center my-5">
                 <img draggable="false" className="img-fluid" src={content[1].img} alt="Beautyprogramm starten"/>
             </div>

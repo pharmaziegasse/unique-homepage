@@ -74,7 +74,9 @@ class Facebook extends React.Component{
     renderContent (){
         return(
             <div className="container py-5">
-                <h2 className="font-weight-bold">{this.props.title}</h2>
+                {this.props.showHead === true &&
+                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
+                }
                 <div className="row mt-4 w-100">
                     <FacebookProvider appId="438514240304319">
                     {this.props.urls.map((c, i) => {

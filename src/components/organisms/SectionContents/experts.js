@@ -19,7 +19,9 @@ const SectionContent = (props: Props): React.Element<*> => {
 
     return (
         <div className="container pt-5 text-left">
-            <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            {props.showHead === true &&
+                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+            }
             <div className="row mt-5">
             <div className="col-md-6">
                     <div className="row">
