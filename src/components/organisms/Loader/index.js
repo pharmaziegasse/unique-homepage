@@ -10,4 +10,4 @@ const Loader = (props: Props): React.Element<*> => {
     )
 }
 
-export default Loader;
+export default Loader

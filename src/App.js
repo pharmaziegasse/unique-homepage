@@ -16,8 +16,6 @@ import { HttpLink } from "apollo-link-http";
 import { InMemoryCache, IntrospectionFragmentMatcher } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 // Standard components
 import "./mdb/scss/mdb.scss";
 import "./App.scss";
@@ -26,8 +24,6 @@ import "./App.scss";
 
 // Pages
 import Homepage from "./components/pages/Homepage";
-import About from "./components/pages/About";
-import Privacy from "./components/pages/Privacy";
 
 // Base link
 export const APIHost = 'https://pharmaziegasse.at';
@@ -56,13 +52,7 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-      <Router>
-        <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/about" component={About} />
-          <Route path="/privacy" component={Privacy} />
-        </Switch>
-      </Router>
+        <Homepage />
       </ApolloProvider>
     );
   }

@@ -16,9 +16,12 @@ header,
         height: 100vh;
     }
 }
+
+
 // Scss of page
 .Homepage {
   text-align: center;
+
   .Homepage-logo {
     animation: App-logo-spin infinite 20s linear;
     height: 40vmin;
@@ -60,7 +63,15 @@ header,
             margin: auto !important;
         }
     }
-    
+
+    /* Facebook */
+    .fb-post{
+        iframe{
+            background-color: white !important;
+        }
+        
+    }
+
     /* Hero */
     @media (max-width: 740px) {
         h3{
