@@ -11,11 +11,11 @@ import FacebookLogin from 'react-facebook-login';
 import { FaFacebook } from 'react-icons/fa';
 
 
-import Checkbox from '../../atoms/Checkbox'
-import Input from '../../atoms/Input'
-import Button from '../../atoms/Button'
-import FlagIcon from '../../atoms/FlagIcon'
-import Alert from '../../atoms/Alert'
+import Checkbox from '../../../atoms/Checkbox'
+import Input from '../../../atoms/Input'
+import Button from '../../../atoms/Button'
+import FlagIcon from '../../../atoms/FlagIcon'
+import Alert from '../../../atoms/Alert'
 
 const CREATE_USER_MUTATION = gql`
     mutation user($values: GenericScalar!) {

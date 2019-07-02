@@ -26,35 +26,35 @@ class Facebook extends React.Component{
     getDivider = (i) => {
         switch(this.props.urls.length){
             case 1: {
-                return "col-md-12";
+                return "fb-post col-md-12";
             }
             case 2: {
-                return "col-md-6";
+                return "fb-post col-md-6";
             }
             case 3: {
-                return "col-md-4 mt-4";
+                return "fb-post col-md-4 mt-4";
             }
             case 4: {
                 if(i < 3){
-                    return "col-md-4 mt-4";
+                    return "fb-post col-md-4 mt-4";
                 }else{
                     // To center the last one
-                    return "col-md-12 mt-4"; 
+                    return "fb-post col-md-12 mt-4"; 
                 }
             }
             case 5: {
                 if(i < 3){
-                    return "col-md-4 mt-4";
+                    return "fb-post col-md-4 mt-4";
                 }else{
                     // To center the last two
-                    return "col-md-6 mt-4"; 
+                    return "fb-post col-md-6 mt-4"; 
                 }
             }
             case 6: {
-                return "col-md-4 mt-4";
+                return "fb-post col-md-4 mt-4";
             }
             default: {
-                return "col-md-12";
+                return "fb-post col-md-12";
             }
         }
     }

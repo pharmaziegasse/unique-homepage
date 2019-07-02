@@ -260,9 +260,14 @@ query pages {
 const Section = lazy(() => import("../../organisms/Section"));
 const Footer = lazy(() => import("../../organisms/Footer"));
 
-const RegisterModal = lazy(() => import("../../organisms/Modal"));
-const CookieModal = lazy(() => import("../../organisms/CookieModal"));
+// Modals
+const ContentModal = lazy(() => import("../../organisms/ContentModal"));
+const AboutModal = lazy(() => import("../../organisms/Modals/about"));
+const PrivacyModal = lazy(() => import("../../organisms/Modals/privacy"));
+const RegisterModal = lazy(() => import("../../organisms/Modals/register"));
+const CookieModal = lazy(() => import("../../organisms/Modals/cookie"));
 
+// Section Blocks
 const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"));
 const HomeSIndividualBlock = lazy(() => import("../../organisms/SectionContents/individual.js"));
 const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/experts.js"));
@@ -274,7 +279,6 @@ const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pri
 const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about.js"));
 const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
 const HomeSFacebookBlock = lazy(() => import("../../organisms/SectionContents/facebook"));
-
 
 /* LOCK */
 function getQueryVariable(variable) {
@@ -665,9 +669,31 @@ class Homepage extends Component {
               </Suspense>
             )
           })}
-          <Suspense fallback={<div></div>}>
-            <CookieModal/>
-          </Suspense>
+          <div>
+            <Suspense fallback={<div></div>}>
+              <CookieModal/>
+            </Suspense>
+          </div>
+          <div>
+            <Suspense fallback={<div></div>}>
+              <ContentModal
+                modaldata = {[{modalId: "aboutModal", modalTitle: "Impressum", modalLabel: "Impressum"}]}
+              >
+                <AboutModal/>
+              </ContentModal>
+            </Suspense>
+          </div>
+          <div>
+            <Suspense fallback={<div></div>}>
+              <ContentModal
+                modaldata={[{modalId: "privacyModal", modalTitle: "Datenschutzerklärung", modalLabel: "Datenschutz"}]}
+              >
+                <PrivacyModal/>
+              </ContentModal>
+            </Suspense>
+          </div>
+          
+          
         </main>
       );
     } else {
