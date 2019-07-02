@@ -71,6 +71,14 @@ header,
         }
         
     }
+    
+    /* Footer */
+    footer{
+        .link{
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    }
 
     /* Hero */
     @media (max-width: 740px) {

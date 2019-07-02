@@ -1,9 +1,6 @@
 import * as React from 'react'
 
 class ContentModal extends React.Component{
-    constructor(props){
-        super(props);
-    }
 
     render() {
         return (

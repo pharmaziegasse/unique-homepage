@@ -44,8 +44,8 @@ const Footer = (props: Props): React.Element<*> => {
         <hr className="w-100 clearfix d-md-none"/>
 
         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-          <p><a data-toggle="modal" data-target="#aboutModal">Impressum</a></p>
-          <p><a data-toggle="modal" data-target="#privacyModal">Datenschutz</a></p>
+          <p><span className="link" data-toggle="modal" data-target="#aboutModal">Impressum</span></p>
+          <p><span className="link" data-toggle="modal" data-target="#privacyModal">Datenschutz</span></p>
           <ul className="list-unstyled list-inline">
               <li className="list-inline-item">
                 <a href={sociallinks[0].fb} rel="noopener noreferrer" target="_blank" className="mx-2">
