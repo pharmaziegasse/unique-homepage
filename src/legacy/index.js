@@ -7,10 +7,6 @@
 // Replace with CMS!
 import logo_dark from "../components/pages/Homepage/dark.png";
 import logo_light from "../components/pages/Homepage/light.png";
-import pic1 from "./1.jpg";
-import pic2 from "./2.jpg";
-import pic3 from "./3.jpg";
-import pic4 from "./4.jpg";
 
 /*
 const client = new ApolloClient({
@@ -105,5 +101,3 @@ export const navitems = [
   { href: "/getting-started", text: "Loslegen", active: false, type: "button" }
 ];
 export const logos = [{ light: logo_light, dark: logo_dark }];
-
-export const reviewImages = [pic1,pic2,pic3,pic4]
