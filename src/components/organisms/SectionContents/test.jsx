@@ -10,36 +10,6 @@ const GET_IMAGE = gql`
 }
 `;
 
-/*class DelayedQuery extends Component {
-  state = { img: null };
-
-  onImgFetched = img => this.setState(() => ({ img }));
-
-  render() {
-    return (
-      <ApolloConsumer>
-        {client => (
-          <div>
-            {this.state.img && <img src={this.state.img} />}
-            <button
-                onClick={async () => {
-                let { data } = await client.query({
-                    query: GET_IMAGE,
-                    variables: { id: 13 }
-                });
-                this.onImgFetched(data);
-                console.log(data);
-                }}
-            >
-                Click me!
-            </button>
-          </div>
-        )}
-      </ApolloConsumer>
-    );
-  }
-}
-*/
 class DeplayedQuery extends Component {
      constructor(props){
         super(props);
@@ -57,8 +27,6 @@ class DeplayedQuery extends Component {
     }
 
     onImgFetched = (img, id) => {
-        console.log(img, id);
-
         this.setState({[id]: img});
     }
 
@@ -69,7 +37,6 @@ class DeplayedQuery extends Component {
                     <div className="imgcontainer">
                         <div className="py-2 img-profile-container" onClick={
                             async function(){
-                                console.log("Test");
                                 let { data } = await client.query({
                                     query: GET_IMAGE,
                                     variables: { id: image_id }
@@ -88,7 +55,6 @@ class DeplayedQuery extends Component {
     }
 
     render() {
-        console.log(this.props.users);
         return (
             <div className="container py-5 section-text-grey">
                 {this.props.showHead === true &&
