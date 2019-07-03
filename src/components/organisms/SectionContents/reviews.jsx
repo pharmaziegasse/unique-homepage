@@ -1,8 +1,21 @@
-import * as React from 'react'
+import React, { Component } from 'react';
+import { ApolloConsumer } from 'react-apollo';
+import { gql } from "apollo-boost";
 
-class Reviews extends React.Component{
-    constructor(props){
+const GET_IMAGE = gql`
+  query img($id: Int!){
+  image(id: $id){
+    urlLink
+  }
+}
+`;
+
+class DeplayedQuery extends Component {
+     constructor(props){
         super(props);
+        this.state = {
+           
+        }
     }
 
     getActiveItem = (id) => {
@@ -12,8 +25,36 @@ class Reviews extends React.Component{
             return "carousel-item";
         }
     }
-    render(){
-        console.log(this.getImg());
+
+    onImgFetched = (img, id) => {
+        this.setState({[id]: img});
+    }
+
+    renderImg = (image_id, key) => {
+        return(
+            <ApolloConsumer>
+                {client => (
+                    <div className="imgcontainer">
+                        <div className="py-2 img-profile-container" onClick={
+                            async function(){
+                                let { data } = await client.query({
+                                    query: GET_IMAGE,
+                                    variables: { id: image_id }
+                                });
+                                if(data !== undefined){
+                                    this.onImgFetched(data.image, key)
+                                }
+                            }.bind(this)
+                        }>
+                            {this.state[key] && <img width="160px" height="160px" className="rounded-circle img-fluid img-profile" src={"https://pharmaziegasse.at"+this.state[key].urlLink} alt="Profil" />}
+                        </div>
+                    </div>
+                )}
+            </ApolloConsumer>
+        )
+    }
+
+    render() {
         return (
             <div className="container py-5 section-text-grey">
                 {this.props.showHead === true &&
@@ -27,7 +68,7 @@ class Reviews extends React.Component{
                         <div key={i} className={this.getActiveItem(i)}>
                             <div className="testimonial">
                                 <div className="avatar mx-auto mb-4">
-                                    <img width="160px" height="160px" src={item.img} className="rounded-circle img-fluid" alt={item.name}/>
+                                    {this.renderImg(item.img, i)}
                                 </div>
                                 <p>
                                     <span dangerouslySetInnerHTML={{__html: item.quote}}></span>
@@ -52,8 +93,8 @@ class Reviews extends React.Component{
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
-export default Reviews;
+export default DeplayedQuery
