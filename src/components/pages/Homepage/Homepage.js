@@ -40,7 +40,6 @@ import logo_light from "./white.png";
 // Import vars
 import {
   navitems,
-  reviewImages
 } from "../../../legacy";
 
 import {
@@ -548,7 +547,7 @@ class Homepage extends Component {
                         users={sections.reviewsReviews.map((review, index) => {
                           return {
                             name: review.value.review_name,
-                            img: reviewImages[index],
+                            img: review.value.review_image,
                             quote: review.value.review_quote,
                             info: review.value.review_info,
                           };

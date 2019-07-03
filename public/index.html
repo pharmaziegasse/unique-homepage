@@ -80,7 +80,20 @@
             scrollTop: $(hash).offset().top - 73.797
           });
         }
-       
+
+        // Load Review Images workaround
+        loadImg = () => {
+          $( ".img-profile-container" ).trigger( "click" );
+        }
+        let interval = 0;
+        interval = window.setInterval(function(){
+         
+          if($('.img-profile').attr('src') === undefined){
+            loadImg();
+          } else {
+            clearInterval(interval);
+          }
+        }, 2000);
 
         $(document).on("click", ".sscroll", function(e) {
           let target = $(this).attr("href");
@@ -98,27 +111,6 @@
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })
-
-      
-      
-      loadImg = () => {
-        console.log("Called");
-        $( ".img-profile-container" ).trigger( "click" );
-      }
-
-      let interval = 0;
-
-      interval = window.setInterval(function(){
-        if($('.img-profile').attr('src') === undefined){
-          console.log("yes");
-          loadImg();
-        } else {
-          console.log("no");
-          clearInterval(interval);
-        }
-      }, 3000);
-      
-
     </script>
   </body>
 </html>
