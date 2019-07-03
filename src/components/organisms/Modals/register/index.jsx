@@ -85,6 +85,14 @@ class Modal extends React.Component{
         }
     }
 
+    componentDidMount(){
+        let encoded = localStorage.getItem('f_n');
+        if(encoded !== undefined && encoded !== ""){
+            let username = window.atob(encoded);
+            console.log(username);
+        }
+    }
+
     // oAuth response
     responseFacebook = (response) => {
         if(response.first_name !== undefined && response.first_name !== null){
@@ -141,6 +149,8 @@ class Modal extends React.Component{
                     // Hide error and show success message
                     this.setState({showError: false});
                     this.setState({showSuccess: true});
+                    var encodedData = window.btoa(this.state.prename); // encode a string
+                    localStorage.setItem('f_n', encodedData);
                 } else {
                     // Show error message and hide success message
                     this.setState({buffer: "Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben."})
