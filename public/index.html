@@ -98,6 +98,27 @@
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       })
+
+      
+      
+      loadImg = () => {
+        console.log("Called");
+        $( ".img-profile-container" ).trigger( "click" );
+      }
+
+      let interval = 0;
+
+      interval = window.setInterval(function(){
+        if($('.img-profile').attr('src') === undefined){
+          console.log("yes");
+          loadImg();
+        } else {
+          console.log("no");
+          clearInterval(interval);
+        }
+      }, 3000);
+      
+
     </script>
   </body>
 </html>
