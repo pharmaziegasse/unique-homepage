@@ -40,7 +40,6 @@ import logo_light from "./white.png";
 // Import vars
 import {
   navitems,
-  reviewImages
 } from "../../../legacy";
 
 import {
@@ -274,7 +273,7 @@ const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/exp
 const HomeSLabBlock = lazy(() => import("../../organisms/SectionContents/lab.js"));
 const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
 const HomeSServicesBlock = lazy(() => import("../../organisms/SectionContents/services.js"));
-const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/reviews.jsx"));
+const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/test.jsx"));
 const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pricing.js"));
 const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about.js"));
 const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
@@ -548,7 +547,7 @@ class Homepage extends Component {
                         users={sections.reviewsReviews.map((review, index) => {
                           return {
                             name: review.value.review_name,
-                            img: reviewImages[index],
+                            img: review.value.review_image,
                             quote: review.value.review_quote,
                             info: review.value.review_info,
                           };
