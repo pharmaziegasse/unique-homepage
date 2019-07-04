@@ -1,93 +1,8 @@
-//import { ApolloClient } from "apollo-client";
-//import { HttpLink } from "apollo-link-http";
-//import { InMemoryCache } from "apollo-cache-inmemory";
-//import gql from "graphql-tag";
-//import { graphql } from "react-apollo";
-
-// Replace with CMS!
+//** Static Files */
 import logo_dark from "../components/pages/Homepage/dark.png";
 import logo_light from "../components/pages/Homepage/light.png";
 
-/*
-const client = new ApolloClient({
-  link: new HttpLink({ uri: "https://thedifferent.at/api/graphql" }),
-  cache: new InMemoryCache()
-});
-*/
-
-/*
-var cms_data = ["a"];
-
-export const CMSFetchData = client
-  .query({
-    query: gql`
-      query articles {
-        articles {
-          header {
-            ... on HeadingBlock {
-              value
-            }
-          }
-          main {
-            ... on ParagraphBlock {
-              value
-            }
-          }
-          footer {
-            ... on HeadingBlock {
-              value
-            }
-          }
-        }
-      }
-    `
-  })
-  .then(result => {
-    let homepage = result.data.articles[0];
-    console.log(homepage.header);
-    console.log(homepage.main);
-    console.log(homepage.footer);
-  });
-*/
-//var cms_resolved = cms_data.map(a => a);
-
-//console.log(cms_data[0]);
-
-/*
-const query = gql`
-  query articles {
-    articles {
-      header {
-        ... on HeadingBlock {
-          value
-        }
-      }
-      main {
-        ... on ParagraphBlock {
-          value
-        }
-      }
-      footer {
-        ... on HeadingBlock {
-          value
-        }
-      }
-    }
-  }
-`;
-
-class CMSfetch {
-  displayDaten() {
-    var data = this.props.dat;
-    console.log("fak");
-    return data;
-  }
-}
-
-export default (lol = graphql(query)(CMSfetch));
-*/
-
-/* Later to be replaced with headless CMS content */
+//** Navigation Items */
 export const navitems = [
   { href: "#why", text: "Warum PHARMAZIEGASSE<sup>®</sup>?", active: false, type: "text" },
   {
@@ -100,4 +15,5 @@ export const navitems = [
   { href: "#about", text: "Über uns", active: false, type: "text" },
   { href: "/getting-started", text: "Loslegen", active: false, type: "button" }
 ];
+
 export const logos = [{ light: logo_light, dark: logo_dark }];
