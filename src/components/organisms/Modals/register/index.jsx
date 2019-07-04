@@ -25,8 +25,8 @@ import Alert from '../../../atoms/Alert'
 
 //** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
-    mutation user($values: GenericScalar!) {
-        homeFormPage(url: "/registrieren", values: $values) {
+    mutation register($values: GenericScalar!) {
+        registrationFormPage(url: "/registration", values: $values) {
             result
             errors {
                 name
@@ -40,7 +40,7 @@ const CREATE_USER_MUTATION = gql`
 const GET_MODAL_DATA = gql`
     query modal($id: Int!){
         page(id: $id){
-            ... on HomeFormPage{
+            ... on RegistrationFormPage{
                 registrationHead
                 registrationInfoText
                 registrationNewsletterText
@@ -129,9 +129,11 @@ class Modal extends React.Component{
 
     //** Send form data - create user with user mutation */
     sendData = async () => {
+        let buffer = [];
         //** Set values that will be sent */
+        //** Form: {"values": {"title": "dr", "first_name": "carlos", "last_name": "carlos", "email": "carlos@so.si", "telephone": "020932932480921", "address": "Klagenfurt", "zip_code": "9020", "city": "villach", "country": "austria", "newsletter": "true", "password": "ciscociso"}} */
         let formvalues = {
-            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": this.state.verified, "picture": this.state.picture
+            "first_name": this.state.prename, "last_name": this.state.surname, "newsletter": this.state.newsletter, "telephone": this.state.phone, "email": this.state.email, "verified": this.state.verified, "picture": this.state.picture
         };
         //** console.log(formvalues); */
         //** Check if the form values have been set (just to be sure) */
@@ -144,30 +146,31 @@ class Modal extends React.Component{
             })
             .then(({data}) => {
                 //** Handle response (debug using console.log of data) */
-                //console.log(data);
+                console.log(data);
                 if(data.homeFormPage.result === "OK"){
                     //** Hide error and show success message */
                     this.setState({showError: false});
                     this.setState({showSuccess: true});
                 } else {
                     //** Show error message and hide success message */
-                    this.setState({buffer: "Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben."})
+                    buffer.push("Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben.")
                     this.setState({showError: true});
                     this.setState({showSuccess: false});
                 }
             })
             .catch(error => {
-                this.setState({buffer: "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es etwas später erneut."})
+                buffer.push("Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es etwas später erneut.")
                 this.setState({showError: true});
                 this.setState({showSuccess: false});
                 console.error("Mutation error:");
                 console.log(error);
             })
         } else {
-            this.setState({buffer: "Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben."})
+            buffer.push("Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben.")
             this.setState({showError: true});
             this.setState({showSuccess: false});
         }
+        this.setState({buffer: buffer}, () => this.printError())
     };
 
     validateInput = () => {
@@ -314,13 +317,15 @@ class Modal extends React.Component{
         if(this.state.showError){
             //** Check if message (buffer) is written. */
             if(this.state.buffer !== null || this.state.buffer !== undefined){
-                return(
-                    <Alert className="alert-danger" show="true">
-                        {this.state.buffer.map((msg, i) => {      
-                            return <p key={i}>{msg}</p>
-                        })}
-                    </Alert>
-                );
+                if(this.state.buffer.length > 0){
+                    return(
+                        <Alert className="alert-danger" show="true">
+                            {this.state.buffer.map((msg, i) => {      
+                                return <p key={i}>{msg}</p>
+                            })}
+                        </Alert>
+                    );
+                }
             } else {
                 return(
                     <Alert className="alert-danger" show="true">
