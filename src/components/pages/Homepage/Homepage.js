@@ -348,7 +348,7 @@ class Homepage extends Component {
     const q_footers = homepage.footers;
 
     const btn_pages = [];
-    if (getQueryVariable("token") === homepage.token) {
+    if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined) {
       // Rendering of all active organisms
       
       return (
