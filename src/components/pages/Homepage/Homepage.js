@@ -58,6 +58,7 @@ query pages {
             }
             slideButton{
               buttonTitle
+              buttonLink
               buttonPage{
                 id
                 urlPath
@@ -80,6 +81,12 @@ query pages {
           whyDisplayhead
           whyHead
           whyButton{
+            buttonLink
+            buttonTitle
+            buttonPage{
+              id
+              urlPath
+            }
             id
           }
           whyCollum1{
@@ -111,6 +118,12 @@ query pages {
             urlLink
           }
           individualButton{
+            buttonLink
+            buttonTitle
+            buttonPage{
+              id
+              urlPath
+            }
             id
           }
           individualParagraph
@@ -125,6 +138,12 @@ query pages {
             urlLink
           }
           expertsButton{
+            buttonLink
+            buttonTitle
+            buttonPage{
+              id
+              urlPath
+            }
             id
           }
           expertsParagraph
@@ -139,6 +158,12 @@ query pages {
             urlLink
           }
           labButton{
+            buttonLink
+            buttonTitle
+            buttonPage{
+              id
+              urlPath
+            }
             id
           }
           labParagraph
@@ -149,6 +174,12 @@ query pages {
           methodDisplayhead
           methodBackground
           methodButton{
+            buttonLink
+            buttonTitle
+            buttonPage{
+              id
+              urlPath
+            }
             id
           }
           methodSphere1{
@@ -169,6 +200,12 @@ query pages {
           servicesBackground
           servicesServices
           servicesButton{
+            buttonLink
+            buttonTitle
+            buttonPage{
+              id
+              urlPath
+            }
             id
           }
         }
@@ -336,8 +373,7 @@ class Homepage extends Component {
                       img: APIHost+slide.slideImage.urlLink,
                       head: slide.slideHead,
                       subhead: slide.slideSubhead,
-                      btntext: "Beautyprogramm starten",
-                      btnhref: "/start"
+                      btn: slide.slideButton
                     };
                   })}
                   sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
@@ -352,8 +388,8 @@ class Homepage extends Component {
                   <Section sectionid="why" background={sections.whyBackground} data-id="0">
                     <Suspense fallback={<Loader/>}>
                       <HomeSWhyBlock
-                          btnShow={ sections.whyButton }
-                          showHead={sections.whyDisplayhead}
+                          showHead = { sections.whyDisplayhead }
+                          btn = { sections.whyButton }
                           content={[
                             { heading: sections.whyHead },
                             {
@@ -367,10 +403,6 @@ class Homepage extends Component {
                             {
                               icon: APIHost+sections.whyCollum3.collumImage.urlLink,
                               text: sections.whyCollum3.collumParagraph
-                            },
-                            {
-                              btntext: "Beautyprogramm starten",
-                              btnhref: "/start"
                             }
                           ]}
                         />
@@ -388,15 +420,11 @@ class Homepage extends Component {
                   >
                     <Suspense fallback={<Loader/>}>
                       <HomeSIndividualBlock
-                        btnShow={ sections.individualButton }
-                        showHead={sections.individualDisplayhead}
+                        showHead={ sections.individualDisplayhead }
+                        btn = { sections.individualButton }
                         content={[
                           { heading: sections.individualHead },
                           { img: APIHost+sections.individualImage.urlLink },
-                          {
-                            btntext: "Beautyprogramm starten",
-                            btnhref: "/start"
-                          },
                           { lead: sections.individualLead },
                           { paragraph: sections.individualParagraph }
                         ]}
@@ -411,15 +439,11 @@ class Homepage extends Component {
                   <Section sectionid="experts" background={sections.expertsBackground} data-id="2">
                     <Suspense fallback={<Loader/>}>
                       <HomeSExpertsBlock
-                        btnShow={ sections.expertsButton }
                         showHead={sections.expertsDisplayhead}
+                        btn = { sections.expertsButton }
                         content={[
                           { heading: sections.expertsHead },
                           { img: APIHost+sections.expertsImage.urlLink },
-                          {
-                            btntext: "Beautyprogramm starten",
-                            btnhref: "/start"
-                          },
                           { lead: sections.expertsLead },
                           { paragraph: sections.expertsParagraph }
                         ]}
@@ -434,17 +458,13 @@ class Homepage extends Component {
                   <Section sectionid="lab" background={sections.labBackground} data-id="3">
                     <Suspense fallback={<Loader/>}>
                       <HomeSLabBlock
-                        btnShow={ sections.labButton }
                         showHead={sections.labDisplayhead}
+                        btn = { sections.labButton }
                         content={[
                           {
                             heading: sections.labHead
                           },
                           { img: APIHost+sections.labImage.urlLink },
-                          {
-                            btntext: "Beautyprogramm starten",
-                            btnhref: "/start"
-                          },
                           { lead: sections.labLead },
                           { paragraph: sections.labParagraph }
                         ]}
@@ -459,11 +479,10 @@ class Homepage extends Component {
                   <Section sectionid="method" background={sections.methodBackground} data-id="4">
                     <Suspense fallback={<Loader/>}>
                       <HomeSMethodBlock
-                        btnShow={ sections.methodButton }
                         showHead={sections.methodDisplayhead}
+                        btn = { sections.methodButton }
                         content={[
                           { heading: sections.methodHead },
-                          { btntext: "Beautyprogramm starten", btnhref: "/start" },
                           {
                             text: sections.methodSphere1.sphereStep,
                             href: "#"
@@ -492,14 +511,13 @@ class Homepage extends Component {
                   <Section sectionid="quotes" background={sections.servicesBackground} data-id="5">
                     <Suspense fallback={<Loader/>}>
                       <HomeSServicesBlock
-                        btnShow={ sections.servicesButton }
                         content={sections.servicesServices.map((service,i) => {
                           return {
                             title: service.value.service_head,
                             text: service.value.service_content
                           };
                         })}
-                        btn={[{ btntext: "Beautyprogramm starten", btnhref: "/start" }]}
+                        btn = {sections.servicesButton}
                       />
                     </Suspense>
                   </Section>
