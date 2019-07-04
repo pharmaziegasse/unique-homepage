@@ -1,9 +1,16 @@
+//** Standard Frameworks */
 import React from 'react'
+//** Extended Standard Frameworks */
 import classnames from 'classnames/bind'
 
-class Checkbox extends React.Component{   
+/**
+ * General Checkbox Component
+ */
+class Checkbox extends React.Component{
+    //** Get a random number for ID purposes - probably better and saver to create unique IDs */
     rand = Math.floor((Math.random() * 1000) + 1);
 
+    //* Change function (check -> uncheck || uncheck -> check) */
     onFieldChange(event) {
         const fieldName = event.target.name;
         const fieldValue = event.target.checked;
@@ -11,6 +18,7 @@ class Checkbox extends React.Component{
     }
 
     render() {
+        //** Combine multiple values for className */
         const classProps: string = classnames(
             "form-check",
             this.props.className

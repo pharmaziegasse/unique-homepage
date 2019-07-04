@@ -1,19 +1,22 @@
+//** Standard Frameworks */
 import * as React from 'react'
+//** Extended Standard Frameworks */
 import { lazy, Suspense } from 'react'
+
+//** Components */
+//** Atoms */
+import ModalBtn from "../../atoms/ModalButton"
+//** Organisms */
 import Loader from "../../organisms/Loader"
 
-// Import atoms
-import ModalBtn from "../../atoms/ModalButton"
-// Import molecules
-// import Nav from "../../molecules/Nav";
-// import Hero from "../../molecules/Hero";
-
+//** Lazy Loading */
 const Nav = lazy(() => import("../../molecules/Nav"));
 const Hero = lazy(() => import("../../molecules/Hero"));
 
 const Intro = (props: Props): React.Element<*> => {
     const { navitems, heroitems, sociallinks, logos, theme } = props;
 
+    //** Get active Menu item */
     function GetState(active) {
         if (active) {
             return "nav-item active";
@@ -22,6 +25,7 @@ const Intro = (props: Props): React.Element<*> => {
         }
     }
 
+    //** Decide which logo to use depending on Nav theme (Light or Dark) */
     function GetLogo(theme){
         if(theme === "D"){
             return logos[0].light;
@@ -30,8 +34,11 @@ const Intro = (props: Props): React.Element<*> => {
         }
     }
 
+    //** Get Button type */
     function PrintType(item, i){
+        //** Smooth Scroll button */
         if (item.type === "text"){
+            //** Check if # is in link */
             if ( item.href.charAt( 0 ) === '#' ) {
                 return (    
                     <li key={i} className={GetState(item.active)}>
@@ -47,6 +54,7 @@ const Intro = (props: Props): React.Element<*> => {
             }
         }else{
             if(theme === "D"){
+                //** Dark Theme */
                 return [
                     <li key={i} className={GetState(item.active)}>
                         <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>
@@ -56,6 +64,7 @@ const Intro = (props: Props): React.Element<*> => {
                     </li>
                 ];
             }else if(theme === "L"){
+                //** Light Theme */
                 return [
                     <li key={i} className={GetState(item.active)}>
                          <ModalBtn btnstyle="oELEGANT" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>

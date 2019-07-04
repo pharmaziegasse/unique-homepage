@@ -1,3 +1,4 @@
+//** Standard Frameworks */
 import * as React from 'react'
 
 class AboutModalContent extends React.Component{
@@ -9,7 +10,6 @@ class AboutModalContent extends React.Component{
         }
     }
 
-   
     renderContent (){
         return(
             <div>

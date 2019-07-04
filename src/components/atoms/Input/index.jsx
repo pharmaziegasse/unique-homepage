@@ -1,13 +1,20 @@
+//** Standard Frameworks */
 import React from 'react'
+//** Extended Standard Frameworks */
 import classnames from 'classnames/bind'
 
-class Checkbox extends React.Component{
+/**
+ * General Input Component
+ */
+class Input extends React.Component{
+    //** Change handler */
     onFieldChange(event) {
         const fieldName = event.target.name;
         const fieldValue = event.target.value;
         this.props.onChange(fieldName, fieldValue);
     }
 
+    //** Validator */
     validate() {
         if(this.props.validation) {
             return "valid";
@@ -17,6 +24,7 @@ class Checkbox extends React.Component{
     }
 
     render() {
+        //** Combine multiple values for className */
         const classProps: string = classnames(
             "form-control",
             this.props.className,
@@ -30,4 +38,4 @@ class Checkbox extends React.Component{
     
 };
 
-export default Checkbox;
+export default Input;

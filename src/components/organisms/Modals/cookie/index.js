@@ -1,4 +1,7 @@
+//** Standard Frameworks */
 import * as React from 'react'
+
+//** Additional Frameworks */
 import Cookies from 'js-cookie'
 
 class CookieModal extends React.Component{
@@ -17,7 +20,7 @@ class CookieModal extends React.Component{
         //Set cookie 
         Cookies.set('AcceptCookie', '1'); 
     }
-
+    //** Check if AcceptCookie Cookie is set (User has already accepted the Cookie information) */
     getStatus() {
         let val = Cookies.get('AcceptCookie');
         if(val === '0'){

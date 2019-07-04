@@ -1,5 +1,9 @@
+//** Standard Frameworks */
 import * as React from 'react'
 
+/**
+ * General Content Modal Component for About and Privacy modals
+ */
 class ContentModal extends React.Component{
 
     render() {

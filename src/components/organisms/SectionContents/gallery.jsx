@@ -1,10 +1,11 @@
+//** Standard Frameworks */
 import * as React from 'react'
+//** Additional Frameworks */
 import InstagramEmbed from 'react-instagram-embed';
 
-// Icons
-// import { FaInstagram } from 'react-icons/fa';
-
-
+/**
+ * Section: Instagram
+ */
 class Gallery extends React.Component{
     constructor(props){
         super(props);
@@ -14,6 +15,7 @@ class Gallery extends React.Component{
         }
     }
 
+    //** Show captions or not */
     captionStatus = () => {
         if(this.props.captions){
             return false;
@@ -22,7 +24,7 @@ class Gallery extends React.Component{
         }
     }
 
-    // Makes sure the alignment of the posts is visualiy pleasing, no matter the number of posts
+    //** Makes sure the alignment of the posts is visualiy pleasing, no matter the number of posts */
     getDivider = (i) => {
         switch(this.props.urls.length){
             case 1: {
@@ -38,7 +40,7 @@ class Gallery extends React.Component{
                 if(i < 3){
                     return "col-md-4 mt-4";
                 }else{
-                    // To center the last one
+                    //** To center the last one */
                     return "col-md-12 mt-4"; 
                 }
             }
@@ -46,7 +48,7 @@ class Gallery extends React.Component{
                 if(i < 3){
                     return "col-md-4 mt-4";
                 }else{
-                    // To center the last two
+                    //** To center the last two */
                     return "col-md-6 mt-4"; 
                 }
             }

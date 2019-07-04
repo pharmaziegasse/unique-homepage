@@ -1,12 +1,17 @@
+//** Standard Frameworks */
 import * as React from 'react'
 
-//Import atoms
+//** Components */
+//** Atoms */
 import ModalBtn from "../../atoms/ModalButton"
 
 type Props = {
     content: string
 }
 
+/**
+ * Section: Lab
+ */
 const SectionContent = (props: Props): React.Element<*> => {
     const { content } = props;
 
