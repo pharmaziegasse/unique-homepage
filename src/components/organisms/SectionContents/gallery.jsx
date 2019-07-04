@@ -83,7 +83,7 @@ class Gallery extends React.Component{
     renderContent (){
         
         return(
-            <div className="container instagram py-5 section-text-grey">
+            <div className="container instagram py-5">
                 {this.props.showHead === true &&
                     <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
                 }

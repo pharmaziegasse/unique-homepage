@@ -39,7 +39,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     }
 
     return (
-        <div className="container py-5 section-text-grey">
+        <div className="container py-5">
             {props.showHead === true &&
                 <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: heading}}></h2>
             }

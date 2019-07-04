@@ -32,7 +32,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     }
 
     return (
-        <div className="py-5 section-text-grey">
+        <div className="py-5">
            
             
             <div className="wrapper-carousel-fix">
