@@ -1,10 +1,11 @@
+//** Standard Frameworks */
 import * as React from 'react'
+//** Additional Frameworks */
 import { FacebookProvider, EmbeddedPost, MessageUs  } from 'react-facebook';
 
-// Icons
-// import { FaInstagram } from 'react-icons/fa';
-
-
+/**
+ * Section: Facebook
+ */
 class Facebook extends React.Component{
     constructor(props){
         super(props);
@@ -14,6 +15,7 @@ class Facebook extends React.Component{
         }
     }
 
+    //** Render Facebook Post Embed */
     renderProvider = (url, i) => {
         return(
             <div key={i} className={this.getDivider(i)}>
@@ -22,7 +24,7 @@ class Facebook extends React.Component{
         );
     }
 
-    // Makes sure the alignment of the posts is visualiy pleasing, no matter the number of posts
+    //** Makes sure the alignment of the posts is visualiy pleasing, no matter the number of posts */
     getDivider = (i) => {
         switch(this.props.urls.length){
             case 1: {
@@ -38,7 +40,7 @@ class Facebook extends React.Component{
                 if(i < 3){
                     return "fb-post col-md-4 mt-4";
                 }else{
-                    // To center the last one
+                    //** To center the last one */
                     return "fb-post col-md-12 mt-4"; 
                 }
             }
@@ -46,7 +48,7 @@ class Facebook extends React.Component{
                 if(i < 3){
                     return "fb-post col-md-4 mt-4";
                 }else{
-                    // To center the last two
+                    //** To center the last two */
                     return "fb-post col-md-6 mt-4"; 
                 }
             }
@@ -59,11 +61,11 @@ class Facebook extends React.Component{
         }
     }
 
-    // Support for non-container look
+    //** Support for non-container look */
     getContainer = () => {
         if(this.props.urls.length > 2 && this.props.urls.length < 5){
-            // Change to || return "py-5" || to have no container, if there are more than 2 Facebook posts
-            // Please make sure to change the getDivider function return values accordingly
+            //** Change to || return "py-5" || to have no container, if there are more than 2 Facebook posts */
+            //** Please make sure to change the getDivider function return values accordingly */
             return "container py-5"
         } else {
             return "container py-5"

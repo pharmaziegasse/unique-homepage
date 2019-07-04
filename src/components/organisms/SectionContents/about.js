@@ -1,12 +1,17 @@
+//** Standard Frameworks */
 import * as React from 'react'
 
 type Props = {
     content: string
 }
 
+/**
+ * Section: About
+ */
 const SectionContent = (props: Props): React.Element<*> => {
     const { content } = props;
 
+    //** Dynamic paragraph rendering */
     function printParagraph(i){
         if(typeof content[i].paragraph != "undefined"){
             return (<div key={i} dangerouslySetInnerHTML={{__html: content[i].paragraph}}></div>)

@@ -1,5 +1,7 @@
+//** Standard Frameworks */
 import React from "react";
 
+//** Lazy Loader Animation (Balls) */
 const Loader = (props: Props): React.Element<*> => {
     return(
         <div className="loader">

@@ -1,22 +1,24 @@
+//** Standard Frameworks */
 import * as React from 'react'
 
-//Import atoms
+//** Components */
+//** Atoms */
 import ModalBtn from "../../atoms/ModalButton"
 
-type Props = {
-    className: string,
-    sociallinks: string;
-}
-
+/**
+ * General Hero Element
+ */
 const Hero = (props: Props): React.Element<*> => {
     const { heroitems, sociallinks } = props;
 
-
+    //** Make the first carousel INDICATOR the active */
     function getActive(id){
         if(id === 0){
             return "active";
         }
     }
+
+    //** Make the first carousel VIEW item the active */
     function getActiveItem(id){
         if(id === 0){
             return "carousel-item active";
@@ -24,6 +26,8 @@ const Hero = (props: Props): React.Element<*> => {
             return "carousel-item";
         }
     }
+
+    //** Check if button exists (has values) */
     function checkButton(text, href){
         if(text !== "" && href !== ""){
             return <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold" size="LG">{text}</ModalBtn>
@@ -40,7 +44,9 @@ const Hero = (props: Props): React.Element<*> => {
          
             <div className="carousel-inner" role="listbox">
 
-            {heroitems.map((item, i) => {
+            {
+                 //** Render individual hero carousel items */
+                heroitems.map((item, i) => {
                 return (
                     <div key={i} className={getActiveItem(i)}>
                         <div className="view hero-view" style={{backgroundImage: 'url('+ item.img +')'}}>
@@ -79,7 +85,6 @@ const Hero = (props: Props): React.Element<*> => {
                     </div>
                 </div>
             </div>
-
             <a className="carousel-control-prev" href="#hero-carousel" role="button" data-slide="prev">
             </a>
             <a className="carousel-control-next" href="#hero-carousel" role="button" data-slide="next">

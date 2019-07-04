@@ -1,7 +1,12 @@
+//** Standard Frameworks */
 import React, { Component } from 'react';
+
+//** Additional Frameworks */
+//** Apollo */
 import { ApolloConsumer } from 'react-apollo';
 import { gql } from "apollo-boost";
 
+//** Mutation: Get Image */
 const GET_IMAGE = gql`
   query img($id: Int!){
   image(id: $id){
@@ -10,6 +15,9 @@ const GET_IMAGE = gql`
 }
 `;
 
+/**
+ * Section: Reviews
+ */
 class DeplayedQuery extends Component {
      constructor(props){
         super(props);

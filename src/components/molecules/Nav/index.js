@@ -1,14 +1,25 @@
+//** Standard Frameworks */
 import * as React from 'react'
+//** Extended Standard Frameworks */
 import classnames from 'classnames/bind'
 
-//Themes
+//** Additional visual values */
 import NavTheme from './nav_themes.js';
+/**
+ * POSSIBLE VALUES
+ * L (Light)
+ * D (Dark)
+ */
 
-
+/**
+ * General Navbar Component
+ */
 class Nav extends React.Component {
 
+    //** Connect additional visual values with classname */
     navt = classnames.bind(NavTheme);
 
+    //** Combine multiple values for className */
     classProps = classnames(
         "navbar",
         "navbar-expand-lg",

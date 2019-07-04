@@ -1,15 +1,21 @@
+//** Standard Frameworks */
 import * as React from 'react'
 
+//** Preconfigure datatypes */
 type Props = {
     sociallinks: string,
     companyinfo: string,
     logo: string
 }
 
+/**
+ * Footer Element
+ */
 const Footer = (props: Props): React.Element<*> => {
 
     const { background, sociallinks, companyinfo, logo } = props;
 
+    //** Set style */
     let backgroundstyle = {
       backgroundColor: background
     }

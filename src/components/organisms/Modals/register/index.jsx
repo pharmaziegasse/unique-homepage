@@ -1,22 +1,29 @@
+//** Standard Frameworks */
 import * as React from 'react'
+
+//** Additional Frameworks */
+//** Validation */
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 import * as EmailValidator from 'email-validator';
-// Apollo
+//** Apollo */
 import { graphql, compose } from 'react-apollo';
 import { gql } from "apollo-boost";
-// oAuth 
+//** oAuth */
 import FacebookLogin from 'react-facebook-login';
-// import GoogleLogin from 'react-google-login';
-// Icons
+//import GoogleLogin from 'react-google-login';
+
+//** Icons */
 import { FaFacebook } from 'react-icons/fa';
 
-
+//** Components */
+//** Atoms */
 import Checkbox from '../../../atoms/Checkbox'
 import Input from '../../../atoms/Input'
 import Button from '../../../atoms/Button'
 import FlagIcon from '../../../atoms/FlagIcon'
 import Alert from '../../../atoms/Alert'
 
+//** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
     mutation user($values: GenericScalar!) {
         homeFormPage(url: "/registrieren", values: $values) {
@@ -29,6 +36,7 @@ const CREATE_USER_MUTATION = gql`
     }
 `;
 
+//** Mutation: Get Data for Modal */
 const GET_MODAL_DATA = gql`
     query modal($id: Int!){
         page(id: $id){
@@ -55,14 +63,14 @@ class Modal extends React.Component{
     constructor(props){
         super(props);
 
-        // oAuthed = If user is already logged in with Facebook or Google
-        //  Difference between phone and phonelive (maps to everything else too):
-        //  Phone is the final state, which is set by the validation-function. Phonelive is the current value of the input field.
-        // picture is set when provided by Facebook oAuth
-        // country is gathered from phone number and is required for the flag to show
-        // verified = If user has proceeded using Facebook oAuth (not that likely to be a bot)
-        // formHidden = When user proceeds with Facebook oAuth, most data is already known. The name + email form is hidden
-        // showError / showSuccess = Displays the corresponding messages
+        //** oAuthed = If user is already logged in with Facebook or Google */
+        //**  Difference between phone and phonelive (maps to everything else too): */
+        //**  Phone is the final state, which is set by the validation-function. Phonelive is the current value of the input field. */
+        //** picture is set when provided by Facebook oAuth */
+        //** country is gathered from phone number and is required for the flag to show */
+        //** verified = If user has proceeded using Facebook oAuth (not that likely to be a bot) */
+        //** formHidden = When user proceeds with Facebook oAuth, most data is already known. The name + email form is hidden */
+        //** showError / showSuccess = Displays the corresponding messages */
 
         this.state = {
            phone: undefined,
@@ -85,7 +93,7 @@ class Modal extends React.Component{
         }
     }
 
-    // oAuth response
+    //** oAuth response */
     responseFacebook = (response) => {
         if(response.first_name !== undefined && response.first_name !== null){
             this.setState({prenamelive: response.first_name});
@@ -107,42 +115,42 @@ class Modal extends React.Component{
         this.oAuthSuccess();
     }
 
-    // Google oAuth has been deactivated for now
+    //** Google oAuth has been deactivated for now */
     /*responseGoogle = (response) => {
         console.log(response);
     }*/
 
-    // oAuth function
+    //** oAuth function */
     oAuthSuccess = () => {
-        // Hide oAuth buttons
+        //** Hide oAuth buttons
         this.setState({oAuthed: true});
         this.setState({formHidden: true});
     }
 
-    // Send form data - create user with user mutation
+    //** Send form data - create user with user mutation */
     sendData = async () => {
-        // Set values that will be sent
+        //** Set values that will be sent */
         let formvalues = {
             "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": this.state.verified, "picture": this.state.picture
         };
-        // console.log(formvalues);
-        // Check if the form values have been set (just to be sure)
+        //** console.log(formvalues); */
+        //** Check if the form values have been set (just to be sure) */
         if(formvalues !== null || formvalues !== undefined){
-            // Call graphQL mutation
+            //** Call graphQL mutation */
             await this.props.user({
                 variables: {
                     values: formvalues
                 }
             })
             .then(({data}) => {
-                // Handle response (debug using console.log of data)
-                // console.log(data);
+                //** Handle response (debug using console.log of data) */
+                //console.log(data);
                 if(data.homeFormPage.result === "OK"){
-                    // Hide error and show success message
+                    //** Hide error and show success message */
                     this.setState({showError: false});
                     this.setState({showSuccess: true});
                 } else {
-                    // Show error message and hide success message
+                    //** Show error message and hide success message */
                     this.setState({buffer: "Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben."})
                     this.setState({showError: true});
                     this.setState({showSuccess: false});
@@ -169,14 +177,14 @@ class Modal extends React.Component{
         this.checkName("prename",this.state.prenamelive);
     }
 
-    // Handle the submit of the modal form
+    //** Handle the submit of the modal form */
     handleSubmitForm = (event) => {
         event.preventDefault();
         let error = [];
         let buffer = [];
         
-        // Check inputs and generate errors
-        // Errors are written to a buffer which is then written to this.state.buffer
+        //** Check inputs and generate errors */
+        //** Errors are written to a buffer which is then written to this.state.buffer */
         if(this.state.phone === undefined){
             buffer.push("Bitte geben Sie eine Telefonnummer ein.");
             error.push(1);
@@ -203,19 +211,19 @@ class Modal extends React.Component{
             error.push(6);
         }
         if(error !== 'undefined' && error.length > 0){
-            // Write buffer, show error alert and hide success alert
+            //** Write buffer, show error alert and hide success alert */
             this.setState({buffer:buffer});
             this.setState({showError: true});
             this.setState({showSuccess: false});
         }else{
-            // If no errors -> Send the data using a graphQL mutation
+            //** If no errors -> Send the data using a graphQL mutation */
             this.sendData();
         };
     }
 
-    // Update states with latest input field data + verify inputs
+    //** Update states with latest input field data + verify inputs */
     handleChange = (field, value) => {
-        // Update live states and check validity in callback
+        //** Update live states and check validity in callback */
         switch (field) {
             case 'phone':
                 this.setState({phonelive:value}, this.checkTel(value))
@@ -241,7 +249,7 @@ class Modal extends React.Component{
         
     }
 
-    // Check if phone number is valid
+    //** Check if phone number is valid */
     checkTel = (value) => {
         if(value !== ''){
             const phoneNumber = parsePhoneNumberFromString(value);
@@ -265,7 +273,7 @@ class Modal extends React.Component{
         }
     }
 
-    // Check if E-Mail is valid
+    //** Check if E-Mail is valid */
     checkEmail = (value) => {
         if(value !== ''){
             if(EmailValidator.validate(value)){
@@ -278,7 +286,7 @@ class Modal extends React.Component{
         }
     }
 
-    // Check if name contains special chars
+    //** Check if name contains special chars */
     checkName = (field,value) => {
         let format = /[ !@#$%^&*()_+\-=\]{};':"\\|,.<>?]/;
         if(format.test(value) === false){
@@ -293,18 +301,18 @@ class Modal extends React.Component{
         }
     }
 
-    // Update flag icon in phone input
+    //** Update flag icon in phone input */
     printFlag = () => {
         if(this.state.country !== false){
             return <FlagIcon code={this.state.country} />
         }
     }
 
-    // Print error Alert component
+    //** Print error Alert component */
     printError = () => {
-        // There have been issues, where printError() was called, but this.state.showError and this.state.buffer was false -> leading to crash
+        //** There have been issues, where printError() was called, but this.state.showError and this.state.buffer was false -> leading to crash */
         if(this.state.showError){
-            // Check if message (buffer) is written.
+            //** Check if message (buffer) is written. */
             if(this.state.buffer !== null || this.state.buffer !== undefined){
                 return(
                     <Alert className="alert-danger" show="true">
@@ -326,14 +334,14 @@ class Modal extends React.Component{
         }
     }
 
-    // Show formular for edit
+    //** Show formular for edit */ 
     editForm = () => {
         this.setState({formHidden: false});
     }
 
     renderContent (){
         
-        // Text data for the modal
+        //** Text data for the modal */ 
         let modaldata = (this.props.data.page);
 
         return(
@@ -372,7 +380,7 @@ class Modal extends React.Component{
                                         />
                                     
                                         {
-                                            // Google oAuth has been disabled for now
+                                            //** Google oAuth has been disabled for now */
 
                                             /*<GoogleLogin
                                                 clientId="762647868786-a6do4s713inonqo663lbgqqgo40u5sen.apps.googleusercontent.com"
@@ -465,8 +473,5 @@ export default compose(
     }),
     graphql(GET_MODAL_DATA, {
         options: (props) => ({ variables: { id: 4 } })
-    }),
-    /*graphql(GET_MODAL_DATA, {
-        name: 'modal'
-    }),*/
+    })
 )(Modal);

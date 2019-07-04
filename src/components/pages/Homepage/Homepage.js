@@ -1,43 +1,23 @@
-// standard libs
-
-// other libs
+//** Standard Frameworks */
 import React, { Component, lazy, Suspense } from "react";
+
+//** Additional Frameworks */
+/** Apollo */
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
+/** Loaders */
 import { RingLoader } from 'react-spinners';
-//import { Query } from "react-apollo"; /* Not used yet */
 
-// standard components
-
-// basic organisms
+//** Components */
+//** Organisms */
 import Loader from "../../organisms/Loader";
 import Intro from "../../organisms/Intro";
-// import Section from "../../organisms/Section";
-// import Footer from "../../organisms/Footer";
 
-// modals
-// import RegisterModal from "../../organisms/Modal";
-// import CookieModal from "../../organisms/CookieModal";
-
-// section content organisms
-/*
-import HomeSWhyBlock from "../../organisms/SectionContents/why.js";
-import HomeSIndividualBlock from "../../organisms/SectionContents/individual.js";
-import HomeSExpertsBlock from "../../organisms/SectionContents/experts.js";
-import HomeSLabBlock from "../../organisms/SectionContents/lab.js";
-import HomeSMethodBlock from "../../organisms/SectionContents/method.js";
-import HomeSServicesBlock from "../../organisms/SectionContents/services.js";
-import HomeSReviewsBlock from "../../organisms/SectionContents/reviews.jsx";
-import HomeSPricingBlock from "../../organisms/SectionContents/pricing.js";
-import HomeSAboutBlock from "../../organisms/SectionContents/about.js";
-// Beta state blocks
-import HomeSGalleryBlock from "../../organisms/SectionContents/gallery";
-import HomeSFacebookBlock from "../../organisms/SectionContents/facebook";
-*/
+//** Ressources */
 import logo_dark from "./black.png";
 import logo_light from "./white.png";
 
-// Import vars
+//** Import static values */
 import {
   navitems,
 } from "../../../legacy";
@@ -46,7 +26,7 @@ import {
   APIHost
 } from "../../../App"
 
-// Custom CSS
+//** Custom SCSS  */
 import "./Homepage.scss";
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
@@ -246,7 +226,7 @@ query pages {
 }
 `;
 /*
-// Image query
+//** Image query
 /*const CMSFetchQuery_IMAGES = gql`
   query img($id: Int!){
     image(id: $id){
@@ -255,18 +235,17 @@ query pages {
   }
 `;*/
 
-// const Intro = lazy(() => import("../../organisms/Intro"));
 const Section = lazy(() => import("../../organisms/Section"));
 const Footer = lazy(() => import("../../organisms/Footer"));
 
-// Modals
+//** Modals */
 const ContentModal = lazy(() => import("../../organisms/ContentModal"));
 const AboutModal = lazy(() => import("../../organisms/Modals/about"));
 const PrivacyModal = lazy(() => import("../../organisms/Modals/privacy"));
 const RegisterModal = lazy(() => import("../../organisms/Modals/register"));
 const CookieModal = lazy(() => import("../../organisms/Modals/cookie"));
 
-// Section Blocks
+//** Section Blocks */
 const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"));
 const HomeSIndividualBlock = lazy(() => import("../../organisms/SectionContents/individual.js"));
 const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/experts.js"));
@@ -279,7 +258,7 @@ const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about
 const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
 const HomeSFacebookBlock = lazy(() => import("../../organisms/SectionContents/facebook"));
 
-/* LOCK */
+//** LOCK */
 function getQueryVariable(variable) {
   var query = window.location.search.substring(1);
   //console.log(query)//"app=article&act=news_content&aid=160990"
@@ -295,10 +274,10 @@ function getQueryVariable(variable) {
   return false;
 }
 
-// Rendering of all active organisms
+//** Rendering of all active organisms */
 class Homepage extends Component {
 
-  // Get all the unique values of array
+  //** Get all the unique values of array */
   getUnique = (a) => {
     var arr = [];
     for(var i = 0; i < a.length; i++) {
@@ -349,7 +328,7 @@ class Homepage extends Component {
 
     const btn_pages = [];
     if (getQueryVariable("token") === homepage.token) {
-      // Rendering of all active organisms
+      //** Rendering of all active organisms */
       
       return (
         <main className="Homepage">
