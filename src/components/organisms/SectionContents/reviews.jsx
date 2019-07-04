@@ -64,7 +64,7 @@ class DeplayedQuery extends Component {
 
     render() {
         return (
-            <div className="container py-5 section-text-grey">
+            <div className="container py-5">
                 {this.props.showHead === true &&
                     <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: this.props.heading}}></h2>
                 }
