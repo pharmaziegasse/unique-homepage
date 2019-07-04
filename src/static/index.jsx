@@ -1,6 +1,6 @@
 //** Static Files */
-import logo_dark from "../components/pages/Homepage/dark.png";
-import logo_light from "../components/pages/Homepage/light.png";
+import logo_dark from "./black.png";
+import logo_light from "./white.png";
 
 //** Navigation Items */
 export const navitems = [

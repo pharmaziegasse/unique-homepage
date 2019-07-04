@@ -13,18 +13,12 @@ import { RingLoader } from 'react-spinners';
 import Loader from "../../organisms/Loader";
 import Intro from "../../organisms/Intro";
 
-//** Ressources */
-import logo_dark from "./black.png";
-import logo_light from "./white.png";
-
 //** Import static values */
-import { navitems } from "../../../static";
+import { navitems, logos } from "../../../static";
 import { APIHost } from "../../../App";
 
 //** Custom SCSS  */
 import "./Homepage.scss";
-
-export const logos = [{ light: logo_light, dark: logo_dark }];
 
 const CMSFetchQuery_PAGES = gql`
 query pages {
