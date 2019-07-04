@@ -18,13 +18,8 @@ import logo_dark from "./black.png";
 import logo_light from "./white.png";
 
 //** Import static values */
-import {
-  navitems,
-} from "../../../legacy";
-
-import {
-  APIHost
-} from "../../../App"
+import { navitems } from "../../../static";
+import { APIHost } from "../../../App";
 
 //** Custom SCSS  */
 import "./Homepage.scss";
