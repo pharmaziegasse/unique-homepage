@@ -24,7 +24,7 @@ import "./App.scss";
 import Homepage from "./components/pages/Homepage";
 
 //** Base link */
-export const APIHost = 'https://test.pharmaziegasse.at';
+export const APIHost = 'https://pharmaziegasse.at';
 
 //** Cache setup */
 const fragmentMatcher = new IntrospectionFragmentMatcher({
