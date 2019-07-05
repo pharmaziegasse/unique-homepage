@@ -368,7 +368,7 @@ class Homepage extends Component {
                   navitems={navitems}
                   theme="D"
                   heroitems={slides.value.map((slide, i) => {
-                    btn_pages.push(slide.slideButton.buttonPage.id);
+                    btn_pages.push(slide.slideButton.buttonPage);
                     return {
                       img: APIHost+slide.slideImage.urlLink,
                       head: slide.slideHead,
