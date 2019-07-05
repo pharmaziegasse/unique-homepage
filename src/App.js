@@ -8,6 +8,7 @@
 
 //** Standard Frameworks */
 import React, { Component } from "react";
+import { BrowserRouter } from 'react-router-dom'
 
 //** Additional Frameworks */
 /** Apollo */
@@ -20,11 +21,11 @@ import { ApolloProvider } from "react-apollo";
 import "./mdb/scss/mdb.scss";
 import "./App.scss";
 
-//** Pages */
-import Homepage from "./components/pages/Homepage";
+//** Authenticator */
+import Auth from "./components/organisms/Auth";
 
 //** Base link */
-export const APIHost = 'https://pharmaziegasse.at';
+export const APIHost = 'https://test.pharmaziegasse.at';
 
 //** Cache setup */
 const fragmentMatcher = new IntrospectionFragmentMatcher({
@@ -49,9 +50,11 @@ const client = new ApolloClient({
 class App extends Component {
   render() {
     return (
-      <ApolloProvider client={client}>
-        <Homepage />
-      </ApolloProvider>
+      <BrowserRouter>
+        <ApolloProvider client={client}>
+          <Auth />
+        </ApolloProvider>
+      </BrowserRouter>
     );
   }
 }
