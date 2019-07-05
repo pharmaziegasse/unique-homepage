@@ -366,7 +366,6 @@ class Homepage extends Component {
                   key={i}
                   logos={logos}
                   navitems={navitems}
-                  theme="D"
                   heroitems={slides.value.map((slide, i) => {
                     btn_pages.push(slide.slideButton.buttonPage);
                     return {
