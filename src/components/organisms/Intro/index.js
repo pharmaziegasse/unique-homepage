@@ -4,8 +4,6 @@ import * as React from 'react'
 import { lazy, Suspense } from 'react'
 
 //** Components */
-//** Atoms */
-import ModalBtn from "../../atoms/ModalButton"
 //** Organisms */
 import Loader from "../../organisms/Loader"
 
@@ -57,17 +55,9 @@ const Intro = (props: Props): React.Element<*> => {
                 //** Dark Theme */
                 return [
                     <li key={i} className={GetState(item.active)}>
-                        <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>
-                    </li>,
-                    <li key={i+1} className={GetState(item.active)}>
-                    <a className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
-                    </li>
-                ];
-            }else if(theme === "L"){
-                //** Light Theme */
-                return [
-                    <li key={i} className={GetState(item.active)}>
-                         <ModalBtn btnstyle="oELEGANT" modal="#modalRegister" className="font-weight-bold d-none d-sm-block">{item.text}</ModalBtn>
+                        <button data-toggle="modal" data-target="#registrieren" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
+                            {item.text}
+                        </button>
                     </li>,
                     <li key={i+1} className={GetState(item.active)}>
                     <a className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
