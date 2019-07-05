@@ -28,10 +28,8 @@ const Hero = (props: Props): React.Element<*> => {
     }
 
     //** Check if button exists (has values) */
-    function checkButton(text, href){
-        if(text !== "" && href !== ""){
-            return <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold" size="LG">{text}</ModalBtn>
-        }
+    function checkButton(btn){
+        return <ModalBtn size="LG" param={btn} />
     }
 
     return (
@@ -57,7 +55,7 @@ const Hero = (props: Props): React.Element<*> => {
                                             <div className="hero-content">
                                                 <h1 className="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong dangerouslySetInnerHTML={{__html: item.head}}></strong></h1>
                                                 <h3 className="my-5 white-text wow fadeInDown" data-wow-delay="0.4s"><strong dangerouslySetInnerHTML={{__html: item.subhead}}></strong></h3>
-                                                {checkButton(item.btntext,item.btnhref)}
+                                                {checkButton(item.btn)}
                                             </div>
                                         </div>
                                     </div>

@@ -345,7 +345,7 @@ class Modal extends React.Component{
         let modaldata = (this.props.data.page);
 
         return(
-            <div className="modal fade" id="modalRegister" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
+            <div className="modal fade" id="registration" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
             
             <div className="modal-dialog modal-lg modal-notify modal-info" role="document">
                 <div className="modal-content">

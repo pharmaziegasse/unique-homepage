@@ -13,8 +13,7 @@ type Props = {
  * Section: Why
  */
 const SectionContent = (props: Props): React.Element<*> => {
-    const { content } = props;
-
+    const { content, btn } = props;
     return (
         <div className="container text-center py-5">
             {props.showHead === true && 
@@ -40,9 +39,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                     </div>
                 </div>
             </div>
-            {props.btnShow !== null && 
-                <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">Beautyprogramm starten</ModalBtn>
-            }
+            <ModalBtn param={btn} />
         </div>
     )
 }

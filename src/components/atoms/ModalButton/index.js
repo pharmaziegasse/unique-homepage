@@ -42,47 +42,87 @@ var cbs = classnames.bind(ButtonSize);
 var cbst = classnames.bind(ButtonStyle);
 var cbt = classnames.bind(ButtonType);
 
-//** Preconfigure datatypes */
-type Props = {
-    btnstyle: string,
-    size: string,
-    children: React.Node,
-    className: string,
-    disabled: boolean
-}
-
 /**
  * General Button Element
  */
-const Button = (props: Props): React.Element<*> => {
-    const { btnstyle, btntype, size, children, className, disabled, modal } = props;
+class Button extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+           visible: false
+        }
+    }
+
+    isModal = () => {
+        if(this.exists()){
+            if(this.props.param.btnlink === null || this.props.param.btnlink === undefined){
+                this.props.param.buttonPage.urlPath = this.props.param.buttonPage.urlPath.replace('/','#');
+                return true;
+            }
+            if(this.props.param.btnlink !== null && this.props.param.btnlink !== undefined){
+                console.error("Link");
+                return false;
+            } 
+        }
+        
+    }
+
+    exists = () =>{
+        if(this.props.param === undefined || this.props.param === null){
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     //** Combine multiple values for className */
-    const classProps: string = classnames(
-        "btn",
-        cbst(btnstyle),
-        cbt(btntype),
-        cbs(size),
-        {
-            disabled
-        },
-        className
-    )
-
-    return (
-        <button data-toggle="modal" data-target={modal} className={classProps}>
-            {children}
-        </button>
-    )
+    getClassProps = () => {
+        let props = classnames(
+            "btn",
+            "font-weight-bold",
+            cbst(this.props.btnstyle),
+            cbt(this.props.btntype),
+            cbs(this.props.size),
+            this.props.disabled,
+            this.props.className
+        )
+        return props;
+    }
+    
+    render() {
+        return (
+            <div>
+                { this.exists() &&
+                    <div>
+                        {this.isModal() === true ? (
+                                <button data-toggle="modal" data-target={this.props.param.buttonPage.urlPath} className={this.getClassProps()}>
+                                    {this.props.param.buttonTitle}
+                                </button>
+                            ) : (
+                                <a href={this.props.param.buttonLink} className={this.getClassProps()}>
+                                    {this.props.param.buttonTitle}
+                                </a>
+                            )
+                        }
+                    </div>
+                }
+            </div>
+        )
+    }
+    
 }
 
 //** Define how a default button should look (without any additional information provided) */
 Button.defaultProps = {
     size: ButtonSize.DEFAULT,
-    btnstyle: ButtonStyle.oWHITE,
+    btnstyle: ButtonStyle.WHITE,
     btntype: ButtonType.R,
     className: '',
-    disabled: false
+    disabled: false,
+    btnlink: null,
+    btntitle: "Unnamed",
+    btnhref: ""
 }
 
 export default Button

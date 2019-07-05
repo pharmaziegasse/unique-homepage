@@ -13,7 +13,7 @@ type Props = {
  * Section: Individual
  */
 const SectionContent = (props: Props): React.Element<*> => {
-    const { content } = props;
+    const { content, btn } = props;
 
     function printParagraph(i){
         if(typeof content[i].paragraph != "undefined"){
@@ -29,7 +29,7 @@ const SectionContent = (props: Props): React.Element<*> => {
             }
             <div className="row my-5">
                 <div className="col-md-6">
-                   <div className="lead" dangerouslySetInnerHTML={{__html: content[3].lead}}></div>
+                   <div className="lead" dangerouslySetInnerHTML={{__html: content[2].lead}}></div>
                     {content.map((item, i) => {
                         return (
                             printParagraph(i)
@@ -40,9 +40,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div className="row">
                         <div className="col-12 mb-5"><img draggable="false" className="img-fluid" src={content[1].img} alt="Beautyprogramm starten"/></div>
                         <div className="col-12">
-                            {props.btnShow !== null &&
-                                <ModalBtn btnstyle="WHITE" modal="#modalRegister" className="font-weight-bold">{content[2].btntext}</ModalBtn>
-                            }
+                            <ModalBtn param={btn} />
                         </div>
                     </div>
                 </div>
