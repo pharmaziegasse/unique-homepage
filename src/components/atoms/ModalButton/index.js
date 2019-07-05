@@ -72,7 +72,15 @@ class Button extends React.Component {
         if(this.props.param === undefined || this.props.param === null){
             return false;
         } else {
-            return true;
+            if(this.props.param.buttonPage !== null && this.props.param.buttonPage !== undefined){
+                if(this.props.param.btnlink !== null && this.props.param.btnlink !== undefined){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
         }
     }
 
