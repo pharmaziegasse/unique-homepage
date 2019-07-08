@@ -21,8 +21,8 @@ import { APIHost } from "../../../App";
 import "./Homepage.scss";
 
 const CMSFetchQuery_PAGES = gql`
-query pages {
-  pages {
+query pages{
+  pages(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImNpc2NvIiwiZXhwIjoxNTYyNjAxNzY2LCJvcmlnSWF0IjoxNTYyNjAxNDY2fQ.uJZIBFdGaSM_8Fi-kFmyC6OkeO6oL7JJQgVdzuNOh2A") {
     id
     title
     ... on HomeUniquePage {
@@ -251,15 +251,6 @@ query pages {
   }
 }
 `;
-/*
-//** Image query
-/*const CMSFetchQuery_IMAGES = gql`
-  query img($id: Int!){
-    image(id: $id){
-      urlLink
-    }
-  }
-`;*/
 
 const Section = lazy(() => import("../../organisms/Section"));
 const Footer = lazy(() => import("../../organisms/Footer"));
@@ -302,6 +293,28 @@ function getQueryVariable(variable) {
 
 //** Rendering of all active organisms */
 class Homepage extends Component {
+  constructor(props){
+      super(props);
+      this.state = {
+          token: false
+      }
+  }
+
+  componentDidMount(){
+    //** Get JWT Token and decode it */
+    console.log(localStorage.getItem("ares"));
+    /*let encoded = localStorage.getItem('ares');
+    if(encoded !== undefined && encoded !== ""){
+        let jwt_token = window.atob(encoded);
+        this.setState({token: jwt_token})
+        console.log("New Token:"+jwt_token);
+    }*/
+  }
+
+  componentDidUpdate(){
+    console.log(this.props);
+    console.log(localStorage.getItem("ares"));
+  }
 
   //** Get all the unique values of array */
   getUnique = (a) => {
@@ -354,7 +367,7 @@ class Homepage extends Component {
 
     const btn_pages = [];
 
-    if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined) {
+    if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined || homepage.token === null) {
       // Rendering of all active organisms
       
       return (
@@ -699,8 +712,11 @@ class Homepage extends Component {
   }
   
   render() {
+    console.log(this.state);
     return this.renderContent();
   }
 }
 
-export default graphql(CMSFetchQuery_PAGES)(Homepage);
+export default graphql(CMSFetchQuery_PAGES, {
+  options: { variables: { "token": localStorage.getItem("ares") } }
+})( Homepage );
