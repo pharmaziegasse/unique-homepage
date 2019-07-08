@@ -9,11 +9,9 @@ import { gql } from "apollo-boost";
 import Homepage from "../../pages/Homepage";
 
 const LOGIN_USER = gql`
-    mutation login{
-        login(username:"cisco",password:"ciscocisco"){
-            user{
-            id
-            }
+    mutation tokenAuth{
+        tokenAuth(username:"cisco",password:"ciscocisco"){
+            token
         }
     }
 `;
@@ -34,20 +32,19 @@ class Auth extends Component{
     login = async () => {
         this.props.mutate()
         .then(({ loading, data }) => {
-            if(data !== null && data.login !== null && data.login.user !== null && data.login.user.id !== null){
-                console.log(data.login.user);
-                if(data.login.user.id === "1"){
-                    console.log("Reached");
-                    this.setState({logged: true})
+            console.log(data);
+            if(data !== null && data.tokenAuth !== null){
+                if(data.tokenAuth.token !== undefined && data.tokenAuth.token !== ""){
+                    localStorage.setItem('myData', data.tokenAuth.token);
+                    this.setState({logged: true});
                 } else {
-                    this.setState({logged: false})
+                    this.setState({logged: false});
                 }
             } else {
-                this.setState({logged: false})
+                this.setState({logged: false});
             }
         }).catch((loading, error) => {
             console.warn('there was an error sending the query', error);
-            this.setState({logged: false})
         });
     };
 

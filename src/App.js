@@ -22,10 +22,11 @@ import "./mdb/scss/mdb.scss";
 import "./App.scss";
 
 //** Authenticator */
-import Auth from "./components/organisms/Auth";
+//import Auth from "./components/organisms/Auth";
+import Homepage from "./components/pages/Homepage";
 
 //** Base link */
-export const APIHost = 'https://test.pharmaziegasse.at';
+export const APIHost = 'https://pharmaziegasse.at';
 
 //** Cache setup */
 const fragmentMatcher = new IntrospectionFragmentMatcher({
@@ -40,19 +41,33 @@ const cache = new InMemoryCache({ fragmentMatcher });
 //** Creating API Link from Host */
 const APILink = APIHost+"/api/graphql";
 
-//** Apollo client setup */
-const client = new ApolloClient({
-  cache,
-  link: new HttpLink({ uri: APILink })
-});
-
 //** Rendering of all active pages */
 class App extends Component {
+  
+  createClient = () => {
+    console.log(this.props.token);
+
+    const token = this.props.token;
+    
+    return new ApolloClient({
+      cache,
+      link: new HttpLink({
+        uri: APILink,
+        opts: {
+          credentials: true,
+          },
+        headers: {
+            'Authenticator': token
+          }
+      })
+    });
+  }
+
   render() {
     return (
       <BrowserRouter>
-        <ApolloProvider client={client}>
-          <Auth />
+        <ApolloProvider client={this.createClient()}>
+          <Homepage />
         </ApolloProvider>
       </BrowserRouter>
     );
