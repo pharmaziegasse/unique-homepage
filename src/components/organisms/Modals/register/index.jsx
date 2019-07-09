@@ -348,6 +348,7 @@ class Modal extends React.Component{
         //** Text data for the modal */ 
         if(this.props.data.pages[1] !== undefined){
             let modaldata = (this.props.data.pages[1]);
+            console.log(modaldata);
 
             return(
                 <div className="modal fade" id="registration" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
@@ -439,12 +440,14 @@ class Modal extends React.Component{
                                                 </p>
                                             </div>
                                         )}
-                                        <div className="text-left">
+                                        <div className="text-left mb-3">
                                         <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationNewsletterText}}></div></Checkbox>
                                         <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationPrivacyText}}></div></Checkbox>
                                         </div>
-                                        <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: this.props.data.step1}}></div>
-                                        <input className="btn btn-outline-elegant font-weight-bold" type="submit" value="Starten" />
+                                        {modaldata.registrationButton.buttonPage !== null &&
+                                            <input className="btn btn-outline-elegant font-weight-bold" type="submit" value={modaldata.registrationButton.buttonTitle} />
+                                        }   
+                                        
                                     </form>
                                 </div>
                                 <div className="col-md-5 text-left">
