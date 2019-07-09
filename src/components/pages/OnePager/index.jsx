@@ -2,9 +2,6 @@
 import React, { Component, lazy, Suspense } from "react";
 
 //** Additional Frameworks */
-/** Apollo */
-import { gql } from "apollo-boost";
-import { graphql } from "react-apollo";
 /** Loaders */
 import { RingLoader } from 'react-spinners';
 
@@ -18,239 +15,7 @@ import { navitems, logos } from "../../../static";
 import { APIHost } from "../../../App";
 
 //** Custom SCSS  */
-import "./Homepage.scss";
-
-const CMSFetchQuery_PAGES = gql`
-query pages{
-  pages(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImNpc2NvIiwiZXhwIjoxNTYyNjAxNzY2LCJvcmlnSWF0IjoxNTYyNjAxNDY2fQ.uJZIBFdGaSM_8Fi-kFmyC6OkeO6oL7JJQgVdzuNOh2A") {
-    id
-    title
-    ... on HomeUniquePage {
-      __typename
-      token
-      id
-      title
-      city
-      zipCode
-      address
-      telephone
-      telefax
-      vatNumber
-      taxId
-      courtOfRegistry
-      placeOfRegistry
-      tradeRegisterNumber
-      copyrightholder
-      sociallinks{
-        ... on StringBlock{
-          value
-        }
-      }
-      ownership
-      email
-      headers{
-        ... on HomeHero_SlideBlockListBlock{
-          value{
-            slideHead
-            slideSubhead
-            slideImage{
-              urlLink
-            }
-            slideButton{
-              buttonTitle
-              buttonLink
-              buttonPage{
-                id
-                urlPath
-              }
-            }
-          }
-        }
-      }
-      footers {
-        ... on Home_F_InfoBlock{
-          __typename
-          infoPlaceholder
-          infoBackground
-        }
-      }
-      sections {
-      	... on Home_S_WhyBlock {
-          __typename
-          whyBackground
-          whyDisplayhead
-          whyHead
-          whyButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
-          }
-          whyCollum1{
-            collumImage{
-              urlLink
-            }
-            collumParagraph
-          }
-          whyCollum2{
-            collumImage{
-              urlLink
-            }
-            collumParagraph
-          }
-          whyCollum3{
-            collumImage{
-              urlLink
-            }
-            collumParagraph
-          }
-        }
-        ... on Home_S_IndividualBlock {
-          __typename
-          individualHead
-          individualDisplayhead
-          individualBackground
-          individualLead
-          individualImage{
-            urlLink
-          }
-          individualButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
-          }
-          individualParagraph
-        }
-        ... on Home_S_ExpertsBlock {
-          __typename
-          expertsHead
-          expertsBackground
-          expertsDisplayhead
-          expertsLead
-          expertsImage{
-            urlLink
-          }
-          expertsButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
-          }
-          expertsParagraph
-        }
-        ... on Home_S_LabBlock {
-          __typename
-          labHead
-          labLead
-          labBackground
-          labDisplayhead
-          labImage{
-            urlLink
-          }
-          labButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
-          }
-          labParagraph
-        }
-        ... on Home_S_MethodBlock {
-          __typename
-          methodHead
-          methodDisplayhead
-          methodBackground
-          methodButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
-          }
-          methodSphere1{
-            sphereStep
-          }
-          methodSphere2{
-            sphereStep
-          }
-          methodSphere3{
-            sphereStep
-          }
-          methodSphere4{
-            sphereStep
-          }
-        }
-        ... on Home_S_ServicesBlock {
-          __typename
-          servicesBackground
-          servicesServices
-          servicesButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
-          }
-        }
-        ... on Home_S_ReviewsBlock {
-          __typename
-          reviewsHead
-          reviewsDisplayhead
-          reviewsBackground
-          reviewsReviews
-        }
-        ... on Home_S_PricingBlock {
-          __typename
-          pricingHead
-          pricingBackground
-          pricingDisplayhead
-          pricingPricingcards
-        }
-        ... on Home_S_AboutBlock {
-          __typename
-          aboutHead
-          aboutDisplayhead
-          aboutBackground
-          aboutImage{
-            urlLink
-          }
-          aboutParagraph
-        }
-        ... on Home_S_FacebookBlock{
-          facebookHead
-          facebookDisplayhead
-          facebookBackground
-          facebookUrls
-        }
-        ... on Home_S_InstagramBlock{
-          instagramHead
-          instagramDisplayhead
-          instagramBackground
-          instagramCaptions
-          instagramUrls
-        }
-      }
-    }
-  }
-}
-`;
+import "./OnePager.scss";
 
 const Section = lazy(() => import("../../organisms/Section"));
 const Footer = lazy(() => import("../../organisms/Footer"));
@@ -275,7 +40,7 @@ const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about
 const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
 const HomeSFacebookBlock = lazy(() => import("../../organisms/SectionContents/facebook"));
 
-//** LOCK */
+//** Get access token from URL */
 function getQueryVariable(variable) {
   var query = window.location.search.substring(1);
   //console.log(query)//"app=article&act=news_content&aid=160990"
@@ -291,43 +56,25 @@ function getQueryVariable(variable) {
   return false;
 }
 
-//** Rendering of all active organisms */
-class Homepage extends Component {
-  constructor(props){
-      super(props);
-      this.state = {
-          token: false
-      }
-  }
-
-  componentDidMount(){
-    //** Get JWT Token and decode it */
-    console.log(localStorage.getItem("ares"));
-    /*let encoded = localStorage.getItem('ares');
-    if(encoded !== undefined && encoded !== ""){
-        let jwt_token = window.atob(encoded);
-        this.setState({token: jwt_token})
-        console.log("New Token:"+jwt_token);
-    }*/
-  }
-
-  componentDidUpdate(){
-    console.log(this.props);
-    console.log(localStorage.getItem("ares"));
-  }
-
-  //** Get all the unique values of array */
-  getUnique = (a) => {
-    var arr = [];
-    for(var i = 0; i < a.length; i++) {
-        if(!arr.includes(a[i])) {
-            arr.push(a[i]);
-        }
+class OnePager extends Component {
+    constructor(props){
+        super(props);
+        console.log(props);
     }
-    return arr; 
-  }
 
-  renderContent() {
+    //** Get all the unique values of array */
+    getUnique = (a) => {
+        var arr = [];
+        for(var i = 0; i < a.length; i++) {
+            if(!arr.includes(a[i])) {
+                arr.push(a[i]);
+            }
+        }
+        return arr; 
+    }
+
+    renderContent() {
+    console.log(this.props);
     var data = this.props.data;
 
     console.log(data);
@@ -542,6 +289,7 @@ class Homepage extends Component {
                     <Suspense fallback={<Loader/>}>
                       <HomeSReviewsBlock
                         showHead={sections.reviewsDisplayhead}
+                        token={this.props.token}
                         heading={sections.reviewsHead}
                         users={sections.reviewsReviews.map((review, index) => {
                           return {
@@ -556,13 +304,7 @@ class Homepage extends Component {
                   </Section>
                 </Suspense>
               );
-            } /*else if (true) {
-              return(
-                <Section sectionid="gallery" background="LIGHTGREY">
-                  <HomeSGalleryBlock />
-                </Section>
-              );
-            }*/ else if (sections.__typename === 'Home_S_PricingBlock') {
+            } else if (sections.__typename === 'Home_S_PricingBlock') {
               return (
                 <Suspense key={i} fallback={<Loader/>}>
                   <Section sectionid="pricing" background={sections.pricingBackground} data-id="7">
@@ -710,13 +452,10 @@ class Homepage extends Component {
       );
     }
   }
-  
-  render() {
-    console.log(this.state);
-    return this.renderContent();
-  }
+
+    render() {
+        return this.renderContent();
+    }
 }
 
-export default graphql(CMSFetchQuery_PAGES, {
-  options: { variables: { "token": localStorage.getItem("ares") } }
-})( Homepage );
+export default OnePager;

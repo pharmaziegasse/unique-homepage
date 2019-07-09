@@ -3,10 +3,13 @@ import React, { Component } from "react";
 
 //** Additional Frameworks */
 /** Apollo */
-import { graphql } from "react-apollo";
+import { graphql, Query } from "react-apollo";
 import { gql } from "apollo-boost";
 
-import Homepage from "../../pages/Homepage";
+//** Query */
+import { CMSFetchQuery_PAGES } from "../../../static";
+
+import OnePager from "../../pages/OnePager";
 
 const LOGIN_USER = gql`
     mutation tokenAuth{
@@ -26,24 +29,25 @@ class Auth extends Component{
 
     componentDidMount(){
         this.login();
+        //** Manual token for debugging */
+        //this.setState({token: ""})
     }
 
     //** Call Login Mutation */
     login = async () => {
+
         await this.props.mutate()
         .then(({ loading, data }) => {
-            //console.log(data);
             if(data !== null && data.tokenAuth !== null){
                 if(data.tokenAuth.token !== undefined && data.tokenAuth.token !== ""){
-                    //** Encode token and store in local storage */
-                    //var encodedToken = window.btoa(data.tokenAuth.token);
-                    localStorage.setItem('ares', data.tokenAuth.token);
-
+                    //console.log("True");
                     this.setState({token: data.tokenAuth.token});
                 } else {
+                    //console.log("False");
                     this.setState({token: false});
                 }
             } else {
+                //console.log("False");
                 this.setState({token: false});
             }
         }).catch((loading, error) => {
@@ -54,8 +58,22 @@ class Auth extends Component{
     render(){
         console.log("Token fetched: "+this.state.token);
         return(
-            this.state.token !== false && localStorage.getItem("ares") === this.state.token ? (
-                <Homepage test="Test" />
+            this.state.token !== false ? (
+                <Query
+                    query={CMSFetchQuery_PAGES}
+                    variables={{ "token": this.state.token }}
+                >
+                    {({ loading, error, data }) => {
+                        console.log("Data");
+                        console.log(data);
+                        if (loading) return null;
+                        if (error) return `Error! ${error}`;
+
+                        return (
+                            <OnePager data={data} token={this.state.token} />
+                        );
+                    }}
+                </Query>
             ) : (
                 <p>Ohnono</p>
             )  
