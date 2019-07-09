@@ -64,10 +64,8 @@ class Auth extends Component{
                     variables={{ "token": this.state.token }}
                 >
                     {({ loading, error, data }) => {
-                        //console.log("Data");
-                        //console.log(data);
                         if (loading) return null;
-                        if (error) return `Error! ${error}`;
+                        if (error) return null;
 
                         return (
                             <OnePager data={data} token={this.state.token} />

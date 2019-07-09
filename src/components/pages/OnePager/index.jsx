@@ -132,6 +132,8 @@ class OnePager extends Component {
             )
         }
 
+        console.log(data.pages);
+
         const homepage = data.pages;
         const q_headers = homepage[0].headers;
         const q_sections = homepage[0].sections;
@@ -139,7 +141,7 @@ class OnePager extends Component {
 
         const btn_pages = [];
 
-        if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined || homepage.token === null) {
+        if (getQueryVariable("token") === homepage[0].token || homepage[0].token === "" || homepage[0].token === undefined || homepage[0].token === null) {
         // Rendering of all active organisms
         
         return (
@@ -415,7 +417,7 @@ class OnePager extends Component {
                     <Footer 
                         background={footers.infoBackground}
                         sociallinks={[{fb:homepage[0].sociallinks[0].value,ig:homepage[0].sociallinks[1].value}]}
-                        companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
+                        companyinfo={[{zip: homepage[0].zipCode, address: homepage[0].address, city: homepage[0].city, phone: homepage[0].telephone, email: homepage[0].email, copyrightholder: homepage[0].copyrightholder }]}
                         logo={logos[0].dark}
                     />
                     </Suspense>
