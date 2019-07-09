@@ -133,9 +133,20 @@ class Modal extends React.Component{
 
     //** Send form data - create user with user mutation */
     sendData = async () => {
+        //** New */
         //** Set values that will be sent */
         let formvalues = {
-            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": this.state.verified, "picture": this.state.picture
+            "title": "",
+            "first_name": this.state.prename,
+            "last_name": this.state.surname,
+            "email": this.state.email,
+            "telephone": this.state.phone,
+            "address": "",
+            "zip_code": "",
+            "city": "",
+            "country": "",
+            "verified": this.state.verified,
+            "newsletter": this.state.newsletter
         };
         //** console.log(formvalues); */
         //** Check if the form values have been set (just to be sure) */
