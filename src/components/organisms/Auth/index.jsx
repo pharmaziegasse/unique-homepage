@@ -9,7 +9,7 @@ import { gql } from "apollo-boost";
 //** Query */
 import { CMSFetchQuery_PAGES } from "../../../static";
 
-import OnePager from "../../pages/OnePager";
+import Homepage from "../../pages/Homepage";
 
 const LOGIN_USER = gql`
     mutation tokenAuth{
@@ -68,7 +68,7 @@ class Auth extends Component{
                         if (error) return null;
 
                         return (
-                            <OnePager data={data} token={this.state.token} />
+                            <Homepage data={data} token={this.state.token} />
                         );
                     }}
                 </Query>

@@ -15,7 +15,7 @@ import { navitems, logos } from "../../../static";
 import { APIHost } from "../../../App";
 
 //** Custom SCSS  */
-import "./OnePager.scss";
+import "./Homepage.scss";
 
 const Section = lazy(() => import("../../organisms/Section"));
 const Footer = lazy(() => import("../../organisms/Footer"));

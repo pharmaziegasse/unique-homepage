@@ -15,7 +15,6 @@
     "graphql": "^14.1.1",
     "js-cookie": "^2.2.0",
     "libphonenumber-js": "^1.7.13",
-    "local-storage": "^2.0.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
     "react-apollo": "^2.5.1",
