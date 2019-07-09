@@ -160,8 +160,7 @@ class Modal extends React.Component{
             })
             .then(({data}) => {
                 //** Handle response (debug using console.log of data) */
-                //console.log(data);
-                if(data.homeFormPage.result === "OK"){
+                if(data.registrationFormPage.result === "OK"){
                     //** Hide error and show success message */
                     this.setState({showError: false});
                     this.setState({showSuccess: true});
@@ -324,6 +323,17 @@ class Modal extends React.Component{
         }
     }
 
+    printErrorDialogs = () => {
+        console.log(this.state.buffer);
+        if(Array.isArray(this.state.buffer)){
+            this.state.buffer.map((msg, i) => {      
+                return <p key={i}>{msg}</p>
+            })
+        } else {
+            return <p>{this.state.buffer}</p>
+        }
+    }
+
     //** Print error Alert component */
     printError = () => {
         //** There have been issues, where printError() was called, but this.state.showError and this.state.buffer was false -> leading to crash */
@@ -332,9 +342,9 @@ class Modal extends React.Component{
             if(this.state.buffer !== null || this.state.buffer !== undefined){
                 return(
                     <Alert className="alert-danger" show="true">
-                        {this.state.buffer.map((msg, i) => {      
-                            return <p key={i}>{msg}</p>
-                        })}
+                        {
+                            this.printErrorDialogs()
+                        }
                     </Alert>
                 );
             } else {
