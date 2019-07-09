@@ -132,16 +132,17 @@ class OnePager extends Component {
             )
         }
 
-        console.log(data.pages);
+        //** Debug data fetched from Wagtail */
+        //console.log(data.pages);
 
-        const homepage = data.pages;
-        const q_headers = homepage[0].headers;
-        const q_sections = homepage[0].sections;
-        const q_footers = homepage[0].footers;    
+        const homepage = data.pages[0];
+        const q_headers = homepage.headers;
+        const q_sections = homepage.sections;
+        const q_footers = homepage.footers;    
 
         const btn_pages = [];
 
-        if (getQueryVariable("token") === homepage[0].token || homepage[0].token === "" || homepage[0].token === undefined || homepage[0].token === null) {
+        if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined || homepage.token === null) {
         // Rendering of all active organisms
         
         return (
@@ -162,7 +163,7 @@ class OnePager extends Component {
                         btn: slide.slideButton
                         };
                     })}
-                    sociallinks={[{fb:homepage[0].sociallinks[0].value,ig:homepage[0].sociallinks[1].value}]}
+                    sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
                     />
                 )
             
@@ -416,8 +417,8 @@ class OnePager extends Component {
                     <Suspense key={i} fallback={<Loader/>}>
                     <Footer 
                         background={footers.infoBackground}
-                        sociallinks={[{fb:homepage[0].sociallinks[0].value,ig:homepage[0].sociallinks[1].value}]}
-                        companyinfo={[{zip: homepage[0].zipCode, address: homepage[0].address, city: homepage[0].city, phone: homepage[0].telephone, email: homepage[0].email, copyrightholder: homepage[0].copyrightholder }]}
+                        sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
+                        companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
                     />
                     </Suspense>

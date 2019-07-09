@@ -49,7 +49,7 @@ const Intro = (props: Props): React.Element<*> => {
         }else{
             return [
                 <li key={i} className={GetState(item.active)}>
-                    <button data-toggle="modal" data-target="#registrieren" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
+                    <button data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
                         {item.text}
                     </button>
                 </li>,
