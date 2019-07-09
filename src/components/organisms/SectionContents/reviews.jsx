@@ -8,11 +8,17 @@ import { gql } from "apollo-boost";
 
 //** Mutation: Get Image */
 const GET_IMAGE = gql`
-  query img($id: Int!){
-  image(id: $id){
-    urlLink
-  }
-}
+    query img(
+            $token: String!
+            $id: Int!
+        ){
+        image(
+            token: $token
+            id: $id
+        ){
+            urlLink
+        }
+    }
 `;
 
 /**
@@ -47,7 +53,7 @@ class DeplayedQuery extends Component {
                             async function(){
                                 let { data } = await client.query({
                                     query: GET_IMAGE,
-                                    variables: { id: image_id }
+                                    variables: { "id": image_id, "token": this.props.token }
                                 });
                                 if(data !== undefined){
                                     this.onImgFetched(data.image, key)

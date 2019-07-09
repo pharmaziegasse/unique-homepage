@@ -25,12 +25,12 @@ import Alert from '../../../atoms/Alert'
 
 //** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
-    mutation user($values: GenericScalar!) {
-        homeFormPage(url: "/registrieren", values: $values) {
+    mutation register($token: String!, $values: GenericScalar!) {
+        registrationFormPage(token: $token, url: "/registration", values: $values) {
             result
             errors {
-                name
-                errors
+            name
+            errors
             }
         }
     }
@@ -38,22 +38,26 @@ const CREATE_USER_MUTATION = gql`
 
 //** Mutation: Get Data for Modal */
 const GET_MODAL_DATA = gql`
-    query modal($id: Int!){
-        page(id: $id){
-            ... on HomeFormPage{
-                registrationHead
-                registrationInfoText
-                registrationNewsletterText
-                registrationPrivacyText
-                registrationStepText
-                thankYouText
-                registrationButton{
-                    buttonTitle
-                    buttonPage{
-                        id
-                        urlPath
-                    }
+    query modal(
+        $token: String!
+    ){
+        pages(
+            token: $token
+        ){
+            ... on RegistrationFormPage{
+            registrationHead
+            registrationInfoText
+            registrationNewsletterText
+            registrationPrivacyText
+            registrationStepText
+            thankYouText
+            registrationButton{
+                buttonTitle
+                buttonPage{
+                    id
+                    urlPath
                 }
+            }
             }
         }
     }
@@ -129,23 +133,34 @@ class Modal extends React.Component{
 
     //** Send form data - create user with user mutation */
     sendData = async () => {
+        //** New */
         //** Set values that will be sent */
         let formvalues = {
-            "firstname": this.state.prename, "lastname": this.state.surname, "newsletter": this.state.newsletter, "phone": this.state.phone, "email": this.state.email, "verified": this.state.verified, "picture": this.state.picture
+            "title": "",
+            "first_name": this.state.prename,
+            "last_name": this.state.surname,
+            "email": this.state.email,
+            "telephone": this.state.phone,
+            "address": "",
+            "zip_code": "",
+            "city": "",
+            "country": "",
+            "verified": this.state.verified,
+            "newsletter": this.state.newsletter
         };
         //** console.log(formvalues); */
         //** Check if the form values have been set (just to be sure) */
         if(formvalues !== null || formvalues !== undefined){
             //** Call graphQL mutation */
-            await this.props.user({
+            await this.props.register({
                 variables: {
-                    values: formvalues
+                    "token": this.props.token,
+                    "values": formvalues
                 }
             })
             .then(({data}) => {
                 //** Handle response (debug using console.log of data) */
-                //console.log(data);
-                if(data.homeFormPage.result === "OK"){
+                if(data.registrationFormPage.result === "OK"){
                     //** Hide error and show success message */
                     this.setState({showError: false});
                     this.setState({showSuccess: true});
@@ -190,7 +205,7 @@ class Modal extends React.Component{
             error.push(1);
         } else {
             if(this.state.phone === false){
-                buffer.push("Bitte geben Sie Ihre Landes-Vorwahl an. (z.B. +43)");
+                buffer.push("Bitte geben Sie Ihre Vorwahl Ihres Landes an. (z.B. +43)");
                 error.push(2);
             }
         }
@@ -210,7 +225,7 @@ class Modal extends React.Component{
             buffer.push("Bitte beachten Sie die Datenschutzerklärung.");
             error.push(6);
         }
-        if(error !== 'undefined' && error.length > 0){
+        if(error !== undefined && error.length > 0){
             //** Write buffer, show error alert and hide success alert */
             this.setState({buffer:buffer});
             this.setState({showError: true});
@@ -308,6 +323,20 @@ class Modal extends React.Component{
         }
     }
 
+    printErrorDialogs = () => {
+        console.log(this.state.buffer);
+        if(Array.isArray(this.state.buffer)){
+            let errors = [];
+            let buffer = this.state.buffer;
+            Object.keys(buffer).forEach(function (element, index) {
+                errors.push(<p key={index}>{buffer[index]}</p>);
+            });
+            return errors;
+        } else {
+            return <p>{this.state.buffer}</p>
+        }
+    }
+
     //** Print error Alert component */
     printError = () => {
         //** There have been issues, where printError() was called, but this.state.showError and this.state.buffer was false -> leading to crash */
@@ -316,9 +345,9 @@ class Modal extends React.Component{
             if(this.state.buffer !== null || this.state.buffer !== undefined){
                 return(
                     <Alert className="alert-danger" show="true">
-                        {this.state.buffer.map((msg, i) => {      
-                            return <p key={i}>{msg}</p>
-                        })}
+                        {
+                            this.printErrorDialogs()
+                        }
                     </Alert>
                 );
             } else {
@@ -342,124 +371,132 @@ class Modal extends React.Component{
     renderContent (){
         
         //** Text data for the modal */ 
-        let modaldata = (this.props.data.page);
+        if(this.props.data.pages[1] !== undefined){
+            let modaldata = (this.props.data.pages[1]);
+            console.log(modaldata);
 
-        return(
-            <div className="modal fade" id="registration" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
-            
-            <div className="modal-dialog modal-lg modal-notify modal-info" role="document">
-                <div className="modal-content">
+            return(
+                <div className="modal fade" id="registration" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
                 
-                <div className="modal-body">
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" className="dark-text">×</span>
-                    </button>
-                    <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: modaldata.registrationHead}}></div>
-                    <hr/>
-                    {this.state.showSuccess ? (
-                        <div className="success">
-                            <Alert className="alert-success" show="true">
-                                <div dangerouslySetInnerHTML={{__html: modaldata.thankYouText}}></div>
-                            </Alert>
-                        </div>
-                    ) : (
-                        <div className="register-form">
-                        <div className="row">
-                            <div className="col-md-7">
-                            {!this.state.oAuthed ? (
-                                <div>
-                                    <div className="oAuth">
-                                    <FacebookLogin
-                                            appId="438514240304319"
-                                            autoLoad={false}
-                                            icon={<FaFacebook/>}
-                                            cssClass="btn-facebook kep-login-facebook kep-login-facebook-medium"
-                                            fields="first_name,last_name,email,picture"
-                                            textButton="Weiter mit Facebook"
-                                            callback={this.responseFacebook}
-                                        />
-                                    
-                                        {
-                                            //** Google oAuth has been disabled for now */
-
-                                            /*<GoogleLogin
-                                                clientId="762647868786-a6do4s713inonqo663lbgqqgo40u5sen.apps.googleusercontent.com"
-                                                buttonText="Weiter mit Google"
-                                                className="btn-google"
-                                                onSuccess={this.responseGoogle}
-                                                onFailure={this.responseGoogle}
-                                                cookiePolicy={'single_host_origin'}
-                                            />*/
-                                        }
-                                    </div>
-                                    <div className="w-100">
-                                        <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
-                                    </div>
-                                </div>
-                            ):(
-                                <div className="alert alert-success mb-4">
-                                    <h4 className="font-weight-bold">Hallo {this.state.prename}!</h4><p>Wir benötigen jetzt nur noch Deine Telefonnummer.</p>
-                                </div>
-                            )}
-                                {this.printError()}
-                            
-                                <form id="form-reg" onSubmit={(e) => {this.handleSubmitForm(e); e.preventDefault();}}>
-                                    <div className="input-grp">
-                                        {this.printFlag()}
-                                        <i className="fas fa-phone"></i>
-                                        <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer" value={this.state.phonelive} validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
-                                    </div>
-                                    {!this.state.formHidden ? (
+                <div className="modal-dialog modal-lg modal-notify modal-info" role="document">
+                    <div className="modal-content">
+                    
+                    <div className="modal-body">
+                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" className="dark-text">×</span>
+                        </button>
+                        <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: modaldata.registrationHead}}></div>
+                        <hr/>
+                        {this.state.showSuccess ? (
+                            <div className="success">
+                                <Alert className="alert-success" show="true">
+                                    <div dangerouslySetInnerHTML={{__html: modaldata.thankYouText}}></div>
+                                </Alert>
+                            </div>
+                        ) : (
+                            <div className="register-form">
+                            <div className="row">
+                                <div className="col-md-7">
+                                {!this.state.oAuthed ? (
                                     <div>
-                                        <div className="input-grp">
-                                            <i className="far fa-envelope"></i>
-                                            <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse (optional)" value={this.state.emaillive} validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
+                                        <div className="oAuth">
+                                        <FacebookLogin
+                                                appId="438514240304319"
+                                                autoLoad={false}
+                                                icon={<FaFacebook/>}
+                                                cssClass="btn-facebook kep-login-facebook kep-login-facebook-medium"
+                                                fields="first_name,last_name,email,picture"
+                                                textButton="Weiter mit Facebook"
+                                                callback={this.responseFacebook}
+                                            />
+                                        
+                                            {
+                                                //** Google oAuth has been disabled for now */
+
+                                                /*<GoogleLogin
+                                                    clientId="762647868786-a6do4s713inonqo663lbgqqgo40u5sen.apps.googleusercontent.com"
+                                                    buttonText="Weiter mit Google"
+                                                    className="btn-google"
+                                                    onSuccess={this.responseGoogle}
+                                                    onFailure={this.responseGoogle}
+                                                    cookiePolicy={'single_host_origin'}
+                                                />*/
+                                            }
                                         </div>
-                                        <div className="input-grp">
-                                            <i className="far fa-user-circle"></i>
-                                            <Input className="my-3" type="text" name="prename" placeholder="Vorname" value={this.state.prenamelive} validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
-                                        </div>
-                                        <div className="input-grp">
-                                            <i className="far fa-user-circle"></i>
-                                            <Input className="my-3" type="text" name="surname" placeholder="Nachname" value={this.state.surnamelive} validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
+                                        <div className="w-100">
+                                            <div className="splitter my-4"><span className="or"><span className="or-text">oder</span></span></div>
                                         </div>
                                     </div>
-                                    ) : (
-                                        <div className="alert alert-info register-info alert-data">
-                                            <p className="m-0">
-                                            <span className="font-weight-bold">Meine Daten</span><br/>
-                                            Name: {this.state.prename} {this.state.surname}<br/>
-                                            E-Mail: {this.state.email}<br/>
-                                            <Button btnstyle="oELEGANT" size="SM" onClick={this.editForm}>Ändern</Button>
-                                            </p>
-                                        </div>
-                                    )}
-                                    <div className="text-left">
-                                    <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationNewsletterText}}></div></Checkbox>
-                                    <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationPrivacyText}}></div></Checkbox>
+                                ):(
+                                    <div className="alert alert-success mb-4">
+                                        <h4 className="font-weight-bold">Hallo {this.state.prename}!</h4><p>Wir benötigen jetzt nur noch Deine Telefonnummer.</p>
                                     </div>
-                                    <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: this.props.data.step1}}></div>
-                                    <input className="btn btn-outline-elegant font-weight-bold" type="submit" value="Starten" />
-                                </form>
+                                )}
+                                    {this.printError()}
+                                
+                                    <form id="form-reg" onSubmit={(e) => {this.handleSubmitForm(e); e.preventDefault();}}>
+                                        <div className="input-grp">
+                                            {this.printFlag()}
+                                            <i className="fas fa-phone"></i>
+                                            <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer" value={this.state.phonelive} validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
+                                        </div>
+                                        {!this.state.formHidden ? (
+                                        <div>
+                                            <div className="input-grp">
+                                                <i className="far fa-envelope"></i>
+                                                <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse (optional)" value={this.state.emaillive} validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
+                                            </div>
+                                            <div className="input-grp">
+                                                <i className="far fa-user-circle"></i>
+                                                <Input className="my-3" type="text" name="prename" placeholder="Vorname" value={this.state.prenamelive} validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
+                                            </div>
+                                            <div className="input-grp">
+                                                <i className="far fa-user-circle"></i>
+                                                <Input className="my-3" type="text" name="surname" placeholder="Nachname" value={this.state.surnamelive} validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
+                                            </div>
+                                        </div>
+                                        ) : (
+                                            <div className="alert alert-info register-info alert-data">
+                                                <p className="m-0">
+                                                <span className="font-weight-bold">Meine Daten</span><br/>
+                                                Name: {this.state.prename} {this.state.surname}<br/>
+                                                E-Mail: {this.state.email}<br/>
+                                                <Button btnstyle="oELEGANT" size="SM" onClick={this.editForm}>Ändern</Button>
+                                                </p>
+                                            </div>
+                                        )}
+                                        <div className="text-left mb-3">
+                                        <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationNewsletterText}}></div></Checkbox>
+                                        <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationPrivacyText}}></div></Checkbox>
+                                        </div>
+                                        {modaldata.registrationButton.buttonPage !== null &&
+                                            <input className="btn btn-outline-elegant font-weight-bold" type="submit" value={modaldata.registrationButton.buttonTitle} />
+                                        }   
+                                        
+                                    </form>
+                                </div>
+                                <div className="col-md-5 text-left">
+                                <Alert className="alert-info register-info" show="true">
+                                    <i className="far fa-lightbulb fa-2x"></i>
+                                    <div className="mt-2 dark-grey-text" dangerouslySetInnerHTML={{__html: modaldata.registrationInfoText}}></div>
+                                </Alert>
+                                </div>
                             </div>
-                            <div className="col-md-5 text-left">
-                            <Alert className="alert-info register-info" show="true">
-                                <i className="far fa-lightbulb fa-2x"></i>
-                                <div className="mt-2 dark-grey-text" dangerouslySetInnerHTML={{__html: modaldata.registrationInfoText}}></div>
-                            </Alert>
                             </div>
-                        </div>
-                        </div>
-                    )}
+                        )}
+                    </div>
+                    </div>
                 </div>
                 </div>
-            </div>
-            </div>
-        )
+            )
+        } else {
+            return false;
+        }
+        
     }
 
     render(){
-        if(this.props.data.page !== undefined){
+        if(this.props.data.pages !== undefined){
             return this.renderContent();
         } else {
             return false;
@@ -469,9 +506,9 @@ class Modal extends React.Component{
 
 export default compose(
     graphql(CREATE_USER_MUTATION, {
-        name: 'user'
+        name: 'register'
     }),
     graphql(GET_MODAL_DATA, {
-        options: (props) => ({ variables: { id: 4 } })
+        options: (props) => ({ variables: { "token": props.token } })
     })
 )(Modal);

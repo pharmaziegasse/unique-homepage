@@ -21,7 +21,7 @@ import "./mdb/scss/mdb.scss";
 import "./App.scss";
 
 //** Pages */
-import Homepage from "./components/pages/Homepage";
+import Auth from "./components/organisms/Auth";
 
 //** Base link */
 export const APIHost = 'https://pharmaziegasse.at';
@@ -37,7 +37,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 const cache = new InMemoryCache({ fragmentMatcher });
 
 //** Creating API Link from Host */
-const APILink = APIHost+"/api/graphql";
+const APILink = APIHost+"/api/graphiql";
 
 //** Apollo client setup */
 const client = new ApolloClient({
@@ -50,7 +50,7 @@ class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Homepage />
+        <Auth />
       </ApolloProvider>
     );
   }

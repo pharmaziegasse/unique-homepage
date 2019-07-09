@@ -54,6 +54,7 @@ class Button extends React.Component {
         }
     }
 
+    //** Convert url to Modal */
     isModal = () => {
         if(this.exists()){
             if(this.props.param.btnlink === null || this.props.param.btnlink === undefined){
@@ -68,16 +69,13 @@ class Button extends React.Component {
         
     }
 
+    //** Check if button should be displayed */
     exists = () =>{
         if(this.props.param === undefined || this.props.param === null){
             return false;
         } else {
-            if(this.props.param.buttonPage !== null && this.props.param.buttonPage !== undefined){
-                if(this.props.param.btnlink !== null && this.props.param.btnlink !== undefined){
-                    return true;
-                } else {
-                    return false;
-                }
+            if((this.props.param.buttonPage !== null && this.props.param.buttonPage !== undefined) || (this.props.param.btnlink !== null && this.props.param.btnlink !== undefined)){
+                return true;
             } else {
                 return false;
             }
