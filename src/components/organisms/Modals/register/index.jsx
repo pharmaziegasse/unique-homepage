@@ -38,22 +38,26 @@ const CREATE_USER_MUTATION = gql`
 
 //** Mutation: Get Data for Modal */
 const GET_MODAL_DATA = gql`
-    query modal($id: Int!){
-        page(id: $id){
-            ... on HomeFormPage{
-                registrationHead
-                registrationInfoText
-                registrationNewsletterText
-                registrationPrivacyText
-                registrationStepText
-                thankYouText
-                registrationButton{
-                    buttonTitle
-                    buttonPage{
-                        id
-                        urlPath
-                    }
+    query modal(
+        $token: String!
+    ){
+        pages(
+            token: $token
+        ){
+            ... on RegistrationFormPage{
+            registrationHead
+            registrationInfoText
+            registrationNewsletterText
+            registrationPrivacyText
+            registrationStepText
+            thankYouText
+            registrationButton{
+                buttonTitle
+                buttonPage{
+                    id
+                    urlPath
                 }
+            }
             }
         }
     }
@@ -246,7 +250,6 @@ class Modal extends React.Component{
             default:
                 this.setState({[field]:value})
         }
-        
     }
 
     //** Check if phone number is valid */
@@ -295,7 +298,6 @@ class Modal extends React.Component{
             } else {
                 this.setState({[field]:undefined})
             }
-            
         }else{
             this.setState({[field]:false})
         }
@@ -340,12 +342,13 @@ class Modal extends React.Component{
     }
 
     renderContent (){
-        
+        console.log("Modal");
+        console.log(this.props);
         //** Text data for the modal */ 
         let modaldata = (this.props.data.page);
 
         return(
-            <div className="modal fade" id="registration" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
+            <div className="modal fade" id="registrieren" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
             
             <div className="modal-dialog modal-lg modal-notify modal-info" role="document">
                 <div className="modal-content">
@@ -459,11 +462,7 @@ class Modal extends React.Component{
     }
 
     render(){
-        if(this.props.data.page !== undefined){
-            return this.renderContent();
-        } else {
-            return false;
-        }
+        return this.renderContent();
     }
 }
 
@@ -472,6 +471,6 @@ export default compose(
         name: 'user'
     }),
     graphql(GET_MODAL_DATA, {
-        options: (props) => ({ variables: { id: 4 } })
+        options: (props) => ({ variables: { "token": props.token } })
     })
 )(Modal);

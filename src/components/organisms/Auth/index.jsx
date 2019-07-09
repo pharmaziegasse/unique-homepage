@@ -56,7 +56,7 @@ class Auth extends Component{
     };
 
     render(){
-        console.log("Token fetched: "+this.state.token);
+        //console.log("Token fetched: "+this.state.token);
         return(
             this.state.token !== false ? (
                 <Query
@@ -64,8 +64,8 @@ class Auth extends Component{
                     variables={{ "token": this.state.token }}
                 >
                     {({ loading, error, data }) => {
-                        console.log("Data");
-                        console.log(data);
+                        //console.log("Data");
+                        //console.log(data);
                         if (loading) return null;
                         if (error) return `Error! ${error}`;
 
