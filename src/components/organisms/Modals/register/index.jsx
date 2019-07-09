@@ -25,12 +25,12 @@ import Alert from '../../../atoms/Alert'
 
 //** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
-    mutation user($values: GenericScalar!) {
-        homeFormPage(url: "/registrieren", values: $values) {
+    mutation register($token: String!, $values: GenericScalar!) {
+        registrationFormPage(token: $token, url: "/registration", values: $values) {
             result
             errors {
-                name
-                errors
+            name
+            errors
             }
         }
     }
@@ -141,9 +141,10 @@ class Modal extends React.Component{
         //** Check if the form values have been set (just to be sure) */
         if(formvalues !== null || formvalues !== undefined){
             //** Call graphQL mutation */
-            await this.props.user({
+            await this.props.register({
                 variables: {
-                    values: formvalues
+                    "token": this.props.token,
+                    "values": formvalues
                 }
             })
             .then(({data}) => {
@@ -481,7 +482,7 @@ class Modal extends React.Component{
 
 export default compose(
     graphql(CREATE_USER_MUTATION, {
-        name: 'user'
+        name: 'register'
     }),
     graphql(GET_MODAL_DATA, {
         options: (props) => ({ variables: { "token": props.token } })
