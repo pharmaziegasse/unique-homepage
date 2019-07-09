@@ -93,7 +93,8 @@ class Modal extends React.Component{
            phonelive: "",
            emaillive: "",
            prenamelive: "",
-           surnamelive: ""
+           surnamelive: "",
+           data: undefined
         }
     }
 
@@ -346,14 +347,19 @@ class Modal extends React.Component{
             <Query
                 query={GET_MODAL_DATA}
                 variables={{ "token": this.props.token }}
+                errorPolicy="all"
+                no-cache="true"
             >
             {({ loading, error, data }) => {
                 
                 console.warn(error);
                 console.log(data);
-
-                let modaldata = data.page;
-                /*return(
+                if(data.pages !== undefined){
+                    console.log(data.pages);
+                    this.setState({ data: data.pages[1] });
+                }
+                
+                return(
                 <div>
                     <div className="modal fade" id="registrieren" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
                     
@@ -364,12 +370,12 @@ class Modal extends React.Component{
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" className="dark-text">×</span>
                             </button>
-                            <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: modaldata.registrationHead}}></div>
+                            <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: this.state.dataregistrationHead}}></div>
                             <hr/>
                             {this.state.showSuccess ? (
                                 <div className="success">
                                     <Alert className="alert-success" show="true">
-                                        <div dangerouslySetInnerHTML={{__html: modaldata.thankYouText}}></div>
+                                        <div dangerouslySetInnerHTML={{__html: this.state.datathankYouText}}></div>
                                     </Alert>
                                 </div>
                             ) : (
@@ -399,7 +405,7 @@ class Modal extends React.Component{
                                                         onSuccess={this.responseGoogle}
                                                         onFailure={this.responseGoogle}
                                                         cookiePolicy={'single_host_origin'}
-                                                    />
+                                                    />*/
                                                 }
                                             </div>
                                             <div className="w-100">
@@ -445,17 +451,17 @@ class Modal extends React.Component{
                                                 </div>
                                             )}
                                             <div className="text-left">
-                                            <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationNewsletterText}}></div></Checkbox>
-                                            <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationPrivacyText}}></div></Checkbox>
+                                            <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: this.state.dataregistrationNewsletterText}}></div></Checkbox>
+                                            <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: this.state.dataregistrationPrivacyText}}></div></Checkbox>
                                             </div>
-                                            <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: this.props.data.step1}}></div>
+                                            <div className="text-center mt-4" dangerouslySetInnerHTML={{__html: "Test"}}></div>
                                             <input className="btn btn-outline-elegant font-weight-bold" type="submit" value="Starten" />
                                         </form>
                                     </div>
                                     <div className="col-md-5 text-left">
                                     <Alert className="alert-info register-info" show="true">
                                         <i className="far fa-lightbulb fa-2x"></i>
-                                        <div className="mt-2 dark-grey-text" dangerouslySetInnerHTML={{__html: modaldata.registrationInfoText}}></div>
+                                        <div className="mt-2 dark-grey-text" dangerouslySetInnerHTML={{__html: this.state.dataregistrationInfoText}}></div>
                                     </Alert>
                                     </div>
                                 </div>
@@ -467,9 +473,6 @@ class Modal extends React.Component{
                     </div>
                 </div>
                 </div>
-                )*/
-                return(
-                    <div>Nonono</div>
                 )
                 
             }}
