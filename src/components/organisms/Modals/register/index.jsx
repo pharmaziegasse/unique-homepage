@@ -205,7 +205,7 @@ class Modal extends React.Component{
             error.push(1);
         } else {
             if(this.state.phone === false){
-                buffer.push("Bitte geben Sie Ihre Landes-Vorwahl an. (z.B. +43)");
+                buffer.push("Bitte geben Sie Ihre Vorwahl Ihres Landes an. (z.B. +43)");
                 error.push(2);
             }
         }
@@ -225,7 +225,7 @@ class Modal extends React.Component{
             buffer.push("Bitte beachten Sie die Datenschutzerklärung.");
             error.push(6);
         }
-        if(error !== 'undefined' && error.length > 0){
+        if(error !== undefined && error.length > 0){
             //** Write buffer, show error alert and hide success alert */
             this.setState({buffer:buffer});
             this.setState({showError: true});
@@ -326,9 +326,12 @@ class Modal extends React.Component{
     printErrorDialogs = () => {
         console.log(this.state.buffer);
         if(Array.isArray(this.state.buffer)){
-            this.state.buffer.map((msg, i) => {      
-                return <p key={i}>{msg}</p>
-            })
+            let errors = [];
+            let buffer = this.state.buffer;
+            Object.keys(buffer).forEach(function (element, index) {
+                errors.push(<p key={index}>{buffer[index]}</p>);
+            });
+            return errors;
         } else {
             return <p>{this.state.buffer}</p>
         }

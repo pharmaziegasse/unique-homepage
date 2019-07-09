@@ -22,232 +22,233 @@ export const logos = [{ light: logo_light, dark: logo_dark }];
 
 export const CMSFetchQuery_PAGES = gql`
 query pages($token: String!) {
-  pages(token: $token) {
-    id
-    title
-    ... on HomeUniquePage {
-      __typename
-      token
-      id
+  page: root(token: $token) {
+    rootPage{
       title
-      city
-      zipCode
-      address
-      telephone
-      telefax
-      vatNumber
-      taxId
-      courtOfRegistry
-      placeOfRegistry
-      tradeRegisterNumber
-      copyrightholder
-      sociallinks{
-        ... on StringBlock{
-          value
+      uniquepage{
+        __typename
+        id
+        token
+        title
+        city
+        zipCode
+        address
+        telephone
+        telefax
+        vatNumber
+        taxId
+        courtOfRegistry
+        placeOfRegistry
+        tradeRegisterNumber
+        copyrightholder
+        sociallinks{
+          ... on StringBlock{
+            value
+          }
         }
-      }
-      ownership
-      email
-      headers{
-        ... on HomeHero_SlideBlockListBlock{
-          value{
-            slideHead
-            slideSubhead
-            slideImage{
-              urlLink
-            }
-            slideButton{
-              buttonTitle
-              buttonLink
-              buttonPage{
-                id
-                urlPath
+        ownership
+        email
+        headers{
+          ... on HomeHero_SlideBlockListBlock{
+            value{
+              slideHead
+              slideSubhead
+              slideImage{
+                urlLink
+              }
+              slideButton{
+                buttonTitle
+                buttonLink
+                buttonPage{
+                  id
+                  urlPath
+                }
               }
             }
           }
         }
-      }
-      footers {
-        ... on Home_F_InfoBlock{
-          __typename
-          infoPlaceholder
-          infoBackground
-        }
-      }
-      sections {
-      	... on Home_S_WhyBlock {
-          __typename
-          whyBackground
-          whyDisplayhead
-          whyHead
-          whyButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
+        footers {
+          ... on Home_F_InfoBlock{
+            __typename
+            infoPlaceholder
+            infoBackground
           }
-          whyCollum1{
-            collumImage{
+        }
+        sections {
+          ... on Home_S_WhyBlock {
+            __typename
+            whyBackground
+            whyDisplayhead
+            whyHead
+            whyButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                id
+                urlPath
+              }
+              id
+            }
+            whyCollum1{
+              collumImage{
+                urlLink
+              }
+              collumParagraph
+            }
+            whyCollum2{
+              collumImage{
+                urlLink
+              }
+              collumParagraph
+            }
+            whyCollum3{
+              collumImage{
+                urlLink
+              }
+              collumParagraph
+            }
+          }
+          ... on Home_S_IndividualBlock {
+            __typename
+            individualHead
+            individualDisplayhead
+            individualBackground
+            individualLead
+            individualImage{
               urlLink
             }
-            collumParagraph
+            individualButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                id
+                urlPath
+              }
+              id
+            }
+            individualParagraph
           }
-          whyCollum2{
-            collumImage{
+          ... on Home_S_ExpertsBlock {
+            __typename
+            expertsHead
+            expertsBackground
+            expertsDisplayhead
+            expertsLead
+            expertsImage{
               urlLink
             }
-            collumParagraph
+            expertsButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                id
+                urlPath
+              }
+              id
+            }
+            expertsParagraph
           }
-          whyCollum3{
-            collumImage{
+          ... on Home_S_LabBlock {
+            __typename
+            labHead
+            labLead
+            labBackground
+            labDisplayhead
+            labImage{
               urlLink
             }
-            collumParagraph
-          }
-        }
-        ... on Home_S_IndividualBlock {
-          __typename
-          individualHead
-          individualDisplayhead
-          individualBackground
-          individualLead
-          individualImage{
-            urlLink
-          }
-          individualButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
+            labButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                id
+                urlPath
+              }
               id
-              urlPath
             }
-            id
+            labParagraph
           }
-          individualParagraph
-        }
-        ... on Home_S_ExpertsBlock {
-          __typename
-          expertsHead
-          expertsBackground
-          expertsDisplayhead
-          expertsLead
-          expertsImage{
-            urlLink
-          }
-          expertsButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
+          ... on Home_S_MethodBlock {
+            __typename
+            methodHead
+            methodDisplayhead
+            methodBackground
+            methodButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                id
+                urlPath
+              }
               id
-              urlPath
             }
-            id
+            methodSphere1{
+              sphereStep
+            }
+            methodSphere2{
+              sphereStep
+            }
+            methodSphere3{
+              sphereStep
+            }
+            methodSphere4{
+              sphereStep
+            }
           }
-          expertsParagraph
-        }
-        ... on Home_S_LabBlock {
-          __typename
-          labHead
-          labLead
-          labBackground
-          labDisplayhead
-          labImage{
-            urlLink
-          }
-          labButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
+          ... on Home_S_ServicesBlock {
+            __typename
+            servicesBackground
+            servicesServices
+            servicesButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                id
+                urlPath
+              }
               id
-              urlPath
             }
-            id
           }
-          labParagraph
-        }
-        ... on Home_S_MethodBlock {
-          __typename
-          methodHead
-          methodDisplayhead
-          methodBackground
-          methodButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
+          ... on Home_S_ReviewsBlock {
+            __typename
+            reviewsHead
+            reviewsDisplayhead
+            reviewsBackground
+            reviewsReviews
+          }
+          ... on Home_S_PricingBlock {
+            __typename
+            pricingHead
+            pricingBackground
+            pricingDisplayhead
+            pricingPricingcards
+          }
+          ... on Home_S_AboutBlock {
+            __typename
+            aboutHead
+            aboutDisplayhead
+            aboutBackground
+            aboutImage{
+              urlLink
             }
-            id
+            aboutParagraph
           }
-          methodSphere1{
-            sphereStep
+          ... on Home_S_FacebookBlock{
+            facebookHead
+            facebookDisplayhead
+            facebookBackground
+            facebookUrls
           }
-          methodSphere2{
-            sphereStep
+          ... on Home_S_InstagramBlock{
+            instagramHead
+            instagramDisplayhead
+            instagramBackground
+            instagramCaptions
+            instagramUrls
           }
-          methodSphere3{
-            sphereStep
-          }
-          methodSphere4{
-            sphereStep
-          }
-        }
-        ... on Home_S_ServicesBlock {
-          __typename
-          servicesBackground
-          servicesServices
-          servicesButton{
-            buttonLink
-            buttonTitle
-            buttonPage{
-              id
-              urlPath
-            }
-            id
-          }
-        }
-        ... on Home_S_ReviewsBlock {
-          __typename
-          reviewsHead
-          reviewsDisplayhead
-          reviewsBackground
-          reviewsReviews
-        }
-        ... on Home_S_PricingBlock {
-          __typename
-          pricingHead
-          pricingBackground
-          pricingDisplayhead
-          pricingPricingcards
-        }
-        ... on Home_S_AboutBlock {
-          __typename
-          aboutHead
-          aboutDisplayhead
-          aboutBackground
-          aboutImage{
-            urlLink
-          }
-          aboutParagraph
-        }
-        ... on Home_S_FacebookBlock{
-          facebookHead
-          facebookDisplayhead
-          facebookBackground
-          facebookUrls
-        }
-        ... on Home_S_InstagramBlock{
-          instagramHead
-          instagramDisplayhead
-          instagramBackground
-          instagramCaptions
-          instagramUrls
         }
       }
     }
   }
-}
+} 
 `;

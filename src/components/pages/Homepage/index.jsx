@@ -116,7 +116,7 @@ class OnePager extends Component {
         }
 
         
-        if(data.pages === undefined){
+        if(data.page === undefined){
             console.log("OMG ITS UNDEFINED");
             return(
                 <div className="h-100">
@@ -135,7 +135,7 @@ class OnePager extends Component {
         //** Debug data fetched from Wagtail */
         //console.log(data.pages);
 
-        const homepage = data.pages[0];
+        const homepage = data.page.rootPage.uniquepage;
         const q_headers = homepage.headers;
         const q_sections = homepage.sections;
         const q_footers = homepage.footers;    
