@@ -7,15 +7,10 @@ import logo_light from "./white.png";
 //** Navigation Items */
 export const navitems = [
   { href: "#why", text: "Warum PHARMAZIEGASSE<sup>®</sup>?", active: false, type: "text" },
-  {
-    href: "#method",
-    text: "Wie funktioniert es?",
-    active: false,
-    type: "text"
-  },
+  { href: "#steps", text: "So funktioniert's", active: false, type: "text" },
   { href: "#pricing", text: "Preise", active: false, type: "text" },
   { href: "#about", text: "Über uns", active: false, type: "text" },
-  { href: "/getting-started", text: "Loslegen", active: false, type: "button" }
+  { href: "#registration", text: "Loslegen", active: false, type: "button" }
 ];
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
@@ -67,13 +62,6 @@ query pages($token: String!) {
             }
           }
         }
-        footers {
-          ... on Home_F_InfoBlock{
-            __typename
-            infoPlaceholder
-            infoBackground
-          }
-        }
         sections {
           ... on Home_S_WhyBlock {
             __typename
@@ -113,7 +101,8 @@ query pages($token: String!) {
             individualHead
             individualDisplayhead
             individualBackground
-            individualLead
+            individualFooter
+            individualParagraph
             individualImage{
               urlLink
             }
@@ -126,14 +115,14 @@ query pages($token: String!) {
               }
               id
             }
-            individualParagraph
           }
           ... on Home_S_ExpertsBlock {
             __typename
+            expertsFooter
             expertsHead
             expertsBackground
             expertsDisplayhead
-            expertsLead
+            expertsParagraph
             expertsImage{
               urlLink
             }
@@ -146,7 +135,6 @@ query pages($token: String!) {
               }
               id
             }
-            expertsParagraph
           }
           ... on Home_S_LabBlock {
             __typename
@@ -195,6 +183,46 @@ query pages($token: String!) {
               sphereStep
             }
           }
+          ... on Home_S_FeaturesBlock{
+            __typename
+            featuresBackground
+            featuresHead
+            featuresSubhead
+            featuresFeatures
+            featuresDisplayhead
+            featuresDisplaysubhead
+            featuresButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                urlPath
+              }
+            }
+          }
+          ... on Home_S_ManifestBlock{ 
+          	manifestHead
+            manifestImage{
+              urlLink
+            }
+            manifestParagraph
+            manifestBackground
+          }
+          ... on Home_S_StepsBlock{
+            __typename
+            stepsUseSimpleDesign
+            stepsBackground
+            stepsHead
+            stepsSubhead
+            stepsDisplayhead
+            stepsSteps
+            stepsButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                urlPath
+              }
+            }
+          }
           ... on Home_S_ServicesBlock {
             __typename
             servicesBackground
@@ -234,12 +262,14 @@ query pages($token: String!) {
             aboutParagraph
           }
           ... on Home_S_FacebookBlock{
+            __typename
             facebookHead
             facebookDisplayhead
             facebookBackground
             facebookUrls
           }
           ... on Home_S_InstagramBlock{
+            __typename
             instagramHead
             instagramDisplayhead
             instagramBackground

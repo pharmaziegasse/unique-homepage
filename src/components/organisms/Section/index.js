@@ -39,7 +39,7 @@ const Section = (props: Props): React.Element<*> => {
         let result = ( match[1] & 255 )
             + ( match[2] & 255 )
             + ( match[3] & 255 )
-            < 3 * 256 / 2;
+            < 3 * 256 / 1.2;
         if(result){
             return "section-text-white";
         } else {

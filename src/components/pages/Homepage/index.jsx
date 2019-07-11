@@ -32,13 +32,16 @@ const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"
 const HomeSIndividualBlock = lazy(() => import("../../organisms/SectionContents/individual.js"));
 const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/experts.js"));
 const HomeSLabBlock = lazy(() => import("../../organisms/SectionContents/lab.js"));
-const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
+//const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
 const HomeSServicesBlock = lazy(() => import("../../organisms/SectionContents/services.js"));
 const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/reviews.jsx"));
 const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pricing.js"));
 const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about.js"));
 const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
 const HomeSFacebookBlock = lazy(() => import("../../organisms/SectionContents/facebook"));
+const HomeSFeaturesBlock = lazy(() => import("../../organisms/SectionContents/features"));
+const HomeSStepsBlock = lazy(() => import("../../organisms/SectionContents/steps"));
+const HomeSManifestBlock = lazy(() => import("../../organisms/SectionContents/manifest"));
 
 //** Get access token from URL */
 function getQueryVariable(variable) {
@@ -56,7 +59,7 @@ function getQueryVariable(variable) {
   return false;
 }
 
-class OnePager extends Component {
+class Homepage extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -65,7 +68,7 @@ class OnePager extends Component {
     }
 
     componentDidMount(){
-        //console.log(this.props);
+        console.log(this.props);
         if(this.state.data === undefined){
             if(this.props.data !== undefined){
                 this.setState({data: this.props.data});
@@ -90,14 +93,14 @@ class OnePager extends Component {
         if (data.loading) {
             return(
                 <div className="h-100">
-                <div className="flex-center flex-column">
-                    <RingLoader
-                    sizeUnit={"px"}
-                    size={50}
-                    color={'#9dbdd6'}
-                    />
-                    <span className="mt-3">Loading your experience...</span>
-                </div>
+                    <div className="flex-center flex-column">
+                        <RingLoader
+                            sizeUnit={"px"}
+                            size={50}
+                            color={'#9dbdd6'}
+                        />
+                        <span className="mt-3">Loading your experience...</span>
+                    </div>
                 </div>
             );
         }
@@ -106,11 +109,11 @@ class OnePager extends Component {
         console.error(data.error);
         return (
             <div className="h-100">
-            <div className="flex-center flex-column">
-                <h1 className="animated fadeIn mb-4 orange-text"><i className="fas fa-exclamation-triangle"></i></h1>
-                <h5 className="animated fadeIn mb-3">Error!</h5>
-                <p className="animated fadeIn text-muted">An error occurred! We will be back shortly.</p>
-            </div>
+                <div className="flex-center flex-column">
+                    <h1 className="animated fadeIn mb-4 orange-text"><i className="fas fa-exclamation-triangle"></i></h1>
+                    <h5 className="animated fadeIn mb-3">Error!</h5>
+                    <p className="animated fadeIn text-muted">An error occurred! We will be back shortly.</p>
+                </div>
             </div>
         );
         }
@@ -137,8 +140,7 @@ class OnePager extends Component {
 
         const homepage = data.page.rootPage.uniquepage;
         const q_headers = homepage.headers;
-        const q_sections = homepage.sections;
-        const q_footers = homepage.footers;    
+        const q_sections = homepage.sections;  
 
         const btn_pages = [];
 
@@ -172,7 +174,7 @@ class OnePager extends Component {
                 if (sections.__typename === 'Home_S_WhyBlock') {
                 return (
                     <Suspense key={i}  fallback={<Loader/>}>
-                    <Section sectionid="why" background={sections.whyBackground} data-id="0">
+                    <Section sectionid="why" background={sections.whyBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSWhyBlock
                             showHead = { sections.whyDisplayhead }
@@ -200,49 +202,41 @@ class OnePager extends Component {
                 } else if (sections.__typename === 'Home_S_IndividualBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section
-                        sectionid="individual"
-                        background={sections.individualBackground}
-                        data-id="1"
-                    >
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSIndividualBlock
-                            showHead={ sections.individualDisplayhead }
-                            btn = { sections.individualButton }
-                            content={[
-                            { heading: sections.individualHead },
-                            { img: APIHost+sections.individualImage.urlLink },
-                            { lead: sections.individualLead },
-                            { paragraph: sections.individualParagraph }
-                            ]}
-                        />
-                        </Suspense>
-                    </Section>
+                        <Section sectionid="individual" background={sections.individualBackground}>
+                            <Suspense fallback={<Loader/>}>
+                                <HomeSIndividualBlock
+                                    showHead={sections.individualDisplayhead}
+                                    btn = { sections.individualButton }
+                                    heading = { sections.individualHead }
+                                    img = { sections.individualImage.urlLink }
+                                    footer = { sections.individualFooter }
+                                    paragraph = { sections.individualParagraph }
+                                />
+                            </Suspense>
+                        </Section>
                     </Suspense>
                 );
                 } else if (sections.__typename === 'Home_S_ExpertsBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="experts" background={sections.expertsBackground} data-id="2">
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSExpertsBlock
-                            showHead={sections.expertsDisplayhead}
-                            btn = { sections.expertsButton }
-                            content={[
-                            { heading: sections.expertsHead },
-                            { img: APIHost+sections.expertsImage.urlLink },
-                            { lead: sections.expertsLead },
-                            { paragraph: sections.expertsParagraph }
-                            ]}
-                        />
-                        </Suspense>
-                    </Section>
+                        <Section sectionid="experts" background={sections.expertsBackground}>
+                            <Suspense fallback={<Loader/>}>
+                                <HomeSExpertsBlock
+                                    showHead={sections.expertsDisplayhead}
+                                    btn = { sections.expertsButton }
+                                    heading = { sections.expertsHead }
+                                    img = { sections.expertsImage.urlLink }
+                                    footer = { sections.expertsFooter }
+                                    paragraph = { sections.expertsParagraph }
+                                />
+                            </Suspense>
+                        </Section>
                     </Suspense>
                 );
                 } else if (sections.__typename === 'Home_S_LabBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="lab" background={sections.labBackground} data-id="3">
+                    <Section sectionid="lab" background={sections.labBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSLabBlock
                             showHead={sections.labDisplayhead}
@@ -260,10 +254,10 @@ class OnePager extends Component {
                     </Section>
                     </Suspense>
                 );
-                } else if (sections.__typename === 'Home_S_MethodBlock') {
+                } /*else if (sections.__typename === 'Home_S_MethodBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="method" background={sections.methodBackground} data-id="4">
+                    <Section sectionid="method" background={sections.methodBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSMethodBlock
                             showHead={sections.methodDisplayhead}
@@ -292,10 +286,10 @@ class OnePager extends Component {
                     </Section>
                     </Suspense>
                 );
-                } else if (sections.__typename === 'Home_S_ServicesBlock') {
+                } */else if (sections.__typename === 'Home_S_ServicesBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="quotes" background={sections.servicesBackground} data-id="5">
+                    <Section sectionid="quotes" background={sections.servicesBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSServicesBlock
                             content={sections.servicesServices.map((service,i) => {
@@ -313,7 +307,7 @@ class OnePager extends Component {
                 } else if (sections.__typename === 'Home_S_ReviewsBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="reviews" background={sections.reviewsBackground} data-id="6">
+                    <Section sectionid="reviews" background={sections.reviewsBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSReviewsBlock
                             showHead={sections.reviewsDisplayhead}
@@ -332,10 +326,57 @@ class OnePager extends Component {
                     </Section>
                     </Suspense>
                 );
+                } else if (sections.__typename === 'Home_S_FeaturesBlock') {
+                    return (
+                        <Suspense key={i} fallback={<Loader/>}>
+                        <Section sectionid="features" background={sections.featuresBackground}>
+                            <Suspense fallback={<Loader/>}>
+                                <HomeSFeaturesBlock
+                                    showHead={sections.featuresDisplayhead}
+                                    btn={sections.featuresButton}
+                                    title={sections.featuresHead}
+                                    lead={sections.featuresSubhead}
+                                    items={sections.featuresFeatures.map((item, index) => {
+                                        return {
+                                            icon: item.value.feature_icon,
+                                            head: item.value.feature_head,
+                                            text: item.value.feature_paragraph
+                                        };
+                                    })}
+                                />
+                            </Suspense>
+                        </Section>
+                        </Suspense>
+                    );
+                } else if (sections.__typename === 'Home_S_StepsBlock') {
+                    return (
+                        <Suspense key={i} fallback={<Loader/>}>
+                        <Section sectionid="steps" background={sections.stepsBackground}>
+                            <Suspense fallback={<Loader/>}>
+                                <HomeSStepsBlock
+                                    simple={sections.stepsUseSimpleDesign}
+                                    showHead={sections.stepsDisplayhead}
+                                    btn={sections.stepsButton}
+                                    title={sections.stepsHead}
+                                    lead={sections.stepsSubhead}
+                                    token={this.props.token}
+                                    items={sections.stepsSteps.map((item, index) => {
+                                        return {
+                                            icon: item.value.step_icon,
+                                            head: item.value.step_head,
+                                            text: item.value.step_paragraph,
+                                            img: item.value.step_image
+                                        };
+                                    })}
+                                />
+                            </Suspense>
+                        </Section>
+                        </Suspense>
+                    );
                 } else if (sections.__typename === 'Home_S_PricingBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="pricing" background={sections.pricingBackground} data-id="7">
+                    <Section sectionid="pricing" background={sections.pricingBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSPricingBlock
                             showHead={sections.pricingDisplayhead}
@@ -355,7 +396,7 @@ class OnePager extends Component {
                 } else if (sections.__typename === 'Home_S_AboutBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="about" background={sections.aboutBackground} data-id="8">
+                    <Section sectionid="about" background={sections.aboutBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSAboutBlock
                             showHead={sections.aboutDisplayhead}
@@ -364,6 +405,20 @@ class OnePager extends Component {
                             { img: APIHost+sections.aboutImage.urlLink },
                             { paragraph: sections.aboutParagraph }
                             ]}
+                        />
+                        </Suspense>
+                    </Section>
+                    </Suspense>
+                );
+                } else if (sections.__typename === 'Home_S_ManifestBlock') {
+                return (
+                    <Suspense key={i} fallback={<Loader/>}>
+                    <Section sectionid="manifest" background={sections.manifestBackground}>
+                        <Suspense fallback={<Loader/>}>
+                        <HomeSManifestBlock
+                            title={sections.manifestHead}
+                            paragraph={sections.manifestParagraph}
+                            img={sections.manifestImage.urlLink}
                         />
                         </Suspense>
                     </Section>
@@ -410,24 +465,16 @@ class OnePager extends Component {
                 return false;
                 }
             })}
-            {q_footers.map((footers, i) => {
-                let returnparam;
-                if (footers.__typename === "Home_F_InfoBlock") {
-                returnparam = (
-                    <Suspense key={i} fallback={<Loader/>}>
+            <div>
+                <Suspense fallback={<Loader/>}>
                     <Footer 
-                        background={footers.infoBackground}
+                        background={"#ffffff"}
                         sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
                         companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
                     />
-                    </Suspense>
-                );
-                }
-                return (
-                returnparam
-                );
-            })}
+                </Suspense>
+            </div>
             {this.getUnique(btn_pages).map((id, i) => {
                 return(
                 <Suspense key={i} fallback={<div></div>}>
@@ -500,4 +547,4 @@ class OnePager extends Component {
     }
 }
 
-export default OnePager;
+export default Homepage;

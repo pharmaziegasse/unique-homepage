@@ -54,7 +54,7 @@ const Intro = (props: Props): React.Element<*> => {
                     </button>
                 </li>,
                 <li key={i+1} className={GetState(item.active)}>
-                <a className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
+                <a data-toggle="modal" className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
                 </li>
             ];
         }
