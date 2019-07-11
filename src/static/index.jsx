@@ -213,6 +213,7 @@ query pages($token: String!) {
           }
           ... on Home_S_StepsBlock{
             __typename
+            stepsUseSimpleDesign
             stepsBackground
             stepsHead
             stepsSubhead

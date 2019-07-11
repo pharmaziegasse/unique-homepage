@@ -117,7 +117,7 @@ class Steps extends React.Component{
 
     render(){
         //** User Simple Design or elaborate design with images */
-        if(this.props.useSimpleDesign === true){
+        if(this.props.simple === true){
             return(
                 <div className="container py-5">
                     {this.props.showHead === true &&

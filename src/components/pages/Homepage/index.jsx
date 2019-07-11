@@ -358,6 +358,7 @@ class Homepage extends Component {
                         <Section sectionid="steps" background={sections.stepsBackground}>
                             <Suspense fallback={<Loader/>}>
                                 <HomeSStepsBlock
+                                    simple={sections.stepsUseSimpleDesign}
                                     showHead={sections.stepsDisplayhead}
                                     btn={sections.stepsButton}
                                     title={sections.stepsHead}
