@@ -18,7 +18,10 @@ const SectionContent = (props: Props): React.Element<*> => {
             <div className="row mt-5">
             <div className="col-md-6">
                     <div className="row">
-                        <div className="col-12 mb-5"><img draggable="false" className="img-fluid" src={"https://pharmaziegasse.at"+props.img} alt="Beautyprogramm starten"/></div>
+                        <div className="view col-12 mb-5 p-0">
+                            <img draggable="false" className="img-fluid" src={"https://pharmaziegasse.at"+props.img} alt="Beautyprogramm starten"/>
+                            <div className="mask img-mask"></div>
+                        </div>
                         <div className="col-12"><ModalBtn param={props.btn} /></div>
                     </div>
                 </div>
