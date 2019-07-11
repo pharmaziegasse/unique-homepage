@@ -149,7 +149,7 @@ class Steps extends React.Component{
                             this.renderElaborateItem(item, index)
                         );
                     })}
-                    <ModalBtn param={this.props.btn} />
+                    <ModalBtn className="mt-5" param={this.props.btn} />
                 </div>
             )
         }
