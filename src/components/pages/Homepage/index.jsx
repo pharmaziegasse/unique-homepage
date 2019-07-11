@@ -413,14 +413,12 @@ class Homepage extends Component {
                 } else if (sections.__typename === 'Home_S_ManifestBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="manifest" background={sections.aboutBackground}>
+                    <Section sectionid="manifest" background={sections.manifestBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSManifestBlock
-                            showHead={sections.manifestDisplayhead}
-                            btn={sections.manifestButton}
                             title={sections.manifestHead}
-                            lead={sections.manifestSubhead}
-                            token={this.props.token}
+                            paragraph={sections.manifestParagraph}
+                            img={sections.manifestImage.urlLink}
                         />
                         </Suspense>
                     </Section>

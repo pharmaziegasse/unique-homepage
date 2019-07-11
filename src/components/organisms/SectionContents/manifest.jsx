@@ -5,10 +5,6 @@ import * as React from 'react';
 import { ApolloConsumer } from 'react-apollo';
 import { gql } from "apollo-boost";
 
-//** Components */
-//** Atoms */
-import ModalBtn from "../../atoms/ModalButton"
-
 /* Get Images QUERY */
 const GET_IMAGE = gql`
     query img(
@@ -65,9 +61,19 @@ class Manifest extends React.Component{
     render(){
         return(
             <div className="container text-left">
-               <p>Bla</p>
-
-               <ModalBtn param={this.props.btn} />
+                {this.props.title !== "" &&
+                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
+                }
+                <div className="row my-5">
+                    <div className="col-md-6">
+                        <div dangerouslySetInnerHTML={{__html: this.props.paragraph}}></div>
+                    </div>
+                    <div className="col-md-6 text-center">
+                        <div className="row">
+                            <div className="col-12 mb-5"><img draggable="false" className="img-fluid mix-blend-mode-multiply" src={"https://pharmaziegasse.at"+this.props.img} alt="Stefan"/></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

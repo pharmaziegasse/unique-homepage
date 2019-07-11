@@ -199,6 +199,14 @@ query pages($token: String!) {
               }
             }
           }
+          ... on Home_S_ManifestBlock{ 
+          	manifestHead
+            manifestImage{
+              urlLink
+            }
+            manifestParagraph
+            manifestBackground
+          }
           ... on Home_S_StepsBlock{
             __typename
             stepsUseSimpleDesign
