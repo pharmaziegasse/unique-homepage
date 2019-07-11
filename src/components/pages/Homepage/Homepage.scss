@@ -78,6 +78,19 @@ header,
             text-transform: uppercase;
             cursor: pointer;
         }
+        .pulse{
+            animation:pulse 1s infinite;
+        }
+        @keyframes pulse {
+            10% {transform: scale(1.1)}
+        }
+        
+        @keyframes pulsecolor {
+          10% {background: #dd0000}
+        }
+        .funnel{
+            text-transform: none;
+        }
     }
 
     /* Hero */
