@@ -1,5 +1,5 @@
 {
-  "main.css": "./static/css/main.222b3bb5.chunk.css",
+  "main.css": "./static/css/main.72cc8bdf.chunk.css",
   "main.js": "./static/js/main.d697d601.chunk.js",
   "main.js.map": "./static/js/main.d697d601.chunk.js.map",
   "runtime~main.js": "./static/js/runtime~main.fa433f60.js",
@@ -56,10 +56,10 @@
   "static/js/26.e8860afd.chunk.js": "./static/js/26.e8860afd.chunk.js",
   "static/js/26.e8860afd.chunk.js.map": "./static/js/26.e8860afd.chunk.js.map",
   "index.html": "./index.html",
-  "precache-manifest.8373e168223ab62c4e045f1f4ff8f555.js": "./precache-manifest.8373e168223ab62c4e045f1f4ff8f555.js",
+  "precache-manifest.8c0d2d3b12309ed7f8d55fda469fc9b9.js": "./precache-manifest.8c0d2d3b12309ed7f8d55fda469fc9b9.js",
   "service-worker.js": "./service-worker.js",
   "static/css/4.6c351363.chunk.css.map": "./static/css/4.6c351363.chunk.css.map",
-  "static/css/main.222b3bb5.chunk.css.map": "./static/css/main.222b3bb5.chunk.css.map",
+  "static/css/main.72cc8bdf.chunk.css.map": "./static/css/main.72cc8bdf.chunk.css.map",
   "static/media/flag-icon.css": "./static/media/zw.ad4ad36d.svg",
   "static/media/black.png": "./static/media/black.58fe2d77.png",
   "static/media/white.png": "./static/media/white.b858081a.png"
