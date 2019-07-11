@@ -27,7 +27,9 @@ const SectionContent = (props: Props): React.Element<*> => {
                 </div>
                 <div className="col-md-6">
                     <div dangerouslySetInnerHTML={{__html: props.paragraph}}></div>
-                    <Alert show="true" className="alert-info">{props.footer}</Alert>
+                    {props.footer !== null &&
+                        <Alert show="true" className="alert-info">{props.footer}</Alert>
+                    }
                 </div>
                 
             </div>
