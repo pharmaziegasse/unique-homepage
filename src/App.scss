@@ -1,5 +1,24 @@
 // Importing scss of all active pages
-@import "./mdb/scss/custom-variables";
+
+@charset "UTF-8";
+
+// Bootstrap
+@import url("http://185.162.251.14:51000/content/css/bootstrap.min.css");
+
+// mdb
+@import url("http://185.162.251.14:51000/content/css/mdb.min.css");
+
+// Your custom font
+@import "custom-font";
+
+// Your custom variables
+@import "custom-variables";
+
+// Your custom skin
+@import "custom-skin";
+
+//// Your custom styles
+@import "custom-styles";
 
 span.loader__ball {
     display: inline-block;
