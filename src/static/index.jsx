@@ -15,7 +15,7 @@ export const navitems = [
   },
   { href: "#pricing", text: "Preise", active: false, type: "text" },
   { href: "#about", text: "Über uns", active: false, type: "text" },
-  { href: "/getting-started", text: "Loslegen", active: false, type: "button" }
+  { href: "#registration", text: "Loslegen", active: false, type: "button" }
 ];
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
