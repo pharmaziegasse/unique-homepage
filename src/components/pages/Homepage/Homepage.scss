@@ -241,6 +241,35 @@ header,
         top: 0;
     }
 
+    /* Custom masks */
+    .img-mask{
+        -moz-box-shadow:    inset 0 0 50px rgba(0,0,0,.2);
+        -webkit-box-shadow: inset 0 0 50px rgba(0,0,0,.2);
+        box-shadow:         inset 0 0 50px rgba(0,0,0,.2);
+    }
+
+    /* Mobile Spacers */
+    .spacer-5{
+        height: 3rem;
+        width: 0px;
+    }
+    .spacer-4{
+        height: 2rem;
+        width: 0px;
+    }
+    .spacer-3{
+        height: 1rem;
+        width: 0px;
+    }
+    .spacer-2{
+        height: .5rem;
+        width: 0px;
+    }
+    .spacer-1{
+        height: .25rem;
+        width: 0px;
+    }
+
     /* Asbest */
     .asbest{
         display: flex;
@@ -676,7 +705,7 @@ header,
     }
     }
 
-        /* Fix cards */
+    /* Fix cards */
     .pricing-card, .premium{
         box-shadow: none;
         border-radius: 0;

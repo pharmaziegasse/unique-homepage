@@ -9,7 +9,7 @@ import ModalBtn from "../../atoms/ModalButton"
  * Section: Steps
  */
 class Steps extends React.Component{
-    
+
      //** Rendering the simple item */
     renderItem = (item, i) => {
         let IconClass = "far fa-"+item.icon+" fa-2x";
@@ -43,11 +43,15 @@ class Steps extends React.Component{
 
         return(
             <div className={rowClass} key={i}>
-                <div className="col-md-6 p-0">
+                <div className="view col-md-6 p-0">
+                    
                     <img className="img-fluid" src="https://dl7bo1dy930sf.cloudfront.net/img/how-it-works-image1.jpg" alt={"step "+(i+1)}/>
+                    <div className="mask img-mask"></div>
                 </div>
                 <div className="col-md-6 p-0 d-flex justify-content-center">
+                    
                     <div className="m-auto pl-5 pr-5">
+                        <div className="spacer-4 d-block d-sm-none"></div>
                         <i className={IconClass}></i>
                         <h2 className="mt-3 mb-0 text-muted">Schritt {i+1}</h2>
                         <p className="lead">{item.head}</p>

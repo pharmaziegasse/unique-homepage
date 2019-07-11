@@ -28,7 +28,7 @@ class Features extends React.Component{
 
     render(){
         return(
-            <div className="container py-5">
+            <div className="container">
                 {this.props.showHead === true &&
                     <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
                 }

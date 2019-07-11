@@ -83,11 +83,11 @@ class Gallery extends React.Component{
     renderContent (){
         
         return(
-            <div className="container instagram py-5">
+            <div className="container instagram">
                 {this.props.showHead === true &&
                     <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
                 }
-                <div className="row mt-4">
+                <div className="row mt-5">
                     {this.props.urls.map((c, i) => {
                         return(
                             this.renderEmbed(c.url, i)
