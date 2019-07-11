@@ -140,8 +140,7 @@ class Homepage extends Component {
 
         const homepage = data.page.rootPage.uniquepage;
         const q_headers = homepage.headers;
-        const q_sections = homepage.sections;
-        const q_footers = homepage.footers;    
+        const q_sections = homepage.sections;  
 
         const btn_pages = [];
 

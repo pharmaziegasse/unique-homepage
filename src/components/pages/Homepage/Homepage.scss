@@ -17,6 +17,10 @@ header,
     }
 }
 
+b, strong{
+    font-weight: bold !important;
+}
+
 
 // Scss of page
 .Homepage {
@@ -92,7 +96,10 @@ header,
             font-weight: bold;
             a{
                 text-transform: none;
-            }   
+            }
+            a:hover{
+                color: royalblue;
+            }
         }
     }
 
