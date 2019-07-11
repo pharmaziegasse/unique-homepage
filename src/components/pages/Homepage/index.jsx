@@ -41,6 +41,7 @@ const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gal
 const HomeSFacebookBlock = lazy(() => import("../../organisms/SectionContents/facebook"));
 const HomeSFeaturesBlock = lazy(() => import("../../organisms/SectionContents/features"));
 const HomeSStepsBlock = lazy(() => import("../../organisms/SectionContents/steps"));
+const HomeSManifestBlock = lazy(() => import("../../organisms/SectionContents/manifest"));
 
 //** Get access token from URL */
 function getQueryVariable(variable) {
