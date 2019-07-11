@@ -65,7 +65,9 @@ class Manifest extends React.Component{
     render(){
         return(
             <div className="container text-left">
-               
+               <p>Bla</p>
+
+               <ModalBtn param={this.props.btn} />
             </div>
         )
     }

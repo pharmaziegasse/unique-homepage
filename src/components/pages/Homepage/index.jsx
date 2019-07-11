@@ -410,6 +410,22 @@ class Homepage extends Component {
                     </Section>
                     </Suspense>
                 );
+                } else if (sections.__typename === 'Home_S_ManifestBlock') {
+                return (
+                    <Suspense key={i} fallback={<Loader/>}>
+                    <Section sectionid="manifest" background={sections.aboutBackground}>
+                        <Suspense fallback={<Loader/>}>
+                        <HomeSManifestBlock
+                            showHead={sections.manifestDisplayhead}
+                            btn={sections.manifestButton}
+                            title={sections.manifestHead}
+                            lead={sections.manifestSubhead}
+                            token={this.props.token}
+                        />
+                        </Suspense>
+                    </Section>
+                    </Suspense>
+                );
                 } else if (sections.__typename === 'Home_S_InstagramBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
