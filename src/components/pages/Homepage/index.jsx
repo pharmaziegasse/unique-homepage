@@ -93,14 +93,14 @@ class Homepage extends Component {
         if (data.loading) {
             return(
                 <div className="h-100">
-                <div className="flex-center flex-column">
-                    <RingLoader
-                    sizeUnit={"px"}
-                    size={50}
-                    color={'#9dbdd6'}
-                    />
-                    <span className="mt-3">Loading your experience...</span>
-                </div>
+                    <div className="flex-center flex-column">
+                        <RingLoader
+                            sizeUnit={"px"}
+                            size={50}
+                            color={'#9dbdd6'}
+                        />
+                        <span className="mt-3">Loading your experience...</span>
+                    </div>
                 </div>
             );
         }
@@ -203,39 +203,35 @@ class Homepage extends Component {
                 } else if (sections.__typename === 'Home_S_IndividualBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="individual" background={sections.individualBackground}>
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSIndividualBlock
-                            showHead={ sections.individualDisplayhead }
-                            btn = { sections.individualButton }
-                            content={[
-                            { heading: sections.individualHead },
-                            { img: APIHost+sections.individualImage.urlLink },
-                            { lead: sections.individualLead },
-                            { paragraph: sections.individualParagraph }
-                            ]}
-                        />
-                        </Suspense>
-                    </Section>
+                        <Section sectionid="individual" background={sections.individualBackground}>
+                            <Suspense fallback={<Loader/>}>
+                                <HomeSIndividualBlock
+                                    showHead={sections.individualDisplayhead}
+                                    btn = { sections.individualButton }
+                                    heading = { sections.individualHead }
+                                    img = { sections.individualImage.urlLink }
+                                    footer = { sections.individualFooter }
+                                    paragraph = { sections.individualParagraph }
+                                />
+                            </Suspense>
+                        </Section>
                     </Suspense>
                 );
                 } else if (sections.__typename === 'Home_S_ExpertsBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="experts" background={sections.expertsBackground}>
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSExpertsBlock
-                            showHead={sections.expertsDisplayhead}
-                            btn = { sections.expertsButton }
-                            content={[
-                            { heading: sections.expertsHead },
-                            { img: APIHost+sections.expertsImage.urlLink },
-                            { lead: sections.expertsLead },
-                            { paragraph: sections.expertsParagraph }
-                            ]}
-                        />
-                        </Suspense>
-                    </Section>
+                        <Section sectionid="experts" background={sections.expertsBackground}>
+                            <Suspense fallback={<Loader/>}>
+                                <HomeSExpertsBlock
+                                    showHead={sections.expertsDisplayhead}
+                                    btn = { sections.expertsButton }
+                                    heading = { sections.expertsHead }
+                                    img = { sections.expertsImage.urlLink }
+                                    footer = { sections.expertsFooter }
+                                    paragraph = { sections.expertsParagraph }
+                                />
+                            </Suspense>
+                        </Section>
                     </Suspense>
                 );
                 } else if (sections.__typename === 'Home_S_LabBlock') {
@@ -456,24 +452,16 @@ class Homepage extends Component {
                 return false;
                 }
             })}
-            {q_footers.map((footers, i) => {
-                let returnparam;
-                if (footers.__typename === "Home_F_InfoBlock") {
-                returnparam = (
-                    <Suspense key={i} fallback={<Loader/>}>
+            <div>
+                <Suspense fallback={<Loader/>}>
                     <Footer 
-                        background={footers.infoBackground}
+                        background={"#ffffff"}
                         sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
                         companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
                     />
-                    </Suspense>
-                );
-                }
-                return (
-                returnparam
-                );
-            })}
+                </Suspense>
+            </div>
             {this.getUnique(btn_pages).map((id, i) => {
                 return(
                 <Suspense key={i} fallback={<div></div>}>

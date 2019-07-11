@@ -67,13 +67,6 @@ query pages($token: String!) {
             }
           }
         }
-        footers {
-          ... on Home_F_InfoBlock{
-            __typename
-            infoPlaceholder
-            infoBackground
-          }
-        }
         sections {
           ... on Home_S_WhyBlock {
             __typename
@@ -113,7 +106,8 @@ query pages($token: String!) {
             individualHead
             individualDisplayhead
             individualBackground
-            individualLead
+            individualFooter
+            individualParagraph
             individualImage{
               urlLink
             }
@@ -126,14 +120,14 @@ query pages($token: String!) {
               }
               id
             }
-            individualParagraph
           }
           ... on Home_S_ExpertsBlock {
             __typename
+            expertsFooter
             expertsHead
             expertsBackground
             expertsDisplayhead
-            expertsLead
+            expertsParagraph
             expertsImage{
               urlLink
             }
@@ -146,7 +140,6 @@ query pages($token: String!) {
               }
               id
             }
-            expertsParagraph
           }
           ... on Home_S_LabBlock {
             __typename
