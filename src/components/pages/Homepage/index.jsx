@@ -362,11 +362,13 @@ class Homepage extends Component {
                                     btn={sections.stepsButton}
                                     title={sections.stepsHead}
                                     lead={sections.stepsSubhead}
+                                    token={this.props.token}
                                     items={sections.stepsSteps.map((item, index) => {
                                         return {
                                             icon: item.value.step_icon,
                                             head: item.value.step_head,
-                                            text: item.value.step_paragraph
+                                            text: item.value.step_paragraph,
+                                            img: item.value.step_image
                                         };
                                     })}
                                 />

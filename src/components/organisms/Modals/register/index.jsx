@@ -324,7 +324,6 @@ class Modal extends React.Component{
     }
 
     printErrorDialogs = () => {
-        console.log(this.state.buffer);
         if(Array.isArray(this.state.buffer)){
             let errors = [];
             let buffer = this.state.buffer;
@@ -373,7 +372,7 @@ class Modal extends React.Component{
         //** Text data for the modal */ 
         if(this.props.data.pages[1] !== undefined){
             let modaldata = (this.props.data.pages[1]);
-            console.log(modaldata);
+            //console.log(modaldata);
 
             return(
                 <div className="modal fade" id="registration" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
