@@ -9,14 +9,7 @@ import ModalBtn from "../../atoms/ModalButton"
  * Section: Steps
  */
 class Steps extends React.Component{
-    constructor(props){
-        super(props);
-        
-        this.state = {
-           
-        }
-    }
-
+    
      //** Rendering the simple item */
     renderItem = (item, i) => {
         let IconClass = "far fa-"+item.icon+" fa-2x";

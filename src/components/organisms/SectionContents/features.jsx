@@ -9,14 +9,8 @@ import ModalBtn from "../../atoms/ModalButton"
  * Section: Features
  */
 class Features extends React.Component{
-    constructor(props){
-        super(props);
-        
-        this.state = {
-           
-        }
-    }
 
+    //** Render feature item */
     renderItem = (item) => {
         let IconClass = "fas fa-"+item.icon+" fa-2x";
         return(
