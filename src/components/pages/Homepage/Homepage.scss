@@ -89,7 +89,10 @@ header,
           10% {background: #dd0000}
         }
         .funnel{
-            text-transform: none;
+            font-weight: bold;
+            a{
+                text-transform: none;
+            }   
         }
     }
 

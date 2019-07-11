@@ -74,7 +74,7 @@ const Footer = (props: Props): React.Element<*> => {
           </p>
         </div>
         <div className="col-md-6">
-          <p className="text-center text-md-right">Made with <i className="fas fa-heart pulse red-text"></i> by <a className="funnel" href="https://www.aichner-christian.com?refer=pharmaziegasse">Werbeagentur Christian Aichner</a>
+          <p className="text-center text-md-right funnel">Made with <i className="fas fa-heart pulse red-text"></i> by <a href="https://www.aichner-christian.com?refer=pharmaziegasse">Werbeagentur Christian Aichner</a>
           </p>
         </div>
       </div>
