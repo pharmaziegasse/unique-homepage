@@ -195,6 +195,37 @@ query pages($token: String!) {
               sphereStep
             }
           }
+          ... on Home_S_FeaturesBlock{
+            __typename
+            featuresBackground
+            featuresHead
+            featuresSubhead
+            featuresFeatures
+            featuresDisplayhead
+            featuresDisplaysubhead
+            featuresButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                urlPath
+              }
+            }
+          }
+          ... on Home_S_StepsBlock{
+            __typename
+            stepsBackground
+            stepsHead
+            stepsSubhead
+            stepsDisplayhead
+            stepsSteps
+            stepsButton{
+              buttonLink
+              buttonTitle
+              buttonPage{
+                urlPath
+              }
+            }
+          }
           ... on Home_S_ServicesBlock {
             __typename
             servicesBackground
@@ -234,12 +265,14 @@ query pages($token: String!) {
             aboutParagraph
           }
           ... on Home_S_FacebookBlock{
+            __typename
             facebookHead
             facebookDisplayhead
             facebookBackground
             facebookUrls
           }
           ... on Home_S_InstagramBlock{
+            __typename
             instagramHead
             instagramDisplayhead
             instagramBackground
