@@ -32,7 +32,7 @@ const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"
 const HomeSIndividualBlock = lazy(() => import("../../organisms/SectionContents/individual.js"));
 const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/experts.js"));
 const HomeSLabBlock = lazy(() => import("../../organisms/SectionContents/lab.js"));
-const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
+//const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
 const HomeSServicesBlock = lazy(() => import("../../organisms/SectionContents/services.js"));
 const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/reviews.jsx"));
 const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pricing.js"));
@@ -254,7 +254,7 @@ class Homepage extends Component {
                     </Section>
                     </Suspense>
                 );
-                } else if (sections.__typename === 'Home_S_MethodBlock') {
+                } /*else if (sections.__typename === 'Home_S_MethodBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
                     <Section sectionid="method" background={sections.methodBackground}>
@@ -286,7 +286,7 @@ class Homepage extends Component {
                     </Section>
                     </Suspense>
                 );
-                } else if (sections.__typename === 'Home_S_ServicesBlock') {
+                } */else if (sections.__typename === 'Home_S_ServicesBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
                     <Section sectionid="quotes" background={sections.servicesBackground}>
