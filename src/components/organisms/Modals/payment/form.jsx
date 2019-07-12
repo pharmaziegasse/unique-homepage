@@ -17,7 +17,7 @@ class Form extends React.Component<IFormProps, IFormState>{
         super(props);
 
         this.state = {
-            payment_method: 1,
+            payment_method: 0,
             name: "",
             iban: "",
             email: "",
@@ -25,7 +25,7 @@ class Form extends React.Component<IFormProps, IFormState>{
         }
     }
 
-    handleSubmit = async (e) => {
+    handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try{
@@ -33,8 +33,7 @@ class Form extends React.Component<IFormProps, IFormState>{
             if (this.props.stripe) {
                 // Create token
                 let token = await this.props.stripe.createToken({
-                    name: this.state.name,
-                    email: this.state.email
+                    name: this.state.name
                 })
                 console.log(token);
             } else {
@@ -67,7 +66,13 @@ class Form extends React.Component<IFormProps, IFormState>{
                 this.sendSourceToServer(result.source);
             }
         });
-  };
+    };
+
+
+    onChangeEvent = (e) => {
+        this.setState({[e.target.name]: e.target.value});
+    }
+
 
 
     renderContent (){
@@ -80,14 +85,15 @@ class Form extends React.Component<IFormProps, IFormState>{
                             this.state.payment_method === 0 ? (
                                 <form
                                     className="form-group mt-3"
-                                    onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => this.handleSubmit(e)}
+                                    onSubmit={e => this.handleSubmit(e)}
                                 >
                                     <label>Name</label>
                                     <input
                                         type="text"
+                                        name="name"
                                         className="form-control"
                                         value={this.state.name}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({name: e.target.value})}
+                                        onChange={e => this.onChangeEvent(e)}
                                     />
                                     <label>CC Number -- Exp. Date -- CCV</label>
                                     <CardElement className="p-2 form-control" />
@@ -97,21 +103,23 @@ class Form extends React.Component<IFormProps, IFormState>{
                             ) : (
                                 <form
                                     className="form-group mt-3"
-                                    onSubmit={(e: React.ChangeEvent<HTMLFormElement>) => this.handleIBANSubmit(e)}
+                                    onSubmit={e => this.handleIBANSubmit(e)}
                                 >
                                     <label>Name</label>
                                     <input
                                         type="text"
+                                        name="name"
                                         className="form-control"
                                         value={this.state.name}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({name: e.target.value})}
+                                        onChange={e => this.onChangeEvent(e)}
                                     />
                                     <label>E-Mail</label>
                                     <input
                                         type="email"
+                                        name="email"
                                         className="form-control"
                                         value={this.state.email}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({email: e.target.value})}
+                                        onChange={e => this.onChangeEvent(e)}
                                     />
                                     <label>IBAN</label>
                                     <IbanElement
