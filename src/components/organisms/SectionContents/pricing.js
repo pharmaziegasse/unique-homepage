@@ -60,7 +60,7 @@ class Pricing extends React.Component{
                                             <p className="text-muted mb-0">€ {value.price}</p>
                                         </div>
                                         <hr className="mt-0"/>
-                                        <button className="btn btn-rounded btn-info font-weight-bold">Jetzt starten!</button>
+                                        <button data-toggle="modal" data-target="#paymentModal" className="btn btn-rounded btn-info font-weight-bold">Jetzt starten!</button>
                                     </div>
                                 </div>
                             </div>

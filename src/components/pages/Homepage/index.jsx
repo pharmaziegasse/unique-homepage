@@ -26,6 +26,7 @@ const AboutModal = lazy(() => import("../../organisms/Modals/about"));
 const PrivacyModal = lazy(() => import("../../organisms/Modals/privacy"));
 const RegisterModal = lazy(() => import("../../organisms/Modals/register"));
 const CookieModal = lazy(() => import("../../organisms/Modals/cookie"));
+const PaymentModal = lazy(() => import("../../organisms/Modals/payment"));
 
 //** Section Blocks */
 const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"));
@@ -486,7 +487,12 @@ class Homepage extends Component {
             })}
             <div>
                 <Suspense fallback={<div></div>}>
-                <CookieModal/>
+                    <CookieModal/>
+                </Suspense>
+            </div>
+            <div>
+                <Suspense fallback={<div></div>}>
+                    <PaymentModal/>
                 </Suspense>
             </div>
             <div>
