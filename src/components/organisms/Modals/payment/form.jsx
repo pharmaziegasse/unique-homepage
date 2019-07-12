@@ -68,17 +68,31 @@ class Form extends React.Component<IFormProps, IFormState>{
         });
     };
 
-
+    //** Write input to state */
     onChangeEvent = (e) => {
+        //** Automatically get name and value */
         this.setState({[e.target.name]: e.target.value});
     }
 
-
+    //** Select payment method */
+    selectMethod = (e) => {
+        let id = parseInt(e.target.getAttribute('data-id'),10);
+        if(id !== undefined && (id === 0 || id === 1)){
+            //** 0: Card, 1: SEPA */
+            this.setState({payment_method: id});
+        } else {
+            console.error("Method not availible");
+        }
+       
+    }
 
     renderContent (){
         return(
             <div>
-                <h2>Beautyprogamm starten</h2>
+                <h2>Nur noch einen Schritt entfernt!</h2>
+                <p className="lead mt-3 mb-2">Zahlungsart wählen</p>
+                <button className="btn btn-purple btn-rounded font-weight-bold" data-id="0" onClick={e => this.selectMethod(e)}><i className="far fa-credit-card pr-2"></i>Kreditkarte</button>
+                <button className="btn btn-purple btn-rounded font-weight-bold" data-id="1" onClick={e => this.selectMethod(e)}>SEPA Lastschrift</button>
                 <div className="row d-flex justify-content-center">
                     <div className="col-lg-6">
                         {
