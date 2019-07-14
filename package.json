@@ -29,9 +29,11 @@
     "react-instagram-embed": "^1.5.0",
     "react-lazy-load": "^3.0.13",
     "react-oauth2": "^1.1.2",
+    "react-paypal-button-v2": "^2.3.2",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^3.0.1",
     "react-spinners": "^0.5.3",
+    "react-stripe-elements": "^4.0.0",
     "typescript": "^3.3.3333"
   },
   "scripts": {
