@@ -21,6 +21,7 @@ class Pricing extends React.Component{
         }
     }
 
+    //** Get column based on item count */
     getWidth = () => {
         let count = this.props.cards.length;
         

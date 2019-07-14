@@ -39,12 +39,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Pharmaziegasse®</title>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
-    />
+
   </head>
   <body>
     <!-- Load Facebook SDK for JavaScript -->
@@ -56,14 +51,14 @@
           version          : 'v3.3'
         });
       };
-
       (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/de_DE/sdk/xfbml.customerchat.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/de_DE/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <!-- Your customer chat code -->
     <div class="fb-customerchat"
@@ -73,23 +68,16 @@
       logged_in_greeting="Hi! Wie können wir Dir helfen?"
       logged_out_greeting="Hi! Wie können wir Dir helfen?">
     </div>
+    <!-- Main App -->
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
     <script src="https://www.aichner-christian.com/mdb/js/jquery-3.3.1.min.js"></script>
     <script src="https://www.aichner-christian.com/mdb/js/popper.min.js"></script>
     <script src="https://www.aichner-christian.com/mdb/js/bootstrap.min.js"></script>
     <script src="https://www.aichner-christian.com/mdb/js/mdb.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="https://kit.fontawesome.com/00892304dd.js"></script>
     
     <script>
       // Animations initialization

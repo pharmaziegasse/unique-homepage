@@ -4,12 +4,6 @@ import * as React from 'react'
 import classnames from 'classnames/bind'
 
 /**
- * POSSIBLE VALUES
- * L (Light)
- * D (Dark)
- */
-
-/**
  * General Navbar Component
  */
 class Nav extends React.Component {
