@@ -1,9 +1,6 @@
 //** Standard Frameworks */
 import * as React from 'react'
 
-//** Components */
-//bla
-
 /**
  * Section: Pricing
  */
