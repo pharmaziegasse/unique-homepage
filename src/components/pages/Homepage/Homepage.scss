@@ -771,6 +771,18 @@ b, strong{
     }
 
     /* Modals */
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px;
+      }
+      
+      .modal-dialog {
+        display: inline-block;
+        vertical-align: middle;
+      }
     .register-form{
         .input-grp{
             i{
