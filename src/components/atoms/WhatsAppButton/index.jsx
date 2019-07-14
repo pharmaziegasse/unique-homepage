@@ -27,6 +27,12 @@ class WhatsAppButton extends React.Component {
             /** Create link with url encoded text */
             let link = "https://api.whatsapp.com/send?phone="+phone_wo_spaces+"&text="+encodeURIComponent(this.props.text);
 
+            //** Set default title */
+            let title = "WhatsApp me!"
+            if(this.props.title !== undefined){
+                title = this.props.title;
+            }
+
             return (
                 <a
                     className="btn btn-success btn-rounded font-weight-bold mt-3"
@@ -35,7 +41,7 @@ class WhatsAppButton extends React.Component {
                     rel="noopener noreferrer"
                 >
                     <i className="fab fa-whatsapp pr-2"></i>
-                    WhatsApp me!
+                    {title}
                 </a>
             )
         } else {

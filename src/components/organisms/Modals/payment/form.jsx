@@ -5,7 +5,9 @@ import * as React from 'react'
 import { PayPalButton } from "react-paypal-button-v2";
 
 //** Components */
+//** Atoms */
 import Alert from "../../../atoms/Alert";
+import WhatsAppButton from "../../../atoms/WhatsAppButton";
 
 class Form extends React.Component{
     constructor(props){
@@ -75,12 +77,15 @@ class Form extends React.Component{
                             />
                         </div>
                     ) : (
-                        <Alert show="true" className="alert-success">
-                            {this.state.payment.name !== "" &&
-                                <p className="lead font-weight-bold">Vielen Dank für Ihre Bestellung, {this.state.payment.name}!</p>
-                            }
-                            <p>Wir melden uns bei Ihnen!</p>
-                        </Alert>
+                        <div>
+                            <Alert show="true" className="alert-success">
+                                {this.state.payment.name !== "" &&
+                                    <p className="lead font-weight-bold">Vielen Dank für Ihre Bestellung, {this.state.payment.name}!</p>
+                                }
+                                <div dangerouslySetInnerHTML={{__html: this.props.success_msg}}></div>
+                            </Alert>
+                            <WhatsAppButton text={"Ich habe gerade euer Paket um EUR "+this.props.amount+" gekauft und würde mich gerne mit euch verbinden."} num={this.props.wa_num} title="Kontakt" />
+                        </div>
                     )}
                 </div>
             </div>

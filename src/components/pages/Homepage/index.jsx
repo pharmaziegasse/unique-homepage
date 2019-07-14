@@ -397,7 +397,12 @@ class Homepage extends Component {
                             sections.pricingPricingcards.map((card, index) => {
                                 return (
                                     <Suspense key={index} fallback={<div></div>}>
-                                        <PaymentModal index={index} amount={card.value.pricingcard_price} />
+                                        <PaymentModal
+                                            index={index}
+                                            amount={card.value.pricingcard_price}
+                                            success_msg={card.value.pricingcard_sucessmsg}
+                                            wa_num={homepage.whatsappTelephone}
+                                        />
                                     </Suspense>
                                 );
                             })

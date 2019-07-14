@@ -16,7 +16,7 @@ class PaymentModal extends React.Component{
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" className="dark-text">×</span>
                         </button>
-                            <CheckoutForm amount={this.props.amount} />
+                            <CheckoutForm amount={this.props.amount} success_msg={this.props.success_msg} wa_num={this.props.wa_num} />
                         </div>
                     </div>
                 </div>
