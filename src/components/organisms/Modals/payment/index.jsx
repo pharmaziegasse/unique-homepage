@@ -1,8 +1,5 @@
 //** Standard Frameworks */
 import * as React from 'react'
-//** Additional Frameworks */
-//** Stripe */
-//import { StripeProvider, Elements} from 'react-stripe-elements';
 
 import CheckoutForm from './form';
 
@@ -19,15 +16,7 @@ class PaymentModal extends React.Component{
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true" className="dark-text">×</span>
                         </button>
-                        {/*
-                        <StripeProvider apiKey="pk_test_3mHrqGgjRYHEbeOGUksNpMok008NqIIkRF">
-                            <Elements>
-                        */}
-                                <CheckoutForm amount={this.props.amount} />
-                        {/*
-                            </Elements>
-                        </StripeProvider>
-                         */}
+                            <CheckoutForm amount={this.props.amount} />
                         </div>
                     </div>
                 </div>

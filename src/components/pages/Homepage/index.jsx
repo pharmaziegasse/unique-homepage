@@ -483,6 +483,8 @@ class Homepage extends Component {
                         sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
                         companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
+                        wa_text={homepage.whatsappContactline}
+                        wa_num={homepage.whatsappTelephone}
                     />
                 </Suspense>
             </div>

@@ -1,6 +1,10 @@
 //** Standard Frameworks */
 import * as React from 'react'
 
+//** Components */
+//** Atoms */
+import WhatsAppButton from "../../atoms/WhatsAppButton"
+
 //** Preconfigure datatypes */
 type Props = {
     sociallinks: string,
@@ -45,15 +49,7 @@ const Footer = (props: Props): React.Element<*> => {
           <h6 className="text-uppercase mb-4 font-weight-bold">Kontakt</h6>
           <p><i className="fas fa-phone mr-3"></i>{companyinfo[0].phone}</p>
           <a className="email-link" href={"mailto:"+companyinfo[0].email}><i className="fas fa-envelope mr-3"></i>{companyinfo[0].email}</a>
-          <a
-            className="btn btn-success btn-rounded font-weight-bold mt-3"
-            href="https://api.whatsapp.com/send?phone=436601703184&text=Hey,%20gib%20mir%20bitte%20Infos%20zu%20meinem%20individuellen%20Beautyprogramm!"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fab fa-whatsapp pr-2"></i>
-            WhatsApp me!
-          </a>
+          <WhatsAppButton text={props.wa_text} num={props.wa_num} />
         </div>
 
         <hr className="w-100 clearfix d-md-none"/>
