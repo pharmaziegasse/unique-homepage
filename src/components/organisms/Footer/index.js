@@ -45,6 +45,15 @@ const Footer = (props: Props): React.Element<*> => {
           <h6 className="text-uppercase mb-4 font-weight-bold">Kontakt</h6>
           <p><i className="fas fa-phone mr-3"></i>{companyinfo[0].phone}</p>
           <a className="email-link" href={"mailto:"+companyinfo[0].email}><i className="fas fa-envelope mr-3"></i>{companyinfo[0].email}</a>
+          <a
+            className="btn btn-success btn-rounded font-weight-bold mt-3"
+            href="https://api.whatsapp.com/send?phone=436601703184&text=Hey,%20gib%20mir%20bitte%20Infos%20zu%20meinem%20individuellen%20Beautyprogramm!"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-whatsapp pr-2"></i>
+            WhatsApp me!
+          </a>
         </div>
 
         <hr className="w-100 clearfix d-md-none"/>
@@ -53,18 +62,17 @@ const Footer = (props: Props): React.Element<*> => {
           <p><span className="link" data-toggle="modal" data-target="#aboutModal">Impressum</span></p>
           <p><span className="link" data-toggle="modal" data-target="#privacyModal">Datenschutz</span></p>
           <ul className="list-unstyled list-inline">
-              <li className="list-inline-item">
-                <a href={sociallinks[0].fb} rel="noopener noreferrer" target="_blank" className="mx-2">
-                  <i className="fab fa-facebook-f"></i>
-                </a>
-              </li>
-              <li className="list-inline-item">
-                <a href={sociallinks[0].ig} rel="noopener noreferrer" target="_blank" className="mx-2">
-                  <i className="fab fa-instagram"></i>
-                </a>
-              </li>
-            </ul>
-           
+            <li className="list-inline-item">
+              <a href={sociallinks[0].fb} rel="noopener noreferrer" target="_blank" className="mx-2">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a href={sociallinks[0].ig} rel="noopener noreferrer" target="_blank" className="mx-2">
+                <i className="fab fa-instagram"></i>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
       <hr/>

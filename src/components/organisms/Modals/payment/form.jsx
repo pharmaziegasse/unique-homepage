@@ -70,8 +70,6 @@ class Form extends React.Component{
                                     } else {
                                         console.error("There was an error during the payment procedure.");
                                     }
-
-                                    console.log(details);
                                 });
                                 }}
                             />
