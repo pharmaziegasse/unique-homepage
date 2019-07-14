@@ -100,7 +100,7 @@ class Form extends React.Component<IFormProps, IFormState>{
                             return actions.order.create({
                                 purchase_units: [{
                                 amount: {
-                                    value: "0.01"
+                                    value: this.props.amount
                                 }
                                 }]
                             });

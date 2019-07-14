@@ -8,9 +8,9 @@ import CheckoutForm from './form';
 
 class PaymentModal extends React.Component{
     render() {
-
+        let modalID = "paymentModal"+this.props.index;
         return (
-            <div className="modal fade" id="paymentModal" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
+            <div className="modal fade" id={modalID} tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
                 
                 <div className="modal-dialog modal-lg modal-notify modal-info" role="document">
                     <div className="modal-content">
@@ -23,7 +23,7 @@ class PaymentModal extends React.Component{
                         <StripeProvider apiKey="pk_test_3mHrqGgjRYHEbeOGUksNpMok008NqIIkRF">
                             <Elements>
                         */}
-                                <CheckoutForm />
+                                <CheckoutForm amount={this.props.amount} />
                         {/*
                             </Elements>
                         </StripeProvider>

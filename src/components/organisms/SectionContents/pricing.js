@@ -40,6 +40,7 @@ class Pricing extends React.Component{
     }
 
     render(){
+        
         return (
             <div className="container">
                 {this.props.showHead === true &&
@@ -47,6 +48,7 @@ class Pricing extends React.Component{
                 }
                 <div className="row">
                     {this.props.cards.map((value, i) => {
+                        let modalID = "#paymentModal"+value.index;
                         return (
                             <div key={i} className={this.getWidth()}>
                                 <div className={this.getType(i)}>
@@ -60,7 +62,7 @@ class Pricing extends React.Component{
                                             <p className="text-muted mb-0">€ {value.price}</p>
                                         </div>
                                         <hr className="mt-0"/>
-                                        <button data-toggle="modal" data-target="#paymentModal" className="btn btn-rounded btn-info font-weight-bold">Jetzt starten!</button>
+                                        <button data-toggle="modal" data-target={modalID} className="btn btn-rounded btn-info font-weight-bold">Jetzt starten!</button>
                                     </div>
                                 </div>
                             </div>
