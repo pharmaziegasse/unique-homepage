@@ -69,7 +69,6 @@ class Homepage extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props);
         if(this.state.data === undefined){
             if(this.props.data !== undefined){
                 this.setState({data: this.props.data});
