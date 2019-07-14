@@ -377,21 +377,31 @@ class Homepage extends Component {
                 } else if (sections.__typename === 'Home_S_PricingBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="pricing" background={sections.pricingBackground}>
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSPricingBlock
-                            showHead={sections.pricingDisplayhead}
-                            heading={sections.pricingHead}
-                            cards={sections.pricingPricingcards.map((card, index) => {
-                            return {
-                                title: card.value.pricingcard_title,
-                                description: card.value.pricingcard_description,
-                                price: card.value.pricingcard_price,
-                            };
-                            })} 
-                        />
-                        </Suspense>
-                    </Section>
+                        <Section sectionid="pricing" background={sections.pricingBackground}>
+                            <Suspense fallback={<Loader/>}>
+                            <HomeSPricingBlock
+                                showHead={sections.pricingDisplayhead}
+                                heading={sections.pricingHead}
+                                cards={sections.pricingPricingcards.map((card, index) => {
+                                return {
+                                    index: index,
+                                    title: card.value.pricingcard_title,
+                                    description: card.value.pricingcard_description,
+                                    price: card.value.pricingcard_price,
+                                };
+                                })} 
+                            />
+                            </Suspense>
+                        </Section>
+                        {
+                            sections.pricingPricingcards.map((card, index) => {
+                                return (
+                                    <Suspense fallback={<div></div>}>
+                                        <PaymentModal index={index} amount={card.value.pricingcard_price} />
+                                    </Suspense>
+                                );
+                            })
+                        }
                     </Suspense>
                 );
                 } else if (sections.__typename === 'Home_S_AboutBlock') {
@@ -488,11 +498,6 @@ class Homepage extends Component {
             <div>
                 <Suspense fallback={<div></div>}>
                     <CookieModal/>
-                </Suspense>
-            </div>
-            <div>
-                <Suspense fallback={<div></div>}>
-                    <PaymentModal/>
                 </Suspense>
             </div>
             <div>

@@ -2,9 +2,11 @@
 import * as React from 'react'
 //** Additional Frameworks */
 //** Stripe */
-import { CardElement, IbanElement, injectStripe, ReactStripeElements } from 'react-stripe-elements';
+//import { CardElement, IbanElement, injectStripe, ReactStripeElements } from 'react-stripe-elements';
+//** PayPal */
+import { PayPalButton } from "react-paypal-button-v2";
 
-interface IFormProps extends ReactStripeElements.InjectedStripeProps {  }
+//interface IFormProps extends ReactStripeElements.InjectedStripeProps {  }
 
 interface IFormState {
     name: string;
@@ -45,7 +47,7 @@ class Form extends React.Component<IFormProps, IFormState>{
         }
     }
 
-    handleIBANSubmit = async (e) => {
+    /*handleIBANSubmit = async (e) => {
         e.preventDefault();
         console.log(this.state);
 
@@ -66,7 +68,7 @@ class Form extends React.Component<IFormProps, IFormState>{
                 this.sendSourceToServer(result.source);
             }
         });
-    };
+    };*/
 
     //** Write input to state */
     onChangeEvent = (e) => {
@@ -91,6 +93,37 @@ class Form extends React.Component<IFormProps, IFormState>{
             <div>
                 <h2>Nur noch einen Schritt entfernt!</h2>
                 <p className="lead mt-3 mb-2">Zahlungsart wählen</p>
+                <div className="row d-flex justify-content-center">
+                    <div className="col-lg-6">
+                        <PayPalButton
+                            createOrder={(data, actions) => {
+                            return actions.order.create({
+                                purchase_units: [{
+                                amount: {
+                                    value: "0.01"
+                                }
+                                }]
+                            });
+                            }}
+                            onApprove={(data, actions) => {
+                            // Capture the funds from the transaction
+                            return actions.order.capture().then(function(details) {
+                                // Show a success message to your buyer
+                                alert("Transaction completed by " + details.payer.name.given_name);
+                    
+                                // OPTIONAL: Call your server to save the transaction
+                                return fetch("/paypal-transaction-complete", {
+                                method: "post",
+                                body: JSON.stringify({
+                                    orderID: data.orderID
+                                })
+                                });
+                            });
+                            }}
+                        />
+                    </div>
+                </div>
+                {/*
                 <button className="btn btn-purple btn-rounded font-weight-bold" data-id="0" onClick={e => this.selectMethod(e)}><i className="far fa-credit-card pr-2"></i>Kreditkarte</button>
                 <button className="btn btn-purple btn-rounded font-weight-bold" data-id="1" onClick={e => this.selectMethod(e)}>SEPA Lastschrift</button>
                 <div className="row d-flex justify-content-center">
@@ -147,6 +180,7 @@ class Form extends React.Component<IFormProps, IFormState>{
                         }
                     </div>
                 </div>
+                */}
             </div>
         );
     }
@@ -156,4 +190,5 @@ class Form extends React.Component<IFormProps, IFormState>{
     }
 }
 
-export default injectStripe(Form);
+//export default injectStripe(Form);
+export default Form;
