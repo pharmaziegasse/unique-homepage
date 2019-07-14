@@ -26,7 +26,7 @@ class Form extends React.Component{
                 <p className="lead mt-3 mb-2">{this.state.texts.sub}</p>
                 <div className="row d-flex justify-content-center">
                     {this.state.payment.success === false ? (
-                        <div className="col-lg-6">
+                        <div className="col-lg-8">
                             <PayPalButton
                                 createOrder={(data, actions) => {
                                 return actions.order.create({
