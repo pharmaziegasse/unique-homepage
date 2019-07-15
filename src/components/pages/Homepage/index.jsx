@@ -26,6 +26,7 @@ const AboutModal = lazy(() => import("../../organisms/Modals/about"));
 const PrivacyModal = lazy(() => import("../../organisms/Modals/privacy"));
 const RegisterModal = lazy(() => import("../../organisms/Modals/register"));
 const CookieModal = lazy(() => import("../../organisms/Modals/cookie"));
+const PaymentModal = lazy(() => import("../../organisms/Modals/payment"));
 
 //** Section Blocks */
 const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"));
@@ -68,7 +69,6 @@ class Homepage extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props);
         if(this.state.data === undefined){
             if(this.props.data !== undefined){
                 this.setState({data: this.props.data});
@@ -376,21 +376,36 @@ class Homepage extends Component {
                 } else if (sections.__typename === 'Home_S_PricingBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="pricing" background={sections.pricingBackground}>
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSPricingBlock
-                            showHead={sections.pricingDisplayhead}
-                            heading={sections.pricingHead}
-                            cards={sections.pricingPricingcards.map((card, index) => {
-                            return {
-                                title: card.value.pricingcard_title,
-                                description: card.value.pricingcard_description,
-                                price: card.value.pricingcard_price,
-                            };
-                            })} 
-                        />
-                        </Suspense>
-                    </Section>
+                        <Section sectionid="pricing" background={sections.pricingBackground}>
+                            <Suspense fallback={<Loader/>}>
+                            <HomeSPricingBlock
+                                showHead={sections.pricingDisplayhead}
+                                heading={sections.pricingHead}
+                                cards={sections.pricingPricingcards.map((card, index) => {
+                                return {
+                                    index: index,
+                                    title: card.value.pricingcard_title,
+                                    description: card.value.pricingcard_description,
+                                    price: card.value.pricingcard_price,
+                                };
+                                })} 
+                            />
+                            </Suspense>
+                        </Section>
+                        {
+                            sections.pricingPricingcards.map((card, index) => {
+                                return (
+                                    <Suspense key={index} fallback={<div></div>}>
+                                        <PaymentModal
+                                            index={index}
+                                            amount={card.value.pricingcard_price}
+                                            success_msg={card.value.pricingcard_sucessmsg}
+                                            wa_num={homepage.whatsappTelephone}
+                                        />
+                                    </Suspense>
+                                );
+                            })
+                        }
                     </Suspense>
                 );
                 } else if (sections.__typename === 'Home_S_AboutBlock') {
@@ -472,6 +487,8 @@ class Homepage extends Component {
                         sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
                         companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
+                        wa_text={homepage.whatsappContactline}
+                        wa_num={homepage.whatsappTelephone}
                     />
                 </Suspense>
             </div>
@@ -486,7 +503,7 @@ class Homepage extends Component {
             })}
             <div>
                 <Suspense fallback={<div></div>}>
-                <CookieModal/>
+                    <CookieModal/>
                 </Suspense>
             </div>
             <div>

@@ -17,11 +17,11 @@ import { FaFacebook } from 'react-icons/fa';
 
 //** Components */
 //** Atoms */
-import Checkbox from '../../../atoms/Checkbox'
-import Input from '../../../atoms/Input'
-import Button from '../../../atoms/Button'
-import FlagIcon from '../../../atoms/FlagIcon'
-import Alert from '../../../atoms/Alert'
+import Checkbox from '../../../atoms/Checkbox';
+import Input from '../../../atoms/Input';
+import Button from '../../../atoms/Button';
+import FlagIcon from '../../../atoms/FlagIcon';
+import Alert from '../../../atoms/Alert';
 
 //** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
