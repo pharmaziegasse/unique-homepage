@@ -164,7 +164,7 @@ class Homepage extends Component {
                         btn: slide.slideButton
                         };
                     })}
-                    sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
+                    sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
                     />
                 )
             
@@ -451,7 +451,7 @@ class Homepage extends Component {
                 <Suspense fallback={<Loader/>}>
                     <Footer 
                         background={"#ffffff"}
-                        sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
+                        sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
                         companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
                         wa_text={homepage.whatsappContactline}
