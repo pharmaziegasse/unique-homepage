@@ -17,7 +17,6 @@ import { InMemoryCache, IntrospectionFragmentMatcher } from "apollo-cache-inmemo
 import { ApolloProvider } from "react-apollo";
 
 //** SCSS */
-import "./mdb/scss/mdb.scss";
 import "./App.scss";
 
 //** Pages */
