@@ -1,7 +1,7 @@
 //** Standard Frameworks */
 import * as React from 'react'
 //** Additional Frameworks */
-import { FacebookProvider, EmbeddedPost, MessageUs  } from 'react-facebook';
+import { FacebookProvider, EmbeddedPost } from 'react-facebook';
 
 /**
  * Section: Facebook
@@ -19,6 +19,7 @@ class Facebook extends React.Component{
     renderProvider = (url, i) => {
         return(
             <div key={i} className={this.getDivider(i)}>
+                <p>Test</p>
                 <EmbeddedPost href={url} width="300" />
             </div>
         );
@@ -88,9 +89,6 @@ class Facebook extends React.Component{
                      
                     </FacebookProvider>
                 </div>
-                <FacebookProvider appId="438514240304319">
-                    <MessageUs messengerAppId="438514240304319" pageId="123456789"/>
-                </FacebookProvider> 
             </div>
         )
     }
