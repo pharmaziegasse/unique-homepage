@@ -29,8 +29,9 @@ b, strong{
       transform: rotate(360deg);
     }
 }
-/* SCSS of Homepage */
-@import "../../../mdb/scss/custom-variables";
+
+/* Old App.scss from src */
+@import "../../../custom-variables";
 
 .Homepage{
     text-align: center;
