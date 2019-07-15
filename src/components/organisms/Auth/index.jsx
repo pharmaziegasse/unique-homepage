@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 
 //** Additional Frameworks */
+/** Loaders */
+import { RingLoader } from 'react-spinners';
 /** Apollo */
 import { graphql, Query } from "react-apollo";
 import { gql } from "apollo-boost";
@@ -73,7 +75,16 @@ class Auth extends Component{
                     }}
                 </Query>
             ) : (
-                <p>Ohnono</p>
+                <div className="h-100 w-100 d-flex justify-content-center">
+                    <div className="flex-center flex-column">
+                        <RingLoader
+                        sizeUnit={"px"}
+                        size={50}
+                        color={'#9dbdd6'}
+                        />
+                        <span className="mt-3">Loading your experience...</span>
+                    </div>
+                </div>
             )  
         )
     }
