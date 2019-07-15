@@ -33,7 +33,6 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1",
     "react-spinners": "^0.5.3",
-    "react-stripe-elements": "^4.0.0",
     "typescript": "^3.3.3333"
   },
   "scripts": {
