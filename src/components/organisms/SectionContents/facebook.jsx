@@ -19,7 +19,6 @@ class Facebook extends React.Component{
     renderProvider = (url, i) => {
         return(
             <div key={i} className={this.getDivider(i)}>
-                <p>Test</p>
                 <EmbeddedPost href={url} width="300" />
             </div>
         );
