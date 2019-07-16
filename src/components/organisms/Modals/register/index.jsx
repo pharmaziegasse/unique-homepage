@@ -142,7 +142,7 @@ class Modal extends React.Component{
             "email": this.state.email,
             "telephone": this.state.phone,
             "address": "",
-            "zip_code": "",
+            "postal_code": "",
             "city": "",
             "country": "",
             "verified": this.state.verified,
