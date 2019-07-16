@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+//** Web Shop redirect */
 if(window.location.pathname === "/shop"){
   window.location.replace('https://pharmaziegasse.weeblysite.com')
 }
