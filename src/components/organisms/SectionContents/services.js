@@ -5,6 +5,12 @@ import * as React from 'react'
 //** Atoms */
 import ModalBtn from "../../atoms/ModalButton"
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 type Props = {
     content: string,
     btn: string
@@ -54,10 +60,10 @@ const SectionContent = (props: Props): React.Element<*> => {
                     <div key={i} className={getActiveItem(i)}>
                         <div className="testimonial pb-5">
                              <div className="num-display font-weight-bold"><span>{"0"+(i+1)}</span></div>
-                            <h2 className="h1-responsive font-weight-bold mb-5">{item.title}</h2>
-                            <div dangerouslySetInnerHTML={{__html: item.text}}></div>
-                            <h4 className="font-weight-bold">{item.name}</h4>
-                            <h6 className="font-weight-bold my-3 text-muted">{item.info}</h6>
+                            <h2 className="h1-responsive font-weight-bold mb-5">{ReactHtmlParser(renderToString(<Text value={ item.title }/>))}</h2>
+                            <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.text }/>))}}></div>
+                            <h4 className="font-weight-bold">{ReactHtmlParser(renderToString(<Text value={ item.name }/>))}</h4>
+                            <h6 className="font-weight-bold my-3 text-muted">{ReactHtmlParser(renderToString(<Text value={ item.info }/>))}</h6>
                         </div>
                     </div>
                     )

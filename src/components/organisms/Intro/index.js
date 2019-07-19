@@ -7,6 +7,12 @@ import { lazy, Suspense } from 'react'
 //** Organisms */
 import Loader from "../../organisms/Loader"
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 //** Lazy Loading */
 const Nav = lazy(() => import("../../molecules/Nav"));
 const Hero = lazy(() => import("../../molecules/Hero"));
@@ -36,13 +42,13 @@ const Intro = (props: Props): React.Element<*> => {
             if ( item.href.charAt( 0 ) === '#' ) {
                 return (    
                     <li key={i} className={GetState(item.active)}>
-                        <a className="nav-link m-1 sscroll" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
+                        <a className="nav-link m-1 sscroll" href={item.href} dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.text }/>))}}></a>
                     </li>
                 );
             }else{
                 return (    
                     <li key={i} className={GetState(item.active)}>
-                        <a className="nav-link m-1" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
+                        <a className="nav-link m-1" href={item.href} dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.text }/>))}}></a>
                     </li>
                 );
             }
@@ -54,7 +60,7 @@ const Intro = (props: Props): React.Element<*> => {
                     </button>
                 </li>,
                 <li key={i+1} className={GetState(item.active)}>
-                <a data-toggle="modal" className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: item.text}}></a>
+                <a data-toggle="modal" className="nav-link m-1 d-block d-sm-none" href={item.href} dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.text }/>))}}></a>
                 </li>
             ];
         }

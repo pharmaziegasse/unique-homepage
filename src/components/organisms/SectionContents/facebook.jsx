@@ -3,6 +3,12 @@ import * as React from 'react'
 //** Additional Frameworks */
 import { FacebookProvider, EmbeddedPost } from 'react-facebook';
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 /**
  * Section: Facebook
  */
@@ -76,7 +82,7 @@ class Facebook extends React.Component{
         return(
             <div className="container">
                 {this.props.showHead === true &&
-                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
+                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.title }/>))}}></h2>
                 }
                 <div className="row mt-4 w-100">
                     <FacebookProvider appId="438514240304319">

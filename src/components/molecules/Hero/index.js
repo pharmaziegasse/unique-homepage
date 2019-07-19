@@ -1,9 +1,17 @@
 //** Standard Frameworks */
-import * as React from 'react'
+import * as React from 'react';
 
 //** Components */
 //** Atoms */
-import ModalBtn from "../../atoms/ModalButton"
+import ModalBtn from "../../atoms/ModalButton";
+
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+//** Social Links */
+import SocialLinks from "../../helper/SocialLinks";
 
 /**
  * General Hero Element
@@ -53,8 +61,8 @@ const Hero = (props: Props): React.Element<*> => {
                                     <div className="row">
                                         <div className="col-md-12 mb-4 white-text text-left">
                                             <div className="hero-content">
-                                                <h1 className="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong dangerouslySetInnerHTML={{__html: item.head}}></strong></h1>
-                                                <h3 className="my-5 white-text wow fadeInDown" data-wow-delay="0.4s"><strong dangerouslySetInnerHTML={{__html: item.subhead}}></strong></h3>
+                                                <h1 className="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.head }/>))}}></strong></h1>
+                                                <h3 className="my-5 white-text wow fadeInDown" data-wow-delay="0.4s"><strong dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.subhead }/>))}}></strong></h3>
                                                 {checkButton(item.btn)}
                                             </div>
                                         </div>
@@ -76,9 +84,7 @@ const Hero = (props: Props): React.Element<*> => {
                 <div className="carousel-caption pl-5 pr-5">
                     <div className="row white-text">
                         <div className="col-md-12 text-left">
-                        
-                            <a href={sociallinks[0].ig} className="m-2 white-text" rel="noopener noreferrer" target="_blank"><i className="fab fa-instagram"></i></a>
-                            <a href={sociallinks[0].fb} className="m-2 white-text" rel="noopener noreferrer" target="_blank"><i className="fab fa-facebook-f"></i></a>
+                            <SocialLinks items={sociallinks} />
                         </div>
                     </div>
                 </div>

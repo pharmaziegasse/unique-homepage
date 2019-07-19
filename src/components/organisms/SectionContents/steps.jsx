@@ -9,6 +9,12 @@ import { gql } from "apollo-boost";
 //** Atoms */
 import ModalBtn from "../../atoms/ModalButton"
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 /* Get Images QUERY */
 const GET_IMAGE = gql`
     query img(
@@ -69,8 +75,8 @@ class Steps extends React.Component{
             <div className="py-2">
                 <i className={IconClass}></i>
                 <p className="lead mt-3">STEP {i+1}</p>
-                <p className="lead">{item.head}</p>
-                <p dangerouslySetInnerHTML={{__html: item.text}}></p>
+                <p className="lead">{ReactHtmlParser(renderToString(<Text value={ item.head }/>))}</p>
+                <p dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.text }/>))}}></p>
             </div>
         )
     }
@@ -106,8 +112,8 @@ class Steps extends React.Component{
                         <div className="spacer-4 d-block d-sm-none"></div>
                         <i className={IconClass}></i>
                         <h2 className="mt-3 mb-0 text-muted">Schritt {i+1}</h2>
-                        <p className="lead">{item.head}</p>
-                        <p dangerouslySetInnerHTML={{__html: item.text}}></p>
+                        <p className="lead">{ReactHtmlParser(renderToString(<Text value={ item.head }/>))}</p>
+                        <p dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.text }/>))}}></p>
                     </div>
                 </div>
             </div>
@@ -121,9 +127,9 @@ class Steps extends React.Component{
             return(
                 <div className="container py-5">
                     {this.props.showHead === true &&
-                        <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
+                        <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.title }/>))}}></h2>
                     }
-                    <h4 className="text-muted" dangerouslySetInnerHTML={{__html: this.props.lead}}></h4>
+                    <h4 className="text-muted" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.lead }/>))}}></h4>
                     <div className="row d-flex justify-content-center mt-5">
                         {this.props.items.map((item, index) => {
                             return(
@@ -140,9 +146,9 @@ class Steps extends React.Component{
             return(
                 <div className="container py-5">
                     {this.props.showHead === true &&
-                        <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
+                        <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.title }/>))}}></h2>
                     }
-                    <h4 className="text-muted mb-5" dangerouslySetInnerHTML={{__html: this.props.lead}}></h4>
+                    <h4 className="text-muted mb-5" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.lead }/>))}}></h4>
                     
                     {this.props.items.map((item, index) => {
                         return(

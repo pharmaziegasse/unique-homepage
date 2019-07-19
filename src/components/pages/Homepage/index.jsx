@@ -164,7 +164,7 @@ class Homepage extends Component {
                         btn: slide.slideButton
                         };
                     })}
-                    sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
+                    sociallinks={homepage.sociallinks}
                     />
                 )
             
@@ -451,7 +451,7 @@ class Homepage extends Component {
                 <Suspense fallback={<Loader/>}>
                     <Footer 
                         background={"#ffffff"}
-                        sociallinks={[{fb:homepage.sociallinks[0].value,ig:homepage.sociallinks[1].value}]}
+                        sociallinks={homepage.sociallinks}
                         companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
                         wa_text={homepage.whatsappContactline}
@@ -478,7 +478,14 @@ class Homepage extends Component {
                 <ContentModal
                     modaldata = {[{modalId: "aboutModal", modalTitle: "Impressum", modalLabel: "Impressum"}]}
                 >
-                    <AboutModal/>
+                    <AboutModal text={{
+                        companyname: homepage.ownership,
+                        address:homepage.address,
+                        zip:homepage.zipCode,
+                        city:homepage.city,
+                        phone:homepage.telephone,
+                        email:homepage.email
+                    }} />
                 </ContentModal>
                 </Suspense>
             </div>
@@ -487,7 +494,7 @@ class Homepage extends Component {
                 <ContentModal
                     modaldata={[{modalId: "privacyModal", modalTitle: "Datenschutzerklärung", modalLabel: "Datenschutz"}]}
                 >
-                    <PrivacyModal/>
+                    <PrivacyModal text={ homepage.privacy }/>
                 </ContentModal>
                 </Suspense>
             </div>
