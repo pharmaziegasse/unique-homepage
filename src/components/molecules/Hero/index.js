@@ -10,6 +10,8 @@ import ModalBtn from "../../atoms/ModalButton";
 import Text from "../../helper/Text";
 import { renderToString } from 'react-dom/server';
 import ReactHtmlParser from 'react-html-parser'; 
+//** Social Links */
+import SocialLinks from "../../helper/SocialLinks";
 
 /**
  * General Hero Element
@@ -82,9 +84,7 @@ const Hero = (props: Props): React.Element<*> => {
                 <div className="carousel-caption pl-5 pr-5">
                     <div className="row white-text">
                         <div className="col-md-12 text-left">
-                        
-                            <a href={sociallinks[0].ig} className="m-2 white-text" rel="noopener noreferrer" target="_blank"><i className="fab fa-instagram"></i></a>
-                            <a href={sociallinks[0].fb} className="m-2 white-text" rel="noopener noreferrer" target="_blank"><i className="fab fa-facebook-f"></i></a>
+                            <SocialLinks items={sociallinks} />
                         </div>
                     </div>
                 </div>

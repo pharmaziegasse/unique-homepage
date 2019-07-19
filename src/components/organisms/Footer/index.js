@@ -5,6 +5,10 @@ import * as React from 'react'
 //** Atoms */
 import WhatsAppButton from "../../atoms/WhatsAppButton"
 
+//** Helpers */
+//** Social Links */
+import SocialLinks from "../../helper/SocialLinks";
+
 //** Preconfigure datatypes */
 type Props = {
     sociallinks: string,
@@ -57,18 +61,7 @@ const Footer = (props: Props): React.Element<*> => {
         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
           <p><span className="link" data-toggle="modal" data-target="#aboutModal">Impressum</span></p>
           <p><span className="link" data-toggle="modal" data-target="#privacyModal">Datenschutz</span></p>
-          <ul className="list-unstyled list-inline">
-            <li className="list-inline-item">
-              <a href={sociallinks[0].fb} rel="noopener noreferrer" target="_blank" className="mx-2">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-            </li>
-            <li className="list-inline-item">
-              <a href={sociallinks[0].ig} rel="noopener noreferrer" target="_blank" className="mx-2">
-                <i className="fab fa-instagram"></i>
-              </a>
-            </li>
-          </ul>
+          <SocialLinks items={sociallinks} />
         </div>
       </div>
       <hr/>
