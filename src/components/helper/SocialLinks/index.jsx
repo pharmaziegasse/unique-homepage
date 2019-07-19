@@ -57,15 +57,21 @@ class SocialLinks extends React.Component{
     }
 
     renderItems =() => {
-        return(
-            <ul className="list-unstyled list-inline">
-                {
-                    this.props.items.map((item, i) => {
-                        return this.printItem(item, i);
-                    })
-                }
-            </ul>
-        );
+        let items = this.props.items;
+        if(items !== null && items !== undefined){
+            return(
+                <ul className="list-unstyled list-inline">
+                    {
+                        items.map((item, i) => {
+                            return this.printItem(item, i);
+                        })
+                    }
+                </ul>
+            );
+        } else {
+            return null;
+        }
+        
     }
 
     render(){
