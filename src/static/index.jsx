@@ -29,6 +29,7 @@ query pages($token: String!) {
         title
         city
         zipCode
+        privacy
         address
         telephone
         telefax

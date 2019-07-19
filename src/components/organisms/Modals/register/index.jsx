@@ -23,6 +23,12 @@ import Button from '../../../atoms/Button';
 import FlagIcon from '../../../atoms/FlagIcon';
 import Alert from '../../../atoms/Alert';
 
+//** Helpers */
+//** Personalization */
+import Text from "../../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 //** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
     mutation register($token: String!, $values: GenericScalar!) {
@@ -133,7 +139,11 @@ class Modal extends React.Component{
 
     //** Send form data - create user with user mutation */
     sendData = async () => {
-        //** New */
+        //** Set prename localStorgae */
+        localStorage.setItem('f_n', this.state.prename);
+        localStorage.setItem('f_l', this.state.surname);
+        localStorage.setItem('f_e', this.state.email);
+        localStorage.setItem('f_p', this.state.phone);
         //** Set values that will be sent */
         let formvalues = {
             "title": "",
@@ -384,12 +394,12 @@ class Modal extends React.Component{
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" className="dark-text">×</span>
                         </button>
-                        <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: modaldata.registrationHead}}></div>
+                        <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.registrationHead }/>))}}></div>
                         <hr/>
                         {this.state.showSuccess ? (
                             <div className="success">
                                 <Alert className="alert-success" show="true">
-                                    <div dangerouslySetInnerHTML={{__html: modaldata.thankYouText}}></div>
+                                    <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.thankYouText }/>))}}></div>
                                 </Alert>
                             </div>
                         ) : (
@@ -465,8 +475,12 @@ class Modal extends React.Component{
                                             </div>
                                         )}
                                         <div className="text-left mb-3">
-                                        <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationNewsletterText}}></div></Checkbox>
-                                        <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}><div dangerouslySetInnerHTML={{__html: modaldata.registrationPrivacyText}}></div></Checkbox>
+                                        <Checkbox name="newsletter" className="my-4" onChange={this.handleChange.bind(this)}>
+                                            <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.registrationNewsletterText }/>))}}></div>
+                                        </Checkbox>
+                                        <Checkbox name="gdpr" validation={this.state.valid6} onChange={this.handleChange.bind(this)}>
+                                            <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.registrationPrivacyText }/>))}}></div>
+                                        </Checkbox>
                                         </div>
                                         {modaldata.registrationButton.buttonPage !== null &&
                                             <input className="btn btn-outline-elegant font-weight-bold" type="submit" value={modaldata.registrationButton.buttonTitle} />
@@ -477,7 +491,7 @@ class Modal extends React.Component{
                                 <div className="col-md-5 text-left">
                                 <Alert className="alert-info register-info" show="true">
                                     <i className="far fa-lightbulb fa-2x"></i>
-                                    <div className="mt-2 dark-grey-text" dangerouslySetInnerHTML={{__html: modaldata.registrationInfoText}}></div>
+                                    <div className="mt-2 dark-grey-text" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.registrationInfoText }/>))}}></div>
                                 </Alert>
                                 </div>
                             </div>

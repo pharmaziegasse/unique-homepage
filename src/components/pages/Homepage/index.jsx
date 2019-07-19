@@ -68,6 +68,7 @@ class Homepage extends Component {
     }
 
     componentDidMount(){
+        console.log(this.props.data);
         if(this.state.data === undefined){
             if(this.props.data !== undefined){
                 this.setState({data: this.props.data});
@@ -478,7 +479,14 @@ class Homepage extends Component {
                 <ContentModal
                     modaldata = {[{modalId: "aboutModal", modalTitle: "Impressum", modalLabel: "Impressum"}]}
                 >
-                    <AboutModal/>
+                    <AboutModal text={{
+                        companyname: homepage.ownership,
+                        address:homepage.address,
+                        zip:homepage.zipCode,
+                        city:homepage.city,
+                        phone:homepage.telephone,
+                        email:homepage.email
+                    }} />
                 </ContentModal>
                 </Suspense>
             </div>
@@ -487,7 +495,7 @@ class Homepage extends Component {
                 <ContentModal
                     modaldata={[{modalId: "privacyModal", modalTitle: "Datenschutzerklärung", modalLabel: "Datenschutz"}]}
                 >
-                    <PrivacyModal/>
+                    <PrivacyModal text={ homepage.privacy }/>
                 </ContentModal>
                 </Suspense>
             </div>

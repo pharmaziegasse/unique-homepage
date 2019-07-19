@@ -1,6 +1,12 @@
 //** Standard Frameworks */
 import * as React from 'react'
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 /**
  * Section: Pricing
  */
@@ -42,7 +48,7 @@ class Pricing extends React.Component{
         return (
             <div className="container">
                 {this.props.showHead === true &&
-                    <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: this.props.heading}}></h2>
+                    <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.heading }/>))}}></h2>
                 }
                 <div className="row">
                     {this.props.cards.map((value, i) => {
@@ -52,7 +58,7 @@ class Pricing extends React.Component{
                                 <div className={this.getType(i)}>
                                     <h3 className="text-uppercase font-weight-bold my-4">{value.title}</h3>
                                     <div className="pricing-description p-4">
-                                        <p className="m-0" dangerouslySetInnerHTML={{__html: value.description}}></p>
+                                        <p className="m-0" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ value.description }/>))}}></p>
                                     </div>
                                     <div className="card-body striped p-0">
                                         <div className="py-4">

@@ -5,6 +5,12 @@ import * as React from 'react';
 import { ApolloConsumer } from 'react-apollo';
 import { gql } from "apollo-boost";
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 /* Get Images QUERY */
 const GET_IMAGE = gql`
     query img(
@@ -62,11 +68,11 @@ class Manifest extends React.Component{
         return(
             <div className="container text-left">
                 {this.props.title !== "" &&
-                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
+                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.title }/>))}}></h2>
                 }
                 <div className="row my-5">
                     <div className="col-md-6">
-                        <div dangerouslySetInnerHTML={{__html: this.props.paragraph}}></div>
+                        <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.paragraph }/>))}}></div>
                     </div>
                     <div className="col-md-6 text-center">
                         <div className="row">

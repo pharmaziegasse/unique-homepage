@@ -13,20 +13,16 @@ class AboutModalContent extends React.Component{
     renderContent (){
         return(
             <div>
+                <p>{ this.props.text.companyname }</p>
                 <p>
-                    der<br/>
-                    Pharmaziegasse Kosmetik GmbH<br/>
-                    Pharmaziegasse 5, 9020 Klagenfurt<br/>
+                    { this.props.text.address }
                     <br/>
+                    { this.props.text.zip } { this.props.text.city } 
+                </p>
+                <p>
+                    Tel.: { this.props.text.phone }
                     <br/>
-                    Die Daten können bald im CMS geändert werden.
-                    <br/>
-                    <br/>
-                    Pharmaziegasse Kosmetik GmbH<br/>
-                    Pharmaziegasse 5, 9020 Klagenfurt - Austria<br/>
-                    Tel.: +43 463 504404 <br/>
-                    E-Mail: office@pharmaziegasse.at<br/>
-                    Website: https://www.pharmaziegasse.at<br/>
+                    E-Mail: <a href={"mailto:" + this.props.text.email}>{ this.props.text.email }</a>
                 </p>
             </div>
         )
