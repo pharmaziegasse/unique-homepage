@@ -60,7 +60,7 @@ class Steps extends React.Component{
                                 }
                             }.bind(this)
                         }>
-                            {this.state[key] && <img className="img-fluid" src={"https://pharmaziegasse.at"+this.state[key].urlLink} alt={"step "+(key+1)} />}
+                            {this.state[key] && <img className="img-fluid w-100" src={"https://pharmaziegasse.at"+this.state[key].urlLink} alt={"step "+(key+1)} />}
                         </div>
                     </div>
                 )}
