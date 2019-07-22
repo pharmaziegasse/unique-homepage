@@ -35,6 +35,7 @@ const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/exp
 const HomeSLabBlock = lazy(() => import("../../organisms/SectionContents/lab.js"));
 const HomeSServicesBlock = lazy(() => import("../../organisms/SectionContents/services.js"));
 const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/reviews.jsx"));
+const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
 const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pricing.js"));
 const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about.js"));
 const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
@@ -253,7 +254,39 @@ class Homepage extends Component {
                     </Section>
                     </Suspense>
                 );
-                } else if (sections.__typename === 'Home_S_ServicesBlock') {
+                } else if (sections.__typename === 'Home_S_MethodBlock') {
+              return (
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="method" background={sections.methodBackground}>
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSMethodBlock
+                        btn = {sections.methodButton}
+                        content={[
+                          { heading: sections.methodHead },
+                          { btn: null },
+                          {
+                            text: sections.methodSphere1.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere2.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere3.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere4.sphereStep,
+                            href: "#"
+                          }
+                        ]}
+                      />
+                    </Suspense>
+                  </Section>
+                </Suspense>
+              );
+            } else if (sections.__typename === 'Home_S_ServicesBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
                     <Section sectionid="quotes" background={sections.servicesBackground}>
