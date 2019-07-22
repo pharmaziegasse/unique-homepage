@@ -90,7 +90,7 @@ class Steps extends React.Component{
 
     //** Render item */
     renderElaborateItem = (item, i) => {
-        let IconClass = "far fa-"+item.icon+" fa-2x";
+        let IconClass = "fas fa-"+item.icon+" fa-2x";
         let rowClass = "row d-flex";
         //** Position of the image (left or right) */
         if(!this.isOdd(i)){
