@@ -20,7 +20,7 @@ class PrivacyModalContent extends React.Component{
     renderContent (){
         return(
             <div>
-                <p className="text-center" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.text }/>))}}></p>
+                <p className="text-left" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.text }/>))}}></p>
             </div>
         )
     }
