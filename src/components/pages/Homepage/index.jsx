@@ -4,11 +4,17 @@ import React, { Component, lazy, Suspense } from "react";
 //** Additional Frameworks */
 /** Loaders */
 import { RingLoader } from 'react-spinners';
+/** Query string */
+import queryString from 'query-string';
+/** Privacy */
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
 
 //** Components */
 //** Organisms */
 import Loader from "../../organisms/Loader";
 import Intro from "../../organisms/Intro";
+import Text from "../../helper/Text";
 
 //** Import static values */
 import { navitems, logos } from "../../../static";
@@ -64,7 +70,8 @@ class Homepage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: undefined
+            data: undefined,
+            privacy: false,
         }
     }
 
@@ -72,6 +79,14 @@ class Homepage extends Component {
         if(this.state.data === undefined){
             if(this.props.data !== undefined){
                 this.setState({data: this.props.data});
+                // Show privacy on link
+                let url = window.location.search;
+                let params = queryString.parse(url);
+                if(params.p !== undefined){
+                    if(params.p.toLowerCase().trim() === 'privacy'){
+                        this.setState({privacy: true});
+                    }
+                }
             }
         }
     }
@@ -118,7 +133,6 @@ class Homepage extends Component {
         );
         }
 
-        
         if(data.page === undefined){
             console.log("OMG ITS UNDEFINED");
             return(
@@ -144,7 +158,18 @@ class Homepage extends Component {
 
         const btn_pages = [];
 
-        if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined || homepage.token === null) {
+        // Privacy
+        if(this.state.privacy){
+            return (
+                <main className="Homepage">
+                    <div className="container py-5">
+                        <p className="text-left" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ homepage.privacy }/>))}}></p>
+                    </div>
+                </main>
+            )
+        }
+
+        if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined || homepage.token === null  || this.state.privacy) {
         // Rendering of all active organisms
         
         return (
