@@ -13,6 +13,9 @@ import Text from "../../helper/Text";
 import { renderToString } from 'react-dom/server';
 import ReactHtmlParser from 'react-html-parser'; 
 
+//** Social Links */
+import SocialLinks from "../../helper/SocialLinks";
+
 //** Lazy Loading */
 const Nav = lazy(() => import("../../molecules/Nav"));
 const Hero = lazy(() => import("../../molecules/Hero"));
@@ -75,12 +78,18 @@ const Intro = (props: Props): React.Element<*> => {
                 {navitems.map((item, i) => {
                     return(PrintType(item,i))
                 })}
+                <SocialLinks items={sociallinks} />
+                <li className="nav-item">
+                    <button data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
+                        Loslegen
+                    </button>
+                </li>
             </ul>
         </Nav>
         </Suspense>
         
         <Suspense fallback={<div></div>}>
-            <Hero heroitems={heroitems} sociallinks={sociallinks}/>
+            <Hero heroitems={heroitems} />
         </Suspense>
        </header>
     )
