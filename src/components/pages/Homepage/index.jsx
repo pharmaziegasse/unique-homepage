@@ -414,6 +414,8 @@ class Homepage extends Component {
                                     title: card.value.pricingcard_title,
                                     description: card.value.pricingcard_description,
                                     price: card.value.pricingcard_price,
+                                    bg: card.value.pricingcard_background,
+                                    btnbg: card.value.pricingcard_button_background
                                 };
                                 })} 
                             />

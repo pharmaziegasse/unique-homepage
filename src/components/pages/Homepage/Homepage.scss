@@ -749,23 +749,12 @@ b, strong{
     .pricing-card h3{
         color: $unique-blue;
     }
-    .pricing-card .pricing-description{
-        background-color: $unique-blue;
-        color: white;
-    }
     .pricing-card ul{
         list-style-type: disc;
         padding-inline-start: 40px;
     }
     .pricing-description{
         text-align: initial;
-    }
-    .premium .pricing-description {
-        background-color: $unique-darkblue;
-        color: white;
-    }
-    .premium h3{
-        color: $unique-darkblue;
     }
 
     /* Fonts */
@@ -862,6 +851,18 @@ b, strong{
                 width: 5000px !important;
             }
 
+        }
+    }
+
+    /* Custom button .btn */
+    .btn-pharmaziegasse{
+        background-color: $unique-blue;
+        color: white;
+        &:hover{
+            background-color: darken($unique-blue, 10%);
+        }
+        &:active{
+            background-color: darken($unique-blue, 20%);
         }
     }
 
