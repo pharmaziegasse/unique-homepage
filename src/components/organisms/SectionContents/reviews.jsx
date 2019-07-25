@@ -6,6 +6,12 @@ import React, { Component } from 'react';
 import { ApolloConsumer } from 'react-apollo';
 import { gql } from "apollo-boost";
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 //** Mutation: Get Image */
 const GET_IMAGE = gql`
     query img(
@@ -72,7 +78,7 @@ class DeplayedQuery extends Component {
         return (
             <div className="container">
                 {this.props.showHead === true &&
-                    <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: this.props.heading}}></h2>
+                    <h2 className="h1-responsive font-weight-bold mb-5" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.heading }/>))}}></h2>
                 }
                 <div className="wrapper-carousel-fix">
                     <div id="customer-carousel" className="carousel no-flex testimonial-carousel slide py-5 dark-grey-text" data-ride="carousel" data-interval="20000">
@@ -85,10 +91,10 @@ class DeplayedQuery extends Component {
                                     {this.renderImg(item.img, i)}
                                 </div>
                                 <p>
-                                    <span dangerouslySetInnerHTML={{__html: item.quote}}></span>
+                                    <span dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.quote }/>))}}></span>
                                 </p>
-                                <h4 className="font-weight-bold">{item.name}</h4>
-                                <h6 className="font-weight-bold my-3 text-muted">{item.info}</h6>
+                                <h4 className="font-weight-bold">{ReactHtmlParser(renderToString(<Text value={ item.name }/>))}</h4>
+                                <h6 className="font-weight-bold my-3 text-muted">{ReactHtmlParser(renderToString(<Text value={ item.info }/>))}</h6>
                             </div>
                         </div>
                         )

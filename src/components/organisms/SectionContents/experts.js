@@ -1,10 +1,16 @@
 //** Standard Frameworks */
-import * as React from 'react'
+import * as React from 'react';
 
 //** Components */
 //** Atoms */
 import ModalBtn from "../../atoms/ModalButton";
 import Alert from "../../atoms/Alert";
+
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
 
 /**
  * Section: Experts
@@ -13,7 +19,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     return (
         <div className="container text-left">
             {props.showHead === true &&
-                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: props.heading}}></h2>
+                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ props.heading }/>))}}></h2>
             }
             <div className="row mt-5">
             <div className="col-md-6">
@@ -26,9 +32,9 @@ const SectionContent = (props: Props): React.Element<*> => {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    <div dangerouslySetInnerHTML={{__html: props.paragraph}}></div>
+                    <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ props.paragraph }/>))}}></div>
                     {props.footer !== null &&
-                        <Alert show="true" className="alert-info">{props.footer}</Alert>
+                        <Alert show="true" className="alert-info" >{ReactHtmlParser(renderToString(<Text value={ props.footer }/>))}</Alert>
                     }
                 </div>
                 

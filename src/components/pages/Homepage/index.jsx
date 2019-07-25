@@ -4,11 +4,17 @@ import React, { Component, lazy, Suspense } from "react";
 //** Additional Frameworks */
 /** Loaders */
 import { RingLoader } from 'react-spinners';
+/** Query string */
+import queryString from 'query-string';
+/** Privacy */
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
 
 //** Components */
 //** Organisms */
 import Loader from "../../organisms/Loader";
 import Intro from "../../organisms/Intro";
+import Text from "../../helper/Text";
 
 //** Import static values */
 import { navitems, logos } from "../../../static";
@@ -26,15 +32,16 @@ const AboutModal = lazy(() => import("../../organisms/Modals/about"));
 const PrivacyModal = lazy(() => import("../../organisms/Modals/privacy"));
 const RegisterModal = lazy(() => import("../../organisms/Modals/register"));
 const CookieModal = lazy(() => import("../../organisms/Modals/cookie"));
+const PaymentModal = lazy(() => import("../../organisms/Modals/payment"));
 
 //** Section Blocks */
 const HomeSWhyBlock = lazy(() => import("../../organisms/SectionContents/why.js"));
 const HomeSIndividualBlock = lazy(() => import("../../organisms/SectionContents/individual.js"));
 const HomeSExpertsBlock = lazy(() => import("../../organisms/SectionContents/experts.js"));
 const HomeSLabBlock = lazy(() => import("../../organisms/SectionContents/lab.js"));
-//const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
 const HomeSServicesBlock = lazy(() => import("../../organisms/SectionContents/services.js"));
 const HomeSReviewsBlock = lazy(() => import("../../organisms/SectionContents/reviews.jsx"));
+const HomeSMethodBlock = lazy(() => import("../../organisms/SectionContents/method.js"));
 const HomeSPricingBlock = lazy(() => import("../../organisms/SectionContents/pricing.js"));
 const HomeSAboutBlock = lazy(() => import("../../organisms/SectionContents/about.js"));
 const HomeSGalleryBlock = lazy(() => import("../../organisms/SectionContents/gallery"));
@@ -63,15 +70,23 @@ class Homepage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: undefined
+            data: undefined,
+            privacy: false,
         }
     }
 
     componentDidMount(){
-        console.log(this.props);
         if(this.state.data === undefined){
             if(this.props.data !== undefined){
                 this.setState({data: this.props.data});
+                // Show privacy on link
+                let url = window.location.search;
+                let params = queryString.parse(url);
+                if(params.p !== undefined){
+                    if(params.p.toLowerCase().trim() === 'privacy'){
+                        this.setState({privacy: true});
+                    }
+                }
             }
         }
     }
@@ -118,7 +133,6 @@ class Homepage extends Component {
         );
         }
 
-        
         if(data.page === undefined){
             console.log("OMG ITS UNDEFINED");
             return(
@@ -144,7 +158,18 @@ class Homepage extends Component {
 
         const btn_pages = [];
 
-        if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined || homepage.token === null) {
+        // Privacy
+        if(this.state.privacy){
+            return (
+                <main className="Homepage">
+                    <div className="container py-5">
+                        <p className="text-left" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ homepage.privacy }/>))}}></p>
+                    </div>
+                </main>
+            )
+        }
+
+        if (getQueryVariable("token") === homepage.token || homepage.token === "" || homepage.token === undefined || homepage.token === null  || this.state.privacy) {
         // Rendering of all active organisms
         
         return (
@@ -165,7 +190,7 @@ class Homepage extends Component {
                         btn: slide.slideButton
                         };
                     })}
-                    sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
+                    sociallinks={homepage.sociallinks}
                     />
                 )
             
@@ -254,39 +279,39 @@ class Homepage extends Component {
                     </Section>
                     </Suspense>
                 );
-                } /*else if (sections.__typename === 'Home_S_MethodBlock') {
-                return (
-                    <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="method" background={sections.methodBackground}>
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSMethodBlock
-                            showHead={sections.methodDisplayhead}
-                            btn = { sections.methodButton }
-                            content={[
-                            { heading: sections.methodHead },
-                            {
-                                text: sections.methodSphere1.sphereStep,
-                                href: "#"
-                            },
-                            {
-                                text: sections.methodSphere2.sphereStep,
-                                href: "#"
-                            },
-                            {
-                                text: sections.methodSphere3.sphereStep,
-                                href: "#"
-                            },
-                            {
-                                text: sections.methodSphere4.sphereStep,
-                                href: "#"
-                            }
-                            ]}
-                        />
-                        </Suspense>
-                    </Section>
+                } else if (sections.__typename === 'Home_S_MethodBlock') {
+              return (
+                <Suspense key={i} fallback={<Loader/>}>
+                  <Section sectionid="method" background={sections.methodBackground}>
+                    <Suspense fallback={<Loader/>}>
+                      <HomeSMethodBlock
+                        btn = {sections.methodButton}
+                        content={[
+                          { heading: sections.methodHead },
+                          { btn: null },
+                          {
+                            text: sections.methodSphere1.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere2.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere3.sphereStep,
+                            href: "#"
+                          },
+                          {
+                            text: sections.methodSphere4.sphereStep,
+                            href: "#"
+                          }
+                        ]}
+                      />
                     </Suspense>
-                );
-                } */else if (sections.__typename === 'Home_S_ServicesBlock') {
+                  </Section>
+                </Suspense>
+              );
+            } else if (sections.__typename === 'Home_S_ServicesBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
                     <Section sectionid="quotes" background={sections.servicesBackground}>
@@ -376,21 +401,36 @@ class Homepage extends Component {
                 } else if (sections.__typename === 'Home_S_PricingBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                    <Section sectionid="pricing" background={sections.pricingBackground}>
-                        <Suspense fallback={<Loader/>}>
-                        <HomeSPricingBlock
-                            showHead={sections.pricingDisplayhead}
-                            heading={sections.pricingHead}
-                            cards={sections.pricingPricingcards.map((card, index) => {
-                            return {
-                                title: card.value.pricingcard_title,
-                                description: card.value.pricingcard_description,
-                                price: card.value.pricingcard_price,
-                            };
-                            })} 
-                        />
-                        </Suspense>
-                    </Section>
+                        <Section sectionid="pricing" background={sections.pricingBackground}>
+                            <Suspense fallback={<Loader/>}>
+                            <HomeSPricingBlock
+                                showHead={sections.pricingDisplayhead}
+                                heading={sections.pricingHead}
+                                cards={sections.pricingPricingcards.map((card, index) => {
+                                return {
+                                    index: index,
+                                    title: card.value.pricingcard_title,
+                                    description: card.value.pricingcard_description,
+                                    price: card.value.pricingcard_price,
+                                };
+                                })} 
+                            />
+                            </Suspense>
+                        </Section>
+                        {
+                            sections.pricingPricingcards.map((card, index) => {
+                                return (
+                                    <Suspense key={index} fallback={<div></div>}>
+                                        <PaymentModal
+                                            index={index}
+                                            amount={card.value.pricingcard_price}
+                                            success_msg={card.value.pricingcard_sucessmsg}
+                                            wa_num={homepage.whatsappTelephone}
+                                        />
+                                    </Suspense>
+                                );
+                            })
+                        }
                     </Suspense>
                 );
                 } else if (sections.__typename === 'Home_S_AboutBlock') {
@@ -469,9 +509,11 @@ class Homepage extends Component {
                 <Suspense fallback={<Loader/>}>
                     <Footer 
                         background={"#ffffff"}
-                        sociallinks={[{fb:homepage.sociallinks.value,ig:homepage.sociallinks[1].value}]}
+                        sociallinks={homepage.sociallinks}
                         companyinfo={[{zip: homepage.zipCode, address: homepage.address, city: homepage.city, phone: homepage.telephone, email: homepage.email, copyrightholder: homepage.copyrightholder }]}
                         logo={logos[0].dark}
+                        wa_text={homepage.whatsappContactline}
+                        wa_num={homepage.whatsappTelephone}
                     />
                 </Suspense>
             </div>
@@ -486,7 +528,7 @@ class Homepage extends Component {
             })}
             <div>
                 <Suspense fallback={<div></div>}>
-                <CookieModal/>
+                    <CookieModal/>
                 </Suspense>
             </div>
             <div>
@@ -494,7 +536,14 @@ class Homepage extends Component {
                 <ContentModal
                     modaldata = {[{modalId: "aboutModal", modalTitle: "Impressum", modalLabel: "Impressum"}]}
                 >
-                    <AboutModal/>
+                    <AboutModal text={{
+                        companyname: homepage.ownership,
+                        address:homepage.address,
+                        zip:homepage.zipCode,
+                        city:homepage.city,
+                        phone:homepage.telephone,
+                        email:homepage.email
+                    }} />
                 </ContentModal>
                 </Suspense>
             </div>
@@ -503,7 +552,7 @@ class Homepage extends Component {
                 <ContentModal
                     modaldata={[{modalId: "privacyModal", modalTitle: "Datenschutzerklärung", modalLabel: "Datenschutz"}]}
                 >
-                    <PrivacyModal/>
+                    <PrivacyModal text={ homepage.privacy }/>
                 </ContentModal>
                 </Suspense>
             </div>

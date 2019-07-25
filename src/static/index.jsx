@@ -23,10 +23,13 @@ query pages($token: String!) {
       uniquepage{
         __typename
         id
+        whatsappTelephone
+        whatsappContactline
         token
         title
         city
         zipCode
+        privacy
         address
         telephone
         telefax

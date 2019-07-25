@@ -21,46 +21,42 @@ b, strong{
     font-weight: bold !important;
 }
 
-
-// Scss of page
-.Homepage {
-  text-align: center;
-
-  .Homepage-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 40vmin;
-    pointer-events: none;
-  }
-
-  .Homepage-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-
-  .Homepage-link {
-    color: #61dafb;
-  }
-}
-
 @keyframes Homepage-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
 }
 
 /* Old App.scss from src */
 @import "../../../custom-variables";
 
 .Homepage{
+    text-align: center;
+
+    .Homepage-logo {
+        animation: App-logo-spin infinite 20s linear;
+        height: 40vmin;
+        pointer-events: none;
+    }
+
+    .Homepage-header {
+        background-color: #282c34;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+    }
+
+    .Homepage-link {
+        color: #61dafb;
+    }
+
     /* Instagram section */
     .instagram{
         .instagram-media{
@@ -117,6 +113,7 @@ b, strong{
             letter-spacing: 0;
         }
     }
+
     .hero-view{
         background-repeat: no-repeat !important;
         background-size: cover !important;
@@ -127,7 +124,12 @@ b, strong{
         left: auto !important;
         width: 100%; 
         z-index: 2;
+        
+        a{
+            color: white !important;
+        }
     }
+    
     header{
         .carousel-control-prev{
             color: rgba(255, 255, 255, .9);
@@ -771,6 +773,20 @@ b, strong{
     }
 
     /* Modals */
+
+    /* Center modals */
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+      }
+      
+      .modal-dialog {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    /* Register Modal */
     .register-form{
         .input-grp{
             i{

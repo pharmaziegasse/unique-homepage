@@ -1,6 +1,12 @@
 //** Standard Frameworks */
 import * as React from 'react'
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 type Props = {
     content: string
 }
@@ -14,7 +20,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     //** Dynamic paragraph rendering */
     function printParagraph(i){
         if(typeof content[i].paragraph != "undefined"){
-            return (<div key={i} dangerouslySetInnerHTML={{__html: content[i].paragraph}}></div>)
+            return (<div key={i} dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={content[i].paragraph}/>))}}></div>)
         }
         
     }
@@ -22,7 +28,7 @@ const SectionContent = (props: Props): React.Element<*> => {
     return (
         <div className="container text-left">
             {props.showHead === true &&
-                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: content[0].heading}}></h2>
+                <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={content[0].heading}/>))}}></h2>
             }
             <div className="row my-5">
             <div className="col-md-6">  

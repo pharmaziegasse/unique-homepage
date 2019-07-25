@@ -3,6 +3,12 @@ import * as React from 'react'
 //** Additional Frameworks */
 import InstagramEmbed from 'react-instagram-embed';
 
+//** Helpers */
+//** Personalization */
+import Text from "../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
+
 /**
  * Section: Instagram
  */
@@ -85,7 +91,7 @@ class Gallery extends React.Component{
         return(
             <div className="container instagram">
                 {this.props.showHead === true &&
-                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: this.props.title}}></h2>
+                    <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.title }/>))}}></h2>
                 }
                 <div className="row mt-5">
                     {this.props.urls.map((c, i) => {
