@@ -10,14 +10,12 @@ import ModalBtn from "../../atoms/ModalButton";
 import Text from "../../helper/Text";
 import { renderToString } from 'react-dom/server';
 import ReactHtmlParser from 'react-html-parser'; 
-//** Social Links */
-import SocialLinks from "../../helper/SocialLinks";
 
 /**
  * General Hero Element
  */
 const Hero = (props: Props): React.Element<*> => {
-    const { heroitems, sociallinks } = props;
+    const { heroitems } = props;
 
     //** Make the first carousel INDICATOR the active */
     function getActive(id){
@@ -42,16 +40,18 @@ const Hero = (props: Props): React.Element<*> => {
 
     return (
         <div id="hero-carousel" className="carousel slide carousel-fade" data-ride="carousel">
-            <ol className="carousel-indicators">
-                {heroitems.map((item, i) => {
-                    return (<li key={i} data-target="#hero-carousel" data-slide-to={i} className={getActive(i)}></li>) 
-                })}
-            </ol>
+            {heroitems.length > 1 &&
+                <ol className="carousel-indicators">
+                    {heroitems.map((item, i) => {
+                        return (<li key={i} data-target="#hero-carousel" data-slide-to={i} className={getActive(i)}></li>) 
+                    })}
+                </ol>
+            }
          
             <div className="carousel-inner" role="listbox">
 
             {
-                 //** Render individual hero carousel items */
+                //** Render individual hero carousel items */
                 heroitems.map((item, i) => {
                 return (
                     <div key={i} className={getActiveItem(i)}>
@@ -81,18 +81,15 @@ const Hero = (props: Props): React.Element<*> => {
                     </div>
                 );
             })}
-                <div className="carousel-caption pl-5 pr-5">
-                    <div className="row white-text">
-                        <div className="col-md-12 text-left">
-                            <SocialLinks items={sociallinks} />
-                        </div>
-                    </div>
-                </div>
             </div>
+            {heroitems.length > 1 &&
             <a className="carousel-control-prev" href="#hero-carousel" role="button" data-slide="prev">
             </a>
+            }
+            {heroitems.length > 1 &&
             <a className="carousel-control-next" href="#hero-carousel" role="button" data-slide="next">
             </a>
+            }
         </div>
     )
 }
