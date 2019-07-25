@@ -16,12 +16,28 @@ import ReactHtmlParser from 'react-html-parser';
  * Section: Individual
  */
 const SectionContent = (props: Props): React.Element<*> => {
+    console.log(props);
+    //** Basic functions */
+    function isOdd (i) {
+        return Math.abs(i % 2) === 1;
+    }
+
+    let rowClass = "row my-5 d-flex";
+    if(props.index !== undefined){
+        if(isOdd(props.index)){
+            //** Image is right */
+            //** Using the Flex Box flex-direction property to swap positions of the two columns */
+            rowClass += " flex-row-reverse";
+        }
+    }
+    
     return (
+        
         <div className="container text-left">
             {props.showHead === true &&
                 <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ props.heading }/>))}}></h2>
             }
-            <div className="row my-5">
+            <div className={rowClass}>
                 <div className="col-md-6">
                     <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ props.paragraph }/>))}}></div>
                     {props.footer !== null &&

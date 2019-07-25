@@ -198,7 +198,7 @@ class Homepage extends Component {
             {q_sections.map((sections, i) => {
                 if (sections.__typename === 'Home_S_WhyBlock') {
                 return (
-                    <Suspense key={i}  fallback={<Loader/>}>
+                    <Suspense key={i} fallback={<Loader/>}>
                     <Section sectionid="why" background={sections.whyBackground}>
                         <Suspense fallback={<Loader/>}>
                         <HomeSWhyBlock
@@ -236,6 +236,7 @@ class Homepage extends Component {
                                     img = { sections.individualImage.urlLink }
                                     footer = { sections.individualFooter }
                                     paragraph = { sections.individualParagraph }
+                                    index= {i}
                                 />
                             </Suspense>
                         </Section>
