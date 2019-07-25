@@ -10,7 +10,6 @@ export const navitems = [
   { href: "#steps", text: "So funktioniert's", active: false, type: "text" },
   { href: "#pricing", text: "Preise", active: false, type: "text" },
   { href: "#about", text: "Über uns", active: false, type: "text" },
-  { href: "#registration", text: "Loslegen", active: false, type: "button" }
 ];
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
@@ -106,6 +105,7 @@ query pages($token: String!) {
             individualBackground
             individualFooter
             individualParagraph
+            individualFooterBackground
             individualImage{
               urlLink
             }

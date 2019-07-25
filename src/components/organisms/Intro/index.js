@@ -7,6 +7,9 @@ import { lazy, Suspense } from 'react'
 //** Organisms */
 import Loader from "../../organisms/Loader"
 
+//** Social Links */
+import SocialLinks from "../../helper/SocialLinks";
+
 //** Helpers */
 //** Personalization */
 import Text from "../../helper/Text";
@@ -75,12 +78,18 @@ const Intro = (props: Props): React.Element<*> => {
                 {navitems.map((item, i) => {
                     return(PrintType(item,i))
                 })}
+                 <SocialLinks items={sociallinks} />
+                <li className="nav-item">
+                    <button data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
+                        Loslegen
+                    </button>
+                </li>
             </ul>
         </Nav>
         </Suspense>
         
         <Suspense fallback={<div></div>}>
-            <Hero heroitems={heroitems} sociallinks={sociallinks}/>
+            <Hero heroitems={heroitems} />
         </Suspense>
        </header>
     )

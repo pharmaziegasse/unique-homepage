@@ -235,7 +235,9 @@ class Homepage extends Component {
                                     heading = { sections.individualHead }
                                     img = { sections.individualImage.urlLink }
                                     footer = { sections.individualFooter }
+                                    footercolor = { sections.individualFooterBackground }
                                     paragraph = { sections.individualParagraph }
+                                    index={i}
                                 />
                             </Suspense>
                         </Section>
@@ -412,6 +414,7 @@ class Homepage extends Component {
                                     title: card.value.pricingcard_title,
                                     description: card.value.pricingcard_description,
                                     price: card.value.pricingcard_price,
+                                    bg: card.value.pricingcard_background
                                 };
                                 })} 
                             />

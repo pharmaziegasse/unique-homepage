@@ -43,6 +43,34 @@ class Pricing extends React.Component{
         }
     }
 
+    //** Detect if Text should be white or black */
+    hexToRgb = (hex) => {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
+
+    isDark = (bg) => {
+        let r = this.hexToRgb(bg).r;
+        let g = this.hexToRgb(bg).g;
+        let b = this.hexToRgb(bg).b;
+        let rgb = "rgb("+r+","+g+","+b+")";
+
+        let match = /rgb\((\d+).*?(\d+).*?(\d+)\)/.exec(rgb);
+        let result = ( match[1] & 255 )
+            + ( match[2] & 255 )
+            + ( match[3] & 255 )
+            < 3 * 256 / 1.2;
+        if(result){
+            return "pricing-description p-4 text-white";
+        } else {
+            return "pricing-description p-4 text-grey";
+        }
+    }
+
     render(){
         
         return (
@@ -57,7 +85,7 @@ class Pricing extends React.Component{
                             <div key={i} className={this.getWidth()}>
                                 <div className={this.getType(i)}>
                                     <h3 className="text-uppercase font-weight-bold my-4">{value.title}</h3>
-                                    <div className="pricing-description p-4">
+                                    <div className={this.isDark(value.bg)} style={{backgroundColor: value.bg}}>
                                         <p className="m-0" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ value.description }/>))}}></p>
                                     </div>
                                     <div className="card-body striped p-0">
@@ -66,7 +94,7 @@ class Pricing extends React.Component{
                                             <p className="text-muted mb-0">€ {value.price}</p>
                                         </div>
                                         <hr className="mt-0"/>
-                                        <button data-toggle="modal" data-target={modalID} className="btn btn-rounded btn-info font-weight-bold">Jetzt starten!</button>
+                                        <button data-toggle="modal" data-target={modalID} className="btn btn-rounded btn-pharmaziegasse font-weight-bold">Jetzt starten!</button>
                                     </div>
                                 </div>
                             </div>
