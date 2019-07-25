@@ -235,6 +235,7 @@ class Homepage extends Component {
                                     heading = { sections.individualHead }
                                     img = { sections.individualImage.urlLink }
                                     footer = { sections.individualFooter }
+                                    footercolor = { sections.individualFooterBackground }
                                     paragraph = { sections.individualParagraph }
                                     index={i}
                                 />

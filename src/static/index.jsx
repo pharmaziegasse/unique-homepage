@@ -105,6 +105,7 @@ query pages($token: String!) {
             individualBackground
             individualFooter
             individualParagraph
+            individualFooterBackground
             individualImage{
               urlLink
             }

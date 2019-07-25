@@ -38,7 +38,7 @@ const SectionContent = (props: Props): React.Element<*> => {
                 <div className="col-md-6">
                     <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ props.paragraph }/>))}}></div>
                     {props.footer !== null &&
-                        <Alert show="true" className="alert-info">{ReactHtmlParser(renderToString(<Text value={ props.footer }/>))}</Alert>
+                        <Alert show="true" bg={props.footercolor} >{ReactHtmlParser(renderToString(<Text value={ props.footer }/>))}</Alert>
                     }
                     
                 </div>
