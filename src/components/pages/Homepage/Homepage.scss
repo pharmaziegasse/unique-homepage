@@ -856,13 +856,13 @@ b, strong{
 
     /* Custom button .btn */
     .btn-pharmaziegasse{
-        background-color: $unique-blue;
-        color: white;
+        background-color: #dddad7 ;
+        color: #212529;
         &:hover{
-            background-color: darken($unique-blue, 10%);
+            background-color: darken(#dddad7 , 10%);
         }
         &:active{
-            background-color: darken($unique-blue, 20%);
+            background-color: darken(#dddad7 , 20%);
         }
     }
 
