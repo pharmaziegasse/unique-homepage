@@ -50,27 +50,27 @@ const Hero = (props: Props): React.Element<*> => {
     return (
         <div id="hero-carousel" className="carousel slide carousel-fade" data-ride="carousel">
         <div className="companies">
-            <div className="row">
-                <div className="col">
-                    <img src={AAU} alt="Alpen Adria Universität" />
+            <div className="row justify-content-center w-100">
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={Gingel} alt="Gingel Naturkosmetik" />
                 </div>
-                <div className="col">
-                    <img src={Build} alt="Build! Gründerzentrum" />
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={USP} alt="USP solutions" />
                 </div>
-                <div className="col">
-                    <img src={EFRE} alt="EFRE" />
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={AAU} alt="Alpen Adria Universität" />
                 </div>
-                <div className="col">
-                    <img src={Gingel} alt="Gingel Naturkosmetik" />
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={HTL} alt="HTL Villach" />
                 </div>
-                <div className="col">
-                    <img src={HTL} alt="HTL Villach" />
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={EFRE} alt="EFRE" />
                 </div>
-                <div className="col">
-                    <img src={KWF} alt="Kärnter Wirtschaftsförderung Fonds" />
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={KWF} alt="Kärnter Wirtschaftsförderung Fonds" />
                 </div>
-                <div className="col">
-                    <img src={USP} alt="USP solutions" />
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={Build} alt="Build! Gründerzentrum" />
                 </div>
             </div>
         </div>
@@ -104,6 +104,7 @@ const Hero = (props: Props): React.Element<*> => {
                                 </div>
                             </div>
                         </div>
+                        {heroitems.length > 1 &&
                         <div className="carousel-caption pl-5 pr-5">
                             <div className="row white-text">
                               
@@ -112,6 +113,7 @@ const Hero = (props: Props): React.Element<*> => {
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                 );
             })}
