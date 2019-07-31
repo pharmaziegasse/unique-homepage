@@ -40,6 +40,13 @@ const Hero = (props: Props): React.Element<*> => {
 
     return (
         <div id="hero-carousel" className="carousel slide carousel-fade" data-ride="carousel">
+        <div className="companies">
+            <div className="row">
+                <div className="col">
+                    Test
+                </div>
+            </div>
+        </div>
             {heroitems.length > 1 &&
                 <ol className="carousel-indicators">
                     {heroitems.map((item, i) => {

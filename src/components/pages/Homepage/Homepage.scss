@@ -57,6 +57,18 @@ b, strong{
         color: #61dafb;
     }
 
+    /* Company list in header */
+    .companies{
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        background-color: white;
+        width: 100%;
+        padding: 2rem;
+        margin: 0;
+        overflow: hidden;
+    }
+
     /* Instagram section */
     .instagram{
         .instagram-media{
