@@ -111,7 +111,7 @@ class Steps extends React.Component{
                     <div className="m-auto pl-5 pr-5">
                         <div className="spacer-4 d-block d-sm-none"></div>
                         <i className={IconClass}></i>
-                        <h2 className="mt-3 mb-0 text-muted">Schritt {i+1}</h2>
+                        <h2 className="mt-3 mb-0 text-muted font-weight-bold">Schritt {i+1}</h2>
                         <p className="lead">{ReactHtmlParser(renderToString(<Text value={ item.head }/>))}</p>
                         <p dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.text }/>))}}></p>
                     </div>
