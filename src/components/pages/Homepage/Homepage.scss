@@ -61,11 +61,11 @@ b, strong{
         height: 100%;
     }
 
-    /*@media screen and (max-width: 600px) {
+    @media screen and (max-width: 1000px) {
         .companies{
             display: none;
         }
-    }*/
+    }
     /* Company list in header */
     .companies{
         position: absolute;

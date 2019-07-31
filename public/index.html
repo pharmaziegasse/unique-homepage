@@ -100,11 +100,9 @@
     <script>
       // Animations initialization
       new WOW().init();
-
       $("#cookieModal").on("shown.bs.modal", function() {
         $(document).off("focusin.modal");
       });
-
       $(document).ready(function() {
         let hash = window.location.hash;
         if (hash !== "") {
@@ -112,7 +110,6 @@
             scrollTop: $(hash).offset().top - 73.797
           });
         }
-
         // Load Review Images workaround
         loadImg = () => {
           // Click on image to trigger loading
@@ -126,7 +123,6 @@
             clearInterval(interval);
           }
         }, 2000);
-
         $(document).on("click", ".sscroll", function(e) {
           let target = $(this).attr("href");
           e.preventDefault();
@@ -143,23 +139,6 @@
       $(function() {
         $('[data-toggle="tooltip"]').tooltip();
       });
-
-      // Company logos
-      $('.carousel.carousel-multi-item.v-2 .carousel-item').each(function(){
-      var next = $(this).next();
-      if (!next.length) {
-        next = $(this).siblings(':first');
-      }
-      next.children(':first-child').clone().appendTo($(this));
-
-      for (var i=0;i<4;i++) {
-        next=next.next();
-        if (!next.length) {
-          next=$(this).siblings(':first');
-        }
-        next.children(':first-child').clone().appendTo($(this));
-      }
-    });
       
     </script>
     <script src="https://www.paypal.com/sdk/js?client-id=AV3an5JA5x_e06bJ4Jx6BMdj9sjBGVlMQ9CrlrAjKj_pnLZsuVALVgPhowCM2LsBs6tJW14wSJccypB2&currency=EUR"></script>
