@@ -11,6 +11,15 @@ import Text from "../../helper/Text";
 import { renderToString } from 'react-dom/server';
 import ReactHtmlParser from 'react-html-parser'; 
 
+//** Images */
+import AAU from '../../../assets/content/aau.png';
+import Build from '../../../assets/content/build.png';
+import EFRE from '../../../assets/content/efre.png';
+import Gingel from '../../../assets/content/gingel.png';
+import HTL from '../../../assets/content/htl.gif';
+import KWF from '../../../assets/content/kwf.png';
+import USP from '../../../assets/content/usp.png';
+
 /**
  * General Hero Element
  */
@@ -43,7 +52,25 @@ const Hero = (props: Props): React.Element<*> => {
         <div className="companies">
             <div className="row">
                 <div className="col">
-                    Test
+                    <img src={AAU} alt="Alpen Adria Universität" />
+                </div>
+                <div className="col">
+                    <img src={Build} alt="Build! Gründerzentrum" />
+                </div>
+                <div className="col">
+                    <img src={EFRE} alt="EFRE" />
+                </div>
+                <div className="col">
+                    <img src={Gingel} alt="Gingel Naturkosmetik" />
+                </div>
+                <div className="col">
+                    <img src={HTL} alt="HTL Villach" />
+                </div>
+                <div className="col">
+                    <img src={KWF} alt="Kärnter Wirtschaftsförderung Fonds" />
+                </div>
+                <div className="col">
+                    <img src={USP} alt="USP solutions" />
                 </div>
             </div>
         </div>
