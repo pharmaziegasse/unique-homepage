@@ -6,9 +6,9 @@ import logo_light from "./white.png";
 
 //** Navigation Items */
 export const navitems = [
-  { href: "#why", text: "Warum PHARMAZIEGASSE<sup>®</sup>", active: false, type: "text" },
   { href: "#steps", text: "So funktioniert's", active: false, type: "text" },
-  { href: "#about", text: "Über uns", active: false, type: "text" },
+  { href: "#features", text: "Warum PHARMAZIEGASSE<sup>®</sup>", active: false, type: "text" },
+  { href: "#manifest", text: "Über uns", active: false, type: "text" },
 ];
 
 export const logos = [{ light: logo_light, dark: logo_dark }];
