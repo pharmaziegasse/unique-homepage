@@ -100,11 +100,9 @@
     <script>
       // Animations initialization
       new WOW().init();
-
       $("#cookieModal").on("shown.bs.modal", function() {
         $(document).off("focusin.modal");
       });
-
       $(document).ready(function() {
         let hash = window.location.hash;
         if (hash !== "") {
@@ -112,7 +110,6 @@
             scrollTop: $(hash).offset().top - 73.797
           });
         }
-
         // Load Review Images workaround
         loadImg = () => {
           // Click on image to trigger loading
@@ -126,7 +123,6 @@
             clearInterval(interval);
           }
         }, 2000);
-
         $(document).on("click", ".sscroll", function(e) {
           let target = $(this).attr("href");
           e.preventDefault();

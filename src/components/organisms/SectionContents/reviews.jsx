@@ -66,7 +66,7 @@ class DeplayedQuery extends Component {
                                 }
                             }.bind(this)
                         }>
-                            {this.state[key] && <img width="160px" height="160px" className="rounded-circle img-fluid img-profile" src={"https://pharmaziegasse.at"+this.state[key].urlLink} alt="Profil" />}
+                            {this.state[key] && <img width="160px" height="160px" className="img-fluid img-profile" src={"https://pharmaziegasse.at"+this.state[key].urlLink} alt="Profil" />}
                         </div>
                     </div>
                 )}
