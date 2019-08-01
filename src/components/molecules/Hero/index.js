@@ -61,19 +61,19 @@ const Hero = (props: Props): React.Element<*> => {
                 <div className="col-4 col-md-auto">
                     <img className="img-fluid" src={AAU} alt="Alpen Adria Universität" />
                 </div>
-                <div className="col-4 col-md-auto">
+                <div className="col-4 col-md-auto desktop-only">
                     <img className="img-fluid" src={HTL} alt="HTL Villach" />
                 </div>
-                <div className="col-4 col-md-auto">
+                <div className="col-4 col-md-auto desktop-only">
                     <img className="img-fluid" src={EFRE} alt="EFRE" />
                 </div>
-                <div className="col-4 col-md-auto">
+                <div className="col-4 col-md-auto desktop-only">
                     <img className="img-fluid" src={AIC} alt="Werbeagentur Christian Aichner" />
                 </div>
-                <div className="col-4 col-md-auto">
+                <div className="col-4 col-md-auto desktop-only">
                     <img className="img-fluid" src={KWF} alt="Kärnter Wirtschaftsförderung Fonds" />
                 </div>
-                <div className="col-4 col-md-auto">
+                <div className="col-4 col-md-auto desktop-only">
                     <img className="img-fluid" src={Build} alt="Build! Gründerzentrum" />
                 </div>
             </div>
