@@ -19,6 +19,7 @@ import Gingel from '../../../assets/content/gingel.png';
 import HTL from '../../../assets/content/htl.gif';
 import KWF from '../../../assets/content/kwf.png';
 import USP from '../../../assets/content/usp.png';
+import AIC from '../../../assets/content/aichner.jpg';
 
 /**
  * General Hero Element
@@ -65,6 +66,9 @@ const Hero = (props: Props): React.Element<*> => {
                 </div>
                 <div className="col-4 col-md-auto">
                     <img className="img-fluid" src={EFRE} alt="EFRE" />
+                </div>
+                <div className="col-4 col-md-auto">
+                    <img className="img-fluid" src={AIC} alt="Werbeagentur Christian Aichner" />
                 </div>
                 <div className="col-4 col-md-auto">
                     <img className="img-fluid" src={KWF} alt="Kärnter Wirtschaftsförderung Fonds" />
