@@ -70,7 +70,7 @@ class Auth extends Component{
                         if (error) return null;
 
                         return (
-                            <Homepage data={data} token={this.state.token} />
+                            <Homepage pixel={this.props.pixel} data={data} token={this.state.token} />
                         );
                     }}
                 </Query>

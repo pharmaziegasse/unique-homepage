@@ -9,6 +9,9 @@
 //** Standard Frameworks */
 import React, { Component } from "react";
 
+//** React Facebook Pixel */
+import ReactPixel from 'react-facebook-pixel';
+
 //** Additional Frameworks */
 /** Apollo */
 import { ApolloClient } from "apollo-client";
@@ -44,12 +47,32 @@ const client = new ApolloClient({
   link: new HttpLink({ uri: APILink })
 });
 
+//** React FB Pixel config */
+
+const options = {
+    autoConfig: true, // set pixel's autoConfig
+    debug: false, // enable logs
+};
+
+console.log(localStorage.getItem('f_e'));
+
+let email = localStorage.getItem('f_e');
+// If a user has already registered
+if(email !== undefined && email !== null){
+  const advancedMatching = { em: email }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/pixel-with-ads/conversion-tracking#advanced_match
+  ReactPixel.init('467146364075780', advancedMatching, options); // Init Pixel with advanced options
+} else {
+  ReactPixel.init('467146364075780', options);
+}
+
+ReactPixel.pageView(); 
+
 //** Rendering of all active pages */
 class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Auth />
+        <Auth pixel={ReactPixel} />
       </ApolloProvider>
     );
   }

@@ -524,6 +524,7 @@ class Homepage extends Component {
                 return(
                 <Suspense key={i} fallback={<div></div>}>
                     <RegisterModal
+                        pixel={this.props.pixel}
                         token={this.props.token}
                     />
                 </Suspense>

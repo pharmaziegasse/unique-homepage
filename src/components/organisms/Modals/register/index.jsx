@@ -242,6 +242,8 @@ class Modal extends React.Component{
             this.setState({showSuccess: false});
         }else{
             //** If no errors -> Send the data using a graphQL mutation */
+            // Facebook Pixel
+            this.props.pixel.track( 'track', 'CompleteRegistration' );
             this.sendData();
         };
     }
