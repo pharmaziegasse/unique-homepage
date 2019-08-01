@@ -54,8 +54,6 @@ const options = {
     debug: false, // enable logs
 };
 
-console.log(localStorage.getItem('f_e'));
-
 let email = localStorage.getItem('f_e');
 // If a user has already registered
 if(email !== undefined && email !== null){

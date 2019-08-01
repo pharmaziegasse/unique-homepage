@@ -244,7 +244,7 @@ class Modal extends React.Component{
             //** If no errors -> Send the data using a graphQL mutation */
             // Facebook Pixel
             let data = {
-                name: this.state.first_name + " " + this.state.last_name,
+                name: this.state.prename + " " + this.state.surname,
                 email: this.state.email,
                 phone: this.state.phone
             }
