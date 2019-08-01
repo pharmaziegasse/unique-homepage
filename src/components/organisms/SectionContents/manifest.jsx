@@ -76,7 +76,7 @@ class Manifest extends React.Component{
                     </div>
                     <div className="col-md-6 text-center">
                         <div className="row">
-                            <div className="col-12 mb-5"><img draggable="false" className="img-fluid mix-blend-mode-multiply" src={"https://pharmaziegasse.at"+this.props.img} alt="Stefan"/></div>
+                            <div className="col-12 mb-5"><img draggable="false" className="img-fluid" src={"https://pharmaziegasse.at"+this.props.img} alt="Stefan"/></div>
                         </div>
                     </div>
                 </div>
