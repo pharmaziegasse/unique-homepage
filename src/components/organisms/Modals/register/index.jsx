@@ -320,16 +320,10 @@ class Modal extends React.Component{
 
     //** Check if name contains special chars */
     checkName = (field,value) => {
-        let format = /[ !@#$%^&*()_+\-=\]{};':"\\|,.<>?]/;
-        if(format.test(value) === false){
-            if(value !== ""){
-                this.setState({[field]:value})
-            } else {
-                this.setState({[field]:undefined})
-            }
-            
-        }else{
-            this.setState({[field]:false})
+        if(value.trim() !== ""){
+            this.setState({[field]:value})
+        } else {
+            this.setState({[field]:undefined})
         }
     }
 
