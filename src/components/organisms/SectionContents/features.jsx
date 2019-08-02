@@ -47,7 +47,7 @@ class Features extends React.Component{
                     <h2 className="font-weight-bold" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.title }/>))}}></h2>
                 }
                     <h4 className="text-muted" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.lead }/>))}}></h4>
-                    <div className="row mt-5">
+                    <div className="row mt-5 mx-1">
                         {this.props.items.map((item, index) => {
                             return(
                                 <div key={index} className="col-md-6">
