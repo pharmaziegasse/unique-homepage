@@ -58,9 +58,9 @@ let email = localStorage.getItem('f_e');
 // If a user has already registered
 if(email !== undefined && email !== null){
   const advancedMatching = { em: email }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/pixel-with-ads/conversion-tracking#advanced_match
-  ReactPixel.init('467146364075780', advancedMatching, options); // Init Pixel with advanced options
+  ReactPixel.init('398871454084167', advancedMatching, options); // Init Pixel with advanced options
 } else {
-  ReactPixel.init('467146364075780', options);
+  ReactPixel.init('398871454084167', options);
 }
 
 ReactPixel.pageView(); 

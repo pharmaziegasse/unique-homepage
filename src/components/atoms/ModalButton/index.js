@@ -5,6 +5,10 @@ import classnames from 'classnames/bind'
 
 //** Additional visual values */
 import ButtonType from './btn_types.js';
+
+//** React Facebook Pixel */
+import ReactPixel from 'react-facebook-pixel';
+
 /**
  * POSSIBLE VALUES
  * R (Rounded)
@@ -95,6 +99,24 @@ class Button extends React.Component {
         )
         return props;
     }
+
+    sendPixel = () => {
+        const options = {
+            autoConfig: true, // set pixel's autoConfig
+            debug: false, // enable logs
+        };
+
+        let email = localStorage.getItem('f_e');
+        // If a user has already registered
+        if(email !== undefined && email !== null){
+            const advancedMatching = { em: email }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/pixel-with-ads/conversion-tracking#advanced_match
+            ReactPixel.init('398871454084167', advancedMatching, options); // Init Pixel with advanced options
+        } else {
+            ReactPixel.init('398871454084167', options);
+        }
+
+        ReactPixel.track( 'ViewContent', { placement: 'body' } );
+    }
     
     render() {
         return (
@@ -102,7 +124,7 @@ class Button extends React.Component {
                 { this.exists() &&
                     <div>
                         {this.isModal() === true ? (
-                                <button data-toggle="modal" data-target={this.props.param.buttonPage.urlPath} className={this.getClassProps()}>
+                                <button onClick={this.sendPixel} data-toggle="modal" data-target={this.props.param.buttonPage.urlPath} className={this.getClassProps()}>
                                     {this.props.param.buttonTitle}
                                 </button>
                             ) : (

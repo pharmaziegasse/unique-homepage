@@ -10,6 +10,9 @@ import Loader from "../../organisms/Loader"
 //** Social Links */
 import SocialLinks from "../../helper/SocialLinks";
 
+//** React Facebook Pixel */
+import ReactPixel from 'react-facebook-pixel';
+
 //** Helpers */
 //** Personalization */
 import Text from "../../helper/Text";
@@ -37,6 +40,24 @@ const Intro = (props: Props): React.Element<*> => {
         return logos[0].light;
     }
 
+    function sendPixel() {
+        const options = {
+            autoConfig: true, // set pixel's autoConfig
+            debug: false, // enable logs
+        };
+
+        let email = localStorage.getItem('f_e');
+        // If a user has already registered
+        if(email !== undefined && email !== null){
+            const advancedMatching = { em: email }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/pixel-with-ads/conversion-tracking#advanced_match
+            ReactPixel.init('398871454084167', advancedMatching, options); // Init Pixel with advanced options
+        } else {
+            ReactPixel.init('398871454084167', options);
+        }
+
+        ReactPixel.track( 'ViewContent', { placement: 'nav' } );
+    }
+
     //** Get Button type */
     function PrintType(item, i){
         //** Smooth Scroll button */
@@ -58,7 +79,7 @@ const Intro = (props: Props): React.Element<*> => {
         }else{
             return [
                 <li key={i} className={GetState(item.active)}>
-                    <button data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
+                    <button onClick={sendPixel} data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
                         {item.text}
                     </button>
                 </li>,
@@ -80,7 +101,7 @@ const Intro = (props: Props): React.Element<*> => {
                 })}
                  <SocialLinks items={sociallinks} />
                 <li className="nav-item">
-                    <button data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
+                    <button onClick={sendPixel} data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
                         Loslegen
                     </button>
                 </li>

@@ -11,6 +11,9 @@ import Text from "../../helper/Text";
 import { renderToString } from 'react-dom/server';
 import ReactHtmlParser from 'react-html-parser'; 
 
+/** Img Signet */
+import Signet from '../../assets/signet.png';
+
 /**
  * Section: Features
  */
@@ -22,7 +25,12 @@ class Features extends React.Component{
         return(
             <div className="row">
                 <div className="col-auto pl-0 pr-1 pt-2">
-                    <i className={IconClass}></i>
+                    {item.icon.toLowerCase().trim() === 'signet' ? (
+                        <img src={Signet} height="32px" width="32px" alt="Signet"/>
+                    ) : (
+                        <i className={IconClass}></i>
+                    )}
+                    
                 </div>
                 <div className="col text-left">
                     <p className="lead mb-0" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ item.head }/>))}}></p>
