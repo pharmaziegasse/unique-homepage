@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/ie11';   
+
 //** Web Shop redirect */
 if(window.location.pathname === "/shop"){
   window.location.replace('https://pharmaziegasse.weeblysite.com')
