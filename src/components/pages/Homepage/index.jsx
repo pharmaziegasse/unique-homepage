@@ -540,14 +540,7 @@ class Homepage extends Component {
                 <ContentModal
                     modaldata = {[{modalId: "aboutModal", modalTitle: "Impressum", modalLabel: "Impressum"}]}
                 >
-                    <AboutModal text={{
-                        companyname: homepage.ownership,
-                        address:homepage.address,
-                        zip:homepage.zipCode,
-                        city:homepage.city,
-                        phone:homepage.telephone,
-                        email:homepage.email
-                    }} />
+                    <AboutModal text={ homepage.about } />
                 </ContentModal>
                 </Suspense>
             </div>
@@ -560,8 +553,6 @@ class Homepage extends Component {
                 </ContentModal>
                 </Suspense>
             </div>
-            
-            
             </main>
         );
         } else {

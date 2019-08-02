@@ -1,5 +1,11 @@
 //** Standard Frameworks */
-import * as React from 'react'
+import * as React from 'react';
+
+//** Helpers */
+//** Personalization */
+import Text from "../../../helper/Text";
+import { renderToString } from 'react-dom/server';
+import ReactHtmlParser from 'react-html-parser'; 
 
 class AboutModalContent extends React.Component{
     constructor(props){
@@ -13,17 +19,7 @@ class AboutModalContent extends React.Component{
     renderContent (){
         return(
             <div>
-                <p>{ this.props.text.companyname }</p>
-                <p>
-                    { this.props.text.address }
-                    <br/>
-                    { this.props.text.zip } { this.props.text.city } 
-                </p>
-                <p>
-                    Tel.: { this.props.text.phone }
-                    <br/>
-                    E-Mail: <a href={"mailto:" + this.props.text.email}>{ this.props.text.email }</a>
-                </p>
+                <p className="text-left" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ this.props.text }/>))}}></p>
             </div>
         )
     }
