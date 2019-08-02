@@ -40,7 +40,7 @@ class CookieModal extends React.Component{
                         <div className="modal-dialog modal-full-height modal-bottom" role="document">
                             <div className="modal-content">
                                 <div className="modal-body">
-                                    <p>Wir verwenden Cookies, damit unsere Website für Sie optimal funktioniert.</p>
+                                    <p>Wir verwenden Cookies, damit unsere Website für Sie optimal funktioniert. Mit der Nutzung der Website erklären Sie sich einverstanden, dass PHARMAZIEGASSE<sup>®</sup> Cookies verwendet.<br/><a href="https://de.wikipedia.org/wiki/HTTP-Cookie" target="_blank" rel="noopener noreferrer">Mehr über Cookies</a></p>
                                     <button name="dismiss_cookie" className="btn btn-outline-elegant btn-rounded waves-effect font-weight-bold" onClick={this.handleClick}><i className="fas fa-check pr-2"></i>Verstanden</button>
                                 </div>
                             </div>
