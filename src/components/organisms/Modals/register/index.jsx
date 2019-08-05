@@ -280,6 +280,7 @@ class Modal extends React.Component{
     checkTel = (value) => {
         if(value !== ''){
             const phoneNumber = parsePhoneNumberFromString(value);
+            console.log(phoneNumber);
             if(phoneNumber !== undefined){
                 phoneNumber.formatInternational();
                 this.setState({phone:phoneNumber.number});
@@ -289,7 +290,7 @@ class Modal extends React.Component{
                 }
             }else{
                 this.setState({country:false})
-                this.setState({phone:false})
+                this.setState({phone:value.trim()})
             }
         } else {
             this.setState({country:false})
