@@ -210,7 +210,7 @@ class Modal extends React.Component{
         
         //** Check inputs and generate errors */
         //** Errors are written to a buffer which is then written to this.state.buffer */
-        if(this.state.phone === undefined){
+        if(this.state.phone === undefined || this.state.phone === false){
             buffer.push("Bitte geben Sie eine Telefonnummer ein.");
             error.push(1);
         }
@@ -287,7 +287,6 @@ class Modal extends React.Component{
                 if(phoneNumber.country !== undefined){
                     this.setState({country:phoneNumber.country.toLowerCase()})
                 }
-                
             }else{
                 this.setState({country:false})
                 this.setState({phone:false})
