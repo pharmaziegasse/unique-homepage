@@ -213,11 +213,6 @@ class Modal extends React.Component{
         if(this.state.phone === undefined){
             buffer.push("Bitte geben Sie eine Telefonnummer ein.");
             error.push(1);
-        } else {
-            if(this.state.phone === false){
-                buffer.push("Bitte geben Sie Ihre Vorwahl Ihres Landes an. (z.B. +43)");
-                error.push(2);
-            }
         }
         if (this.state.email === false){
             buffer.push("Die eingegebene E-Mail Adresse ist ungültig.");
@@ -287,12 +282,10 @@ class Modal extends React.Component{
             const phoneNumber = parsePhoneNumberFromString(value);
             if(phoneNumber !== undefined){
                 phoneNumber.formatInternational();
+                this.setState({phone:phoneNumber.number});
+                // Set country
                 if(phoneNumber.country !== undefined){
-                    this.setState({phone:phoneNumber.number})
                     this.setState({country:phoneNumber.country.toLowerCase()})
-                }else{
-                    this.setState({country:false})
-                    this.setState({phone:false})
                 }
                 
             }else{
