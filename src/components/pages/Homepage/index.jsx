@@ -227,7 +227,7 @@ class Homepage extends Component {
                 } else if (sections.__typename === 'Home_S_IndividualBlock') {
                 return (
                     <Suspense key={i} fallback={<Loader/>}>
-                        <Section sectionid="individual" background={sections.individualBackground}>
+                        <Section sectionid={"individual"+i} background={sections.individualBackground}>
                             <Suspense fallback={<Loader/>}>
                                 <HomeSIndividualBlock
                                     showHead={sections.individualDisplayhead}

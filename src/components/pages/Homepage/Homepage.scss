@@ -819,6 +819,14 @@ b, strong{
         color: $unique-blue;
     }
 
+    // Links
+    #why a{
+        color: #212529 !important;
+    }
+    #why a:hover{
+        color: $unique-blue !important;
+    }
+
     /* Modals */
 
     /* Center modals */
