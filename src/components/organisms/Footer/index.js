@@ -70,10 +70,6 @@ const Footer = (props: Props): React.Element<*> => {
           <p className="text-center text-md-left">© 2018 - {(new Date().getFullYear())} Copyright: {companyinfo[0].copyrightholder}
           </p>
         </div>
-        <div className="col-md-6">
-          <p className="text-center text-md-right funnel">Made with <i className="fas fa-heart pulse red-text"></i> by <a target="_blank" rel="noopener noreferrer" href="https://www.aichner-christian.com?refer=pharmaziegasse">Werbeagentur Christian Aichner</a>
-          </p>
-        </div>
       </div>
     </div>
   </footer>
