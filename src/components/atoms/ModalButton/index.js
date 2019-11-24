@@ -54,18 +54,18 @@ class Button extends React.Component {
         super(props);
 
         this.state = {
-           visible: false
+            visible: false
         }
     }
 
     //** Convert url to Modal */
     isModal = () => {
         if(this.exists()){
-            if(this.props.param.btnlink === null || this.props.param.btnlink === undefined){
+            if(this.props.param.buttonLink === null || this.props.param.buttonLink === undefined){
                 this.props.param.buttonPage.urlPath = this.props.param.buttonPage.urlPath.replace('/','#');
                 return true;
             }
-            if(this.props.param.btnlink !== null && this.props.param.btnlink !== undefined){
+            if(this.props.param.buttonLink !== null && this.props.param.buttonLink !== undefined){
                 console.error("Link");
                 return false;
             } 
@@ -74,11 +74,11 @@ class Button extends React.Component {
     }
 
     //** Check if button should be displayed */
-    exists = () =>{
+    exists = () => {
         if(this.props.param === undefined || this.props.param === null){
             return false;
         } else {
-            if((this.props.param.buttonPage !== null && this.props.param.buttonPage !== undefined) || (this.props.param.btnlink !== null && this.props.param.btnlink !== undefined)){
+            if(this.props.param.buttonPage || this.props.param.buttonLink){
                 return true;
             } else {
                 return false;
@@ -120,10 +120,10 @@ class Button extends React.Component {
     
     render() {
         return (
-            <div>
+            <>
                 { this.exists() &&
                     <div>
-                        {this.isModal() === true ? (
+                        {this.isModal() ? (
                                 <button onClick={this.sendPixel} data-toggle="modal" data-target={this.props.param.buttonPage.urlPath} className={this.getClassProps()}>
                                     {this.props.param.buttonTitle}
                                 </button>
@@ -135,7 +135,7 @@ class Button extends React.Component {
                         }
                     </div>
                 }
-            </div>
+            </>
         )
     }
     
@@ -148,8 +148,8 @@ Button.defaultProps = {
     btntype: ButtonType.R,
     className: '',
     disabled: false,
-    btnlink: null,
-    btntitle: "Unnamed",
+    buttonLink: null,
+    buttonTitle: "Unnamed",
     btnhref: ""
 }
 
