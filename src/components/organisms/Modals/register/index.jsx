@@ -476,10 +476,7 @@ class Modal extends React.Component{
                                             <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.registrationPrivacyText }/>))}}></div>
                                         </Checkbox>
                                         </div>
-                                        {modaldata.registrationButton.buttonPage !== null &&
-                                            <input className="btn btn-outline-elegant font-weight-bold" type="submit" value={modaldata.registrationButton.buttonTitle} />
-                                        }   
-                                        
+                                        <input className="btn btn-outline-elegant font-weight-bold" type="submit" value="Kostenloses Beratungsgespräch anfordern" />
                                     </form>
                                 </div>
                                 <div className="col-md-5 text-left">
