@@ -32,7 +32,7 @@ import ReactHtmlParser from 'react-html-parser';
 //** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
     mutation register($token: String!, $values: GenericScalar!) {
-        registrationRegistrationformPage(token: $token, url: "/registration", values: $values) {
+        registrationRegistrationformPage(token: $token, url: "/pharmaziegasse/registration", values: $values) {
             result
             errors {
             name
@@ -44,28 +44,25 @@ const CREATE_USER_MUTATION = gql`
 
 //** Mutation: Get Data for Modal */
 const GET_MODAL_DATA = gql`
-    query modal(
-        $token: String!
-    ){
-        pages(
-            token: $token
-        ){
-            ... on RegistrationRegistrationformPage{
-                registrationHead
-                registrationInfoText
-                registrationNewsletterText
-                registrationPrivacyText
-                registrationStepText
-                thankYouText
-                registrationButton{
-                    buttonTitle
-                    buttonPage{
-                        id
-                        urlPath
-                    }
-                }
+    query modal($token: String!) {
+    page(token: $token, url: "/pharmaziegasse/registration") {
+        urlPath
+        ... on RegistrationRegistrationformPage {
+        registrationHead
+        registrationInfoText
+        registrationNewsletterText
+        registrationPrivacyText
+        registrationStepText
+        thankYouText
+        registrationButton {
+            buttonTitle
+            buttonPage {
+            id
+            urlPath
             }
         }
+        }
+    }
     }
 `;
 
@@ -214,8 +211,12 @@ class Modal extends React.Component{
             buffer.push("Bitte geben Sie Ihren Namen ein.");
             error.push(4);
         } 
-        if(this.state.phone === undefined || this.state.phone === false){
+        if(this.state.phone === undefined){
             buffer.push("Bitte geben Sie eine Telefonnummer ein.");
+            error.push(1);
+        }
+        if(this.state.phone === false){
+            buffer.push("Die eingegebene Telefonnummer ist ungültig. Bitte geben Sie auch die Ländervorzahl (z.B. +43) an.");
             error.push(1);
         }
         if(this.state.email === undefined){
@@ -297,7 +298,7 @@ class Modal extends React.Component{
                 }
             }else{
                 this.setState({country:false, cc:false})
-                this.setState({phone:value.trim()})
+                this.setState({phone:false})
             }
         } else {
             this.setState({country:false, cc:false})
@@ -379,11 +380,13 @@ class Modal extends React.Component{
     }
 
     renderContent (){
+        console.log(this.props.data);
         
         //** Text data for the modal */ 
-        if(this.props.data.pages[1] !== undefined){
-            let modaldata = (this.props.data.pages[1]);
-            //console.log(modaldata);
+        let modaldata = (this.props.data.page);
+        console.log(modaldata);
+
+        if(this.props.data.page !== undefined){
 
             return(
                 <div className="modal fade" id="registration" tabIndex="-1" role="dialog" aria-labelledby="Registrieren" aria-hidden="true" data-backdrop="true">
@@ -530,12 +533,12 @@ class Modal extends React.Component{
         } else {
             return false;
         }
-        
     }
 
     render(){
         console.log(this.state);
-        if(this.props.data.pages !== undefined){
+        console.log(this.props.data);
+        if(this.props.data !== undefined){
             return this.renderContent();
         } else {
             return false;

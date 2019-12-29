@@ -152,9 +152,9 @@ class Homepage extends Component {
         //** Debug data fetched from Wagtail */
         //console.log(data.pages);
 
-        const homepage = data.page.rootPage.uniquepage;
+        const homepage = data.page;
+        console.log(homepage);
         const q_headers = homepage.headers;
-        console.log(q_headers);
         const q_sections = homepage.sections;  
 
         const btn_pages = [];
