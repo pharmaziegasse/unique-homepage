@@ -154,6 +154,7 @@ class Homepage extends Component {
 
         const homepage = data.page.rootPage.uniquepage;
         const q_headers = homepage.headers;
+        console.log(q_headers);
         const q_sections = homepage.sections;  
 
         const btn_pages = [];
@@ -175,25 +176,32 @@ class Homepage extends Component {
         return (
             <main className="Homepage">
 
-            {q_headers.map((slides, i) => {
-                return(
-                    <Intro
-                    key={i}
-                    logos={logos}
-                    navitems={navitems}
-                    heroitems={slides.value.map((slide, i) => {
-                        btn_pages.push(slide.slideButton.buttonPage);
-                        return {
-                        img: APIHost+slide.slideImage.urlLink,
-                        head: slide.slideHead,
-                        subhead: slide.slideSubhead,
-                        btn: slide.slideButton
-                        };
-                    })}
-                    sociallinks={homepage.sociallinks}
-                    />
-                )
-            
+            {q_headers.map((header, i) => {
+                if (header.__typename === 'HomeHero_SlideBlockListBlock') {
+                    return(
+                        <Intro
+                        key={i}
+                        logos={logos}
+                        navitems={navitems}
+                        heroitems={header.value.map((slide, i) => {
+                            btn_pages.push(slide.slideButton.buttonPage);
+                            return {
+                            img: APIHost+slide.slideImage.urlLink,
+                            head: slide.slideHead,
+                            subhead: slide.slideSubhead,
+                            btn: slide.slideButton
+                            };
+                        })}
+                        sociallinks={homepage.sociallinks}
+                        />
+                    )
+                } else if (header.__typename === 'StringBlock') {
+                    return (
+                        <div key={i} dangerouslySetInnerHTML={{__html: header.code}}></div>
+                    );
+                } else {
+                    return false;
+                }
             })}
             {q_sections.map((sections, i) => {
                 if (sections.__typename === 'Home_S_WhyBlock') {
@@ -504,8 +512,12 @@ class Homepage extends Component {
                     </Section>
                     </Suspense>
                 );
+                } else if (sections.__typename === 'StringBlock') {
+                    return (
+                        <div key={i} dangerouslySetInnerHTML={{__html: sections.code}}></div>
+                    );
                 } else {
-                return false;
+                    return false;
                 }
             })}
             <div>

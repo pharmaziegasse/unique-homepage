@@ -32,7 +32,7 @@ import ReactHtmlParser from 'react-html-parser';
 //** Mutation: Create User */
 const CREATE_USER_MUTATION = gql`
     mutation register($token: String!, $values: GenericScalar!) {
-        registrationFormPage(token: $token, url: "/registration", values: $values) {
+        registrationRegistrationformPage(token: $token, url: "/registration", values: $values) {
             result
             errors {
             name
@@ -50,20 +50,20 @@ const GET_MODAL_DATA = gql`
         pages(
             token: $token
         ){
-            ... on RegistrationFormPage{
-            registrationHead
-            registrationInfoText
-            registrationNewsletterText
-            registrationPrivacyText
-            registrationStepText
-            thankYouText
-            registrationButton{
-                buttonTitle
-                buttonPage{
-                    id
-                    urlPath
+            ... on RegistrationRegistrationformPage{
+                registrationHead
+                registrationInfoText
+                registrationNewsletterText
+                registrationPrivacyText
+                registrationStepText
+                thankYouText
+                registrationButton{
+                    buttonTitle
+                    buttonPage{
+                        id
+                        urlPath
+                    }
                 }
-            }
             }
         }
     }
@@ -99,7 +99,7 @@ class Modal extends React.Component{
            phonelive: "",
            emaillive: "",
            prenamelive: "",
-           surnamelive: ""
+           surnamelive: "",
         }
     }
 
@@ -151,10 +151,10 @@ class Modal extends React.Component{
             "last_name": this.state.surname,
             "email": this.state.email,
             "telephone": this.state.phone,
-            "address": "",
-            "postal_code": "",
-            "city": "",
-            "country": "",
+            "address": this.state.address,
+            "postal_code": this.state.postalcode,
+            "city": this.state.city,
+            "country": this.state.country,
             "verified": this.state.verified,
             "newsletter": this.state.newsletter
         };
@@ -170,7 +170,7 @@ class Modal extends React.Component{
             })
             .then(({data}) => {
                 //** Handle response (debug using console.log of data) */
-                if(data.registrationFormPage.result === "OK"){
+                if(data.registrationRegistrationformPage.result === "OK"){
                     //** Hide error and show success message */
                     this.setState({showError: false});
                     this.setState({showSuccess: true});
@@ -210,18 +210,22 @@ class Modal extends React.Component{
         
         //** Check inputs and generate errors */
         //** Errors are written to a buffer which is then written to this.state.buffer */
+        if (this.state.prename === undefined || this.state.surname === undefined){
+            buffer.push("Bitte geben Sie Ihren Namen ein.");
+            error.push(4);
+        } 
         if(this.state.phone === undefined || this.state.phone === false){
             buffer.push("Bitte geben Sie eine Telefonnummer ein.");
             error.push(1);
+        }
+        if(this.state.email === undefined){
+            buffer.push("Bitte geben Sie eine E-Mail Adresse ein.");
+            error.push(3);
         }
         if (this.state.email === false){
             buffer.push("Die eingegebene E-Mail Adresse ist ungültig.");
             error.push(3);
         }
-        if (this.state.prename === undefined || this.state.surname === undefined){
-            buffer.push("Bitte geben Sie Ihren Namen ein.");
-            error.push(4);
-        } 
         if (this.state.prename === false || this.state.surname === false){
             buffer.push("Ihr Name darf keine Sonderzeichen enthalten.");
             error.push(5);
@@ -280,20 +284,23 @@ class Modal extends React.Component{
     checkTel = (value) => {
         if(value !== ''){
             const phoneNumber = parsePhoneNumberFromString(value);
-            console.log(phoneNumber);
             if(phoneNumber !== undefined){
                 phoneNumber.formatInternational();
                 this.setState({phone:phoneNumber.number});
                 // Set country
                 if(phoneNumber.country !== undefined){
-                    this.setState({country:phoneNumber.country.toLowerCase()})
+                    const { getName } = require('country-list');
+                    this.setState({
+                        country: getName(phoneNumber.country),
+                        cc: phoneNumber.country.toLowerCase()
+                    })
                 }
             }else{
-                this.setState({country:false})
+                this.setState({country:false, cc:false})
                 this.setState({phone:value.trim()})
             }
         } else {
-            this.setState({country:false})
+            this.setState({country:false, cc:false})
             this.setState({phone:undefined})
         }
     }
@@ -322,8 +329,8 @@ class Modal extends React.Component{
 
     //** Update flag icon in phone input */
     printFlag = () => {
-        if(this.state.country !== false){
-            return <FlagIcon code={this.state.country} />
+        if(this.state.cc !== false){
+            return <FlagIcon code={this.state.cc} />
         }
     }
 
@@ -390,9 +397,10 @@ class Modal extends React.Component{
                         </button>
                         <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.registrationHead }/>))}}></div>
                         <hr/>
-                        {this.state.showSuccess ? (
+                        {!this.state.showSuccess ? (
                             <div className="success">
                                 <Alert className="alert-success" show="true">
+                                    <i className="far fa-check-circle fa-3x green-text mt-1 mb-2"></i>
                                     <div dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.thankYouText }/>))}}></div>
                                 </Alert>
                             </div>
@@ -401,21 +409,22 @@ class Modal extends React.Component{
                             <div className="row">
                                 <div className="col-md-7">
                                 {!this.state.oAuthed ? (
-                                    <div>
+                                    <div class="d-none">
                                         <div className="oAuth">
-                                        <FacebookLogin
-                                                appId="438514240304319"
-                                                autoLoad={false}
-                                                icon={<FaFacebook/>}
-                                                cssClass="btn-facebook kep-login-facebook kep-login-facebook-medium"
-                                                fields="first_name,last_name,email,picture"
-                                                textButton="Weiter mit Facebook"
-                                                callback={this.responseFacebook}
-                                            />
-                                        
+                                            {
+                                                //** Facebook oAuth has been disabled for now */
+                                                /*<FacebookLogin
+                                                    appId="438514240304319"
+                                                    autoLoad={false}
+                                                    icon={<FaFacebook/>}
+                                                    cssClass="btn-facebook kep-login-facebook kep-login-facebook-medium"
+                                                    fields="first_name,last_name,email,picture"
+                                                    textButton="Weiter mit Facebook"
+                                                    callback={this.responseFacebook}
+                                                />*/
+                                            }
                                             {
                                                 //** Google oAuth has been disabled for now */
-
                                                 /*<GoogleLogin
                                                     clientId="762647868786-a6do4s713inonqo663lbgqqgo40u5sen.apps.googleusercontent.com"
                                                     buttonText="Weiter mit Google"
@@ -438,26 +447,51 @@ class Modal extends React.Component{
                                     {this.printError()}
                                 
                                     <form id="form-reg" onSubmit={(e) => {this.handleSubmitForm(e); e.preventDefault();}}>
+                                        <div>
+                                            <div className="input-grp">
+                                                <i className="far fa-user-circle"></i>
+                                                <Input className="my-3" type="text" name="prename" placeholder="Vorname*" value={this.state.prenamelive} validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
+                                            </div>
+                                            <div className="input-grp">
+                                                <i className="far fa-user-circle"></i>
+                                                <Input className="my-3" type="text" name="surname" placeholder="Nachname*" value={this.state.surnamelive} validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
+                                            </div>
+                                        </div>
                                         <div className="input-grp">
                                             {this.printFlag()}
                                             <i className="fas fa-phone"></i>
-                                            <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer" value={this.state.phonelive} validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
+                                            <Input className="my-3" type="text" name="phone" placeholder="Telefonnummer*" value={this.state.phonelive} validation={this.state.valid1} onChange={this.handleChange.bind(this)}/>
                                         </div>
                                         {!this.state.formHidden ? (
+                                        <>
                                         <div>
                                             <div className="input-grp">
                                                 <i className="far fa-envelope"></i>
-                                                <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse (optional)" value={this.state.emaillive} validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
-                                            </div>
-                                            <div className="input-grp">
-                                                <i className="far fa-user-circle"></i>
-                                                <Input className="my-3" type="text" name="prename" placeholder="Vorname" value={this.state.prenamelive} validation={this.state.valid3} onChange={this.handleChange.bind(this)}/>
-                                            </div>
-                                            <div className="input-grp">
-                                                <i className="far fa-user-circle"></i>
-                                                <Input className="my-3" type="text" name="surname" placeholder="Nachname" value={this.state.surnamelive} validation={this.state.valid4} onChange={this.handleChange.bind(this)}/>
+                                                <Input className="my-3" type="email" name="email" placeholder="E-Mail Adresse*" value={this.state.emaillive} validation={this.state.valid2}  onChange={this.handleChange.bind(this)}/>
                                             </div>
                                         </div>
+                                        <div className="row">
+                                            <div className="col-md-4">
+                                                <div className="input-grp">
+                                                    <i className="fas fa-globe"></i>
+                                                    <Input className="my-3" type="text" name="postalcode" placeholder="PLZ" value={this.state.postalcode} validation={this.state.valid5}  onChange={this.handleChange.bind(this)}/>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-8">
+                                                <div className="input-grp">
+                                                    <i className="fas fa-city"></i>
+                                                    <Input className="my-3" type="text" name="city" placeholder="Stadt" value={this.state.city} validation={this.state.valid6}  onChange={this.handleChange.bind(this)}/>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-12">
+                                                <div className="input-grp">
+                                                    <i className="far fa-building"></i>
+                                                    <Input className="mb-2" type="text" name="address" placeholder="Adresse" value={this.state.address} validation={this.state.valid7}  onChange={this.handleChange.bind(this)}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span className="text-muted">* = Pflichtfeld</span>
+                                        </>
                                         ) : (
                                             <div className="alert alert-info register-info alert-data">
                                                 <p className="m-0">
@@ -500,6 +534,7 @@ class Modal extends React.Component{
     }
 
     render(){
+        console.log(this.state);
         if(this.props.data.pages !== undefined){
             return this.renderContent();
         } else {

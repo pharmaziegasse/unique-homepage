@@ -47,6 +47,7 @@ query pages($token: String!) {
         email
         headers{
           ... on HomeHero_SlideBlockListBlock{
+            __typename
             value{
               slideHead
               slideSubhead
@@ -62,6 +63,9 @@ query pages($token: String!) {
                 }
               }
             }
+          }
+          ... on StringBlock{
+            code: value
           }
         }
         sections {
@@ -203,7 +207,7 @@ query pages($token: String!) {
             }
           }
           ... on Home_S_ManifestBlock{ 
-          	manifestHead
+            manifestHead
             manifestImage{
               urlLink
             }
@@ -278,6 +282,10 @@ query pages($token: String!) {
             instagramBackground
             instagramCaptions
             instagramUrls
+          }
+          ... on StringBlock{
+            __typename
+            code: value
           }
         }
       }
