@@ -397,7 +397,7 @@ class Modal extends React.Component{
                         </button>
                         <div className="lead font-weight-bold text-center" dangerouslySetInnerHTML={{__html: ReactHtmlParser(renderToString(<Text value={ modaldata.registrationHead }/>))}}></div>
                         <hr/>
-                        {!this.state.showSuccess ? (
+                        {this.state.showSuccess ? (
                             <div className="success">
                                 <Alert className="alert-success" show="true">
                                     <i className="far fa-check-circle fa-3x green-text mt-1 mb-2"></i>
