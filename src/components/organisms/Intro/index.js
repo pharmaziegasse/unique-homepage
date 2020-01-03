@@ -101,7 +101,7 @@ const Intro = (props: Props): React.Element<*> => {
                 })}
                  <SocialLinks items={sociallinks} />
                 <li className="nav-item">
-                    <button onClick={sendPixel} data-toggle="modal" data-target="#registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
+                    <button onClick={sendPixel} data-toggle="modal" data-target="#_pharmaziegasse_registration" className="btn btn-white btn-rounded font-weight-bold d-none d-sm-block">
                         Loslegen
                     </button>
                 </li>

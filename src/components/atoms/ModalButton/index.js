@@ -46,6 +46,11 @@ var cbs = classnames.bind(ButtonSize);
 var cbst = classnames.bind(ButtonStyle);
 var cbt = classnames.bind(ButtonType);
 
+String.prototype.replaceAll = function(str1, str2, ignore) 
+{
+    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
+} 
+
 /**
  * General Button Element
  */
@@ -117,14 +122,22 @@ class Button extends React.Component {
 
         ReactPixel.track( 'ViewContent', { placement: 'body' } );
     }
+
+    getUrlPath = (urlPath) => {
+        if(urlPath){
+            return "#"+urlPath.replaceAll("#", "_");
+        }
+    }
     
     render() {
+        console.log(this.props.param);
+        console.log(this.exists(), this.exists() && this.isModal());
         return (
             <>
                 { this.exists() &&
                     <div>
                         {this.isModal() ? (
-                                <button onClick={this.sendPixel} data-toggle="modal" data-target={this.props.param.buttonPage.urlPath} className={this.getClassProps()}>
+                                <button onClick={this.sendPixel} data-toggle="modal" data-target={this.getUrlPath(this.props.param.buttonPage.urlPath)} className={this.getClassProps()}>
                                     {this.props.param.buttonTitle}
                                 </button>
                             ) : (

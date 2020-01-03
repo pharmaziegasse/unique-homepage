@@ -30,7 +30,7 @@ class Nav extends React.Component {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                     {this.props.children}
+                    {this.props.children}
                 </div>
             </div>
         </nav>
