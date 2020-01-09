@@ -179,11 +179,20 @@ class Modal extends React.Component{
                 }
             })
             .catch(error => {
-                this.setState({buffer: "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es etwas später erneut."})
-                this.setState({showError: true});
-                this.setState({showSuccess: false});
-                console.error("Mutation error:");
-                console.log(error);
+                if(error.message === "GraphQL error: {'telephone': ['A user with that phone number already exists.']}"){
+                    this.setState({
+                        buffer: "Die eingetragene Telefonnummer wurde bereits verwendet.",
+                        showError: true,
+                        devError: error.message
+                    });
+                } else {
+                    this.setState({
+                        buffer: "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es etwas später erneut.",
+                        showError: true,
+                        devError: error.message
+                    });
+                }
+                console.error(error);
             })
         } else {
             this.setState({buffer: "Ihre Eingaben entspricht nicht den Vorraussetzungen. Bitte überprüfen Sie Ihre Eingaben."})
@@ -380,7 +389,6 @@ class Modal extends React.Component{
     }
 
     renderContent (){
-        console.log(this.props.data);
         
         //** Text data for the modal */ 
         let modaldata = (this.props.data.page);
@@ -448,6 +456,12 @@ class Modal extends React.Component{
                                     </div>
                                 )}
                                     {this.printError()}
+
+                                    {((window.location.search.substr(1) === "dev") && this.state.devError) &&
+                                        <Alert className="alert-warning" show="true">
+                                            {this.state.devError}
+                                        </Alert>
+                                    }
                                 
                                     <form id="form-reg" onSubmit={(e) => {this.handleSubmitForm(e); e.preventDefault();}}>
                                         <div>
