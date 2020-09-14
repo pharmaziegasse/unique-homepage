@@ -7,6 +7,7 @@ import logo_light from "./white.png";
 //** Navigation Items */
 export const navitems = [
   { href: "#steps", text: "So funktioniert's", active: false, type: "text" },
+  { href: "https://shop.pharmaziegasse.at/", text: "Shop", active: false, type: "text" },
   { href: "#features", text: "Warum PHARMAZIEGASSE<sup>®</sup>", active: false, type: "text" },
   { href: "#manifest", text: "Über uns", active: false, type: "text" },
 ];
